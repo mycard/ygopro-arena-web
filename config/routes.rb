@@ -1,4 +1,6 @@
 Reliz::Application.routes.draw do
+  resources :moderations
+
   resources :boards
 
   root :to => 'boards#index'

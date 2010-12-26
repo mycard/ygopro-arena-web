@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @moderation.user %>
+</p>
+
+<p>
+  <b>Target:</b>
+  <%= @moderation.target %>
+</p>
+
+<p>
+  <b>Action:</b>
+  <%= @moderation.action %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%= @moderation.note %>
+</p>
+
+
+<%= link_to 'Edit', edit_moderation_path(@moderation) %> |
+<%= link_to 'Back', moderations_path %>

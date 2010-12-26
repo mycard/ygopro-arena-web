@@ -1,0 +1,7 @@
+<% form_tag :controller => :moderations do %>
+    <%= text_field_tag "moderation[association_id]" %>
+    <%= text_field_tag "moderation[association_type]" %>
+   <%= text_field_tag "moderation[action]" %>
+   
+    <%= submit_tag "do" %>
+<% end %>

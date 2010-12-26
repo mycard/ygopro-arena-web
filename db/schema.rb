@@ -10,51 +10,208 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101226072024) do
+ActiveRecord::Schema.define(:version => 20101226125042) do
 
-# Could not dump table "boards" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "boards", :force => true do |t|
+    t.string   "name"
+    t.text     "introduction"
+    t.text     "notice"
+    t.string   "logo"
+    t.string   "banner"
+    t.integer  "readperm"
+    t.integer  "topicperm"
+    t.integer  "postperm"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "boards_copy" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "boards_copy", :force => true do |t|
+    t.integer "super_id"
+    t.string  "name"
+    t.text    "introduction"
+    t.text    "notice"
+    t.string  "logo"
+    t.string  "banner"
+    t.integer "readperm"
+    t.integer "topicperm"
+    t.integer "postperm"
+  end
 
-# Could not dump table "comments" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "comments", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "comments_copy" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "comments_copy", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "notices" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "moderations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "association_id"
+    t.string   "association_type"
+    t.string   "action"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "notices_copy" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "notices", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "type"
+    t.integer  "assocaion_id"
+    t.string   "assocaion_type"
+    t.integer  "from_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "pms" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "notices_copy", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "type"
+    t.integer  "assocaion_id"
+    t.string   "assocaion_type"
+    t.integer  "from_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "pms_copy" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "pms", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "from_user_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "posts" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "pms_copy", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "from_user_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "posts_copy" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "posts", :force => true do |t|
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "displayorder"
+    t.integer  "readperm"
+    t.boolean  "private"
+    t.boolean  "anonymous"
+    t.boolean  "ubb"
+    t.boolean  "html"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "schema_migrations_copy" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "posts_copy", :force => true do |t|
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "displayorder"
+    t.integer  "readperm"
+    t.boolean  "private"
+    t.boolean  "anonymous"
+    t.boolean  "ubb"
+    t.boolean  "html"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "topics" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "schema_migrations_copy", :primary_key => "version", :force => true do |t|
+  end
 
-# Could not dump table "topics_copy" because of following ActiveRecord::StatementInvalid
-#   Mysql2::Error: Can't create/write to file 'C:\WINDOWS\TEMP\#sql_618_0.MYI' (Errcode: 13): describe `topics_copy`
+  add_index "schema_migrations_copy", ["version"], :name => "unique_schema_migrations", :unique => true
 
-# Could not dump table "users" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "topics", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "type_id"
+    t.integer  "category_id"
+    t.string   "category_type"
+    t.string   "name"
+    t.integer  "displayorder"
+    t.integer  "views"
+    t.integer  "readperm"
+    t.boolean  "locked"
+    t.boolean  "reverse"
+    t.boolean  "private"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "users_copy" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "topics_copy", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "type_id"
+    t.integer  "category_id"
+    t.string   "category_type"
+    t.string   "name"
+    t.integer  "displayorder"
+    t.integer  "views"
+    t.integer  "readperm"
+    t.boolean  "locked"
+    t.boolean  "reverse"
+    t.boolean  "private"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "password"
+    t.string   "email"
+    t.integer  "usergroup_id"
+    t.integer  "admingroup_id"
+    t.string   "regip"
+    t.string   "lastloginip"
+    t.integer  "readnum"
+    t.integer  "viewnum"
+    t.integer  "onlinetime"
+    t.integer  "credit"
+    t.integer  "credit1"
+    t.integer  "credit2"
+    t.integer  "credit3"
+    t.integer  "credit4"
+    t.integer  "credit5"
+    t.integer  "credit6"
+    t.integer  "credit7"
+    t.integer  "credit8"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users_copy", :force => true do |t|
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "password"
+    t.string   "email"
+    t.integer  "usergroup_id"
+    t.integer  "admingroup_id"
+    t.string   "regip"
+    t.string   "lastloginip"
+    t.integer  "readnum"
+    t.integer  "viewnum"
+    t.integer  "onlinetime"
+    t.integer  "credit"
+    t.integer  "credit1"
+    t.integer  "credit2"
+    t.integer  "credit3"
+    t.integer  "credit4"
+    t.integer  "credit5"
+    t.integer  "credit6"
+    t.integer  "credit7"
+    t.integer  "credit8"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
