@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Topic:</b>
+  <%= @post.topic %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @post.user %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @post.content %>
+</p>
+
+<p>
+  <b>Displayorder:</b>
+  <%= @post.displayorder %>
+</p>
+
+<p>
+  <b>Readperm:</b>
+  <%= @post.readperm %>
+</p>
+
+<p>
+  <b>Private:</b>
+  <%= @post.private %>
+</p>
+
+<p>
+  <b>Anonymous:</b>
+  <%= @post.anonymous %>
+</p>
+
+<p>
+  <b>Ubb:</b>
+  <%= @post.ubb %>
+</p>
+
+<p>
+  <b>Html:</b>
+  <%= @post.html %>
+</p>
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

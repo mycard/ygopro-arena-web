@@ -1,0 +1,9 @@
+<%= stylesheet_link_tag :all %>
+<% ApplicationHelper::addon_stylesheet.each { |s| %>
+    <%= stylesheet_link_tag 'fucking/'+s %>
+<% } %>
+<%= javascript_include_tag :defaults %>
+<% ApplicationHelper::addon_javascript.each { |s| %>
+    <%= javascript_link_tag 'fucking/'+s %>
+<% } %>
+<%= csrf_meta_tag %>

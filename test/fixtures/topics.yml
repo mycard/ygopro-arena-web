@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  type: 
+  board: 
+  name: MyString
+  displayorder: 1
+  views: 1
+  readperm: 1
+  notice: false
+  reverse: false
+  private: false
+
+two:
+  user: 
+  type: 
+  board: 
+  name: MyString
+  displayorder: 1
+  views: 1
+  readperm: 1
+  notice: false
+  reverse: false
+  private: false

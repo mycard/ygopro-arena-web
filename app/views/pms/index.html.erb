@@ -1,0 +1,27 @@
+<h1>Listing pms</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>User</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pms.each do |pm| %>
+  <tr>
+    <td><%= pm.user %></td>
+    <td><%= pm.user %></td>
+    <td><%= pm.content %></td>
+    <td><%= link_to 'Show', pm %></td>
+    <td><%= link_to 'Edit', edit_pm_path(pm) %></td>
+    <td><%= link_to 'Destroy', pm, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pm', new_pm_path %>

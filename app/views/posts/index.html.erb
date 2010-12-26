@@ -1,0 +1,39 @@
+<h1>Listing posts</h1>
+
+<table>
+  <tr>
+    <th>Topic</th>
+    <th>User</th>
+    <th>Content</th>
+    <th>Displayorder</th>
+    <th>Readperm</th>
+    <th>Private</th>
+    <th>Anonymous</th>
+    <th>Ubb</th>
+    <th>Html</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.topic %></td>
+    <td><%= post.user %></td>
+    <td><%= post.content %></td>
+    <td><%= post.displayorder %></td>
+    <td><%= post.readperm %></td>
+    <td><%= post.private %></td>
+    <td><%= post.anonymous %></td>
+    <td><%= post.ubb %></td>
+    <td><%= post.html %></td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Post', new_post_path %>

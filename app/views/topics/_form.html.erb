@@ -1,0 +1,57 @@
+<%= form_for(@topic) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :board %><br />
+    <%= f.text_field :board %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :displayorder %><br />
+    <%= f.text_field :displayorder %>
+  </div>
+  <div class="field">
+    <%= f.label :views %><br />
+    <%= f.text_field :views %>
+  </div>
+  <div class="field">
+    <%= f.label :readperm %><br />
+    <%= f.text_field :readperm %>
+  </div>
+  <div class="field">
+    <%= f.label :notice %><br />
+    <%= f.check_box :notice %>
+  </div>
+  <div class="field">
+    <%= f.label :reverse %><br />
+    <%= f.check_box :reverse %>
+  </div>
+  <div class="field">
+    <%= f.label :private %><br />
+    <%= f.check_box :private %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

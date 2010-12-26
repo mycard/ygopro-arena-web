@@ -1,0 +1,72 @@
+<body id="index" onkeydown="if(event.keyCode==27) return false;">
+<div id="append_parent"></div><div id="ajaxwaitid"></div>
+<div id="topbar" name="TOP">
+<div class="topanel">
+<div id="memberp">
+<cite><a href="space.php?uid=359" class="noborder">zh99998</a></cite>
+<span class="pipe">|</span>
+
+<a href="my.php?item=threads">my</a>
+<a href="http://www.touhou.cc/blog/space.php?uid=359" target="_blank">space</a>
+<a id="myprompt" href="notice.php" >notice</a>
+<span id="myprompt_check"></span>
+<a href="pm.php" id="pm_ntc" target="_blank">pm</a>
+
+<span class="pipe">|</span>
+<a href="memcp.php">memcp</a>
+<a href="logging.php?action=logout&amp;formhash=eed723b8">logout</a>
+</div>
+
+<form method="post" id="searchform" action="search.php">
+<div style="width:190px;float:left;">
+<input type="hidden" name="formhash" value="eed723b8" />
+<input type="text" id="srchtxt" name="srchtxt" onfocus="this.value=''" value="thc search"> 
+<button class="searchsub" type="submit" name="searchsubmit" value="true" tabindex="100">search</button>
+</div>
+</form>
+</div>
+</div>
+<div id="headerbg">
+<div class="header">
+<embed src="templates/goodnight/images/mnsv.swf" quality="high" wmode="transparent" style=" float:left; " pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="898" height="116"></embed>
+<div id="ad_headerbanner"></div>
+</div>
+
+<div id="dmenu">
+<div class="bg-dmenuleft"></div>
+<div class="bg-dmenu" style="position: relative;">
+<div id="menu">
+<ul>
+<li class="menu_1"><a href="index.php" hidefocus="true" id="mn_index">forum</a></li><li class="menu_7"><a href="../blog" hidefocus="true" id="mn_blog">a</a></li><li class="menu_2"><a href="search.php" hidefocus="true" id="mn_search">b</a></li><li class="menu_5"><a href="misc.php?action=nav" hidefocus="true" onclick="showWindow('nav', this.href);return false;">c</a></li><li class="menu_8" id="LQBpFL" onmouseover="showMenu({'ctrlid':this.id})"><a href="#" hidefocus="true"  class="dropmenu">d</a></li><li class="menu_25"><a href="plugin.php?id=family:family" hidefocus="true" id="mn_plugin_1">e</a></li><li class="menu_11"><a href="music.html" hidefocus="true" id="mn_music">f</a></li></ul>
+<script type="text/javascript">
+var currentMenu = $('mn_index') ? $('mn_index') : $('mn_index');
+currentMenu.parentNode.className = 'current';
+</script>
+</div>
+<script type="text/javascript">
+function setstyle(styleid) {
+str = unescape('fromuid%3D8507%26styleid%3D57');
+str = str.replace(/(^|&)styleid=\d+/ig, '');
+str = (str != '' ? str + '&' : '') + 'styleid=' + styleid;
+location.href = 'index.php?' + str;
+}
+
+</script>
+
+</div>
+</div>
+<div id="myprompt_menu" style="display:none" class="promptmenu">
+<div class="promptcontent">
+
+<ul class="s_clear"><li style="display:none"><a id="prompt_pm" href="pm.php?filter=newpm" target="_blank">private (0)</a></li><li style="display:none"><a id="prompt_announcepm" href="pm.php?filter=announcepm" target="_blank">public (0)</a></li><li style="display:none"><a id="prompt_systempm" href="notice.php?filter=systempm" target="_blank">system (0)</a></li><li style="display:none"><a id="prompt_friend" href="notice.php?filter=friend" target="_blank">friend (0)</a></li><li style="display:none"><a id="prompt_threads" href="notice.php?filter=threads" target="_blank">post (0)</a></li></ul>
+</div>
+</div>
+
+</div>
+
+<div id="wrapper"><div id="nav">
+<%= @site %>
+<% @actions.each do |action| %>
+   &raquo; <%= action %>
+<% end %></div>
+<div id="ad_text"></div>

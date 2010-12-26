@@ -1,0 +1,60 @@
+<div id="wrap" class="wrap s_clear">
+<div class="itemtitle s_clear">
+<p class="right boardcount">
+today: <em>395</em>, yesterday: <em>1990</em>, user: <em>12050</em>
+
+</p>
+<ul>
+<li class="current"><a href="index.php?op=classics"><span>board</span></a></li>
+<li><a href="index.php?op=feeds"><span>dt</span></a></li>
+</ul></div><div class="mainbox list">
+<span class="headactions">
+<img id="category_3_img" src="images/default/collapsed_no.gif" title="sq/zk" alt="sq/zk" onclick="toggle_collapse('category_3');" />
+</span>
+<%# @boards.each do |area|  %>
+<%# next if area.subboards.empty? %>
+	<h3><a href="index.php?gid=3" style="">测试版块</a></h3>
+	<table id="category_3" summary="category3" cellspacing="0" cellpadding="0" style="">
+	<% @boards.each do |board| %>
+		<tbody id="board<%= board.id %>">
+		<tr>
+		<th>
+  		<%= link_to image_tag(board.logo), board %>
+		<div class="left">
+		
+		<h2><%= board %></h2>
+		<p><%= board.introduction %></p></div>
+		</th>
+		<td class="boardnums">
+		<em><%= board.topics.size %></em> / <%= board.posts.size %></td>
+		<td class="boardlast">
+		<% if board.topics.last %>
+			<p><%= board.topics.last %></p>
+			<cite><%= board.posts.last.user %> - <span title="<%= board.posts.last.updated_at %>"><%= board.posts.last.updated_at %></span></cite>
+		<% else %>
+			none
+		<% end %>
+		</td>
+			</tr>
+			</tbody>
+	<% end %>
+	</table>
+	</div>
+<%# end %>
+<div id="ad_intercat_16"></div>
+<div class="mainbox list">
+<span class="headactions"><img id="boardlinks_img" src="images/default/collapsed_no.gif" alt="" onclick="toggle_collapse('boardlinks');" /></span>
+<h3>link</h3>
+<div id="boardlinks" style="">
+
+</div>
+</div>
+<div class="mainbox list" id="online">
+<span class="headactions"><a href="index.php?showoldetails=yes#online" class="nobdr"><img src="images/default/collapsed_yes.gif" alt="" /></a></span>
+
+<h3>
+<strong><a href="member.php?action=online">onlineuser</a></strong>
+- total <em>236</em> 
+- high <em>527</em> at <em>2010-11-21</em>.
+</h3>
+</div>

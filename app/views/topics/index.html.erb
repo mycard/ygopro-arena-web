@@ -1,0 +1,41 @@
+<h1>Listing topics</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Type</th>
+    <th>Board</th>
+    <th>Name</th>
+    <th>Displayorder</th>
+    <th>Views</th>
+    <th>Readperm</th>
+    <th>Notice</th>
+    <th>Reverse</th>
+    <th>Private</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @topics.each do |topic| %>
+  <tr>
+    <td><%= topic.user %></td>
+    <td><%= topic.type %></td>
+    <td><%= topic.board %></td>
+    <td><%= topic.name %></td>
+    <td><%= topic.displayorder %></td>
+    <td><%= topic.views %></td>
+    <td><%= topic.readperm %></td>
+    <td><%= topic.notice %></td>
+    <td><%= topic.reverse %></td>
+    <td><%= topic.private %></td>
+    <td><%= link_to 'Show', topic %></td>
+    <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
+    <td><%= link_to 'Destroy', topic, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Topic', new_topic_path %>
