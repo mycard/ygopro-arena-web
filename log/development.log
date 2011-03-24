@@ -17507,3 +17507,1691 @@ Started GET "/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 17:1
   [1m[35mUser Load (511.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
 Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
 Completed 302 Found in 765ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-03-24 17:17:14 +0800
+  Processing by BoardsController#index as HTML
+  [1m[36mUser Load (145.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mBoard Load (134.0ms)[0m  SELECT `boards`.* FROM `boards`
+  [1m[36mSQL (133.0ms)[0m  [1mSELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1)[0m
+  [1m[35mSQL (103.0ms)[0m  SELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))
+  [1m[36mTopic Load (122.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY topics.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY topics.id DESC LIMIT 1
+  [1m[36mPost Load (215.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mUser Load (141.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+Rendered layouts/_header.html.erb (37.0ms)
+Rendered boards/index.html.erb within layouts/application (1400.1ms)
+Completed   in 1950ms
+
+ActionView::Template::Error (undefined method `addon_stylesheet' for ApplicationHelper:Module):
+    1: <%= stylesheet_link_tag :all %>
+    2: <% ApplicationHelper::addon_stylesheet.each { |s| %>
+    3:     <%= stylesheet_link_tag 'fucking/'+s %>
+    4: <% } %>
+    5: <%= javascript_include_tag :defaults %>
+  app/views/layouts/_header.html.erb:2:in `_app_views_layouts__header_html_erb___984032567_21942252_649158072'
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___586949374_25655904__63718558'
+  app/controllers/boards_controller.rb:10:in `index'
+
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (11.0ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (19.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-03-24 17:18:11 +0800
+  Processing by BoardsController#index as HTML
+  [1m[36mUser Load (127.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mBoard Load (130.0ms)[0m  SELECT `boards`.* FROM `boards`
+  [1m[36mSQL (104.0ms)[0m  [1mSELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1)[0m
+  [1m[35mSQL (100.0ms)[0m  SELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))
+  [1m[36mTopic Load (120.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY topics.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY topics.id DESC LIMIT 1
+  [1m[36mPost Load (133.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mUser Load (164.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+Rendered layouts/_header.html.erb (1.0ms)
+Rendered boards/index.html.erb within layouts/application (1128.1ms)
+Completed 200 OK in 1721ms (Views: 534.0ms | ActiveRecord: 878.0ms)
+
+
+Started GET "/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 17:18:13 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (120.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 404ms
+
+
+Started GET "/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 17:18:13 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (162.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 425ms
+
+
+Started GET "/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 17:18:14 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[36mUser Load (213.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 513ms
+
+
+Started GET "/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 17:18:15 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/common.js"}
+  [1m[35mUser Load (231.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 506ms
+
+
+Started GET "/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 17:18:15 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[36mUser Load (216.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 476ms
+
+
+Started GET "/images/default/collapsed_no.gif" for 127.0.0.1 at 2011-03-24 17:18:16 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_no.gif"}
+  [1m[35mUser Load (133.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_no.gif?
+Completed 302 Found in 389ms
+
+
+Started GET "/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 17:18:17 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_yes.gif"}
+  [1m[36mUser Load (116.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 384ms
+
+
+Started GET "/pm.php?checknewpm=0.3363299633157747&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 17:18:18 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.3363299633157747", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "anything"=>"pm.php"}
+  [1m[35mUser Load (136.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.3363299633157747&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 575ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-03-24 17:20:19 +0800
+  Processing by BoardsController#index as HTML
+  [1m[36mUser Load (157.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mBoard Load (117.0ms)[0m  SELECT `boards`.* FROM `boards`
+  [1m[36mSQL (109.0ms)[0m  [1mSELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1)[0m
+  [1m[35mSQL (107.0ms)[0m  SELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))
+  [1m[36mTopic Load (162.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY topics.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY topics.id DESC LIMIT 1
+  [1m[36mPost Load (116.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mUser Load (243.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+Rendered layouts/_header.html.erb (1.0ms)
+Rendered boards/index.html.erb within layouts/application (1210.1ms)
+Completed 200 OK in 1764ms (Views: 484.0ms | ActiveRecord: 1011.1ms)
+
+
+Started GET "/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 17:20:21 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[36mUser Load (252.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 508ms
+
+
+Started GET "/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 17:20:22 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (208.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 461ms
+
+
+Started GET "/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 17:20:22 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (166.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 466ms
+
+
+Started GET "/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 17:20:23 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/common.js"}
+  [1m[35mUser Load (485.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 814ms
+
+
+Started GET "/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 17:20:24 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[36mUser Load (152.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 396ms
+
+
+Started GET "/images/default/collapsed_no.gif" for 127.0.0.1 at 2011-03-24 17:20:25 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_no.gif"}
+  [1m[35mUser Load (149.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_no.gif?
+Completed 302 Found in 439ms
+
+
+Started GET "/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 17:20:26 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_yes.gif"}
+  [1m[36mUser Load (136.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 420ms
+
+
+Started GET "/pm.php?checknewpm=0.5111456274544154&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 17:20:27 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.5111456274544154", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "anything"=>"pm.php"}
+  [1m[35mUser Load (118.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.5111456274544154&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 367ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-03-24 17:22:38 +0800
+  Processing by BoardsController#index as HTML
+  [1m[36mUser Load (115.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mBoard Load (132.0ms)[0m  SELECT `boards`.* FROM `boards`
+  [1m[36mSQL (115.0ms)[0m  [1mSELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1)[0m
+  [1m[35mSQL (105.0ms)[0m  SELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))
+  [1m[36mTopic Load (126.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY topics.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY topics.id DESC LIMIT 1
+  [1m[36mPost Load (118.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mUser Load (176.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+Rendered layouts/_header.html.erb (1.0ms)
+Rendered layouts/_top.html.erb (1.0ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered boards/index.html.erb within layouts/application (1099.6ms)
+Completed 200 OK in 1625ms (Views: 469.5ms | ActiveRecord: 887.1ms)
+
+
+Started GET "/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 17:22:40 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[36mUser Load (175.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 482ms
+
+
+Started GET "/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 17:22:41 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[35mUser Load (139.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 512ms
+
+
+Started GET "/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 17:22:41 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[36mUser Load (125.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 390ms
+
+
+Started GET "/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 17:22:42 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/common.js"}
+  [1m[35mUser Load (121.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 393ms
+
+
+Started GET "/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 17:22:43 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[36mUser Load (117.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 383ms
+
+
+Started GET "/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 17:22:43 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[35mUser Load (184.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 539ms
+
+
+Started GET "/images/default/collapsed_no.gif" for 127.0.0.1 at 2011-03-24 17:22:44 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_no.gif"}
+  [1m[36mUser Load (142.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_no.gif?
+Completed 302 Found in 409ms
+
+
+Started GET "/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 17:22:45 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_yes.gif"}
+  [1m[35mUser Load (150.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 413ms
+
+
+Started GET "/pm.php?checknewpm=0.43613810842556555&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 17:22:46 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.43613810842556555", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "anything"=>"pm.php"}
+  [1m[36mUser Load (167.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.43613810842556555&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 438ms
+
+
+Started GET "/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 17:22:46 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/loading.gif"}
+  [1m[35mUser Load (187.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 466ms
+
+
+Started GET "/forum/1" for 127.0.0.1 at 2011-03-24 17:22:49 +0800
+  Processing by BoardsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (151.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mBoard Load (120.0ms)[0m  SELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1
+  [1m[36mTopic Load (117.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY displayorder, id LIMIT 20 OFFSET 0[0m
+  [1m[35mSQL (103.0ms)[0m  SELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1)
+  [1m[36mSQL (100.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))[0m
+  [1m[35mSQL (105.0ms)[0m  SELECT COUNT(*) FROM `posts` WHERE (`posts`.topic_id = 1)
+  [1m[36mPost Load (119.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mUser Load (126.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mSQL (99.0ms)[0m  SELECT COUNT(*) FROM `posts` WHERE (`posts`.topic_id = 2)
+  [1m[36mPost Load (117.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1[0m
+DEPRECATION WARNING: <% %> style block helpers are deprecated. Please use <%= %>. (called from _app_views_boards_show_html_erb__137974638_27422604__63718558 at E:/zh99998/Documents/NetBeansProjects/Reliz/app/views/boards/show.html.erb:101)
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_top.html.erb (1.0ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered boards/show.html.erb within layouts/application (1123.6ms)
+Completed 200 OK in 2198ms (Views: 365.0ms | ActiveRecord: 1438.6ms)
+
+
+Started GET "/forum/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 17:22:52 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[35mUser Load (127.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 377ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 17:22:52 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[36mUser Load (154.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 517ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 17:22:53 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[35mUser Load (229.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 534ms
+
+
+Started GET "/forum/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 17:22:54 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/common.js"}
+  [1m[36mUser Load (135.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 433ms
+
+
+Started GET "/forum/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 17:22:55 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[35mUser Load (129.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 379ms
+
+
+Started GET "/forum/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 17:22:56 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[36mUser Load (329.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 578ms
+
+
+Started GET "/forum/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 17:22:57 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"images/default/collapsed_yes.gif"}
+  [1m[35mUser Load (162.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 429ms
+
+
+Started GET "/images/default/folder_common.gif" for 127.0.0.1 at 2011-03-24 17:22:57 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/folder_common.gif"}
+  [1m[36mUser Load (141.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/folder_common.gif?
+Completed 302 Found in 620ms
+
+
+Started GET "/blog" for 127.0.0.1 at 2011-03-24 17:22:58 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"blog"}
+  [1m[35mUser Load (157.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/blog?
+Completed 302 Found in 521ms
+
+
+Started GET "/forum/pm.php?checknewpm=0.43811937838714954&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 17:23:01 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.43811937838714954", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "something"=>"forum", "anything"=>"pm.php"}
+  [1m[36mUser Load (151.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.43811937838714954&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 439ms
+
+
+Started GET "/forum/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 17:23:02 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"images/default/loading.gif"}
+  [1m[35mUser Load (124.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 415ms
+
+
+Started GET "/forum/1" for 127.0.0.1 at 2011-03-24 17:23:03 +0800
+  Processing by BoardsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (230.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mBoard Load (137.0ms)[0m  SELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1
+  [1m[36mTopic Load (118.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY displayorder, id LIMIT 20 OFFSET 0[0m
+  [1m[35mSQL (122.0ms)[0m  SELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1)
+  [1m[36mSQL (110.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))[0m
+  [1m[35mSQL (122.0ms)[0m  SELECT COUNT(*) FROM `posts` WHERE (`posts`.topic_id = 1)
+  [1m[36mPost Load (133.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mUser Load (168.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mSQL (108.0ms)[0m  SELECT COUNT(*) FROM `posts` WHERE (`posts`.topic_id = 2)
+  [1m[36mPost Load (134.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1[0m
+DEPRECATION WARNING: <% %> style block helpers are deprecated. Please use <%= %>. (called from _app_views_boards_show_html_erb__137974638_26896176__63718558 at E:/zh99998/Documents/NetBeansProjects/Reliz/app/views/boards/show.html.erb:101)
+Rendered layouts/_header.html.erb (1.0ms)
+Rendered layouts/_top.html.erb (0.0ms)
+Rendered layouts/_footer.html.erb (1.0ms)
+Rendered boards/show.html.erb within layouts/application (1292.6ms)
+Completed 200 OK in 2410ms (Views: 406.0ms | ActiveRecord: 1506.6ms)
+
+
+Started GET "/forum/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 17:23:06 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[35mUser Load (142.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 404ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 17:23:06 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (133.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 423ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 17:23:07 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (117.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 409ms
+
+
+Started GET "/forum/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 17:23:08 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/common.js"}
+  [1m[36mUser Load (113.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 471ms
+
+
+Started GET "/forum/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 17:23:08 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[35mUser Load (167.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 411ms
+
+
+Started GET "/forum/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 17:23:09 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[36mUser Load (154.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 602ms
+
+
+Started GET "/images/default/folder_common.gif" for 127.0.0.1 at 2011-03-24 17:23:10 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/folder_common.gif"}
+  [1m[35mUser Load (136.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/folder_common.gif?
+Completed 302 Found in 437ms
+
+
+Started GET "/forum/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 17:23:11 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"images/default/collapsed_yes.gif"}
+  [1m[36mUser Load (118.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 404ms
+
+
+Started GET "/forum/pm.php?checknewpm=0.9840928418302157&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 17:23:14 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.9840928418302157", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "something"=>"forum", "anything"=>"pm.php"}
+  [1m[35mUser Load (128.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.9840928418302157&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 415ms
+
+
+Started GET "/forum/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 17:23:15 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"images/default/loading.gif"}
+  [1m[36mUser Load (161.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 446ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-03-24 19:57:32 +0800
+  Processing by BoardsController#index as HTML
+  [1m[36mSQL (125.0ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mUser Load (133.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from set_language at E:/zh99998/Documents/NetBeansProjects/Reliz/app/controllers/application_controller.rb:16)
+  [1m[36mBoard Load (123.0ms)[0m  [1mSELECT `boards`.* FROM `boards`[0m
+  [1m[35mSQL (125.0ms)[0m  SELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1)
+  [1m[36mSQL (124.4ms)[0m  [1mSELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))[0m
+  [1m[35mTopic Load (110.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY topics.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY topics.id DESC LIMIT 1[0m
+  [1m[35mPost Load (105.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mUser Load (117.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_top.html.erb (0.0ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered boards/index.html.erb within layouts/application (1120.5ms)
+Completed 200 OK in 2196ms (Views: 549.0ms | ActiveRecord: 962.5ms)
+
+
+Started GET "/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 19:57:49 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (125.8ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 353ms
+
+
+Started GET "/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 19:57:49 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (131.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 391ms
+
+
+Started GET "/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 19:57:50 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[35mUser Load (135.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 417ms
+
+
+Started GET "/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 19:57:50 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/common.js"}
+  [1m[36mUser Load (111.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 380ms
+
+
+Started GET "/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 19:57:51 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[35mUser Load (118.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 350ms
+
+
+Started GET "/images/default/collapsed_no.gif" for 127.0.0.1 at 2011-03-24 19:58:04 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"anything"=>"images/default/collapsed_no.gif"}
+  [1m[36mUser Load (110.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_no.gif?
+Completed 302 Found in 390ms
+
+
+Started GET "/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 19:58:04 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"anything"=>"images/default/collapsed_yes.gif"}
+  [1m[35mUser Load (107.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 366ms
+
+
+Started GET "/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 19:58:05 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[36mUser Load (132.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 382ms
+
+
+Started GET "/pm.php?checknewpm=0.9428958503995091&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 19:58:05 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"checknewpm"=>"0.9428958503995091", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "anything"=>"pm.php"}
+  [1m[35mUser Load (121.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.9428958503995091&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 419ms
+
+
+Started GET "/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 19:58:06 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"anything"=>"images/default/loading.gif"}
+  [1m[36mUser Load (107.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 354ms
+
+
+Started GET "/forum/1" for 127.0.0.1 at 2011-03-24 19:58:18 +0800
+  Processing by BoardsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (111.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mBoard Load (125.0ms)[0m  [1mSELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1[0m
+  [1m[35mTopic Load (129.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) ORDER BY displayorder, id LIMIT 20 OFFSET 0
+  [1m[36mSQL (105.0ms)[0m  [1mSELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1)[0m
+  [1m[35mSQL (104.0ms)[0m  SELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))
+  [1m[36mSQL (104.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` WHERE (`posts`.topic_id = 1)[0m
+  [1m[35mPost Load (135.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mUser Load (108.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mSQL (102.8ms)[0m  [1mSELECT COUNT(*) FROM `posts` WHERE (`posts`.topic_id = 2)[0m
+  [1m[35mPost Load (124.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 2) ORDER BY posts.id DESC LIMIT 1
+DEPRECATION WARNING: <% %> style block helpers are deprecated. Please use <%= %>. (called from _app_views_boards_show_html_erb__73507191_27518268_257425455 at E:/zh99998/Documents/NetBeansProjects/Reliz/app/views/boards/show.html.erb:101)
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_top.html.erb (1.0ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered boards/show.html.erb within layouts/application (1176.9ms)
+Completed 200 OK in 2101ms (Views: 406.0ms | ActiveRecord: 1482.9ms)
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 19:58:20 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (117.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 352ms
+
+
+Started GET "/forum/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 19:58:21 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"something"=>"forum", "anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[35mUser Load (113.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 357ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 19:58:21 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[36mUser Load (146.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 409ms
+
+
+Started GET "/forum/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 19:58:22 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/common.js"}
+  [1m[35mUser Load (155.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 441ms
+
+
+Started GET "/forum/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 19:58:23 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[36mUser Load (107.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 383ms
+
+
+Started GET "/forum/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 19:58:40 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"something"=>"forum", "anything"=>"images/default/collapsed_yes.gif"}
+  [1m[35mUser Load (126.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 364ms
+
+
+Started GET "/forum/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 19:58:40 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"something"=>"forum", "anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[36mUser Load (110.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 341ms
+
+
+Started GET "/images/default/folder_common.gif" for 127.0.0.1 at 2011-03-24 19:58:41 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"anything"=>"images/default/folder_common.gif"}
+  [1m[35mUser Load (105.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/folder_common.gif?
+Completed 302 Found in 342ms
+
+
+Started GET "/forum/pm.php?checknewpm=0.2060289359651506&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 19:58:41 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"checknewpm"=>"0.2060289359651506", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "something"=>"forum", "anything"=>"pm.php"}
+  [1m[36mUser Load (136.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.2060289359651506&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 388ms
+
+
+Started GET "/forum/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 19:58:42 +0800
+  Processing by ApplicationController#redirect_to_thc as */*
+  Parameters: {"something"=>"forum", "anything"=>"images/default/loading.gif"}
+  [1m[35mUser Load (110.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 390ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-03-24 20:20:02 +0800
+  Processing by BoardsController#index as HTML
+  [1m[36mUser Load (152.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mBoard Load (150.0ms)[0m  SELECT `boards`.* FROM `boards`
+  [1m[36mTopic Load (108.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)[0m
+  [1m[35mSQL (98.0ms)[0m  SELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)
+  [1m[36mPost Load (135.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mUser Load (114.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+Rendered layouts/_header.html.erb (1.0ms)
+Rendered layouts/_top.html.erb (0.0ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered boards/index.html.erb within layouts/application (1034.1ms)
+Completed 200 OK in 1599ms (Views: 589.0ms | ActiveRecord: 757.0ms)
+
+
+Started GET "/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 20:20:04 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[36mUser Load (210.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 509ms
+
+
+Started GET "/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 20:20:05 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (135.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 398ms
+
+
+Started GET "/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 20:20:05 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (147.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 430ms
+
+
+Started GET "/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 20:20:06 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/common.js"}
+  [1m[35mUser Load (194.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 502ms
+
+
+Started GET "/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 20:20:07 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[36mUser Load (131.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 396ms
+
+
+Started GET "/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 20:20:08 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[35mUser Load (390.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 1209ms
+
+
+Started GET "/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 20:20:10 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_yes.gif"}
+  [1m[36mUser Load (774.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 2249ms
+
+
+Started GET "/images/default/collapsed_no.gif" for 127.0.0.1 at 2011-03-24 20:20:12 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_no.gif"}
+  [1m[35mUser Load (1341.1ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_no.gif?
+Completed 302 Found in 2860ms
+
+
+Started GET "/forum/1" for 127.0.0.1 at 2011-03-24 20:20:15 +0800
+  Processing by BoardsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (247.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mBoard Load (1062.1ms)[0m  SELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1
+  [1m[36mTopic Load (398.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)[0m
+Completed   in 4833ms
+
+NoMethodError (undefined method `all' for #<Array:0x435b148>):
+  app/controllers/boards_controller.rb:22:in `show'
+
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.0ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.0ms)
+
+
+Started GET "/forum/1" for 127.0.0.1 at 2011-03-24 20:21:19 +0800
+  Processing by BoardsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (157.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mBoard Load (245.0ms)[0m  [1mSELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1[0m
+  [1m[35mTopic Load (192.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.`category_id` = 1) AND (`topics`.`deleted` = 0)
+Completed   in 1554ms
+
+NoMethodError (undefined method `all' for #<Array:0x4bcebe0>):
+  app/controllers/boards_controller.rb:22:in `show'
+
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.0ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.0ms)
+
+
+Started GET "/forum/1" for 127.0.0.1 at 2011-03-24 20:21:24 +0800
+  Processing by BoardsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (150.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mBoard Load (112.0ms)[0m  SELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1
+  [1m[36mTopic Load (135.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.`category_id` = 1) AND (`topics`.`deleted` = 0)[0m
+Completed   in 1285ms
+
+NoMethodError (undefined method `all' for #<Array:0x48e8ef0>):
+  app/controllers/boards_controller.rb:22:in `show'
+
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.0ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-03-24 20:27:59 +0800
+  Processing by BoardsController#index as HTML
+  [1m[35mUser Load (230.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mBoard Load (110.0ms)[0m  [1mSELECT `boards`.* FROM `boards`[0m
+  [1m[35mSQL (138.0ms)[0m  SELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)
+  [1m[36mSQL (131.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))[0m
+  [1m[35mTopic Load (168.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY topics.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY topics.id DESC LIMIT 1[0m
+  [1m[35mPost Load (151.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mUser Load (116.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_top.html.erb (1.0ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered boards/index.html.erb within layouts/application (1376.1ms)
+Completed 200 OK in 2648ms (Views: 684.0ms | ActiveRecord: 1044.1ms)
+
+
+Started GET "/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 20:28:02 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[35mUser Load (194.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 718ms
+
+
+Started GET "/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 20:28:03 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (153.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 567ms
+
+
+Started GET "/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 20:28:04 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (130.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 523ms
+
+
+Started GET "/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 20:28:05 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/common.js"}
+  [1m[36mUser Load (169.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 555ms
+
+
+Started GET "/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 20:28:07 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[35mUser Load (133.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 818ms
+
+
+Started GET "/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 20:28:08 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[36mUser Load (294.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 701ms
+
+
+Started GET "/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 20:28:09 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_yes.gif"}
+  [1m[35mUser Load (159.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 474ms
+
+
+Started GET "/images/default/collapsed_no.gif" for 127.0.0.1 at 2011-03-24 20:28:10 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_no.gif"}
+  [1m[36mUser Load (224.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_no.gif?
+Completed 302 Found in 728ms
+
+
+Started GET "/forum/1" for 127.0.0.1 at 2011-03-24 20:28:10 +0800
+  Processing by BoardsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (151.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mBoard Load (189.0ms)[0m  [1mSELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1[0m
+  [1m[35mTopic Load (203.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY displayorder, id LIMIT 20 OFFSET 0
+  [1m[36mSQL (244.0ms)[0m  [1mSELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)[0m
+  [1m[35mSQL (132.0ms)[0m  SELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))
+  [1m[36mSQL (207.0ms)[0m  [1mSELECT COUNT(*) FROM `posts` WHERE (`posts`.topic_id = 1)[0m
+  [1m[35mPost Load (138.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+DEPRECATION WARNING: <% %> style block helpers are deprecated. Please use <%= %>. (called from _app_views_boards_show_html_erb__73507191_38227932_257425455 at E:/zh99998/Documents/NetBeansProjects/Reliz/app/views/boards/show.html.erb:101)
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_top.html.erb (0.0ms)
+Rendered layouts/_footer.html.erb (1.0ms)
+Rendered boards/show.html.erb within layouts/application (1080.1ms)
+Completed 200 OK in 2475ms (Views: 390.0ms | ActiveRecord: 1591.1ms)
+
+
+Started GET "/forum/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 20:28:13 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[35mUser Load (188.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 463ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 20:28:14 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[36mUser Load (285.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 829ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 20:28:15 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[35mUser Load (273.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 614ms
+
+
+Started GET "/forum/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 20:28:16 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/common.js"}
+  [1m[36mUser Load (200.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 580ms
+
+
+Started GET "/forum/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 20:28:17 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[35mUser Load (270.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 597ms
+
+
+Started GET "/forum/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 20:28:19 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[36mUser Load (141.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 792ms
+
+
+Started GET "/images/default/folder_common.gif" for 127.0.0.1 at 2011-03-24 20:28:20 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/folder_common.gif"}
+  [1m[35mUser Load (198.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/folder_common.gif?
+Completed 302 Found in 562ms
+
+
+Started GET "/forum/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 20:28:20 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"images/default/collapsed_yes.gif"}
+  [1m[36mUser Load (491.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 2068ms
+
+
+Started GET "/forum/pm.php?checknewpm=0.5084926157706604&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 20:28:23 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.5084926157706604", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "something"=>"forum", "anything"=>"pm.php"}
+  [1m[35mUser Load (1273.1ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.5084926157706604&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 1699ms
+
+
+Started GET "/forum/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 20:28:25 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"images/default/loading.gif"}
+  [1m[36mUser Load (143.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 455ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-03-24 20:37:11 +0800
+  Processing by BoardsController#index as HTML
+  [1m[35mUser Load (192.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mBoard Load (115.0ms)[0m  [1mSELECT `boards`.* FROM `boards`[0m
+  [1m[35mSQL (132.5ms)[0m  SELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)
+  [1m[36mSQL (137.5ms)[0m  [1mSELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))[0m
+  [1m[35mTopic Load (145.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY topics.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY topics.id DESC LIMIT 1[0m
+  [1m[35mPost Load (150.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mUser Load (232.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_top.html.erb (0.0ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered boards/index.html.erb within layouts/application (1462.5ms)
+Completed 200 OK in 2130ms (Views: 677.5ms | ActiveRecord: 1105.0ms)
+
+
+Started GET "/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 20:37:13 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[35mUser Load (132.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 413ms
+
+
+Started GET "/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 20:37:14 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[36mUser Load (222.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 523ms
+
+
+Started GET "/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 20:37:14 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[35mUser Load (150.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 448ms
+
+
+Started GET "/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 20:37:15 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/common.js"}
+  [1m[36mUser Load (147.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 470ms
+
+
+Started GET "/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 20:37:17 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[35mUser Load (140.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 425ms
+
+
+Started GET "/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 20:37:18 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[36mUser Load (222.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 553ms
+
+
+Started GET "/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 20:37:18 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_yes.gif"}
+  [1m[35mUser Load (135.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 405ms
+
+
+Started GET "/images/default/collapsed_no.gif" for 127.0.0.1 at 2011-03-24 20:37:19 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_no.gif"}
+  [1m[36mUser Load (215.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_no.gif?
+Completed 302 Found in 493ms
+
+
+Started GET "/pm.php?checknewpm=0.5165919499037853&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 20:37:20 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.5165919499037853", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "anything"=>"pm.php"}
+  [1m[35mUser Load (120.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.5165919499037853&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 403ms
+
+
+Started GET "/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 20:37:21 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/loading.gif"}
+  [1m[36mUser Load (142.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 458ms
+
+
+Started GET "/forum/1" for 127.0.0.1 at 2011-03-24 20:37:24 +0800
+  Processing by BoardsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (147.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mBoard Load (525.0ms)[0m  [1mSELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1[0m
+  [1m[35mTopic Load (155.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY displayorder, id LIMIT 20 OFFSET 0
+  [1m[36mSQL (145.0ms)[0m  [1mSELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)[0m
+  [1m[35mSQL (115.0ms)[0m  SELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))
+  [1m[36mSQL (132.5ms)[0m  [1mSELECT COUNT(*) FROM `posts` WHERE (`posts`.topic_id = 1)[0m
+  [1m[35mPost Load (120.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+DEPRECATION WARNING: <% %> style block helpers are deprecated. Please use <%= %>. (called from _app_views_boards_show_html_erb__73507191_28625880_257425455 at E:/zh99998/Documents/NetBeansProjects/Reliz/app/views/boards/show.html.erb:101)
+Rendered layouts/_header.html.erb (2.5ms)
+Rendered layouts/_top.html.erb (0.0ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered boards/show.html.erb within layouts/application (897.5ms)
+Completed 200 OK in 2468ms (Views: 415.0ms | ActiveRecord: 1705.0ms)
+
+
+Started GET "/forum/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 20:37:27 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[35mUser Load (120.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 383ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 20:37:28 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (155.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 453ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 20:37:28 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (145.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 468ms
+
+
+Started GET "/forum/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 20:37:29 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/common.js"}
+  [1m[36mUser Load (157.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 438ms
+
+
+Started GET "/forum/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 20:37:31 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[35mUser Load (127.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 575ms
+
+
+Started GET "/forum/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 20:37:32 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[36mUser Load (140.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 455ms
+
+
+Started GET "/images/default/folder_common.gif" for 127.0.0.1 at 2011-03-24 20:37:32 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/folder_common.gif"}
+  [1m[35mUser Load (142.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/folder_common.gif?
+Completed 302 Found in 463ms
+
+
+Started GET "/forum/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 20:37:33 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"images/default/collapsed_yes.gif"}
+  [1m[36mUser Load (262.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 565ms
+
+
+Started GET "/forum/pm.php?checknewpm=0.04591212241196119&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 20:37:35 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.04591212241196119", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "something"=>"forum", "anything"=>"pm.php"}
+  [1m[35mUser Load (140.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.04591212241196119&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 475ms
+
+
+Started GET "/forum/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 20:37:36 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"images/default/loading.gif"}
+  [1m[36mUser Load (295.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 608ms
+
+
+Started GET "/topic/1" for 127.0.0.1 at 2011-03-24 20:37:58 +0800
+  Processing by TopicsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (120.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mTopic Load (155.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.`id` = 1) LIMIT 1[0m
+  [1m[35mBoard Load (140.0ms)[0m  SELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1
+  [1m[36mPost Load (135.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`topic_id` = 1) ORDER BY displayorder LIMIT 10 OFFSET 0[0m
+Rendered topics/show.html.erb within layouts/application (57.5ms)
+Completed   in 1690ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    36: <td class="postauthor" rowspan="2">
+    37: 
+    38: <div class="postinfo">
+    39: <%= link_to post.user.name, post.user, :style=> "margin-left: 20px; font-weight: 800"%>
+    40: 
+    41: </div>
+    42: 
+  app/views/topics/show.html.erb:39:in `block in _app_views_topics_show_html_erb___471172420_27457404_257425455'
+  app/views/topics/show.html.erb:31:in `each'
+  app/views/topics/show.html.erb:31:in `_app_views_topics_show_html_erb___471172420_27457404_257425455'
+  app/controllers/topics_controller.rb:59:in `show'
+
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.5ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (265.0ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (272.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-03-24 20:38:11 +0800
+  Processing by BoardsController#index as HTML
+  [1m[35mUser Load (170.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mBoard Load (135.0ms)[0m  [1mSELECT `boards`.* FROM `boards`[0m
+  [1m[35mSQL (142.5ms)[0m  SELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)
+  [1m[36mSQL (587.5ms)[0m  [1mSELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))[0m
+  [1m[35mTopic Load (1065.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY topics.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY topics.id DESC LIMIT 1[0m
+  [1m[35mPost Load (140.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mUser Load (122.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_top.html.erb (0.0ms)
+Rendered layouts/_footer.html.erb (2.5ms)
+Rendered boards/index.html.erb within layouts/application (2840.0ms)
+Completed 200 OK in 3503ms (Views: 792.5ms | ActiveRecord: 2362.5ms)
+
+
+Started GET "/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 20:38:15 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[35mUser Load (145.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 430ms
+
+
+Started GET "/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 20:38:15 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (177.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 495ms
+
+
+Started GET "/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 20:38:16 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (155.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 460ms
+
+
+Started GET "/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 20:38:16 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/common.js"}
+  [1m[36mUser Load (145.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 435ms
+
+
+Started GET "/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 20:38:17 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[35mUser Load (142.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 463ms
+
+
+Started GET "/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 20:38:18 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[36mUser Load (122.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 510ms
+
+
+Started GET "/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 20:38:19 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_yes.gif"}
+  [1m[35mUser Load (120.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 395ms
+
+
+Started GET "/images/default/collapsed_no.gif" for 127.0.0.1 at 2011-03-24 20:38:19 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_no.gif"}
+  [1m[36mUser Load (125.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_no.gif?
+Completed 302 Found in 415ms
+
+
+Started GET "/pm.php?checknewpm=0.08189290237546931&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 20:38:20 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.08189290237546931", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "anything"=>"pm.php"}
+  [1m[35mUser Load (127.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.08189290237546931&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 385ms
+
+
+Started GET "/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 20:38:21 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/loading.gif"}
+  [1m[36mUser Load (127.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 410ms
+
+
+Started GET "/forum/1" for 127.0.0.1 at 2011-03-24 20:40:03 +0800
+  Processing by BoardsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (185.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mBoard Load (125.0ms)[0m  [1mSELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1[0m
+  [1m[35mTopic Load (152.5ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY displayorder, id LIMIT 20 OFFSET 0
+  [1m[36mSQL (130.0ms)[0m  [1mSELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)[0m
+  [1m[35mSQL (172.5ms)[0m  SELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))
+  [1m[36mUser Load (150.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mSQL (130.0ms)[0m  SELECT COUNT(*) FROM `posts` WHERE (`posts`.topic_id = 1)
+  [1m[36mPost Load (165.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 1) ORDER BY posts.id DESC LIMIT 1
+DEPRECATION WARNING: <% %> style block helpers are deprecated. Please use <%= %>. (called from _app_views_boards_show_html_erb__73507191_27000408_257425455 at E:/zh99998/Documents/NetBeansProjects/Reliz/app/views/boards/show.html.erb:101)
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_top.html.erb (2.5ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered boards/show.html.erb within layouts/application (1375.0ms)
+Completed 200 OK in 2635ms (Views: 645.0ms | ActiveRecord: 1210.0ms)
+
+
+Started GET "/forum/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 20:40:06 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/common.js"}
+  [1m[36mUser Load (160.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 443ms
+
+
+Started GET "/forum/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 20:40:07 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[35mUser Load (200.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 575ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 20:40:08 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (167.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 503ms
+
+
+Started GET "/forum/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 20:40:08 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"forum", "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (157.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 478ms
+
+
+Started GET "/forum/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 20:40:09 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[36mUser Load (165.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 568ms
+
+
+Started GET "/forum/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 20:40:10 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[35mUser Load (137.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 438ms
+
+
+Started GET "/images/default/folder_common.gif" for 127.0.0.1 at 2011-03-24 20:40:11 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/folder_common.gif"}
+  [1m[36mUser Load (207.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/folder_common.gif?
+Completed 302 Found in 510ms
+
+
+Started GET "/forum/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 20:40:11 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"images/default/collapsed_yes.gif"}
+  [1m[35mUser Load (200.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 520ms
+
+
+Started GET "/forum/pm.php?checknewpm=0.49471031016651235&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 20:40:12 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.49471031016651235", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "something"=>"forum", "anything"=>"pm.php"}
+  [1m[36mUser Load (205.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.49471031016651235&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 553ms
+
+
+Started GET "/forum/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 20:40:13 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"forum", "anything"=>"images/default/loading.gif"}
+  [1m[35mUser Load (152.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 488ms
+
+
+Started POST "/topics" for 127.0.0.1 at 2011-03-24 20:40:25 +0800
+  Processing by TopicsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4hkZWFZs8e2H3fTI/iEguTaKbXS0h9iIQvYtQ9aW4vI=", "topic"=>{"name"=>"继续测试", "category_id"=>"1", "category_type"=>"board"}, "post"=>{"content"=>"zh只要998"}, "commit"=>"newthread"}
+  [1m[36mUser Load (127.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mSQL (117.5ms)[0m  BEGIN
+  [1m[36mSQL (160.0ms)[0m  [1mdescribe `topics`[0m
+  [1m[35mAREL (147.5ms)[0m  INSERT INTO `topics` (`user_id`, `type_id`, `category_id`, `category_type`, `name`, `displayorder`, `views`, `readperm`, `locked`, `deleted`, `reverse`, `private`, `created_at`, `updated_at`) VALUES (1, NULL, 1, 'board', '继续测试', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2011-03-24 12:40:27', '2011-03-24 12:40:27')
+  [1m[36mSQL (132.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (117.5ms)[0m  BEGIN
+  [1m[36mSQL (150.0ms)[0m  [1mdescribe `posts`[0m
+  [1m[35mAREL (170.0ms)[0m  INSERT INTO `posts` (`topic_id`, `user_id`, `content`, `displayorder`, `readperm`, `private`, `anonymous`, `ubb`, `html`, `created_at`, `updated_at`) VALUES (3, 1, 'zh只要998', 1, NULL, NULL, NULL, NULL, NULL, '2011-03-24 12:40:27', '2011-03-24 12:40:27')
+  [1m[36mSQL (157.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/topics/3
+Completed 302 Found in 2280ms
+
+
+Started GET "/topics/3" for 127.0.0.1 at 2011-03-24 20:40:28 +0800
+  Processing by TopicsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (217.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mTopic Load (122.5ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.`id` = 3) LIMIT 1[0m
+  [1m[35mBoard Load (155.0ms)[0m  SELECT `boards`.* FROM `boards` WHERE (`boards`.`id` = 1) LIMIT 1
+  [1m[36mPost Load (112.5ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`topic_id` = 3) ORDER BY displayorder LIMIT 10 OFFSET 0[0m
+  [1m[35mUser Load (225.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mPost Load (177.5ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.topic_id = 3) ORDER BY displayorder DESC LIMIT 1[0m
+DEPRECATION WARNING: <% %> style block helpers are deprecated. Please use <%= %>. (called from _app_views_topics_show_html_erb___471172420_38240880_257425455 at E:/zh99998/Documents/NetBeansProjects/Reliz/app/views/topics/show.html.erb:254)
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_top.html.erb (147.5ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered topics/show.html.erb within layouts/application (627.5ms)
+Completed 200 OK in 2280ms (Views: 242.5ms | ActiveRecord: 1377.5ms)
+
+
+Started GET "/topics/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 20:40:30 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"topics", "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (167.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 480ms
+
+
+Started GET "/topics/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 20:40:31 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "something"=>"topics", "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (145.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 448ms
+
+
+Started GET "/topics/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 20:40:32 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"topics", "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[35mUser Load (130.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 433ms
+
+
+Started GET "/topics/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 20:40:32 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "something"=>"topics", "anything"=>"forumdata/cache/common.js"}
+  [1m[36mUser Load (140.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 525ms
+
+
+Started GET "/topics/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 20:40:34 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"topics", "anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[35mUser Load (375.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 690ms
+
+
+Started GET "/topics/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 20:40:36 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"topics", "anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[36mUser Load (235.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 485ms
+
+
+Started GET "/topics/images/common/online_member.gif" for 127.0.0.1 at 2011-03-24 20:40:36 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"topics", "anything"=>"images/common/online_member.gif"}
+  [1m[35mUser Load (267.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/common/online_member.gif?
+Completed 302 Found in 655ms
+
+
+Started GET "/topics/images/default/star_level2.gif" for 127.0.0.1 at 2011-03-24 20:40:37 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"topics", "anything"=>"images/default/star_level2.gif"}
+  [1m[36mUser Load (145.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/star_level2.gif?
+Completed 302 Found in 455ms
+
+
+Started GET "/topics/pm.php?checknewpm=0.9482888731955613&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 20:41:18 +0800
+  Processing by TopicsController#show as 
+  Parameters: {"checknewpm"=>"0.9482888731955613", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "id"=>"pm"}
+  [1m[35mUser Load (132.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+  [1m[36mTopic Load (142.5ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.`id` = 0) LIMIT 1[0m
+Completed   in 683ms
+
+ActiveRecord::RecordNotFound (Couldn't find Topic with ID=pm):
+  app/controllers/topics_controller.rb:55:in `show'
+
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.0ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.5ms)
+Rendered E:/RPG/Ruby/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.0ms)
+
+
+Started GET "/topics/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 20:41:19 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"something"=>"topics", "anything"=>"images/default/loading.gif"}
+  [1m[35mUser Load (165.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 523ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-03-24 20:45:59 +0800
+  Processing by BoardsController#index as HTML
+  [1m[36mUser Load (122.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+  [1m[35mBoard Load (110.0ms)[0m  SELECT `boards`.* FROM `boards`
+  [1m[36mSQL (107.5ms)[0m  [1mSELECT COUNT(*) FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0)[0m
+  [1m[35mSQL (130.0ms)[0m  SELECT COUNT(*) FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1))
+  [1m[36mTopic Load (122.5ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY topics.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `topics`.* FROM `topics` WHERE (`topics`.category_id = 1) AND (`topics`.`deleted` = 0) ORDER BY topics.id DESC LIMIT 1
+  [1m[36mPost Load (125.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mUser Load (160.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `posts`.* FROM `posts` INNER JOIN `topics` ON `posts`.topic_id = `topics`.id WHERE ((`topics`.category_id = 1)) ORDER BY posts.id DESC LIMIT 1
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_top.html.erb (2.5ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered boards/index.html.erb within layouts/application (1242.5ms)
+Completed 200 OK in 1778ms (Views: 607.5ms | ActiveRecord: 877.5ms)
+
+
+Started GET "/forumdata/cache/style_57_common.css?kNu" for 127.0.0.1 at 2011-03-24 20:46:01 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/style_57_common.css"}
+  [1m[36mUser Load (177.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/style_57_common.css?kNu
+Completed 302 Found in 470ms
+
+
+Started GET "/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu" for 127.0.0.1 at 2011-03-24 20:46:02 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/scriptstyle_57_forumdisplay.css"}
+  [1m[35mUser Load (117.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_57_forumdisplay.css?kNu
+Completed 302 Found in 395ms
+
+
+Started GET "/forumdata/cache/scriptstyle_60_viewthread.css?FT7" for 127.0.0.1 at 2011-03-24 20:46:02 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"FT7"=>nil, "anything"=>"forumdata/cache/scriptstyle_60_viewthread.css"}
+  [1m[36mUser Load (140.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/scriptstyle_60_viewthread.css?FT7
+Completed 302 Found in 450ms
+
+
+Started GET "/forumdata/cache/common.js?kNu" for 127.0.0.1 at 2011-03-24 20:46:03 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"kNu"=>nil, "anything"=>"forumdata/cache/common.js"}
+  [1m[35mUser Load (142.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/forumdata/cache/common.js?kNu
+Completed 302 Found in 443ms
+
+
+Started GET "/LinkTalk-Application/app-host.js" for 127.0.0.1 at 2011-03-24 20:46:04 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"LinkTalk-Application/app-host.js"}
+  [1m[36mUser Load (200.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/LinkTalk-Application/app-host.js?
+Completed 302 Found in 578ms
+
+
+Started GET "/templates/goodnight/images/mnsv.swf" for 127.0.0.1 at 2011-03-24 20:46:05 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"templates/goodnight/images/mnsv.swf"}
+  [1m[35mUser Load (127.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/templates/goodnight/images/mnsv.swf?
+Completed 302 Found in 435ms
+
+
+Started GET "/images/default/collapsed_yes.gif" for 127.0.0.1 at 2011-03-24 20:46:06 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_yes.gif"}
+  [1m[36mUser Load (122.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_yes.gif?
+Completed 302 Found in 435ms
+
+
+Started GET "/images/default/collapsed_no.gif" for 127.0.0.1 at 2011-03-24 20:46:06 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/collapsed_no.gif"}
+  [1m[35mUser Load (152.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/collapsed_no.gif?
+Completed 302 Found in 438ms
+
+
+Started GET "/pm.php?checknewpm=0.41649009392445624&inajax=1&ajaxtarget=myprompt_check" for 127.0.0.1 at 2011-03-24 20:46:08 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"checknewpm"=>"0.41649009392445624", "inajax"=>"1", "ajaxtarget"=>"myprompt_check", "anything"=>"pm.php"}
+  [1m[36mUser Load (202.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1[0m
+Redirected to http://www.touhou.cc/bbs/pm.php?checknewpm=0.41649009392445624&inajax=1&ajaxtarget=myprompt_check
+Completed 302 Found in 500ms
+
+
+Started GET "/images/default/loading.gif" for 127.0.0.1 at 2011-03-24 20:46:09 +0800
+  Processing by ApplicationController#redirect_to_thc as HTML
+  Parameters: {"anything"=>"images/default/loading.gif"}
+  [1m[35mUser Load (152.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`name` = 'admin') LIMIT 1
+Redirected to http://www.touhou.cc/bbs/images/default/loading.gif?
+Completed 302 Found in 543ms

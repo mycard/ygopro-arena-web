@@ -2,20 +2,23 @@
 <html>
   <head>
     <title> <%= @site.name %> - <%= @actions.last.respond_to?(:name) ? @actions.last.name : @actions.last %> </title>
-    <%#= render 'layouts/header' %>
+    <%= render 'layouts/header' %>
+    
 <%# ApplicationHelper::addon_header.each { |s| %>
     <%#= render 'layouts/'+s %>
 <%# } %>
   </head>
+  
   <body>
-    <%#= render 'layouts/top' %>
+    <%= render 'layouts/top' %>
 <%# ApplicationHelper::addon_top.each { |s| %>
     <%#= render 'layouts/'+s %>
 <%# } %>
     <%= yield %>
-    <%#= render 'layouts/footer' %>
+    <%= render 'layouts/footer' %>
 <%# ApplicationHelper::addon_footer.each { |s| %>
     <%#= render 'layouts/'+s %>
 <%# } %>
+    
   </body>
 </html>

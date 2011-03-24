@@ -7,6 +7,10 @@ class Board < ActiveRecord::Base
   def to_s
     "<a href=\"/forum/#{id}\">#{name}</a>".html_safe
   end
+  alias topics_with_deleted topics
+  def topics
+    topics_with_deleted.where({:deleted => false})
+  end
   #def superboard
   #	  board
   #end
