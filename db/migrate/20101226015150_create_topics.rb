@@ -9,9 +9,11 @@ class CreateTopics < ActiveRecord::Migration
       t.integer :views
       t.integer :readperm
       t.boolean :locked
+      t.boolean :deleted
       t.boolean :reverse
       t.boolean :private
 
+        
       t.timestamps
     end
   end

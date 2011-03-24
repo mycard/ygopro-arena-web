@@ -94,4 +94,44 @@ class TopicsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  
+  #主题管理：
+  #删除：/topic/control?id=1&deleted=1
+  #反删除：/topic/control?id=1&deleted=0
+  #置顶 3 /topic/control?id=1&displayorder=3
+  #沉底 /topic/control?id=1&displayorder=-1
+  #恢复正常排序 /topic/control?id=1&displayorder=-1
+  #高亮 /topic/control?id=1&highlight=  //TODO
+  #精华 3 /topic/control?id=1&digest=3
+  #取消精华 /topic/control?id=1&digest=0
+  #锁定 /topic/control?id=1&locked=1
+  #打开 /topic/control?id=1&locked=0
+  #移动 /topic/control?id=1&category_id=1
+  #分类 /topic/control?id=1&type_id=1
+  #以上操作可以多重进行
+  #例如把1,2,3号id的主题进行精华3和置顶1
+  #/topic/control?id=1,2,3&digest=3&displayorder=1
+  Data_Control = ['deleted', 'displayorder', 'highlight', 'digest', 'locked', 'category_id', 'type_id']
+  def control
+    if params['id']
+      id = params['id'].split(/,/)
+      return if id.empty?
+    else
+      return
+    end
+    data_control = {}
+    Data_Control.each do |key| #喵你妹的Hash不带交集运算
+      data_control[key] = params[key] if params[key]
+    end
+    unless data_control.empty?
+      @topics = Topic.update_all(data_control, {:id => id})
+    end
+    if params['merge']
+      #TODO
+    end
+    if params['split']
+      #TODO
+    end
+  end
 end

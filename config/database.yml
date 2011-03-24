@@ -8,7 +8,7 @@
 development:
   adapter: mysql
   reconnect: false
-  database: Reliz
+  database: reliz
   pool: 5
   username: zh99998-test
   password: zh99998

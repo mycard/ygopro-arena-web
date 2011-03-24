@@ -14,14 +14,18 @@ Reliz::Application.routes.draw do
   match 'forum/:id/(/:page)' => 'boards#show', :id => /\d+/, :page => /\d+/ 
   
   resources :posts
-  match 'forum/:topic_id/new' => 'posts#new', :topic_id => /\d+/ #·¢±í»Ø¸´
+  match 'forum/:topic_id/new' => 'posts#new', :topic_id => /\d+/ #ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½
   
   resources :topics
   match 'topic/:id/(/:page)' => 'topics#show', :id => /\d+/, :page => /\d+/ 
-  match 'forum/:forum_id/new' => 'topics#new', :forum_id => /\d+/ #·¢±íÖ÷Ìâ
+  match 'forum/:forum_id/new' => 'topics#new', :forum_id => /\d+/ #
+  get 'topic/control' => 'topics#control'
   
   match ':something/:anything', :controller => 'application', :action => 'redirect_to_thc', :something => /forum|boards|topic|topics|posts/, :anything => /.*/
   match '/:anything', :controller => 'application', :action => 'redirect_to_thc', :anything => /.*/
+  
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

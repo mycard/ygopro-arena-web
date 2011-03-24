@@ -25,27 +25,7 @@ ActiveRecord::Schema.define(:version => 20101226125042) do
     t.datetime "updated_at"
   end
 
-  create_table "boards_copy", :force => true do |t|
-    t.integer "super_id"
-    t.string  "name"
-    t.text    "introduction"
-    t.text    "notice"
-    t.string  "logo"
-    t.string  "banner"
-    t.integer "readperm"
-    t.integer "topicperm"
-    t.integer "postperm"
-  end
-
   create_table "comments", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "user_id"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "comments_copy", :force => true do |t|
     t.integer  "post_id"
     t.integer  "user_id"
     t.text     "content"
@@ -73,25 +53,7 @@ ActiveRecord::Schema.define(:version => 20101226125042) do
     t.datetime "updated_at"
   end
 
-  create_table "notices_copy", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "type"
-    t.integer  "assocaion_id"
-    t.string   "assocaion_type"
-    t.integer  "from_user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "pms", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "from_user_id"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "pms_copy", :force => true do |t|
     t.integer  "user_id"
     t.integer  "from_user_id"
     t.text     "content"
@@ -113,25 +75,6 @@ ActiveRecord::Schema.define(:version => 20101226125042) do
     t.datetime "updated_at"
   end
 
-  create_table "posts_copy", :force => true do |t|
-    t.integer  "topic_id"
-    t.integer  "user_id"
-    t.text     "content"
-    t.integer  "displayorder"
-    t.integer  "readperm"
-    t.boolean  "private"
-    t.boolean  "anonymous"
-    t.boolean  "ubb"
-    t.boolean  "html"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "schema_migrations_copy", :primary_key => "version", :force => true do |t|
-  end
-
-  add_index "schema_migrations_copy", ["version"], :name => "unique_schema_migrations", :unique => true
-
   create_table "topics", :force => true do |t|
     t.integer  "user_id"
     t.integer  "type_id"
@@ -148,48 +91,7 @@ ActiveRecord::Schema.define(:version => 20101226125042) do
     t.datetime "updated_at"
   end
 
-  create_table "topics_copy", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "type_id"
-    t.integer  "category_id"
-    t.string   "category_type"
-    t.string   "name"
-    t.integer  "displayorder"
-    t.integer  "views"
-    t.integer  "readperm"
-    t.boolean  "locked"
-    t.boolean  "reverse"
-    t.boolean  "private"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "nickname"
-    t.string   "password"
-    t.string   "email"
-    t.integer  "usergroup_id"
-    t.integer  "admingroup_id"
-    t.string   "regip"
-    t.string   "lastloginip"
-    t.integer  "readnum"
-    t.integer  "viewnum"
-    t.integer  "onlinetime"
-    t.integer  "credit"
-    t.integer  "credit1"
-    t.integer  "credit2"
-    t.integer  "credit3"
-    t.integer  "credit4"
-    t.integer  "credit5"
-    t.integer  "credit6"
-    t.integer  "credit7"
-    t.integer  "credit8"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users_copy", :force => true do |t|
     t.string   "name"
     t.string   "nickname"
     t.string   "password"
