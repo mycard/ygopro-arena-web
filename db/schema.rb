@@ -76,17 +76,18 @@ ActiveRecord::Schema.define(:version => 20101226125042) do
   end
 
   create_table "topics", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",                          :null => false
     t.integer  "type_id"
-    t.integer  "category_id"
-    t.string   "category_type"
-    t.string   "name"
-    t.integer  "displayorder"
-    t.integer  "views"
-    t.integer  "readperm"
-    t.boolean  "locked"
-    t.boolean  "reverse"
-    t.boolean  "private"
+    t.integer  "category_id",                      :null => false
+    t.string   "category_type", :default => "",    :null => false
+    t.string   "name",          :default => "",    :null => false
+    t.integer  "displayorder",  :default => 0,     :null => false
+    t.integer  "views",         :default => 0,     :null => false
+    t.integer  "readperm",      :default => 1,     :null => false
+    t.boolean  "locked",        :default => false, :null => false
+    t.boolean  "deleted",       :default => false, :null => false
+    t.boolean  "reverse",       :default => false, :null => false
+    t.boolean  "private",       :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

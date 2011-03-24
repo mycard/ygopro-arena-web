@@ -70,6 +70,12 @@
 
 <label>&nbsp;</label>
  <span id="thread_<%= topic.id %>"><%= topic %></span>
+ <a href="/topic/control?id=<%= topic.id %>&deleted=1">删除</a>
+ <a href="/topic/control?id=<%= topic.id %>&displayorder=1">置顶</a>
+ <a href="/topic/control?id=<%= topic.id %>&digest=1">精华</a>
+ <a href="/topic/control?id=<%= topic.id %>&locked=1">锁定</a>
+ 
+ 
 </th>
 <td class="author">
 <cite>
