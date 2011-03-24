@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  ApplicationHelper::addon_header.push "zh_header"
-  ApplicationHelper::addon_top.push "zh_top"
-  ApplicationHelper::addon_footer.push "zh_footer"
+  #ApplicationHelper::addon_header.push "zh_header"
+  #ApplicationHelper::addon_top.push "zh_top"
+  #ApplicationHelper::addon_footer.push "zh_footer"
   # GET /posts
   # GET /posts.xml
   def index

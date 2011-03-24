@@ -1,4 +1,5 @@
 module ApplicationHelper
+=begin
   @@addon_stylesheet = []
   @@addon_javascript = []
   @@addon_top = []
@@ -39,4 +40,5 @@ module ApplicationHelper
   def self.addon_footer=(val)
     @@addon_footer = val
   end
+=end
 end

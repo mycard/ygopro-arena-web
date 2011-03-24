@@ -1,7 +1,42 @@
 class TopicsController < ApplicationController
-  ApplicationHelper::addon_header.push "zh_header"
-  ApplicationHelper::addon_top.push "zh_top"
-  ApplicationHelper::addon_footer.push "zh_footer"
+#  ApplicationHelper::addon_header.push "zh_header"
+#  ApplicationHelper::addon_top.push "zh_top"
+#  ApplicationHelper::addon_footer.push "zh_footer"
+  
+=begin
+  查看主题: GET /topic/1
+  发表主题：POST /topic/1
+  编辑主题: PUT /topic/1
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  主题管理：
+  删除：/topic/control?id=1&deleted=1
+  反删除：/topic/control?id=1&deleted=0
+  置顶 3 /topic/control?id=1&displayorder=3
+  沉底 /topic/control?id=1&displayorder=-1
+  恢复正常排序 /topic/control?id=1&displayorder=-1
+  高亮 /topic/control?id=1&highlight=  //TODO
+  精华 3 /topic/control?id=1&digest=3
+  取消精华 /topic/control?id=1&digest=0
+  锁定 /topic/control?id=1&locked=1
+  打开 /topic/control?id=1&locked=0
+  移动 /topic/control?id=1&category_id=1
+  分类 /topic/control?id=1&type_id=1
+  以上操作可以多重进行
+  例如把1,2,3号id的主题进行精华3和置顶1
+  /topic/control?id=1,2,3&digest=3&displayorder=1
+  
+=end
+  
+  
+=begin  
   # GET /topics
   # GET /topics.xml
   def index
@@ -12,7 +47,7 @@ class TopicsController < ApplicationController
       format.xml  { render :xml => @topics }
     end
   end
-
+=end
   # GET /topics/1
   # GET /topics/1.xml
   def show
@@ -82,7 +117,7 @@ class TopicsController < ApplicationController
       end
     end
   end
-
+=begin
   # DELETE /topics/1
   # DELETE /topics/1.xml
   def destroy
@@ -94,24 +129,9 @@ class TopicsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+=end
   
-  
-  #主题管理：
-  #删除：/topic/control?id=1&deleted=1
-  #反删除：/topic/control?id=1&deleted=0
-  #置顶 3 /topic/control?id=1&displayorder=3
-  #沉底 /topic/control?id=1&displayorder=-1
-  #恢复正常排序 /topic/control?id=1&displayorder=-1
-  #高亮 /topic/control?id=1&highlight=  //TODO
-  #精华 3 /topic/control?id=1&digest=3
-  #取消精华 /topic/control?id=1&digest=0
-  #锁定 /topic/control?id=1&locked=1
-  #打开 /topic/control?id=1&locked=0
-  #移动 /topic/control?id=1&category_id=1
-  #分类 /topic/control?id=1&type_id=1
-  #以上操作可以多重进行
-  #例如把1,2,3号id的主题进行精华3和置顶1
-  #/topic/control?id=1,2,3&digest=3&displayorder=1
+
   Data_Control = ['deleted', 'displayorder', 'highlight', 'digest', 'locked', 'category_id', 'type_id']
   def control
     if params['id']
