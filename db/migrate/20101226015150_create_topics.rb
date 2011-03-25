@@ -6,6 +6,7 @@ class CreateTopics < ActiveRecord::Migration
       t.references :category, :polymorphic => true, :null => false
       t.string :name, :null => false
       t.integer :displayorder, :default => 0, :null => false
+      t.integer :highlight, :default => 0, :null => false
       t.integer :views, :default => 0, :null => false
       t.integer :readperm, :default => 1, :null => false
       t.boolean :locked, :default => false, :null => false

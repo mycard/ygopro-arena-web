@@ -54,7 +54,14 @@
 <tbody id="normalthread_<%= topic.id %>">
 <tr>
 <td class="folder">
-<%= link_to image_tag("default/folder_common.gif"), topic, :target => :_blank %>
+<%= link_to image_tag(case
+  when topic.locked
+    "topic/locked.gif"
+  when topic.displayorder != 0
+    "topic/displayorder#{topic.displayorder}.gif"
+  else
+    "topic/new.gif"
+  end), topic, :target => :_blank %>
 
 </td>
 <td class="icon">
@@ -63,24 +70,24 @@
 
 <label>&nbsp;</label>
  <span id="thread_<%= topic.id %>"><%= topic %></span>
- <a href="/topic/control?id=<%= topic.id %>&deleted=1">删除</a>
- <a href="/topic/control?id=<%= topic.id %>&displayorder=1">置顶</a>
- <a href="/topic/control?id=<%= topic.id %>&digest=1">精华</a>
- <a href="/topic/control?id=<%= topic.id %>&locked=1">锁定</a>
- 
+ <%= link_to(t('topic.control.delete'), control_topic_path(topic, :deleted => 1)) %>
+ <%= link_to(t('topic.control.digest'), control_topic_path(topic, :digest => 1)) %>
+ <%= link_to(t('topic.control.displayorder'), control_topic_path(topic, :displayorder => 1)) %>
+ <%= link_to(t('topic.control.lock'), control_topic_path(topic, :locked => 1)) %>
+ <%= link_to(t('topic.control.highlight'), control_topic_path(topic, :highlight => 0xFF0000)) %>
  
 </th>
 <td class="author">
 <cite>
 <%= topic.user %>
 </cite>
-<em><%= topic.created_at %></em>
+<em><%=l topic.posts.last.updated_at, :format => :short %></em>
 </td>
 <td class="nums"><strong><%= topic.posts.size - 1 %></strong></td>
 
 <td class="lastpost">
 <cite><%= topic.posts.last.user %></cite>
-<em><span title="<%= topic.posts.last.updated_at %>"><%= link_to topic.posts.last.updated_at, topic.posts.last %></span></a></em>
+<em><span title="<%= topic.posts.last.updated_at %>"><%= link_to (l topic.posts.last.updated_at, :format => :short), topic.posts.last %></span></a></em>
 </td>
 </tr>
 </tbody>

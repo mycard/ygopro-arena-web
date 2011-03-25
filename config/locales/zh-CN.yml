@@ -12,7 +12,12 @@ zh-CN:
     post_last: "最后回复"
     created_at: "发表时间"
     updated_at: "回复时间"
-    
+    control:
+      delete: "删除"
+      displayorder: "置顶"
+      digest: "精华"
+      lock: "锁定"
+      highlight: "高亮"
     
     
   date:
