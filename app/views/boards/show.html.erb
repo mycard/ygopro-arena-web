@@ -6,11 +6,11 @@
 <h1 style=""><% @board.name %></h1>
 <p class="boardstats">[ <strong><%= @board.topics.size %></strong> 主题 / <%= @board.posts.size %> 帖子]</p>
 <div class="boardaction">
-<div class="right">
+<!--<div class="right">
 <a href="my.php?item=attention&amp;type=board&amp;action=add&amp;fid=68" id="ajax_attention" class="attention" onclick="ajaxmenu(this);doane(event);">关注</a>
 
 <a href="my.php?item=favorites&amp;fid=68" id="ajax_favorite" onclick="ajaxmenu(this);doane(event);">收藏</a>
-<a href="rss.php?fid=68&amp;auth=80baas4p%2BS%2FNnT%2BlQanrr%2Blzuk13j9xswULkRK6FhUrlnnrhZxiBsSc%2FwKk" target="_blank" class="feed">RSS</a></div>
+<a href="rss.php?fid=68&amp;auth=80baas4p%2BS%2FNnT%2BlQanrr%2Blzuk13j9xswULkRK6FhUrlnnrhZxiBsSc%2FwKk" target="_blank" class="feed">RSS</a></div>-->
 </div>
 <p class="channelinfo"><%= @board.notice %></p><p id="modedby">
 版主: *空缺中*</p>
@@ -31,28 +31,21 @@
 <table summary="board_68"  cellspacing="0" cellpadding="0" class="datatable">
 <thead class="colplural">
 <tr>
-<td colspan="2">&nbsp;<a href="javascript:;" id="filtertype" class="dropmenu" onclick="showMenu({'ctrlid':this.id});">类型</a></td>
+<td colspan="2"></td>
 <th>
 <ul class="itemfilter s_clear">
-<li><%= t 'topic' %>:</li>
 
-<li class="current"><a href="boarddisplay.php?fid=68"><span>全部</span></a></li>
-<li><a class="filter" href="boarddisplay.php?fid=68&amp;filter=digest"><span>精华</span></a></li>
-<li class="pipe">|</li>
-<li>时间:</li>
-<li><a href="boarddisplay.php?fid=68&amp;orderby=lastpost&amp;filter=86400"><span>一天</span></a></li>
-<li><a href="boarddisplay.php?fid=68&amp;orderby=lastpost&amp;filter=172800"><span>两天</span></a></li>
-<li><a href="boarddisplay.php?fid=68&amp;orderby=lastpost&amp;filter=604800"><span>周</span></a></li>
-<li><a href="boarddisplay.php?fid=68&amp;orderby=lastpost&amp;filter=2592000"><span>月</span></a></li>
-<li><a href="boarddisplay.php?fid=68&amp;orderby=lastpost&amp;filter=7948800"><span>季</span></a></li>
 
-<li class="pipe">|</li>
-<li><a class="order " href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=heats">热门</a></li>
 </ul>
 </th>
-<td class="author"><a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=dateline" class="order ">作者/时间</a></td>
-<td class="nums"><a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=replies" class="order ">回复</a>&nbsp;<a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=views" class="order ">查看</a></td>
-<td class="lastpost"><cite><a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=lastpost" class="order order_active">最后发表</a></cite></td>
+
+<td class="author"><a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=dateline" class="order "><%= t 'topic.user_name' %> 
+
+<%= link_to(t('topic.created_at'), :order => 'creaded_at') %></a></td>
+
+<td class="nums"><a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=replies" class="order "><%= t 'topic.reply_num' %></a>&nbsp;
+  <a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=views" class="order "><%= t 'topic.view_num' %></a></td>
+<td class="lastpost"><cite><a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=lastpost" class="order order_active"><%= t 'topic.post_last' %></a></cite></td>
 </tr>
 </thead>
 

@@ -10,11 +10,14 @@ class ApplicationController < ActionController::Base
   def check_user
     @correct_user = User.find_by_name "admin"
   end
-  def set_language
-    request_language = request.env['HTTP_ACCEPT_LANGUAGE']
-    request_language = request_language.nil? ? nil : request_language[/[^,;]+/]
-    I18n.locale = request_language if request_language && File.exist?("#{RAILS_ROOT}/config/locales/#{request_language}.yml")
-  end
+  def set_language 
+    request_language = request.env['HTTP_ACCEPT_LANGUAGE'] 
+    request_language = request_language.nil? ? nil : request_language[/[^,;]+/] 
+    # request_language
+    I18n.locale = request_language if request_language && File.exist?("#{RAILS_ROOT}/config/locales/#{request_language}.yml") 
+    #p I18n.locale, "#{RAILS_ROOT}/config/locales/#{request_language}.yml"
+    #p I18n.load_path
+  end 
   def load_settings
   	@site = {
   		:name => "Reliz"

@@ -9,13 +9,6 @@ class TopicsController < ApplicationController
   编辑主题: PUT /topic/1
   
   
-  
-  
-  
-  
-  
-  
-  
   主题管理：
   删除：/topic/control?id=1&deleted=1
   反删除：/topic/control?id=1&deleted=0
@@ -145,13 +138,17 @@ class TopicsController < ApplicationController
       data_control[key] = params[key] if params[key]
     end
     unless data_control.empty?
-      @topics = Topic.update_all(data_control, {:id => id})
+      @topics_size = Topic.update_all(data_control, {:id => id})
     end
     if params['merge']
       #TODO
     end
     if params['split']
       #TODO
+    end
+    respond_to do |format|
+      format.html { redirect_to(:back, :notice => 'Topic was successfully updated.') }
+      format.xml  { render :xml => @topics_size }
     end
   end
 end

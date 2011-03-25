@@ -43,8 +43,14 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.xml
   def create
+    
+    
     @post = Post.new(params[:post])
     @post.topic = Topic.find params[:post][:topic_id]
+    if !@topic or @topic.locked
+      return
+    end
+      
     @post.user = @correct_user
     @post.displayorder = @post.topic.floor
     respond_to do |format|
