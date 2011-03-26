@@ -42,7 +42,11 @@
 <div class="bg-dmenu" style="position: relative;">
 <div id="menu">
 <ul>
-<li class="menu_1"><a href="index.php" hidefocus="true" id="mn_index">forum</a></li><li class="menu_7"><a href="../blog" hidefocus="true" id="mn_blog">a</a></li><li class="menu_2"><a href="search.php" hidefocus="true" id="mn_search">b</a></li><li class="menu_5"><a href="misc.php?action=nav" hidefocus="true" onclick="showWindow('nav', this.href);return false;">c</a></li><li class="menu_8" id="LQBpFL" onmouseover="showMenu({'ctrlid':this.id})"><a href="#" hidefocus="true"  class="dropmenu">d</a></li><li class="menu_25"><a href="plugin.php?id=family:family" hidefocus="true" id="mn_plugin_1">e</a></li><li class="menu_11"><a href="music.html" hidefocus="true" id="mn_music">f</a></li></ul>
+<li class="menu_1"><%=link_to t('navi.forum'), :root, :hidefocus => true, :id => :mn_index %></li>
+</ul>
+  
+  
+  
 <script type="text/javascript">
 var currentMenu = $('mn_index') ? $('mn_index') : $('mn_index');
 currentMenu.parentNode.className = 'current';
@@ -69,7 +73,7 @@ location.href = 'index.php?' + str;
 
 </div>
 
-<div id="wrapper"><div id="nav">
+<div id="nav">
 <%= @site %>
 <% @actions.each do |action| %>
    &raquo; <%= action %>

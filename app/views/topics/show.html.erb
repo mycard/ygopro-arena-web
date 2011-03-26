@@ -1,302 +1,238 @@
-<div id="wrap" class="wrap s_clear threadfix">
-
-<div class="boardcontrol">
-
-<table cellspacing="0" cellpadding="0">
-
-<tr>
-
-<td class="modaction">
-
-</td>
-
-<td>
-
-<span class="pageback" id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})"><a href="boarddisplay.php?fid=68&amp;page=1">返回列表</a></span>
-
-<span class="postbtn" id="newspecial" prompt="post_newthread" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})"><a href="post.php?action=newthread&amp;fid=68" onclick="showWindow('newthread', this.href);return false;">发帖</a></span>
-
-</td>
-
-</tr>
-
-</table>
-
-</div>
-
-
-
-
-
-<div id="postlist" class="mainbox viewthread"><% @posts.each do |post| %>
-<div id="post_<%= post.id %>"><table id="pid<%= post.id %>" summary="pid<%= post.id %>" cellspacing="0" cellpadding="0">
-
-<tr>
-
-<td class="postauthor" rowspan="2">
-
-<div class="postinfo">
-<%= link_to post.user.name, post.user, :style=> "margin-left: 20px; font-weight: 800"%>
-
-</div>
-
-<div class="popupmenu_popup userinfopanel" id="userinfo<%= post.id %>" style="display: none; position: absolute;margin-top: -11px;">
-
-<div class="popavatar">
-
-<div id="userinfo<%= post.id %>_ma"></div>
-
-<ul class="profile_side">
-
-<li class="pm"><a href="pm.php?action=new&amp;uid=<%= post.user_id %>" onclick="hideMenu('userinfo<%= post.id %>');showWindow('sendpm', this.href);return false;" title="发短消息">发短消息</a></li>
-
-<li class="buddy"><a href="my.php?item=buddylist&amp;newbuddyid=<%= post.user_id %>&amp;buddysubmit=yes" target="_blank" id="ajax_buddy_1" title="加为好友" onclick="ajaxmenu(this, 3000);doane(event);">加为好友</a></li>
-
-</ul>
-
-</div>
-
-<div class="popuserinfo">
-
-<p>
-
-<%= post.user %>
-
-<em>(博丽有情破颜拳)</em><em>当前离线
-
-</em>
-
-</p>
-
-<p class="customstatus">下下签</p>
-
-<dl class="s_clear"><dt>UID</dt><dd><%= post.user_id %>&nbsp;</dd><dt>帖子</dt><dd>203&nbsp;</dd><dt>主题</dt><dd>29&nbsp;</dd><dt>精华</dt><dd>0&nbsp;</dd><dt>积分</dt><dd>203&nbsp;</dd><dt>点数</dt><dd>192 &nbsp;</dd><dt>威望</dt><dd>1 &nbsp;</dd><dt>贡献</dt><dd>0 &nbsp;</dd><dt>人气</dt><dd>0 &nbsp;</dd><dt>人品</dt><dd>-10 &nbsp;</dd><dt>阅读权限</dt><dd>20&nbsp;</dd><dt>在线时间</dt><dd>88 小时&nbsp;</dd><dt>注册时间</dt><dd>2010-6-24&nbsp;</dd><dt>最后登录</dt><dd>2010-12-23&nbsp;</dd></dl>
-
-<div class="imicons">
-
-<a href="http://www.touhou.cc/blog/space.php?uid=<%= post.user_id %>" target="_blank" title="个人空间"><img src="images/default/home.gif" alt="个人空间"  /></a>
-
-<a href="space.php?uid=<%= post.user_id %>" target="_blank" title="查看详细资料"><img src="images/default/userinfo.gif" alt="查看详细资料"  /></a>
-
-</div>
-
-<div id="avatarfeed"><span id="threadsortswait"></span></div>
-
-</div>
-
-</div>
-
- <div>
-
-<div class="avatar" onmouseover="showauthor(this, 'userinfo<%= post.id %>')"><a href="space.php?uid=<%= post.user_id %>" target="_blank"><img src="http://www.touhou.cc/ucenter/avatar.php?uid=<%= post.user_id %>&size=middle" /></a></div>
-
-<p><a href="memcp.php" target="_blank">博丽有情破颜拳</a></p>
-
-</div>
-
-<p><img src="images/default/star_level2.gif" alt="Rank: 2" /></p>
-
-<dl class="profile s_clear"><dt>帖子</dt><dd>203&nbsp;</dd><dt>精华</dt><dd>0&nbsp;</dd><dt>积分</dt><dd>203&nbsp;</dd><dt>点数</dt><dd>192 &nbsp;</dd><dt>威望</dt><dd>1 &nbsp;</dd><dt>贡献</dt><dd>0 &nbsp;</dd><dt>人气</dt><dd>0 &nbsp;</dd><dt>人品</dt><dd>-10 &nbsp;</dd></dl></td>
-
-<td class="postcontent">
-
-<div class="postinfo">
-
-<strong><a title="复制本帖链接" id="postnum<%= post.id %>" href="javascript:;" onclick="setCopy('http://www.touhou.cc/bbs/redirect.php?goto=findpost&amp;ptid=23884&amp;pid=<%= post.id %>', '帖子地址已经复制到剪贴板')"><em><%= post.displayorder %></em><sup>#</sup></a>
-
-</strong>
-
-<div class="posterinfo">
-
-<div class="pagecontrol">
-
-</div>
-
-<div class="authorinfo">
-
-<img class="authicon" id="authicon<%= post.id %>" src="images/common/online_member.gif" onclick="showauthor(this, 'userinfo<%= post.id %>');" />
-
-<em id="authorposton<%= post.id %>">发表于 <span title="2010-12-23 12:37">前天&nbsp;12:37</span></em>
-
- | <a href="viewthread.php?tid=23884&amp;page=1&amp;authorid=<%= post.user_id %>" rel="nofollow">只看该作者</a>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="defaultpost">
-
-<div id="ad_thread2_1"></div><div id="ad_thread3_1"></div><div id="ad_thread4_1"></div>
-
-<div class="postmessage ">
-
-<div class="t_msgfontfix">
-
-<table cellspacing="0" cellpadding="0"><tr><td class="t_msgfont" id="postmessage_<%= post.id %>"><%= post.content %></td></tr></table>
-
-</div>
-
-
-
-<div id="post_rate_div_<%= post.id %>"></div>
-
-</div>
-
-
-
-</div>
-
-</td></tr>
-
-<tr><td class="postcontent postbottom">
-
-<div class="signatures" style="max-height:300px;maxHeightIE:300px;"><img src="http://p1.tuzhan.com/200911/upn1/2010-09-12/17/rsagayanlong.tuzhan.com_ca33e924a0844d79aa817cde6440af5f_m.jpg" onload="thumbImg(this)" alt="" /></div>
-
-<div id="ad_thread1_1"></div></td>
-
-</tr>
-
-<tr>
-
-<td class="postauthor"></td>
-
-<td class="postcontent">
-
-<div class="postactions">
-
-<div class="postact s_clear">
-
-<em>
-
-</em>
-
-<p>
-
-<a href="javascript:;" onclick="scrollTo(0,0);">TOP</a>
-
-</p>
-
-</div>
-
-</div>
-
-
-
-</td>
-
-</tr>
-
-<tr class="threadad">
-
-<td class="postauthor"></td>
-
-<td class="adcontent">
-
-</td>
-
-</tr>
-
-</table>
-
-</div>
-<% end %></div>
-
-
-
-<div id="postlistreply" class="mainbox viewthread"><div id="post_new" class="viewthread_table" style="display: none"></div></div>
-
-
-
-<form method="post" name="modactions" id="modactions">
-
-<input type="hidden" name="formhash" value="ff1bce37" />
-
-<input type="hidden" name="optgroup" />
-
-<input type="hidden" name="operation" />
-
-<input type="hidden" name="listextra" value="page%3D1" />
-
-</form>
-
-
-
-<script type="text/javascript">var tagarray = ['东方','漫画','DOTS','新人','幻想','THD','论坛','沙包','游戏','BUG','师傅','动画','技能','攻略','同人','时间','少女','人物','DotA','TouHou','地图','建议','BGM','音乐','视频','THB','发售','中国','同人音乐','日本','THDOTA','下载','世界','申请','触手','物品','圣诞','主题','故事','BOSS','朋友','小说','教练','Project','GGC','活动','圣诞节','新闻','Defence','Apple','兔子','西瓜','电脑','速度','shrines','资源','角色','新手','英雄','据点','制作','装备','公布','人偶','bad','黑白','天子','HJISTC','Vocal','恶魔','名字','新作','模型','翻译','剧场','船长','解决','COS','馒头','大丈夫','玩家','神马','福利','情报','魔兽','amp','版主','大战','妹妹','图片','欢乐','教学','解释','守护','上海','作品','软件','道具','历史','百合'];var tagencarray = ['%B6%AB%B7%BD','%C2%FE%BB%AD','DOTS','%D0%C2%C8%CB','%BB%C3%CF%EB','THD','%C2%DB%CC%B3','%C9%B3%B0%FC','%D3%CE%CF%B7','BUG','%CA%A6%B8%B5','%B6%AF%BB%AD','%BC%BC%C4%DC','%B9%A5%C2%D4','%CD%AC%C8%CB','%CA%B1%BC%E4','%C9%D9%C5%AE','%C8%CB%CE%EF','DotA','TouHou','%B5%D8%CD%BC','%BD%A8%D2%E9','BGM','%D2%F4%C0%D6','%CA%D3%C6%B5','THB','%B7%A2%CA%DB','%D6%D0%B9%FA','%CD%AC%C8%CB%D2%F4%C0%D6','%C8%D5%B1%BE','THDOTA','%CF%C2%D4%D8','%CA%C0%BD%E7','%C9%EA%C7%EB','%B4%A5%CA%D6','%CE%EF%C6%B7','%CA%A5%B5%AE','%D6%F7%CC%E2','%B9%CA%CA%C2','BOSS','%C5%F3%D3%D1','%D0%A1%CB%B5','%BD%CC%C1%B7','Project','GGC','%BB%EE%B6%AF','%CA%A5%B5%AE%BD%DA','%D0%C2%CE%C5','Defence','Apple','%CD%C3%D7%D3','%CE%F7%B9%CF','%B5%E7%C4%D4','%CB%D9%B6%C8','shrines','%D7%CA%D4%B4','%BD%C7%C9%AB','%D0%C2%CA%D6','%D3%A2%D0%DB','%BE%DD%B5%E3','%D6%C6%D7%F7','%D7%B0%B1%B8','%B9%AB%B2%BC','%C8%CB%C5%BC','bad','%BA%DA%B0%D7','%CC%EC%D7%D3','HJISTC','Vocal','%B6%F1%C4%A7','%C3%FB%D7%D6','%D0%C2%D7%F7','%C4%A3%D0%CD','%B7%AD%D2%EB','%BE%E7%B3%A1','%B4%AC%B3%A4','%BD%E2%BE%F6','COS','%C2%F8%CD%B7','%B4%F3%D5%C9%B7%F2','%CD%E6%BC%D2','%C9%F1%C2%ED','%B8%A3%C0%FB','%C7%E9%B1%A8','%C4%A7%CA%DE','amp','%B0%E6%D6%F7','%B4%F3%D5%BD','%C3%C3%C3%C3','%CD%BC%C6%AC','%BB%B6%C0%D6','%BD%CC%D1%A7','%BD%E2%CA%CD','%CA%D8%BB%A4','%C9%CF%BA%A3','%D7%F7%C6%B7','%C8%ED%BC%FE','%B5%C0%BE%DF','%C0%FA%CA%B7','%B0%D9%BA%CF'];parsetag(531016);</script>
-
-<div class="boardcontrol s_clear">
-
-<table cellspacing="0" cellpadding="0" class="narrow">
-
-<tr>
-
-<td class="modaction">
-
-</td>
-
-<td>
-
-<span class="pageback" id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})"><a href="boarddisplay.php?fid=68&amp;page=1">返回列表</a></span>
-
-</td>
-
-</tr>
-
-</table>
-
-</div>
-
-
-<p id="notice"><%= notice %></p>
-<%# fast reply %>
-
-<% form_tag :controller => :posts do %>
-  <p>
-    <%= @topic.floor %>#: <%= text_area_tag "post[content]" %>
-   </p>
-   <%= hidden_field_tag  "post[topic_id]", @topic.id%>
-    <%= submit_tag "reply" %>
-<% end %>
-
-
-
-
-
-
-<ul class="popupmenu_popup" id="visitedboards_menu" style="display: none">
-
-<li><a href="boarddisplay.php?fid=2&amp;sid=MgL7lt">综合讨论</a></li></ul>
-
-
-
-<div id="favoritewin" style="display: none">
-
-<h5>
-
-<a href="javascript:;" onclick="ajaxget('my.php?item=favorites&tid=23884', 'favorite_msg');return false;" class="lightlink">[收藏此主题]</a>&nbsp;
-
-<a href="javascript:;" onclick="ajaxget('my.php?item=attention&action=add&tid=23884', 'favorite_msg');return false;" class="lightlink">[关注此主题的新回复]</a>
-
-</h5>
-
-<span id="favorite_msg"></span>
-
-</div>
-
-
-
-<div id="sharewin" style="display: none">
-
-<h5>
-
-<a href="javascript:;" onclick="setCopy('圣诞礼物！雪之足音！！！东方月光曲0.450发壳！\nhttp://www.touhou.cc/bbs/viewthread.php?tid=23884', '帖子地址已经复制到剪贴板<br />您可以用快捷键 Ctrl + V 粘贴到 QQ、MSN 里。')" class="lightlink" />[通过 QQ、MSN 分享给朋友]</a><br /><br />
-
-</h5>
-
-</div>
-
-
-
-</div>
-
+<div id="wrapper">
+  <ul class="popupmenu_popup headermenu_popup inlinelist" id="modopt_menu" style="width: 180px; display: none"><li class="wide"><a href="javascript:;" onclick="modthreads(3, 'delete')">删除主题</a></li><li class="wide"><a href="javascript:;" onclick="modthreads(3, 'down')">提升下沉</a></li><li class="wide"><a href="javascript:;" onclick="modthreads(1, 'stick')">主题置顶</a></li><li class="wide"><a href="javascript:;" onclick="modthreads(1, 'highlight')">高亮显示</a></li><li class="wide"><a href="javascript:;" onclick="modthreads(1, 'digest')">设置精华</a></li><li class="wide"><a href="javascript:;" onclick="modaction('stamp')">主题鉴定</a></li><li class="wide"><a href="javascript:;" onclick="modthreads(4)">关闭打开</a></li><li class="wide"><a href="javascript:;" onclick="modthreads(2, 'move')">移动主题</a></li><li class="wide"><a href="javascript:;" onclick="modthreads(2, 'type')">主题分类</a></li><li class="wide"><a href="javascript:;" onclick="modaction('copy')">复制主题</a></li><li class="wide"><a href="javascript:;" onclick="modaction('merge')">合并主题</a></li><li class="wide"><a href="javascript:;" onclick="modaction('split')">分割主题</a></li><li class="wide"><a href="javascript:;" onclick="modaction('repair')">修复主题</a></li><li class="wide"><a href="plugin.php?id=dps_postawards:postawards&amp;tid=29727" onclick="showWindow('paward', this.href);return false;">楼层奖惩</a></li></ul>
+  <div id="modlayer" style="display:none;position:position;width:165px;">
+    <span>选中</span><strong id="modcount"></strong><span>篇: </span>
+    <a href="javascript:;" onclick="modaction('warn')">警告</a>
+    <a href="javascript:;" onclick="modaction('banpost')">屏蔽</a>
+    <a href="javascript:;" onclick="modaction('delpost')">删除</a>
+  </div>
+
+  <div id="wrap" class="wrap s_clear threadfix">
+    <div class="forumcontrol">
+      <table cellspacing="0" cellpadding="0">
+        <tbody><tr>
+            <td class="modaction">
+              <span id="modopt" onclick="$('modopt').id = 'modopttmp';this.id = 'modopt';showMenu({'ctrlid':this.id})" class="dropmenu">主题管理</span>
+            </td>
+            <td>
+              <span class="pageback" id="visitedforums" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';showMenu({'ctrlid':this.id})"><a href="forumdisplay.php?fid=2&amp;page=1">返回列表</a></span>
+              <span class="replybtn" id="post_reply" prompt="post_reply"><a href="post.php?action=reply&amp;fid=2&amp;tid=29727" onclick="showWindow('reply', this.href);return false;">回复</a></span>
+              <span class="postbtn" id="newspecial" prompt="post_newthread" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})"><a href="post.php?action=newthread&amp;fid=2" onclick="showWindow('newthread', this.href);return false;">发帖</a></span>
+            </td>
+          </tr>
+        </tbody></table>
+    </div>
+
+    <ul class="popupmenu_popup postmenu" id="newspecial_menu" style="display: none">
+      <li><a href="post.php?action=newthread&amp;fid=2" onclick="showWindow('newthread', this.href);doane(event)">发新话题</a></li><li class="poll"><a href="post.php?action=newthread&amp;fid=2&amp;special=1">发布投票</a></li><li class="reward"><a href="post.php?action=newthread&amp;fid=2&amp;special=3">发布悬赏</a></li><li class="debate"><a href="post.php?action=newthread&amp;fid=2&amp;special=5">发布辩论</a></li><li class="activity"><a href="post.php?action=newthread&amp;fid=2&amp;special=4">发布活动</a></li><li class="trade"><a href="post.php?action=newthread&amp;fid=2&amp;special=2">发布商品</a></li></ul>
+
+    <div id="postlist" class="mainbox viewthread">
+      <% @topic.posts.each do |post| %>
+      <div id="post_751931"><table id="pid751931" summary="pid751931" cellspacing="0" cellpadding="0">
+          <tbody><tr>
+              <td class="postauthor" rowspan="2">
+                <div class="postinfo" style="margin-left: 20px; font-weight: 800">
+                  <%= post.user %>
+                </div>
+                <div class="popupmenu_popup userinfopanel" id="userinfo751931" style="display: none; position: absolute;margin-top: -11px;">
+                  <div class="popavatar">
+                    <div id="userinfo751931_ma"></div>
+                    <ul class="profile_side">
+                      <li class="pm"><a href="pm.php?action=new&amp;uid=14806" onclick="hideMenu('userinfo751931');showWindow('sendpm', this.href);return false;" title="发短消息">发短消息</a></li>
+                      <li class="buddy"><a href="my.php?item=buddylist&amp;newbuddyid=14806&amp;buddysubmit=yes" target="_blank" id="ajax_buddy_1" title="加为好友" onclick="ajaxmenu(this, 3000);doane(event);">加为好友</a></li>
+                    </ul>
+                  </div>
+                  <div class="popuserinfo">
+                    <p>
+                      <a href="space.php?uid=14806" target="_blank">博丽开水</a>
+                      <em>(开水姐姐)</em><em>当前离线
+                      </em>
+                    </p>
+                    <p class="customstatus">沙包</p>
+                    <dl class="s_clear"><dt>UID</dt><dd>14806&nbsp;</dd><dt>帖子</dt><dd>65&nbsp;</dd><dt>主题</dt><dd>9&nbsp;</dd><dt>精华</dt><dd>0&nbsp;</dd><dt>积分</dt><dd>116&nbsp;</dd><dt>点数</dt><dd>16 &nbsp;</dd><dt>威望</dt><dd>0 &nbsp;</dd><dt>贡献</dt><dd>9 &nbsp;</dd><dt>人气</dt><dd>9 &nbsp;</dd><dt>人品</dt><dd>0 &nbsp;</dd><dt>阅读权限</dt><dd>20&nbsp;</dd><dt>在线时间</dt><dd>15 小时&nbsp;</dd><dt>注册时间</dt><dd>2011-1-20&nbsp;</dd><dt>最后登录</dt><dd>2011-3-26&nbsp;</dd></dl>
+                    <div class="imicons">
+                      <a href="http://www.touhou.cc/blog/space.php?uid=14806" target="_blank" title="个人空间"><img src="images/default/home.gif" alt="个人空间"></a>
+                      <a href="space.php?uid=14806" target="_blank" title="查看详细资料"><img src="images/default/userinfo.gif" alt="查看详细资料"></a>
+                    </div>
+                    <div id="avatarfeed"><span id="threadsortswait"></span></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="avatar" onmouseover="showauthor(this, 'userinfo751931')"><a href="space.php?uid=14806" target="_blank"><img src="http://www.touhou.cc/ucenter/avatar.php?uid=14806&amp;size=middle"></a></div>
+                  <p>
+                    <em><%= post.user.nickname %></em>
+                    
+                </div>
+                <p><img src="images/default/star_level2.gif" alt="Rank: 2"></p>
+                <dl class="profile s_clear"><dt>帖子</dt><dd>65&nbsp;</dd><dt>精华</dt><dd>0&nbsp;</dd><dt>积分</dt><dd>116&nbsp;</dd><dt>点数</dt><dd>16 &nbsp;</dd><dt>威望</dt><dd>0 &nbsp;</dd><dt>贡献</dt><dd>9 &nbsp;</dd><dt>人气</dt><dd>9 &nbsp;</dd><dt>人品</dt><dd>0 &nbsp;</dd><dt>在线时间</dt><dd>15 小时&nbsp;</dd></dl><p><img src="images/common/26.gif" alt="NEET" title="NEET"></p>
+                <p><a href="magic.php?action=mybox&amp;operation=use&amp;type=1&amp;pid=751931&amp;magicid=7" onclick="showWindow('magics', this.href);doane(event);"><img src="images/magics/rtk_s.gif" title="对博丽开水使用狗仔卡"></a></p>
+                <hr class="shadowline">
+                <p>
+                  管理此人<br>
+                  <a href="topicadmin.php?action=getip&amp;fid=2&amp;tid=29727&amp;pid=751931" onclick="ajaxmenu(this, 0, 1, 2);doane(event)" title="查看 IP" class="lightlink">IP</a>&nbsp;
+                  <a href="admincp.php?action=members&amp;username=%B2%A9%C0%F6%BF%AA%CB%AE&amp;submit=yes&amp;frames=yes" target="_blank" class="lightlink">编辑</a>&nbsp;
+                  <a href="admincp.php?action=members&amp;operation=ban&amp;username=%B2%A9%C0%F6%BF%AA%CB%AE&amp;frames=yes" target="_blank" class="lightlink">禁止</a>&nbsp;
+                  <a href="modcp.php?action=threads&amp;op=posts&amp;do=search&amp;searchsubmit=1&amp;users=%B2%A9%C0%F6%BF%AA%CB%AE" target="_blank" class="lightlink">帖子</a>
+                </p>
+              </td>
+              <td class="postcontent">
+                <div class="postinfo">
+                  <strong><a title="复制本帖链接" id="postnum751931" href="javascript:;" onclick="setCopy('http://www.touhou.cc/bbs/redirect.php?goto=findpost&amp;ptid=29727&amp;pid=751931&amp;fromuid=359', '帖子地址已经复制到剪贴板')"><em><%= post.displayorder %></em><sup>#</sup></a>
+                  </strong>
+                  <div class="posterinfo">
+                    <div class="pagecontrol">
+                    </div>
+                    <div class="authorinfo">
+                      <img class="authicon" id="authicon751931" src="images/common/online_member.gif" onclick="showauthor(this, 'userinfo751931');">
+                      <em id="authorposton751931"><%=l post.created_at, :format => :short %> </em>
+                      | <a href="viewthread.php?tid=29727&amp;page=1&amp;authorid=14806" rel="nofollow">只看该作者</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="defaultpost">
+                  <div id="ad_thread2_1"></div><div id="ad_thread3_1"></div><div id="ad_thread4_1"></div>
+                  <div class="postmessage ">
+                    <!--<div id="threadtitle">
+                      <h1>蕾蒂+毒人 怎么破</h1>
+                    </div>-->
+
+                    <div class="t_msgfontfix">
+                      <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_msgfont" id="postmessage_751931"><%= post.content  %> </td></tr></tbody></table>
+                    </div>
+
+                    <div id="post_rate_div_751931"></div>
+                  </div>
+
+                </div>
+              </td></tr>
+            <tr><td class="postcontent postbottom">
+                <div class="signatures" style="max-height:300px;maxHeightIE:300px;">新手~</div>
+                <div id="ad_thread1_1"></div></td>
+            </tr>
+            <tr>
+              <td class="postauthor"></td>
+              <td class="postcontent">
+                <div class="postactions">
+                  <span class="right">
+                    <label for="manage751931">
+                      <input type="checkbox" id="manage751931" onclick="pidchecked(this);modclick(this, 751931)" value="751931">
+                      管理
+                    </label>
+                  </span>
+                  <div class="postact s_clear">
+                    <em>
+                      <a class="fastreply" href="post.php?action=reply&amp;fid=2&amp;tid=29727&amp;reppost=751931&amp;extra=page%3D1&amp;page=1" onclick="showWindow('reply', this.href);return false;">回复</a>
+                      <a class="repquote" href="post.php?action=reply&amp;fid=2&amp;tid=29727&amp;repquote=751931&amp;extra=page%3D1&amp;page=1" onclick="showWindow('reply', this.href);return false;">引用</a>
+                      <%= link_to t('post.edit'), edit_post_path(post), :class => :editpost %>
+                    </em>
+                    <p>
+                      <a href="misc.php?action=rate&amp;tid=29727&amp;pid=751931" onclick="showWindow('rate', this.href);return false;">评分</a>
+                      <a href="magic.php?action=getmagic&amp;fid=2&amp;pid=751931" id="usermagicopt751931" class="dropmenu" onmouseover="SMAM=setTimeout(function() {ajaxmenu($('usermagicopt751931'), 1000, 1, 2);doane(event);}, 500)" onmouseout="clearTimeout(SMAM)" onclick="if($(this.id + '_menu') &amp;&amp; $(this.id + '_menu').style.display == '') {hideMenu(this.id + '_menu')} else {ajaxmenu(this, 1000, 1, 2);}doane(event);">使用道具</a>
+                      <a href="javascript:;" onclick="scrollTo(0,0);">TOP</a>
+                    </p>
+                  </div>
+                </div>
+
+              </td>
+            </tr>
+            <tr class="threadad">
+              <td class="postauthor"></td>
+              <td class="adcontent">
+              </td>
+            </tr>
+          </tbody></table></div>
+    <% end %>
+    </div>
+
+    <div id="postlistreply" class="mainbox viewthread"><div id="post_new" class="viewthread_table" style="display: none"></div></div>
+
+    <form method="post" name="modactions" id="modactions">
+      <input type="hidden" name="formhash" value="ba0236f6">
+      <input type="hidden" name="optgroup">
+      <input type="hidden" name="operation">
+      <input type="hidden" name="listextra" value="page%3D1">
+      </form>
+
+      <script type="text/javascript">var tagarray = ['论坛','东方','时间','游戏','沙包','少女','DotA','日本','地图','漫画','新闻','动画','大小姐','名字','兔子','朋友','动漫','中国','故事','电脑','音乐','神马','小说','速度','人物','小姐','人偶','天子','图片','角色','宠物','大丈夫','幻想','主题','头像','手机','魔兽','DOTS','东方幻想','新人','THD','下载地址','妹妹','老师','河童','攻击力','心情','世界','BUG','个人','hello','上海','笨蛋','爱丽丝','历史','主人公','连载','平衡','百合','漫画家','美少女','攻略','技能','单行本','强力','在线','三次元','姐姐','同人','打酱油','空间','主题曲','视频','歌曲','地方','动画制作','天气','胜利','东方系列','表情','我不知道','机器人','软件','秋叶原','师傅','电影','女性','生日快乐','爱好者','教学','官方网站','TouHou','资源','对战','玩游戏','萝莉','网通','蓬莱','人生','中文'];var tagencarray = ['%C2%DB%CC%B3','%B6%AB%B7%BD','%CA%B1%BC%E4','%D3%CE%CF%B7','%C9%B3%B0%FC','%C9%D9%C5%AE','DotA','%C8%D5%B1%BE','%B5%D8%CD%BC','%C2%FE%BB%AD','%D0%C2%CE%C5','%B6%AF%BB%AD','%B4%F3%D0%A1%BD%E3','%C3%FB%D7%D6','%CD%C3%D7%D3','%C5%F3%D3%D1','%B6%AF%C2%FE','%D6%D0%B9%FA','%B9%CA%CA%C2','%B5%E7%C4%D4','%D2%F4%C0%D6','%C9%F1%C2%ED','%D0%A1%CB%B5','%CB%D9%B6%C8','%C8%CB%CE%EF','%D0%A1%BD%E3','%C8%CB%C5%BC','%CC%EC%D7%D3','%CD%BC%C6%AC','%BD%C7%C9%AB','%B3%E8%CE%EF','%B4%F3%D5%C9%B7%F2','%BB%C3%CF%EB','%D6%F7%CC%E2','%CD%B7%CF%F1','%CA%D6%BB%FA','%C4%A7%CA%DE','DOTS','%B6%AB%B7%BD%BB%C3%CF%EB','%D0%C2%C8%CB','THD','%CF%C2%D4%D8%B5%D8%D6%B7','%C3%C3%C3%C3','%C0%CF%CA%A6','%BA%D3%CD%AF','%B9%A5%BB%F7%C1%A6','%D0%C4%C7%E9','%CA%C0%BD%E7','BUG','%B8%F6%C8%CB','hello','%C9%CF%BA%A3','%B1%BF%B5%B0','%B0%AE%C0%F6%CB%BF','%C0%FA%CA%B7','%D6%F7%C8%CB%B9%AB','%C1%AC%D4%D8','%C6%BD%BA%E2','%B0%D9%BA%CF','%C2%FE%BB%AD%BC%D2','%C3%C0%C9%D9%C5%AE','%B9%A5%C2%D4','%BC%BC%C4%DC','%B5%A5%D0%D0%B1%BE','%C7%BF%C1%A6','%D4%DA%CF%DF','%C8%FD%B4%CE%D4%AA','%BD%E3%BD%E3','%CD%AC%C8%CB','%B4%F2%BD%B4%D3%CD','%BF%D5%BC%E4','%D6%F7%CC%E2%C7%FA','%CA%D3%C6%B5','%B8%E8%C7%FA','%B5%D8%B7%BD','%B6%AF%BB%AD%D6%C6%D7%F7','%CC%EC%C6%F8','%CA%A4%C0%FB','%B6%AB%B7%BD%CF%B5%C1%D0','%B1%ED%C7%E9','%CE%D2%B2%BB%D6%AA%B5%C0','%BB%FA%C6%F7%C8%CB','%C8%ED%BC%FE','%C7%EF%D2%B6%D4%AD','%CA%A6%B8%B5','%B5%E7%D3%B0','%C5%AE%D0%D4','%C9%FA%C8%D5%BF%EC%C0%D6','%B0%AE%BA%C3%D5%DF','%BD%CC%D1%A7','%B9%D9%B7%BD%CD%F8%D5%BE','TouHou','%D7%CA%D4%B4','%B6%D4%D5%BD','%CD%E6%D3%CE%CF%B7','%C2%DC%C0%F2','%CD%F8%CD%A8','%C5%EE%C0%B3','%C8%CB%C9%FA','%D6%D0%CE%C4'];parsetag(751906);</script>
+      <div class="forumcontrol s_clear">
+        <table cellspacing="0" cellpadding="0" class="narrow">
+          <tbody><tr>
+              <td class="modaction">
+                <span id="modopttmp" onclick="$('modopt').id = 'modopttmp';this.id = 'modopt';showMenu({'ctrlid':this.id})" class="dropmenu">主题管理</span>
+              </td>
+              <td>
+                <span class="pageback" id="visitedforums" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';showMenu({'ctrlid':this.id})"><a href="forumdisplay.php?fid=2&amp;page=1">返回列表</a></span>
+              </td>
+            </tr>
+          </tbody></table>
+      </div>
+
+
+      <script type="text/javascript">
+        var postminchars = parseInt('10');
+        var postmaxchars = parseInt('102400');
+        var disablepostctrl = parseInt('0');
+      </script>
+
+      <div id="f_post" class="mainbox viewthread">
+        <form method="post" id="fastpostform" action="post.php?action=reply&amp;fid=2&amp;tid=29727&amp;extra=page%3D1&amp;replysubmit=yes&amp;infloat=yes&amp;handlekey=fastpost" onsubmit="return fastpostvalidate(this)">
+          <table cellspacing="0" cellpadding="0">
+            <tbody><tr>
+                <td class="postauthor">
+                  <div class="avatar"><img src="http://www.touhou.cc/ucenter/avatar.php?uid=359&amp;size=middle"></div></td>
+                <td class="postcontent">
+                  <input type="hidden" name="formhash" value="ba0236f6">
+                  <input type="hidden" name="subject" value="">
+                  <input type="hidden" name="usesig" value="0">
+
+                  <span id="fastpostreturn"></span>
+                  <div class="editor_tb">
+                    <span class="right">
+                      <a href="post.php?action=reply&amp;fid=2&amp;tid=29727" onclick="return switchAdvanceMode(this.href)">高级模式</a>
+                      <span class="pipe">|</span>
+                      <span id="newspecialtmp" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})"><a href="post.php?action=newthread&amp;fid=2" onclick="showWindow('newthread', this.href);return false;">发新话题</a></span>
+                    </span><link rel="stylesheet" type="text/css" href="forumdata/cache/style_57_seditor.css?qfY">
+                    <div>
+                      <a href="javascript:;" title="粗体" class="tb_bold" onclick="seditor_insertunit('fastpost', '[b]', '[/b]')">B</a>
+                      <a href="javascript:;" title="颜色" class="tb_color" id="fastpostforecolor" onclick="showColorBox(this.id, 2, 'fastpost')">Color</a>
+                      <a href="javascript:;" title="图片" class="tb_img" onclick="seditor_insertunit('fastpost', '[img]', '[/img]')">Image</a>
+                      <a href="javascript:;" title="插入链接" class="tb_link" onclick="seditor_insertunit('fastpost', '[url]', '[/url]')">Link</a>
+                      <a href="javascript:;" title="引用" class="tb_quote" onclick="seditor_insertunit('fastpost', '[quote]', '[/quote]')">Quote</a>
+                      <a href="javascript:;" title="代码" class="tb_code" onclick="seditor_insertunit('fastpost', '[code]', '[/code]')">Code</a>
+                      <a href="javascript:;" class="tb_smilies" id="fastpostsmilies" onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false">Smilies</a>
+                      <script src="forumdata/cache/smilies_var.js?qfY" type="text/javascript" reload="1"></script>
+                      <script type="text/javascript" reload="1">smilies_show('fastpostsmiliesdiv', 8, 'fastpost');</script>
+                    </div></div>
+                  <textarea rows="5" cols="80" name="message" id="fastpostmessage" onkeydown="seditor_ctlent(event, 'fastpostvalidate($(\'fastpostform\'))');" tabindex="4" class="txtarea"></textarea>
+                  <p><button type="submit" name="replysubmit" id="fastpostsubmit" value="replysubmit" tabindex="5">发表回复</button>
+                    <input id="fastpostrefresh" type="checkbox"> <label for="fastpostrefresh">回帖后跳转到最后一页</label></p><script type="text/javascript">if(getcookie('discuz_fastpostrefresh') == 1) {$('fastpostrefresh').checked=true;}</script>
+                  <p></p>
+                  </td>
+                  </tr>
+                  </tbody></table>
+                  </form>
+                  </div>
+                  <div id="authornewfeed_menu" style="display:none"></div><script type="text/javascript" src="http://www.touhou.cc/blog/api/discuz.php?pagetype=viewthread&amp;status=3&amp;uid=359&amp;infosidestatus=0&amp;feedpostnum=14&amp;updateuid=14806&amp;pid=751906&amp;plugin=1"></script><script language="javascript">
+                    $("modopt_menu").innerHTML+="<li class=\"wide\"><a href=\"plugin.php?id=dps_postawards:postawards&tid=29727\" onclick=\"showWindow('paward', this.href);return false;\">楼层奖惩</a></li>";
+                  </script>
+                  <ul class="popupmenu_popup" id="visitedforums_menu" style="display: none">
+                    <li><a href="forumdisplay.php?fid=70&amp;sid=FrmND8">悬赏求物</a></li><li><a href="forumdisplay.php?fid=104&amp;sid=FrmND8">精美图库</a></li><li><a href="forumdisplay.php?fid=22&amp;sid=FrmND8">内务讨论</a></li><li><a href="forumdisplay.php?fid=76&amp;sid=FrmND8">幻想乡大温泉</a></li><li><a href="forumdisplay.php?fid=91&amp;sid=FrmND8">制作专区</a></li><li><a href="forumdisplay.php?fid=48&amp;sid=FrmND8">文文最速新闻</a></li><li><a href="forumdisplay.php?fid=32&amp;sid=FrmND8">资源发布</a></li></ul>
+
+                  <div id="favoritewin" style="display: none">
+                    <h5>
+                      <a href="javascript:;" onclick="ajaxget('my.php?item=favorites&amp;tid=29727', 'favorite_msg');return false;" class="lightlink">[收藏此主题]</a>&nbsp;
+                      <a href="javascript:;" onclick="ajaxget('my.php?item=attention&amp;action=add&amp;tid=29727', 'favorite_msg');return false;" class="lightlink">[关注此主题的新回复]</a>
+                    </h5>
+                    <span id="favorite_msg"></span>
+                  </div>
+
+                  <div id="sharewin" style="display: none">
+                    <h5>
+                      <a href="javascript:;" onclick="setCopy('蕾蒂+毒人 怎么破\nhttp://www.touhou.cc/bbs/viewthread.php?tid=29727&amp;fromuid=359', '帖子地址已经复制到剪贴板&lt;br /&gt;您可以用快捷键 Ctrl + V 粘贴到 QQ、MSN 里。')" class="lightlink">[通过 QQ、MSN 分享给朋友]</a><br><br>
+                      <a href="javascript:;" class="lightlink" onclick="hideWindow('confirm');showWindow('sendpm', 'pm.php?action=new&amp;operation=share&amp;tid=29727');">[通过站内短消息分享给朋友]</a>
+                      </h5>
+                      </div>
+
+                      <div id="ad_footerbanner1"></div><div id="ad_footerbanner2"></div><div id="ad_footerbanner3"></div>
+                      <script>$('umenu').innerHTML = '<span id="myrepeats" onmouseover="showMenu(this.id)">[切换]</span>' + $('umenu').innerHTML;</script><ul id="myrepeats_menu" class="popupmenu_popup" style="display:none;"><li class="wide"><a href="plugin.php?id=myrepeats:switch&amp;username=%B2%A4%C2%DC%B0%FC">菠萝包</a></li><li class="wide" style="clear:both"><a href="plugin.php?id=myrepeats:memcp">设置马甲</a></li></ul></div>
+                      </div>

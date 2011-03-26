@@ -43,11 +43,13 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.xml
   def create
-    
-    
     @post = Post.new(params[:post])
     @post.topic = Topic.find params[:post][:topic_id]
     if !@topic or @topic.locked
+      respond_to do |format|
+        format.html{ redirect_to(@post.topic, :notice => 'Can\'t Reply.') }
+        format.xml{ render :xml => @post, :status => :unprocessable_entity}
+      end
       return
     end
       
@@ -71,7 +73,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to(@post, :notice => 'Post was successfully updated.') }
+        format.html { redirect_to(@post.topic, :notice => 'Post was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

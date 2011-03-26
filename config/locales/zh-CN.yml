@@ -2,6 +2,13 @@
 # by tsechingho (http://github.com/tsechingho)
 
 zh-CN: 
+  stat:
+    onlineuser: "在线人数"
+    total: "总计"
+    max: "最高"
+    at: "于"
+  navi:
+    forum: "论坛"
   topic:
     order: "排序"
     displayorder: "置顶"
@@ -18,7 +25,8 @@ zh-CN:
       digest: "精华"
       lock: "锁定"
       highlight: "高亮"
-    
+  post:
+    edit: "编辑"
     
   date:
     formats:
@@ -43,6 +51,10 @@ zh-CN:
     pm: "下午"
 
   datetime:
+    today: "今日"
+    yesterday: "昨日"
+    
+    
     distance_in_words:
       half_a_minute: "半分钟"
       less_than_x_seconds:

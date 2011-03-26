@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title> <%= @site.name %> - <%= @actions.last.respond_to?(:name) ? @actions.last.name : @actions.last %> </title>
+    <title> <%= @site.name %><% if !@actions.empty? %>  - <%= @actions.last.respond_to?(:name) ? @actions.last.name : @actions.last %> <% end %> </title>
     <%= render 'layouts/header' %>
     
 <%# ApplicationHelper::addon_header.each { |s| %>

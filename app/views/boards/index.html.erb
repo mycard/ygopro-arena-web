@@ -1,13 +1,13 @@
+<div id="wrapper">
 <div id="wrap" class="wrap s_clear">
 <div class="itemtitle s_clear">
 <p class="right boardcount">
-today: <em>395</em>, yesterday: <em>1990</em>, user: <em>12050</em>
+<%=t 'datetime.today' %>: <em><%= Post.today.count %> </em>, 
+<%=t 'datetime.yesterday' %>: <em><%= Post.yesterday.count %></em>
+
 
 </p>
-<ul>
-<li class="current"><a href="index.php?op=classics"><span>board</span></a></li>
-<li><a href="index.php?op=feeds"><span>dt</span></a></li>
-</ul></div><div class="mainbox list">
+</div><div class="mainbox list">
 <span class="headactions">
 <img id="category_3_img" src="images/default/collapsed_no.gif" title="sq/zk" alt="sq/zk" onclick="toggle_collapse('category_3');" />
 </span>
@@ -30,7 +30,7 @@ today: <em>395</em>, yesterday: <em>1990</em>, user: <em>12050</em>
 		<td class="boardlast">
 		<% if board.topics.last %>
 			<p><%= board.topics.last %></p>
-			<cite><%= board.posts.last.user %> - <span title="<%= board.posts.last.updated_at %>"><%= board.posts.last.updated_at %></span></cite>
+			<cite><%= board.posts.last.user %> - <span title="<%= board.posts.last.updated_at %>"><%=l board.posts.last.updated_at, :format => :short %></span></cite>
 		<% else %>
 			none
 		<% end %>
@@ -53,8 +53,9 @@ today: <em>395</em>, yesterday: <em>1990</em>, user: <em>12050</em>
 <span class="headactions"><a href="index.php?showoldetails=yes#online" class="nobdr"><img src="images/default/collapsed_yes.gif" alt="" /></a></span>
 
 <h3>
-<strong><a href="member.php?action=online">onlineuser</a></strong>
-- total <em>236</em> 
-- high <em>527</em> at <em>2010-11-21</em>.
+<strong><%=t 'stat.onlineuser' %></strong>
+- <%=t 'stat.total' %> <em>0</em> 
+- <%=t 'stat.max' %> <em>0</em> <%=t 'stat.at' %> <em><%=l Time.now, :format => :long %> </em>.
 </h3>
+</div>
 </div>

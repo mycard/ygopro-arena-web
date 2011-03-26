@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
   # GET /boards.xml
   def index
     @boards = Board.all#[Board.find(1)]#_all_by_id 1
-    @actions = [:forum]
+    @actions = []
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @boards }
@@ -18,7 +18,7 @@ class BoardsController < ApplicationController
   def show
     @page = params[:page] && !params[:page].empty? ? params[:page].to_i : 1
     @board = Board.find(params[:id])
-    @actions = [:board, @board]
+    @actions = [@board]
     @topics = @board.topics.all(:offset => 20*@page-20, :limit => 20, :order => [:displayorder, :id])
     respond_to do |format|
       format.html # show.html.erb
