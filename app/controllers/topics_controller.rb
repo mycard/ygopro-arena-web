@@ -58,8 +58,13 @@ class TopicsController < ApplicationController
   # GET /forum/id/new
   # GET /forum/id/new.xml
   def new
-    @topic = Topic.new
-
+    #@topic = Topic.new
+    if params[:board_id].blank? || (@board = Board.find params[:board_id]).nil?
+    	return render( :text => :board_not_exist )
+    end
+    #p @board
+    #p '---------------------------------------------'
+	@actions = [:new_topic]
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @topic }
@@ -74,6 +79,7 @@ class TopicsController < ApplicationController
   # POST /board/id
   # POST /board/id.xml
   def create
+	#TODO: 验证category_id有效性
     @topic = Topic.new(params[:topic])
     #@topic.category_id = Board.find(params[:topic][:category_id])
     @topic.user = @correct_user

@@ -1,93 +1,36 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
-<%#
-function multi($count, $perpage, $curpage, $mpurl, $maxpages = 0, $page = 10, $autogoto = TRUE, $simple = FALSE) {
-global $maxpage;
-$ajaxtarget = !empty($_GET['ajaxtarget']) ? " ajaxtarget=\"".dhtmlspecialchars($_GET['ajaxtarget'])."\" " : '';
-
-$multipage = '';
-$mpurl .= strpos($mpurl, '?') ? '&amp;' : '?';
-
-
-$realpages = 1;
-if($count > $perpage) {
-$offset = 2;
-
-$realpages = @ceil($count / $perpage);
-$pages = $maxpages && $maxpages < $realpages ? $maxpages : $realpages;
-
-if($page > $pages) {
-$from = 1;
-$to = $pages;
-} else {
-$from = $curpage - $offset;
-$to = $from + $page - 1;
-if($from < 1) {
-$to = $curpage + 1 - $from;
-$from = 1;
-if($to - $from < $page) {
-$to = $page;
-}
-} elseif($to > $pages) {
-$from = $pages - $page + 1;
-$to = $pages;
-}
-}
-
-$multipage = ($curpage - $offset > 1 && $pages > $page ? '<a href="'.$mpurl.'page=1" class="first"'.$ajaxtarget.'>1 ...</a>' : '').
-($curpage > 1 && !$simple ? '<a href="'.$mpurl.'page='.($curpage - 1).'" class="prev"'.$ajaxtarget.'>'.$lang['prev'].'</a>' : '');
-for($i = $from; $i <= $to; $i++) {
-$multipage .= $i == $curpage ? '<strong>'.$i.'</strong>' :
-'<a href="'.$mpurl.'page='.$i.($ajaxtarget && $i == $pages && $autogoto ? '#' : '').'"'.$ajaxtarget.'>'.$i.'</a>';
-}
-
-$multipage .= ($to < $pages ? '<a href="'.$mpurl.'page='.$pages.'" class="last"'.$ajaxtarget.'>... '.$realpages.'</a>' : '').
-($curpage < $pages && !$simple ? '<a href="'.$mpurl.'page='.($curpage + 1).'" class="next"'.$ajaxtarget.'>'.$lang['next'].'</a>' : '').
-($showkbd && !$simple && $pages > $page && !$ajaxtarget ? '<kbd><input type="text" name="custompage" size="3" onkeydown="if(event.keyCode==13) {window.location=\''.$mpurl.'page=\'+this.value; return false;}" /></kbd>' : '');
-
-$multipage = $multipage ? '<div class="pages">'.($showcount && !$simple ? '<em>&nbsp;'.$count.'&nbsp;</em>' : '').$multipage.'</div>' : '';
-}
-$maxpage = $realpages;
-return $multipage;
-}
-%>
-<% perpage = 3
-curpage ||= (params[:page] || 1).to_i
-if count > perpage
-  offset = 2;
-  pages = count / perpage
-  if 10 > pages
-    from = 1;
-    to = pages;
-   
-  else
-    from = curpage - offset
-    to = from + page - 1;
-    if(from < 1)
-      to = curpage + 1 - from;
+<%
+  perpage = 20
+  curpage ||= (params[:page] || 1).to_i
+  if count > perpage
+    offset = 2;
+    pages = (count-1) / perpage + 1
+    if 10 > pages
       from = 1;
-      if(to - from < 10) 
-        to = 10;
+      to = pages;
+    else
+      from = curpage - offset
+      to = from + page - 1;
+      if(from < 1)
+        to = curpage + 1 - from;
+        from = 1;
+        if(to - from < 10) 
+          to = 10;
+        end
+      elsif(to > pages)
+        from = pages - page + 1;
+        to = pages
       end
-    elsif(to > pages)
-      from = pages - page + 1;
-      to = pages
     end
-  end
-   
   %>
   <div class="pages">
-  <%= link_to_if curpage - offset > 1 && pages > 10, curpage, :page => 1, :class => :first %>
-  <%= link_to_if curpage > 1, t('forum.prev'), :page => curpage-1, :class => :prev %>
+  
+  <%= link_to curpage, :page => 1, :class => :first if curpage - offset > 1 && pages > 10 %>
+  <%= link_to t('forum.prev'), :page => curpage-1, :class => :prev if curpage > 1 %>
   <% from.upto to do |i| %>
     <%= link_to_if(i != curpage, i, :page => i){"<strong>#{i}</strong>".html_safe} %>
   <% end %>
-  <%# p to, to < pages %><%#= to %><%#= (to<pages).inspect %>
-  
-  <%= link_to_if(false, "...#{pages}", :page => pages, :class => :last) %>
-  <%= link_to_if(false, t('forum.next'), :page => curpage+1, :class => :next) %>
+  <%= link_to "...#{pages}", :page => pages, :class => :last if to < pages %>
+  <%= link_to t('forum.next'), :page => curpage+1, :class => :next if curpage < pages %>
     
   <!--
       ($showkbd && !$simple && $pages > $page && !$ajaxtarget ? '<kbd><input type="text" name="custompage" size="3" onkeydown="if(event.keyCode==13) {window.location=\''.$mpurl.'page=\'+this.value; return false;}" /></kbd>' : '');

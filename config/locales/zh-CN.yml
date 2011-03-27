@@ -13,12 +13,15 @@ zh-CN:
   navi:
     forum: "论坛"
   topic:
+    new: "发帖"
+    title: "标题"
+    submit: "提交"
     order: "排序"
     displayorder: "置顶"
     digest: "精华"
     user_name: "作者"
-    view_num: "查看数"
-    reply_num: "回复数"
+    view_num: "查看"
+    reply_num: "回复"
     post_last: "最后回复"
     created_at: "发表时间"
     updated_at: "回复时间"

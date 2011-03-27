@@ -1,5 +1,4 @@
 #encoding: UTF-8
-<div id="wrapper">
 <div id="wrap" class="wrap s_clear">
 <div class="main">
 <div class="content">
@@ -22,7 +21,7 @@
 <%= render 'layouts/pages', :count => @board.topics.count %>
 <span id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})" class="pageback"><a href="index.php">返回首页</a></span>
 
-<span class="postbtn" id="newspecial" prompt="post_newthread" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})"><a href="post.php?action=newthread&amp;fid=68" onclick="showWindow('newthread', this.href);return false;">发帖</a></span>
+<span class="postbtn" id="newspecial" prompt="post_newthread"><%= link_to t('topic.new'), new_topic_path %></span>
 </div>
 
 
@@ -98,24 +97,24 @@
 </form>
 </div>
 <div class="pages_btns s_clear">
-<div class="pages"><strong>1</strong><a href="boarddisplay.php?fid=68&amp;page=2">2</a><a href="boarddisplay.php?fid=68&amp;page=3">3</a><a href="boarddisplay.php?fid=68&amp;page=4">4</a><a href="boarddisplay.php?fid=68&amp;page=2" class="next">下一页</a></div><span id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})" class="pageback"><a href="index.php">返回首页</a></span>
-<span class="postbtn" id="newspecialtmp" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})"><a href="post.php?action=newthread&amp;fid=68" onclick="showWindow('newthread', this.href);return false;">发帖</a></span>
+<%= render 'layouts/pages', :count => @board.topics.count %>
+<span id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})" class="pageback"><a href="index.php">返回首页</a></span>
+<span class="postbtn" id="newspecialtmp" ><%= link_to t('topic.new'), new_topic_path %></span>
 </div>
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'New Topic', new_topic_path %>
-<%# fast newthread %>
+<%# fast newtopic %>
 
 <%= form_tag :controller => :topics do %>
   <p>
-    Title: <%= text_field_tag  "topic[name]" %>
+    <%=t 'topic.title' %><%= text_field_tag  "topic[name]" %>
   </p>
   <p>
-    Content: <%= text_area_tag "post[content]" %>
+    <%= text_area_tag "post[content]" %>
    </p>
    <%= hidden_field_tag  "topic[category_id]", @board.id%>
    <%= hidden_field_tag  "topic[category_type]", :board%>
-    <%= submit_tag "newthread" %>
+   <%= submit_tag t("topic.submit") %>
 <% end %>
 <dl id="onlinelist">
 <dt>
@@ -142,4 +141,3 @@
 </div><ul class="popupmenu_popup headermenu_popup" id="plugin_menu" style="display: none">          <li><a id="mn_plugin_family_family" href="plugin.php?id=family:family">家族门派</a></li>
      </ul>
 <ul class="popupmenu_popup headermenu_popup" id="1nNcin_menu" style="display: none"><li><a href="plugin.php?id=moodwall" hidefocus="true" >心情墙壁</a></li><li><a href="plugin.php?id=dps_medalcenter" hidefocus="true" >勋章中心</a></li><li><a href="magic.php" hidefocus="true" >道具中心</a></li><li><a href="plugin.php?id=rs_sign:sign" hidefocus="true" >每日签到</a></li><li><a href="pet.php" hidefocus="true" >口袋东方</a></li><li><a href="plugin.php?id=promotion:promotion" hidefocus="true" >宣传中心</a></li><li><a href="bank.php" hidefocus="true" >社区银行</a></li><li><a href="plugin.php?id=family:family" hidefocus="true" >家族领地</a></li></ul>
-</div>

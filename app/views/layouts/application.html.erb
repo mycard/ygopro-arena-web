@@ -14,7 +14,9 @@
 <%# ApplicationHelper::addon_top.each { |s| %>
     <%#= render 'layouts/'+s %>
 <%# } %>
+    <div id="wrapper">
     <%= yield %>
+    </div>
     <%= render 'layouts/footer' %>
 <%# ApplicationHelper::addon_footer.each { |s| %>
     <%#= render 'layouts/'+s %>
