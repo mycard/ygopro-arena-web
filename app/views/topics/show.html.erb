@@ -174,7 +174,7 @@
       </script>
 
       <div id="f_post" class="mainbox viewthread">
-        <form method="post" id="fastpostform" action="post.php?action=reply&amp;fid=2&amp;tid=29727&amp;extra=page%3D1&amp;replysubmit=yes&amp;infloat=yes&amp;handlekey=fastpost" onsubmit="return fastpostvalidate(this)">
+	<% form_tag :controller => :posts, :id => :fastpostform, :method => :post do %>
           <table cellspacing="0" cellpadding="0">
             <tbody><tr>
                 <td class="postauthor">
@@ -202,14 +202,27 @@
                       <script src="forumdata/cache/smilies_var.js?qfY" type="text/javascript" reload="1"></script>
                       <script type="text/javascript" reload="1">smilies_show('fastpostsmiliesdiv', 8, 'fastpost');</script>
                     </div></div>
+<%= text_area_tag 'post[content]', :rows => 5, :cols => 80, :id => :fastpostmessage, :tabindex => 4, :class => :txtarea %>
                   <textarea rows="5" cols="80" name="message" id="fastpostmessage" onkeydown="seditor_ctlent(event, 'fastpostvalidate($(\'fastpostform\'))');" tabindex="4" class="txtarea"></textarea>
-                  <p><button type="submit" name="replysubmit" id="fastpostsubmit" value="replysubmit" tabindex="5">发表回复</button>
+                  <p><%= submit_tag t("topic.reply"), :id => :replysubmit, :tabindex => 5 %>
+
+
                     <input id="fastpostrefresh" type="checkbox"> <label for="fastpostrefresh">回帖后跳转到最后一页</label></p><script type="text/javascript">if(getcookie('discuz_fastpostrefresh') == 1) {$('fastpostrefresh').checked=true;}</script>
                   <p></p>
                   </td>
                   </tr>
                   </tbody></table>
                   </form>
+
+<%# fast reply %>
+
+
+  <p>
+    <%= @topic.floor %>#: <%=  "" %>
+   </p>
+   <%= hidden_field_tag  "post[topic_id]", @topic.id%>
+    
+<% end %>
                   </div>
                   <div id="authornewfeed_menu" style="display:none"></div><script type="text/javascript" src="http://www.touhou.cc/blog/api/discuz.php?pagetype=viewthread&amp;status=3&amp;uid=359&amp;infosidestatus=0&amp;feedpostnum=14&amp;updateuid=14806&amp;pid=751906&amp;plugin=1"></script><script language="javascript">
                     $("modopt_menu").innerHTML+="<li class=\"wide\"><a href=\"plugin.php?id=dps_postawards:postawards&tid=29727\" onclick=\"showWindow('paward', this.href);return false;\">楼层奖惩</a></li>";
