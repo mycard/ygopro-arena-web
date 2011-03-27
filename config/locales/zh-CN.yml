@@ -14,6 +14,7 @@ zh-CN:
     forum: "论坛"
   topic:
     new: "发帖"
+    reply: "回复"
     title: "标题"
     submit: "提交"
     order: "排序"

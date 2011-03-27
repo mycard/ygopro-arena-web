@@ -159,7 +159,7 @@
               <td class="modaction">
                 <span id="modopttmp" onclick="$('modopt').id = 'modopttmp';this.id = 'modopt';showMenu({'ctrlid':this.id})" class="dropmenu">主题管理</span>
               </td>
-              <td>
+              <td><%= @topic.floor %>#:
                 <span class="pageback" id="visitedforums" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';showMenu({'ctrlid':this.id})"><a href="forumdisplay.php?fid=2&amp;page=1">返回列表</a></span>
               </td>
             </tr>
@@ -174,15 +174,15 @@
       </script>
 
       <div id="f_post" class="mainbox viewthread">
-	<% form_tag :controller => :posts, :id => :fastpostform, :method => :post do %>
+	<% form_tag :controller => :posts do %>
           <table cellspacing="0" cellpadding="0">
             <tbody><tr>
                 <td class="postauthor">
                   <div class="avatar"><img src="http://www.touhou.cc/ucenter/avatar.php?uid=359&amp;size=middle"></div></td>
                 <td class="postcontent">
-                  <input type="hidden" name="formhash" value="ba0236f6">
+                  <!--<input type="hidden" name="formhash" value="ba0236f6">
                   <input type="hidden" name="subject" value="">
-                  <input type="hidden" name="usesig" value="0">
+                  <input type="hidden" name="usesig" value="0">-->
 
                   <span id="fastpostreturn"></span>
                   <div class="editor_tb">
@@ -202,26 +202,14 @@
                       <script src="forumdata/cache/smilies_var.js?qfY" type="text/javascript" reload="1"></script>
                       <script type="text/javascript" reload="1">smilies_show('fastpostsmiliesdiv', 8, 'fastpost');</script>
                     </div></div>
-<%= text_area_tag 'post[content]', :rows => 5, :cols => 80, :id => :fastpostmessage, :tabindex => 4, :class => :txtarea %>
-                  <textarea rows="5" cols="80" name="message" id="fastpostmessage" onkeydown="seditor_ctlent(event, 'fastpostvalidate($(\'fastpostform\'))');" tabindex="4" class="txtarea"></textarea>
+<%= text_area_tag 'post[content]', nil, :id => :fastpostmessage, :rows => 5, :cols => 80,  :tabindex => 4, :class => :txtarea %>
                   <p><%= submit_tag t("topic.reply"), :id => :replysubmit, :tabindex => 5 %>
-
-
                     <input id="fastpostrefresh" type="checkbox"> <label for="fastpostrefresh">回帖后跳转到最后一页</label></p><script type="text/javascript">if(getcookie('discuz_fastpostrefresh') == 1) {$('fastpostrefresh').checked=true;}</script>
                   <p></p>
                   </td>
                   </tr>
                   </tbody></table>
-                  </form>
-
-<%# fast reply %>
-
-
-  <p>
-    <%= @topic.floor %>#: <%=  "" %>
-   </p>
-   <%= hidden_field_tag  "post[topic_id]", @topic.id%>
-    
+   <%= hidden_field_tag 'post[topic_id]', @topic.id%>
 <% end %>
                   </div>
                   <div id="authornewfeed_menu" style="display:none"></div><script type="text/javascript" src="http://www.touhou.cc/blog/api/discuz.php?pagetype=viewthread&amp;status=3&amp;uid=359&amp;infosidestatus=0&amp;feedpostnum=14&amp;updateuid=14806&amp;pid=751906&amp;plugin=1"></script><script language="javascript">

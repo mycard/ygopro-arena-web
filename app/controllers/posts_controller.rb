@@ -45,14 +45,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.topic = Topic.find params[:post][:topic_id]
-    if !@topic or @topic.locked
-      respond_to do |format|
-        format.html{ redirect_to(@post.topic, :notice => 'Can\'t Reply.') }
-        format.xml{ render :xml => @post, :status => :unprocessable_entity}
-      end
-      return
+    if @post.topic.nil? or @post.topic.locked
+      return render :text => "Topic not found or locked."
     end
-      
     @post.user = @correct_user
     @post.displayorder = @post.topic.floor
     respond_to do |format|
