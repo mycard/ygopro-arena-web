@@ -2,6 +2,9 @@
 # by tsechingho (http://github.com/tsechingho)
 
 zh-CN: 
+  forum:
+    next: "下一页"
+    prev: "上一页"
   stat:
     onlineuser: "在线人数"
     total: "总计"

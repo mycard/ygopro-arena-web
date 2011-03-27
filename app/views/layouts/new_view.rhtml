@@ -1,0 +1,57 @@
+function multi($num, $perpage, $curpage, $mpurl, $maxpages = 0, $page = 10, $autogoto = TRUE, $simple = FALSE) {
+	global $maxpage;
+	$ajaxtarget = !empty($_GET['ajaxtarget']) ? " ajaxtarget=\"".dhtmlspecialchars($_GET['ajaxtarget'])."\" " : '';
+
+	if(defined('IN_ADMINCP')) {
+		$shownum = $showkbd = TRUE;
+		$lang['prev'] = '&lsaquo;&lsaquo;';
+		$lang['next'] = '&rsaquo;&rsaquo;';
+	} else {
+		$shownum = $showkbd = FALSE;
+		$lang['prev'] = '&nbsp';
+		$lang['next'] = $GLOBALS['dlang']['nextpage'];
+	}
+
+	$multipage = '';
+	$mpurl .= strpos($mpurl, '?') ? '&amp;' : '?';
+	$realpages = 1;
+	if($num > $perpage) {
+		$offset = 2;
+
+		$realpages = @ceil($num / $perpage);
+		$pages = $maxpages && $maxpages < $realpages ? $maxpages : $realpages;
+
+		if($page > $pages) {
+			$from = 1;
+			$to = $pages;
+		} else {
+			$from = $curpage - $offset;
+			$to = $from + $page - 1;
+			if($from < 1) {
+				$to = $curpage + 1 - $from;
+				$from = 1;
+				if($to - $from < $page) {
+					$to = $page;
+				}
+			} elseif($to > $pages) {
+				$from = $pages - $page + 1;
+				$to = $pages;
+			}
+		}
+
+		$multipage = ($curpage - $offset > 1 && $pages > $page ? '<a href="'.$mpurl.'page=1" class="first"'.$ajaxtarget.'>1 ...</a>' : '').
+			($curpage > 1 && !$simple ? '<a href="'.$mpurl.'page='.($curpage - 1).'" class="prev"'.$ajaxtarget.'>'.$lang['prev'].'</a>' : '');
+		for($i = $from; $i <= $to; $i++) {
+			$multipage .= $i == $curpage ? '<strong>'.$i.'</strong>' :
+				'<a href="'.$mpurl.'page='.$i.($ajaxtarget && $i == $pages && $autogoto ? '#' : '').'"'.$ajaxtarget.'>'.$i.'</a>';
+		}
+
+		$multipage .= ($to < $pages ? '<a href="'.$mpurl.'page='.$pages.'" class="last"'.$ajaxtarget.'>... '.$realpages.'</a>' : '').
+			($curpage < $pages && !$simple ? '<a href="'.$mpurl.'page='.($curpage + 1).'" class="next"'.$ajaxtarget.'>'.$lang['next'].'</a>' : '').
+			($showkbd && !$simple && $pages > $page && !$ajaxtarget ? '<kbd><input type="text" name="custompage" size="3" onkeydown="if(event.keyCode==13) {window.location=\''.$mpurl.'page=\'+this.value; return false;}" /></kbd>' : '');
+
+		$multipage = $multipage ? '<div class="pages">'.($shownum && !$simple ? '<em>&nbsp;'.$num.'&nbsp;</em>' : '').$multipage.'</div>' : '';
+	}
+	$maxpage = $realpages;
+	return $multipage;
+}
