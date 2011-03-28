@@ -2,9 +2,24 @@
 # by tsechingho (http://github.com/tsechingho)
 
 zh-CN: 
+  user:
+    login: "登陆"
+    register: "注册"
+    logout: "退出"
+    my: "我的中心"
+    space: "空间"
+    notice: "提醒"
+    pm: "短消息"
+    name: "用户名"
+    password: "密码"
+    password_repeat: "重复密码"
+    email: "邮箱"
+    
   forum:
     next: "下一页"
     prev: "上一页"
+  board:
+    control: "管理面板"
   stat:
     onlineuser: "在线人数"
     total: "总计"

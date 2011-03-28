@@ -8,18 +8,22 @@
 <div id="topbar" name="TOP">
 <div class="topanel">
 <div id="memberp">
-<cite><a href="space.php?uid=359" class="noborder">zh99998</a></cite>
+<% if logged? %> 
+<cite><a href="space.php?uid=359" class="noborder"><%= @correct_user %> </a></cite>
 <span class="pipe">|</span>
 
-<a href="my.php?item=threads">my</a>
-<a href="http://www.touhou.cc/blog/space.php?uid=359" target="_blank">space</a>
-<a id="myprompt" href="notice.php" >notice</a>
+<%= link_to t('user.my'), @correct_user %>
+<%= link_to t('user.space'), @correct_user %>
+<%= link_to t('user.notice'), @correct_user %>
 <span id="myprompt_check"></span>
-<a href="pm.php" id="pm_ntc" target="_blank">pm</a>
+<%= link_to t('user.pm'), @correct_user %>
 
 <span class="pipe">|</span>
-<a href="memcp.php">memcp</a>
-<a href="logging.php?action=logout&amp;formhash=eed723b8">logout</a>
+<%= link_to t('user.logout'), logout_path %>
+<% else %>
+<%= link_to t('user.login'), login_path %>
+<%= link_to t('user.register'), new_user_path %>
+<% end %>
 </div>
 
 <form method="post" id="searchform" action="search.php">

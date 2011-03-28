@@ -22,6 +22,7 @@
 <span id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})" class="pageback"><a href="index.php">返回首页</a></span>
 
 <span class="postbtn" id="newspecial" prompt="post_newthread"><%= link_to t('topic.new'), new_topic_path %></span>
+<span><%= link_to t('board.control'), edit_board_path(@board) %></span>
 </div>
 
 
@@ -100,6 +101,7 @@
 <%= render 'layouts/pages', :count => @board.topics.count %>
 <span id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})" class="pageback"><a href="index.php">返回首页</a></span>
 <span class="postbtn" id="newspecialtmp" ><%= link_to t('topic.new'), new_topic_path %></span>
+
 </div>
 <p id="notice"><%= notice %></p>
 

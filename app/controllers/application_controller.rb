@@ -8,7 +8,14 @@ class ApplicationController < ActionController::Base
     @actions = ["warning: no actions here"] unless @actions
   end
   def check_user
-    @correct_user = User.find_by_name "admin"
+    if session[:user_id]
+      @correct_user = User.find session[:user_id]
+    end
+    unless @correct_user
+      @correct_user = User.new
+      @correct_user.name = '游客'
+    end
+    p @correct_user
   end
   def set_language 
     request_language = request.env['HTTP_ACCEPT_LANGUAGE'] 

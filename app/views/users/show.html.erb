@@ -1,34 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b><%=t 'user.name' %>:</b>
   <%= @user.name %>
 </p>
 
 <p>
-  <b>Password:</b>
+  <b><%=t 'user.password' %>:</b>
   <%= @user.password %>
 </p>
 
 <p>
-  <b>Email:</b>
+  <b><%=t 'user.email' %>:</b>
   <%= @user.email %>
 </p>
 
 <p>
-  <b>Credit:</b>
+  <b><%=t 'user.credit' %>:</b>
   <%= @user.credit %>
 </p>
 
-<p>
-  <b>Usergroup:</b>
-  <%= @user.usergroup %>
-</p>
-
-<p>
-  <b>Admingroup:</b>
-  <%= @user.admingroup %>
-</p>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

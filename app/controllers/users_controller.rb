@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
+    @actions = [:register]
     @user = User.new
 
     respond_to do |format|
@@ -44,12 +45,15 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-
+    
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
+        p session
         format.html { redirect_to(@user, :notice => 'User was successfully created.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
+        #return render :text => [@user.errors.class, @user.errors]
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
@@ -80,6 +84,35 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(users_url) }
+      format.xml  { head :ok }
+    end
+  end
+  def login
+    @actions = [:login]
+    @user = User.new
+  end
+  def login_do
+    @actions = [:login]
+    @user = User.find_by_name_and_password(params[:user][:name], params[:user][:password])
+    respond_to do |format|
+      if @user
+        session[:user_id] = @user.id
+        format.html { redirect_to(:root, :notice => 'Login Successfully.') }
+        format.xml  { head :ok }
+      else
+        @user = User.new(params[:user])
+        #@user.errors.add 'incorrect_username_or_password' #TODO: 查API
+        return render :text => 'incorrect_username_or_password'
+        format.html { render :action => "login" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+    
+  end
+  def logout
+    session[:user_id] = nil
+    respond_to do |format|
+      format.html { redirect_to(:back) }
       format.xml  { head :ok }
     end
   end

@@ -39,9 +39,23 @@ class BoardsController < ApplicationController
 
   # GET /boards/1/edit
   def edit
+    
     @board = Board.find(params[:id])
+    @actions = [@board, :edit_board]
+    
+    @page=1
+    @topics = @board.topics.all(:offset => 20*@page-20, :limit => 20, :order => [:displayorder, :id])
   end
-
+  def edit #for test
+    @page = params[:page] && !params[:page].empty? ? params[:page].to_i : 1
+    @board = Board.find(params[:id])
+    @actions = [@board]
+    @topics = @board.topics.all(:offset => 20*@page-20, :limit => 20, :order => [:displayorder, :id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => params[:page] && !params[:page].empty? ? @topics : @board}
+    end
+  end
   # POST /boards
   # POST /boards.xml
   def create

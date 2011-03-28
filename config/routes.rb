@@ -6,23 +6,28 @@ Reliz::Application.routes.draw do
   root :to => 'boards#index'
   
   resources :users
-
+  get 'login' => 'users#login'
+  post 'login' => 'users#login_do'
+  get 'logout' => 'users#logout'
+  get 'register' => 'users#new'
+  
   resources :blocks
 
   resources :boards
   match 'forum' => 'boards#index'
+  match 'forum/:id/edit' => 'boards#edit', :id => /\d+/
   match 'forum/:id/(/:page)' => 'boards#show', :id => /\d+/, :page => /\d+/ 
   
+  
   resources :posts
-  match 'forum/:topic_id/new' => 'posts#new', :topic_id => /\d+/ #����ظ�
+  match 'topic/:topic_id/new' => 'posts#new', :topic_id => /\d+/ #����ظ�
   
   resources :topics
   match 'topic/:id/(/:page)' => 'topics#show', :id => /\d+/, :page => /\d+/ 
   match 'forum/:forum_id/new' => 'topics#new', :forum_id => /\d+/ #
   get 'topic/control' => 'topics#control'
   
-  match ':something/:anything', :controller => 'application', :action => 'redirect_to_thc', :something => /forum|boards|topic|topics|posts/, :anything => /.*/
-  match '/:anything', :controller => 'application', :action => 'redirect_to_thc', :anything => /.*/
+  match '(:something)/:anything/', :controller => 'application', :action => 'redirect_to_thc', :something => /forum|boards|topic|topics|posts/, :anything => /.*/
   
   
   
