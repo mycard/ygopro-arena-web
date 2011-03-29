@@ -12,8 +12,9 @@ class ApplicationController < ActionController::Base
       @correct_user = User.find session[:user_id]
     end
     unless @correct_user
-      @correct_user = User.new
-      @correct_user.name = '游客'
+      @correct_user = User::Guest
+      @correct_user.id = 0
+      @correct_user.name = t 'user.anonymous'
     end
     p @correct_user
   end
