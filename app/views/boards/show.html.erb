@@ -43,7 +43,7 @@
 
 <td class="author"><a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=dateline" class="order "><%= t 'topic.user_name' %> 
 
-<%= link_to(t('topic.created_at'), :order => 'creaded_at') %></a></td>
+<%= link_to(t('topic.created_at'), :order => 'created_at%20DESC'.html_safe) %></a></td>
 
 <td class="nums"><a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=replies" class="order "><%= t 'topic.reply_num' %></a>&nbsp;
   <a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=views" class="order "><%= t 'topic.view_num' %></a></td>
@@ -60,7 +60,7 @@
   when topic.locked
     "topic/locked.gif"
   when topic.displayorder != 0
-    "topic/displayorder#{topic.displayorder}.gif"
+    "topic/displayorder_#{topic.displayorder}.gif"
   else
     "topic/new.gif"
   end), topic, :target => :_blank %>
@@ -83,7 +83,7 @@
 <cite>
 <%= topic.user %>
 </cite>
-<em><%=l topic.posts.last.updated_at, :format => :short %></em>
+<em><%=l topic.created_at, :format => :short %></em>
 </td>
 <td class="nums"><strong><%= topic.posts.size - 1 %></strong></td>
 

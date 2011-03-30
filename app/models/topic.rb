@@ -3,13 +3,14 @@ class Topic < ActiveRecord::Base
   #belongs_to :type
   belongs_to :board, :foreign_key => :category_id
   has_many :posts
+  default_scope where(:deleted => false)
   alias category board
   def to_s
     result = name
     if color?
       result = "<font color=\"#{color}\">#{result}</font>"
     end
-    result = "<a href=\"/topic/#{id}\">#{result}</a>".html_safe
+    result = "<a href=\"/topics/#{id}\">#{result}</a>".html_safe
   end
   def floor
   	  self.posts.order('displayorder DESC').first.displayorder + 1

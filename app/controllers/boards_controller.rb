@@ -19,7 +19,8 @@ class BoardsController < ApplicationController
     @page = params[:page] && !params[:page].empty? ? params[:page].to_i : 1
     @board = Board.find(params[:id])
     @actions = [@board]
-    @topics = @board.topics.all(:offset => 20*@page-20, :limit => 20, :order => [:displayorder, :id])
+    order = 'displayorder DESC, updated_at DESC' if params[:order].blank?
+    @topics = @board.topics.all(:offset => 20*@page-20, :limit => 20, :order => order)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => params[:page] && !params[:page].empty? ? @topics : @board}

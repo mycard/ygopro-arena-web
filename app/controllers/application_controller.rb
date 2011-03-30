@@ -13,10 +13,7 @@ class ApplicationController < ActionController::Base
     end
     unless @correct_user
       @correct_user = User::Guest
-      @correct_user.id = 0
-      @correct_user.name = t 'user.anonymous'
     end
-    p @correct_user
   end
   def set_language 
     request_language = request.env['HTTP_ACCEPT_LANGUAGE'] 
@@ -25,6 +22,7 @@ class ApplicationController < ActionController::Base
     I18n.locale = request_language if request_language && File.exist?("#{RAILS_ROOT}/config/locales/#{request_language}.yml") 
     #p I18n.locale, "#{RAILS_ROOT}/config/locales/#{request_language}.yml"
     #p I18n.load_path
+    User::Guest.name = t 'user.guest'
   end 
   def load_settings
   	@site = {

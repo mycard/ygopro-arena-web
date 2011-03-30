@@ -9,6 +9,6 @@ class Post < ActiveRecord::Base
     Post.where(['created_at < ? and created_at > ?', Date.today, Date.today - 1 ])
   end
   def to_s
-  	  "#{topic}, <a href=/topic/#{topic.id}#post#{id}>#{displayorder}#</a>".html_safe
+  	  "#{topic}, <a href=/topics/#{topic.id}#post#{id}>#{displayorder}#</a>".html_safe
   end
 end

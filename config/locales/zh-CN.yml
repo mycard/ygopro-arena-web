@@ -15,6 +15,10 @@ zh-CN:
     password_repeat: "重复密码"
     email: "邮箱"
     credit: "积分"
+    id: "ID"
+    post: "帖子"
+    topic: "主题"
+    digest: "精华"
   forum:
     next: "下一页"
     prev: "上一页"

@@ -4,13 +4,15 @@ class Board < ActiveRecord::Base
   											#why it doesn't work?
   has_many :topics, :foreign_key => :category_id
   has_many :posts, :through =>:topics
+  
+  
   def to_s
-    "<a href=\"/forum/#{id}\">#{name}</a>".html_safe
+    "<a href=\"/boards/#{id}\">#{name}</a>".html_safe
   end
-  alias topics_with_deleted topics
-  def topics
-    topics_with_deleted.where({:deleted => false})
-  end
+  #alias topics_with_deleted topics
+  #def topics
+  #  topics_with_deleted.where({:deleted => false}).order('').order('name')
+  #end
   #def superboard
   #	  board
   #end

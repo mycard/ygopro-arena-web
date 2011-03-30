@@ -7,9 +7,14 @@ class User < ActiveRecord::Base
                     :length => {:minimum => 3, :maximum => 254},  
                     :uniqueness => true,  
                     :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+  has_many :topics
+  has_many :posts, :through => :topics
   before_save proc{!locked}
   def to_s
-  	  "<a href=\"/space/#{id}\">#{name}</a>".html_safe
+  	  "<a href=\"/users/#{id}\">#{name}</a>".html_safe
+  end
+  def avatar(size=nil)
+  	  "<a href=\"/users/#{id}\"><img src=\"http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.strip.downcase)}\" /></a>".html_safe
   end
 =begin
       t.string :name, :null => false

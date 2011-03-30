@@ -14,20 +14,20 @@ Reliz::Application.routes.draw do
   resources :blocks
 
   resources :boards
-  match 'forum' => 'boards#index'
-  match 'forum/:id/edit' => 'boards#edit', :id => /\d+/
-  match 'forum/:id/(/:page)' => 'boards#show', :id => /\d+/, :page => /\d+/ 
+  #match 'forum' => 'boards#index'
+  #match 'forum/:id/edit' => 'boards#edit', :id => /\d+/
+  #match 'forum/:id' => 'boards#show', :id => /\d+/
   
   
   resources :posts
-  match 'topic/:topic_id/new' => 'posts#new', :topic_id => /\d+/ #����ظ�
+  match 'topics/:topic_id/new' => 'posts#new', :topic_id => /\d+/ #����ظ�
   
   resources :topics
-  match 'topic/:id/(/:page)' => 'topics#show', :id => /\d+/, :page => /\d+/ 
-  match 'forum/:forum_id/new' => 'topics#new', :forum_id => /\d+/ #
-  get 'topic/control' => 'topics#control'
+  #match 'topic/:id/(/:page)' => 'topics#show', :id => /\d+/, :page => /\d+/ 
+  match 'boards/:board_id/new' => 'topics#new', :board_id => /\d+/ #
+  #get 'topics/control' => 'topics#control'
   
-  match '(:something)(/:id)/:anything/', :controller => 'application', :action => 'redirect_to_thc', :something => /forum|boards|topic|topics|posts|users/, :id => /\d+/, :anything => /.*/
+  match '(:something)(/:id)/:anything/', :controller => 'application', :action => 'redirect_to_thc', :something => /boards|topics|posts|users/, :id => /\d+/, :anything => /.*/
   
   
   

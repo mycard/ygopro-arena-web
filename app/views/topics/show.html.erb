@@ -33,7 +33,7 @@
                 <div class="postinfo" style="margin-left: 20px; font-weight: 800">
                   <%= post.user %>
                 </div>
-                <div class="popupmenu_popup userinfopanel" id="userinfo751931" style="display: none; position: absolute;margin-top: -11px;">
+                <!--<div class="popupmenu_popup userinfopanel" id="userinfo751931" style="display: none; position: absolute;margin-top: -11px;">
                   <div class="popavatar">
                     <div id="userinfo751931_ma"></div>
                     <ul class="profile_side">
@@ -55,15 +55,21 @@
                     </div>
                     <div id="avatarfeed"><span id="threadsortswait"></span></div>
                   </div>
-                </div>
+                </div>-->
                 <div>
-                  <div class="avatar" onmouseover="showauthor(this, 'userinfo751931')"><a href="space.php?uid=14806" target="_blank"><img src="http://www.touhou.cc/ucenter/avatar.php?uid=14806&amp;size=middle"></a></div>
+                  <div class="avatar" onmouseover="showauthor(this, 'userinfo751931')"><%= post.user.avatar %></div>
                   <p>
                     <em><%= post.user.nickname %></em>
                     
                 </div>
                 <p><img src="images/default/star_level2.gif" alt="Rank: 2"></p>
-                <dl class="profile s_clear"><dt>帖子</dt><dd>65&nbsp;</dd><dt>精华</dt><dd>0&nbsp;</dd><dt>积分</dt><dd>116&nbsp;</dd><dt>点数</dt><dd>16 &nbsp;</dd><dt>威望</dt><dd>0 &nbsp;</dd><dt>贡献</dt><dd>9 &nbsp;</dd><dt>人气</dt><dd>9 &nbsp;</dd><dt>人品</dt><dd>0 &nbsp;</dd><dt>在线时间</dt><dd>15 小时&nbsp;</dd></dl><p><img src="images/common/26.gif" alt="NEET" title="NEET"></p>
+                <dl class="profile s_clear">
+                <dt><%=t 'user.id' %></dt><dd><%= post.user.id %></dd>
+                <dt><%=t 'user.post' %></dt><dd><%= post.user.posts.count %></dd>
+                <dt><%=t 'user.topic' %></dt><dd><%= post.user.topics.count %></dd>
+                <dt><%=t 'user.digest' %></dt><dd><%= post.user.topics.where(:digest => true).count %></dd>
+                <dt><%=t 'user.credit' %></dt><dd><%= post.user.credit %></dd>
+                </dl>
                 <p><a href="magic.php?action=mybox&amp;operation=use&amp;type=1&amp;pid=751931&amp;magicid=7" onclick="showWindow('magics', this.href);doane(event);"><img src="images/magics/rtk_s.gif" title="对博丽开水使用狗仔卡"></a></p>
                 <hr class="shadowline">
                 <p>
@@ -178,7 +184,7 @@
           <table cellspacing="0" cellpadding="0">
             <tbody><tr>
                 <td class="postauthor">
-                  <div class="avatar"><img src="http://www.touhou.cc/ucenter/avatar.php?uid=359&amp;size=middle"></div></td>
+                  <div class="avatar"><%= @correct_user.avatar %></td>
                 <td class="postcontent">
                   <!--<input type="hidden" name="formhash" value="ba0236f6">
                   <input type="hidden" name="subject" value="">
