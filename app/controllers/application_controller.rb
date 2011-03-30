@@ -4,8 +4,14 @@ class ApplicationController < ActionController::Base
   before_filter :check_actions
   before_filter :set_language
   before_filter :load_settings
+  before_filter :load_themes
   def check_actions
     @actions = ["warning: no actions here"] unless @actions
+  end
+  def load_themes
+  	#if cookices
+  	#prepend_view_path(File.join(Rails.root, "app/themes/abitno"))
+  	prepend_view_path("app/themes/lotus")
   end
   def check_user
     if session[:user_id]

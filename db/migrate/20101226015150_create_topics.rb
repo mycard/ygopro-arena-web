@@ -8,14 +8,13 @@ class CreateTopics < ActiveRecord::Migration
       t.boolean :digest, :default => false, :null => false
       t.integer :displayorder, :default => 0, :null => false
       t.integer :highlight, :default => 0, :null => false
-      t.integer :views, :default => 0, :null => false
+      t.integer :viewnum, :default => 0, :null => false
       t.integer :readperm, :default => 1, :null => false
       t.boolean :locked, :default => false, :null => false
       t.boolean :deleted, :default => false, :null => false
       t.boolean :reverse, :default => false, :null => false
       t.boolean :private, :default => false, :null => false
 
-        
       t.timestamps
     end
   end

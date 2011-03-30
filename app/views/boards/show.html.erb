@@ -85,7 +85,7 @@
 </cite>
 <em><%=l topic.created_at, :format => :short %></em>
 </td>
-<td class="nums"><strong><%= topic.posts.size - 1 %></strong></td>
+<td class="nums"><strong><%= topic.posts.size - 1 %></strong>/<em><%= topic.viewnum %></em></td>
 
 <td class="lastpost">
 <cite><%= topic.posts.last.user %></cite>
