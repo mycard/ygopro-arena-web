@@ -8,4 +8,7 @@ class Post < ActiveRecord::Base
   def self.yesterday
     Post.where(['created_at < ? and created_at > ?', Date.today, Date.today - 1 ])
   end
+  def to_s
+  	  "#{topic}, <a href=/topic/#{topic.id}#post#{id}>#{displayorder}#</a>".html_safe
+  end
 end
