@@ -1,6 +1,41 @@
-<h1>Editing post</h1>
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+  <!--<div class="field">
+    <%= f.label :topic %><br />
+    <%= f.text_field :topic %>
+  </div>-->
+  <div class="field">
+    <%= f.label t 'post.content' %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label t 'post.private' %><br />
+    <%= f.check_box :private %>
+  </div>
+  <div class="field">
+    <%= f.label t 'post.anonymous' %><br />
+    <%= f.check_box :anonymous %>
+  </div>
+  <!--<div class="field">
+    <%= f.label :ubb %><br />
+    <%= f.check_box :ubb %>
+  </div>
+  <div class="field">
+    <%= f.label :html %><br />
+    <%= f.check_box :html %>
+  </div>-->
+  <div class="actions">
+    <%= f.submit t 'post.submit' %>
+  </div>
+<% end %>

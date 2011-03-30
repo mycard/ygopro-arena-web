@@ -58,7 +58,10 @@ zh-CN:
       highlight: "高亮"
   post:
     edit: "编辑"
-    
+    content: "正文"
+    submit: "提交"
+    private: "仅楼主可见"
+    anonymous: "匿名发帖"
   date:
     formats:
       default: "%Y-%m-%d"
