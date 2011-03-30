@@ -14,12 +14,21 @@ zh-CN:
     password: "密码"
     password_repeat: "重复密码"
     email: "邮箱"
-    
+    credit: "积分"
   forum:
     next: "下一页"
     prev: "上一页"
   board:
     control: "管理面板"
+    name: "版块名称"
+    introduction: "版块简介"
+    notice: "版块公告"
+    logo: "板块图标"
+    banner: "板块顶图"
+    readperm: "阅读权限"
+    topicperm: "主题权限"
+    postperm: "回帖权限"
+    submit: "提交"
   stat:
     onlineuser: "在线人数"
     total: "总计"

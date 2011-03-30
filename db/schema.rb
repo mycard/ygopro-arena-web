@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111036031158) do
+ActiveRecord::Schema.define(:version => 20111036031159) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(:version => 20111036031158) do
     t.integer  "user_id",                          :null => false
     t.integer  "type_id"
     t.integer  "category_id",                      :null => false
-    t.string   "category_type",                    :null => false
-    t.string   "name",                             :null => false
+    t.string   "category_type", :default => "",    :null => false
+    t.string   "name",          :default => "",    :null => false
     t.integer  "displayorder",  :default => 0,     :null => false
     t.integer  "highlight",     :default => 0,     :null => false
     t.integer  "views",         :default => 0,     :null => false
@@ -94,26 +94,27 @@ ActiveRecord::Schema.define(:version => 20111036031158) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                          :null => false
-    t.string   "nickname",      :default => "", :null => false
-    t.string   "password",                      :null => false
-    t.string   "email",         :default => "", :null => false
-    t.integer  "usergroup_id",  :default => 0,  :null => false
-    t.integer  "admingroup_id", :default => 0,  :null => false
-    t.string   "regip",         :default => "", :null => false
-    t.string   "lastloginip",   :default => "", :null => false
-    t.integer  "readnum",       :default => 0,  :null => false
-    t.integer  "viewnum",       :default => 0,  :null => false
-    t.integer  "onlinetime",    :default => 0,  :null => false
-    t.integer  "credit",        :default => 0,  :null => false
-    t.integer  "credit1",       :default => 0,  :null => false
-    t.integer  "credit2",       :default => 0,  :null => false
-    t.integer  "credit3",       :default => 0,  :null => false
-    t.integer  "credit4",       :default => 0,  :null => false
-    t.integer  "credit5",       :default => 0,  :null => false
-    t.integer  "credit6",       :default => 0,  :null => false
-    t.integer  "credit7",       :default => 0,  :null => false
-    t.integer  "credit8",       :default => 0,  :null => false
+    t.string   "name",          :default => "",    :null => false
+    t.string   "nickname",      :default => "",    :null => false
+    t.string   "password",      :default => "",    :null => false
+    t.string   "email",         :default => "",    :null => false
+    t.integer  "usergroup_id",  :default => 0,     :null => false
+    t.integer  "admingroup_id", :default => 0,     :null => false
+    t.boolean  "locked",        :default => false, :null => false
+    t.string   "regip",         :default => "",    :null => false
+    t.string   "lastloginip",   :default => "",    :null => false
+    t.integer  "readnum",       :default => 0,     :null => false
+    t.integer  "viewnum",       :default => 0,     :null => false
+    t.integer  "onlinetime",    :default => 0,     :null => false
+    t.integer  "credit",        :default => 0,     :null => false
+    t.integer  "credit1",       :default => 0,     :null => false
+    t.integer  "credit2",       :default => 0,     :null => false
+    t.integer  "credit3",       :default => 0,     :null => false
+    t.integer  "credit4",       :default => 0,     :null => false
+    t.integer  "credit5",       :default => 0,     :null => false
+    t.integer  "credit6",       :default => 0,     :null => false
+    t.integer  "credit7",       :default => 0,     :null => false
+    t.integer  "credit8",       :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
