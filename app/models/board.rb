@@ -1,4 +1,5 @@
 class Board < ActiveRecord::Base
+
   belongs_to :superboard, :foreign_key => :super_id, :class_name => "::Board"
   has_many :subboards, :foreign_key => :super_id, :class_name => "::Board"#, :as => :boards
   											#why it doesn't work?
@@ -8,6 +9,10 @@ class Board < ActiveRecord::Base
   
   def to_s
     "<a href=\"/boards/#{id}\">#{name}</a>".html_safe
+  end
+  alias_method :logo_url, :logo 
+  def logo
+  	  "<a href=\"/boards/#{id}\"><img src=\"#{logo_url}\"/></a>".html_safe
   end
   #alias topics_with_deleted topics
   #def topics

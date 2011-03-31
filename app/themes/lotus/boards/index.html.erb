@@ -18,6 +18,8 @@
             </tr>
           </table>
         </div>
+
+		<% @boards.each do |board| %>
         <div id=b2_2>
           <table width="100%" height="93px" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -30,13 +32,13 @@
               <td width: "686px">
                 <div id=b2_2_d2>
                   <div id=b2_2_d2_inf1>
-                    第一次測試版塊
+                    <%= board %>
                   </div>
                   <div id=b2_2_d2_inf2>
-                    版塊介紹：
+                    <%= board.introduction %>
                   </div>
                   <div id=b2_2_d2_inf3>
-                    主題：53416 回覆：4356834 post
+                    <%=t 'board.topic' %>: <%= board.topics.count %> <%=t 'board.post' %>：<%= board.posts.count %>
                   </div>
                 </div>
               </td>
@@ -49,34 +51,7 @@
             </tr>
           </table>
         </div>
-        <div id=b2_3>
-          <table width="100%" height="93px" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td width="171px">
-                <div id=b2_2_d1>
-                  <div id=b2_2_d1_avatar>
-                  </div>
-                </div>
-              </td>
-              <td width: "686px">
-                <div id=b2_2_d2>
-                  <div id=b2_2_d2_inf1>
-                  </div>
-                  <div id=b2_2_d2_inf2>
-                  </div>
-                  <div id=b2_2_d2_inf3>
-                  </div>
-                </div>
-              </td>
-              <td width="283px">
-                <div id=b2_2_d3_1>
-                </div>
-                <div id=b2_2_d3_2>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+      <% end %>
       </div>
       <div class="box ui-widget-content ui-corner-all ui-helper-clearfix">
         <div id="fuzhu">
