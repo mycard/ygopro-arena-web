@@ -1,4 +1,6 @@
 Reliz::Application.routes.draw do
+  resources :settings
+
   resources :moderations
 
   resources :boards
