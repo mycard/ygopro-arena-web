@@ -16,8 +16,7 @@
     <%= f.text_field :topic %>
   </div>-->
   <div class="field">
-    <%= f.label t 'post.content' %><br />
-    <%= f.text_area :content %>
+    <%= render 'topics/editor', :content => @post.content %>
   </div>
   <div class="field">
     <%= f.label t 'post.private' %><br />
