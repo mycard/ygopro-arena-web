@@ -1,4 +1,7 @@
+<% name ||= 'post[content]' %>
+<!-- 文本框name的值，这句看不明白的话不用更改，直接调用name即可 -->
+
 <div class="editor">
     <%= text_area_tag 'post[content]', content %>
-    <%# content是个传入的参数，可以直接当成局部变量来用 %>
+    <!-- content是个传入的参数，初始内容 -->
 </div>

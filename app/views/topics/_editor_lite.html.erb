@@ -1,9 +1,29 @@
+<% name ||= 'post[content]' %>
+<!-- 文本框name的值，看不明白的话不用更改，指定文本框name的时候直接调用name即可 -->
 <div class="editor_lite">
-                    <span class="right">
+                    <!--<span class="right">
                       <a href="post.php?action=reply&amp;fid=2&amp;tid=29727" onclick="return switchAdvanceMode(this.href)">高级模式</a>
                       <span class="pipe">|</span>
                       <span id="newspecialtmp" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})"><a href="post.php?action=newthread&amp;fid=2" onclick="showWindow('newthread', this.href);return false;">发新话题</a></span>
-                    </span><link rel="stylesheet" type="text/css" href="forumdata/cache/style_57_seditor.css?qfY">
+                    </span>-->
+                    <style>
+                    .editor_lite{margin:5px 0 0;width:600px;height:26px;border:1px solid;border-color:#999 #CCC #CCC #999;background:#F7F7F7;border-bottom:none;}
+                    .editor_lite .right a{color:#09C;}
+                    .editor_lite .right{padding-right:10px;line-height:26px;}
+                    .editor_lite div a{float:left;margin:5px 3px 0;width:16px;height:16px;background:url(http://www.touhou.cc/bbs/images/common/editor.gif) no-repeat;text-indent:-9999px;line-height:16px;overflow:hidden;}
+					.editor_lite div a.tb_bold{background-position:-3px -1px;}
+					.editor_lite div a.tb_color{background-position:-3px -81px;}
+					.editor_lite div a.tb_img{background-position:-3px -823px;}
+					.editor_lite div a.tb_link{background-position:-3px -121px;}
+					.editor_lite div a.tb_quote{background-position:-3px -441px;}
+					.editor_lite div a.tb_code{background-position:-3px -461px;}
+					.editor_lite div a.tb_smilies{background-position:-2px -803px;}
+					.editor_lite div a.tb_imme{background-position:-3px -763px;}
+					.editor_lite .popupmenu_popup td{padding:0 !important;height:14px;width:14px;}
+					.editor_lite .popupmenu_popup td div{height:10px;width:10px;cursor:pointer;}.float_post 
+					.editor_lite{width:566px;}.float_post .txtarea{width:562px;height:257px;}
+                    </style>
+                    <!-- 原th.cc的编辑器css，修改时应该弄掉 -->
                     <div>
                       <a href="javascript:;" title="粗体" class="tb_bold" onclick="seditor_insertunit('fastpost', '[b]', '[/b]')">B</a>
                       <a href="javascript:;" title="颜色" class="tb_color" id="fastpostforecolor" onclick="showColorBox(this.id, 2, 'fastpost')">Color</a>
@@ -12,7 +32,8 @@
                       <a href="javascript:;" title="引用" class="tb_quote" onclick="seditor_insertunit('fastpost', '[quote]', '[/quote]')">Quote</a>
                       <a href="javascript:;" title="代码" class="tb_code" onclick="seditor_insertunit('fastpost', '[code]', '[/code]')">Code</a>
                       <a href="javascript:;" class="tb_smilies" id="fastpostsmilies" onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false">Smilies</a>
-                      <script src="forumdata/cache/smilies_var.js?qfY" type="text/javascript" reload="1"></script>
+                      <%= javascript_include_tag "http://www.touhou.cc/bbs/forumdata/cache/smilies_var.js", :reload => 1 %>
+                      <!-- 原th.cc的编辑器表情js，修改时应该弄掉 -->
                       <script type="text/javascript" reload="1">smilies_show('fastpostsmiliesdiv', 8, 'fastpost');</script>
                     </div>
 </div>
