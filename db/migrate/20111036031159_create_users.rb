@@ -22,6 +22,8 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :credit6, :default => 0, :null => false
       t.integer :credit7, :default => 0, :null => false
       t.integer :credit8, :default => 0, :null => false
+      t.string :locale
+      t.string :theme
       t.timestamps
     end
   end

@@ -10,7 +10,9 @@ class Board < ActiveRecord::Base
   def to_s
     "<a href=\"/boards/#{id}\">#{name}</a>".html_safe
   end
-  alias_method :logo_url, :logo 
+  def logo_url
+  	  read_attribute(:logo)
+  end
   def logo
   	  "<a href=\"/boards/#{id}\"><img src=\"#{logo_url}\"/></a>".html_safe
   end

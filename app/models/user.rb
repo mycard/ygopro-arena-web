@@ -14,7 +14,15 @@ class User < ActiveRecord::Base
   	  "<a href=\"/users/#{id}\">#{name}</a>".html_safe
   end
   def avatar(size=nil)
-  	  "<a href=\"/users/#{id}\"><img src=\"http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.strip.downcase)}\" /></a>".html_safe
+  	  size = case size
+  	  when :small
+  	  	48
+      when Integer
+      	size
+      else
+    	120
+      end
+  	  "<a href=\"/users/#{id}\"><img src=\"http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.strip.downcase)}?size=#{size}\" /></a>".html_safe
   end
 =begin
       t.string :name, :null => false

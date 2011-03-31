@@ -19,6 +19,7 @@ zh-CN:
     post: "帖子"
     topic: "主题"
     digest: "精华"
+    guest: "游客"
   forum:
     next: "下一页"
     prev: "上一页"
@@ -33,6 +34,8 @@ zh-CN:
     topicperm: "主题权限"
     postperm: "回帖权限"
     submit: "提交"
+    topic: "主题"
+    post: "回复"
   stat:
     onlineuser: "在线人数"
     total: "总计"

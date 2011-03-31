@@ -1,28 +1,9 @@
 <div id="header">
       <div id="h2" class="ui-dialog-titlebar ui-widget-header ui-corner-all">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" id="h2_t">
-          <tr>
-            <td width="900px" ;>
-            </td>
-            <td width="50px" ; style="color:#000000">
-              名字
-            </td>
-            <td width="50px" ; style="color:#000000">
-              空間
-            </td>
-            <td width="50px" ; style="color:#000000">
-              消息
-            </td>
-            <td width="50px" ; style="color:#000000">
-              設置
-            </td>
-            <td width="50px" ; style="color:#000000">
-              退出
-            </td>
-            <td width="50px" ; style="color:#000000">
-            </td>
-          </tr>
-        </table>
+      <style type="text/css">
+		#userbar{margin-left: 900px;}
+	  </style>
+	  <%= render 'layouts/userbar' %>
       </div>
       <div id="h3">
         <div class="toggler">
@@ -35,56 +16,32 @@
         <div id="h4" class="ui-dialog-titlebar ui-widget-header ui-corner-all">
           <table border="0" cellspacing="0" cellpadding="0" id="tb1">
             <tr>
-              <td width="80" align="right">
-                論壇
-              </td>
-              <td width="80" align="right">
-                小屋
-              </td>
-              <td width="80" align="right">
-                搜索
-              </td>
-              <td width="80" align="right">
-                幫助
-              </td>
-              <td width="80" align="right">
-                導航
-              </td>
-              <td width="80" align="right">
-                插件
-              </td>
-              <td width="400" align="right">
-                &nbsp;
-              </td>
-              <td width="100">
-                <label>
+		<%= render "layouts/navibar" %>
+                <label style="align: right">
                   <input name="textfield" type="text" value="請輸入搜索內容 " />
                 </label>
-              </td>
-              <td width="80" align="center">
                 <input type="submit" name="Submit" value="搜索" />
-              </td>
-              <td width="80" align="center">
                 <input type="submit" name="Submit2" value="高級搜索" />
-              </td>
             </tr>
           </table>
         </div>
         <div id="h5">
           <table border="0" cellspacing="0" cellpadding="0" id="tb2">
+            <% if logged? %>
             <tr>
               <td rowspan="2" width="80">
                 <div id="dtx">
-                  頭像
+                  <%= @correct_user.avatar :small %>
                 </div>
               </td>
               <td width="700" height="28" style="padding-left:5px">
-                歡迎回來XX
+                歡迎回來 <%= @correct_user %>
               </td>
               <td width="400" align="right" style="padding-right:10px">
-                歡迎新會員
+                歡迎新會員 <%= User.last %>
               </td>
             </tr>
+			<% end %>
             <tr>
               <td width="700" style="padding-left:5px">
                 公告：
@@ -99,7 +56,7 @@
           <table width="100%" border="0" cellspacing="0" cellpadding="0" id="tb3">
             <tr>
               <td width="600" style="padding-left:15px">
-                東方幻想鄉->幻想鄉溫泉
+                <%= render 'layouts/actionbar' %>
               </td>
               <td width="600" align="right" style="padding-right:20px">
                 <select name="effects" id="effectTypes" style="visibility:hidden">

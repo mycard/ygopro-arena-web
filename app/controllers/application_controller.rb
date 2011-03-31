@@ -1,19 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :check_user
-  before_filter :check_actions
-  before_filter :set_language
   before_filter :load_settings
+
+  before_filter :load_user
+  before_filter :load_locale
   before_filter :load_theme
+  
+  before_filter :check_actions #for debug
   def check_actions
     @actions = ["warning: no actions here"] unless @actions
   end
-  def load_theme
-  	#if cookices
-  	#prepend_view_path(File.join(Rails.root, "app/themes/abitno"))
-  	prepend_view_path("app/themes/lotus")
-  end
-  def check_user
+  def load_user
     if session[:user_id]
       @correct_user = User.find session[:user_id]
     end
@@ -21,21 +18,31 @@ class ApplicationController < ActionController::Base
       @correct_user = User::Guest
     end
   end
-  def set_language 
-    request_language = request.env['HTTP_ACCEPT_LANGUAGE'] 
-    request_language = request_language.nil? ? nil : request_language[/[^,;]+/] 
-    # request_language
-    I18n.locale = request_language if request_language && File.exist?("#{RAILS_ROOT}/config/locales/#{request_language}.yml") 
-    #p I18n.locale, "#{RAILS_ROOT}/config/locales/#{request_language}.yml"
-    #p I18n.load_path
+  def load_locale
+  	p request.env['HTTP_ACCEPT_LANGUAGE']
+  	#locale = @correct_user.locale || (
+  	#	request_language = 
+  		#request_language && request_language['HTTP_ACCEPT_LANGUAGE'][/[^,;]+/]
+	#)
+    #I18n.locale = locale if File.exist?("#{RAILS_ROOT}/config/locales/#{request_language}.yml") 
     User::Guest.name = t 'user.guest'
   end 
+  def load_theme
+  	if !@correct_user.theme.blank?
+  	  theme_path = "app/themes/#{@correct_user.theme}"
+  	  prepend_view_path theme_path if File.directory? theme_path
+    elsif !@site.theme.blank?
+      theme_path = "app/themes/#{@site.theme}"
+      prepend_view_path theme_path if File.directory? theme_path
+  	end
+  end
   def load_settings
   	@site = {
-  		:name => "Reliz"
+  		:name => "Reliz", 
+  		:theme => nil
   	}
   	def @site.method_missing(method, *args)
-		self[method] || super
+		self[method]# || super
 	end
 	def @site.to_s
 		"<a href=\"/\">#{name}</a>".html_safe

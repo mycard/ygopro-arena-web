@@ -1,0 +1,18 @@
+<div id="userbar">
+<% if logged? %> 
+<cite><a href="space.php?uid=359" class="noborder"><%= @correct_user %> </a></cite>
+<span class="pipe">|</span>
+
+<%= link_to t('user.my'), @correct_user %>
+<%= link_to t('user.space'), @correct_user %>
+<%= link_to t('user.notice'), @correct_user %>
+<span id="myprompt_check"></span>
+<%= link_to t('user.pm'), @correct_user %>
+
+<span class="pipe">|</span>
+<%= link_to t('user.logout'), logout_path %>
+<% else %>
+<%= link_to t('user.login'), login_path %>
+<%= link_to t('user.register'), new_user_path %>
+<% end %>
+</div>

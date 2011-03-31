@@ -8,24 +8,8 @@
 <div id="topbar" name="TOP">
 <div class="topanel">
 <div id="memberp">
-<% if logged? %> 
-<cite><a href="space.php?uid=359" class="noborder"><%= @correct_user %> </a></cite>
-<span class="pipe">|</span>
-
-<%= link_to t('user.my'), @correct_user %>
-<%= link_to t('user.space'), @correct_user %>
-<%= link_to t('user.notice'), @correct_user %>
-<span id="myprompt_check"></span>
-<%= link_to t('user.pm'), @correct_user %>
-
-<span class="pipe">|</span>
-<%= link_to t('user.logout'), logout_path %>
-<% else %>
-<%= link_to t('user.login'), login_path %>
-<%= link_to t('user.register'), new_user_path %>
-<% end %>
+<%= render 'layouts/userbar' %>
 </div>
-
 <form method="post" id="searchform" action="search.php">
 <div style="width:190px;float:left;">
 <input type="hidden" name="formhash" value="eed723b8" />
@@ -45,16 +29,7 @@
 <div class="bg-dmenuleft"></div>
 <div class="bg-dmenu" style="position: relative;">
 <div id="menu">
-<ul>
-<li class="menu_1"><%=link_to t('navi.forum'), :root, :hidefocus => true, :id => :mn_index %></li>
-</ul>
-  
-  
-  
-<script type="text/javascript">
-var currentMenu = $('mn_index') ? $('mn_index') : $('mn_index');
-currentMenu.parentNode.className = 'current';
-</script>
+<%= render "layouts/navibar" %>
 </div>
 <script type="text/javascript">
 function setstyle(styleid) {
@@ -78,8 +53,6 @@ location.href = 'index.php?' + str;
 </div>
 
 <div id="nav">
-<%= @site %>
-<% @actions.each do |action| %>
-   &raquo; <%= action %>
-<% end %></div>
+<%= render 'layouts/actionbar' %>
+</div>
 <div id="ad_text"></div>
