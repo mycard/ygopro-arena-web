@@ -193,7 +193,7 @@
                   <span id="fastpostreturn"></span>
                   <%= render 'topics/editor_lite' %>
                   
-<%= text_area_tag 'post[content]', nil, :id => :fastpostmessage, :rows => 5, :cols => 80,  :tabindex => 4, :class => :txtarea %>
+
                   <p><%= submit_tag t("topic.reply"), :id => :replysubmit, :tabindex => 5 %>
                     <input id="fastpostrefresh" type="checkbox"> <label for="fastpostrefresh">回帖后跳转到最后一页</label></p><script type="text/javascript">if(getcookie('discuz_fastpostrefresh') == 1) {$('fastpostrefresh').checked=true;}</script>
                   <p></p>
