@@ -8,7 +8,7 @@
       <div id="h3">
         <div class="toggler">
           <div id="effect">
-            <img src="css/xiaoting.png" />
+            <img src="/css/xiaoting.png" />
           </div>
         </div>
       </div>
@@ -16,12 +16,14 @@
         <div id="h4" class="ui-dialog-titlebar ui-widget-header ui-corner-all">
           <table border="0" cellspacing="0" cellpadding="0" id="tb1">
             <tr>
-		<%= render "layouts/navibar" %>
-                <label style="align: right">
+			<%= render "layouts/navibar" %>
+			<div align="right">
+                <label>
                   <input name="textfield" type="text" value="請輸入搜索內容 " />
                 </label>
                 <input type="submit" name="Submit" value="搜索" />
                 <input type="submit" name="Submit2" value="高級搜索" />
+            </p>
             </tr>
           </table>
         </div>

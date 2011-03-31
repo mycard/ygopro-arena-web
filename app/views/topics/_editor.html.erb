@@ -1,7 +1,8 @@
 <% name ||= 'post[content]' %>
+<% content ||= nil %>
 <!-- 文本框name的值，这句看不明白的话不用更改，直接调用name即可 -->
 
 <div class="editor">
-    <%= text_area_tag 'post[content]', content %>
+    <%= text_area_tag name, content %>
     <!-- content是个传入的参数，初始内容 -->
 </div>
