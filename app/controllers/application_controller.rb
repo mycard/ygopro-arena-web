@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  Themes_Dir = 'app/views/themes'
+  
   protect_from_forgery
   before_filter :load_settings
 
@@ -19,36 +21,46 @@ class ApplicationController < ActionController::Base
     end
   end
   def load_locale
-  	p request.env['HTTP_ACCEPT_LANGUAGE']
-  	#locale = @correct_user.locale || (
-  	#	request_language = 
-  		#request_language && request_language['HTTP_ACCEPT_LANGUAGE'][/[^,;]+/]
-	#)
-    #I18n.locale = locale if File.exist?("#{RAILS_ROOT}/config/locales/#{request_language}.yml") 
+  	locale = @correct_user.locale || (
+  		request_language = 
+        request_language && request_language['HTTP_ACCEPT_LANGUAGE'][/[^,;]+/]
+    )
+    I18n.locale = locale if File.exist?("#{RAILS_ROOT}/config/locales/#{request_language}.yml") 
     User::Guest.name = t 'user.guest'
+    #IE && FF are BANNED
   end 
   def load_theme
-  	if !@correct_user.theme.blank?
-  	  theme_path = "app/themes/#{@correct_user.theme}"
-  	  prepend_view_path theme_path if File.directory? theme_path
-    elsif !@site.theme.blank?
-      theme_path = "app/themes/#{@site.theme}"
-      prepend_view_path theme_path if File.directory? theme_path
-  	end
+    case #TODO: DRY
+    when @site[:themes].has_key?(cookies[:theme])
+      prepend_view_path File.join Themes_Dir, cookies[:theme]
+    when @site[:themes].has_key?(@correct_user.theme)
+      prepend_view_path File.join Themes_Dir, @correct_user.theme
+    when @site[:themes].has_key?(@site.theme)
+      prepend_view_path File.join Themes_Dir, @site.theme
+    end
   end
   def load_settings
   	@site = {
   		:name => "Reliz", 
-  		:theme => nil
+  		:theme => nil,
   	}
   	def @site.method_missing(method, *args)
-		self[method]# || super
-	end
-	def @site.to_s
-		"<a href=\"/\">#{name}</a>".html_safe
-	end
+      self[method]# || super
+    end
+    def @site.to_s
+      "<a href=\"/\">#{name}</a>".html_safe
+    end
+    #cache
+    @site[:themes] = {}
+    Dir.foreach(Themes_Dir) do |file|
+      theme_config_file = File.join Themes_Dir, file, "theme.yml"
+      if File.file? theme_config_file
+        @site[:themes][file] = YAML.load_file(theme_config_file)
+      end
+    end
+    p @site[:themes]
   end
   def redirect_to_thc
-  	  redirect_to("http://www.touhou.cc/bbs/"+params[:anything]+"?"+env['QUERY_STRING'])
+    redirect_to("http://www.touhou.cc/bbs/"+params[:anything]+"?"+env['QUERY_STRING'])
   end
 end

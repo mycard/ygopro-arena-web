@@ -1,0 +1,20 @@
+<!--<script type="text/javascript">
+  function setstyle(styleid) {
+    str = unescape('styleid%3D57');
+    str = str.replace(/(^|&)styleid=\d+/ig, '');
+    str = (str != '' ? str + '&' : '') + 'styleid=' + styleid;
+    location.href = 'index.php?' + str;
+  }
+</script>
+<ul id="style_switch"><li><a href="###" onclick="setstyle(50)" title="緋紅" style="background: ;">緋紅</a></li><li><a href="###" onclick="setstyle(48)" title="金黃" style="background: ;">金黃</a></li><li><a href="###" onclick="setstyle(39)" title="翠绿" style="background: ;">翠绿</a></li><li><a href="###" onclick="setstyle(40)" title="炫紫" style="background: ;">炫紫</a></li><li><a href="###" onclick="setstyle(54)" title="酷黑" style="background: ;">酷黑</a></li><li><a href="###" onclick="setstyle(51)" title="銀白" style="background: ;">銀白</a></li><li><a href="###" onclick="setstyle(52)" title="深藍" style="background: ;">深藍</a></li><li><a href="###" onclick="setstyle(55)" title="亮橙" style="background: ;">亮橙</a></li><li><a href="###" onclick="setstyle(56)" title="清蓝" style="background: ;">清蓝</a></li><li class="current"><a href="###" onclick="setstyle(57)" title="夜露" style="background: ;">夜露</a></li><li><a href="###" onclick="setstyle(61)" title="圣诞" style="background: ;">圣诞</a></li><li><a href="###" onclick="setstyle(74)" title="黑色回忆" style="background: #373A3C;">黑色回忆</a></li></ul>
+-->
+<% unless @site.themes.empty? %>
+<div id ="themebar">
+  <ul>
+    <li><%= link_to 'default', theme_path %></li>
+    <% @site.themes.each_pair do |name, theme| %>
+      <li><%= link_to name, theme_path, :theme => name %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

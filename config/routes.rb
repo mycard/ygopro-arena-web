@@ -8,6 +8,7 @@ Reliz::Application.routes.draw do
   root :to => 'boards#index'
   
   resources :users
+  match 'theme' => 'users#theme'
   get 'login' => 'users#login'
   post 'login' => 'users#login_do'
   get 'logout' => 'users#logout'

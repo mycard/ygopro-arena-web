@@ -116,4 +116,17 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  def theme
+    if params[:theme].blank?
+      cookies[:theme] = nil
+      @correct_user.update_attribute(:theme, nil)
+    elsif @site[:themes].has_key? params[:theme]
+      cookies[:theme] = params[:theme]
+      @correct_user.update_attribute(:theme, params[:theme])
+    end
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.xml  { head :ok }
+    end
+  end
 end

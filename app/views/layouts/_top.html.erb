@@ -31,15 +31,7 @@
 <div id="menu">
 <%= render "layouts/navibar" %>
 </div>
-<script type="text/javascript">
-function setstyle(styleid) {
-str = unescape('fromuid%3D8507%26styleid%3D57');
-str = str.replace(/(^|&)styleid=\d+/ig, '');
-str = (str != '' ? str + '&' : '') + 'styleid=' + styleid;
-location.href = 'index.php?' + str;
-}
-
-</script>
+<%= render 'layouts/themebar' %>
 
 </div>
 </div>
