@@ -10,6 +10,16 @@ class User < ActiveRecord::Base
   has_many :topics
   has_many :posts, :through => :topics
   before_save proc{!locked}
+  class <<self  #TODO
+    alias old_find find
+    def find(*args)
+      if args[0] == 0
+        Guest
+      else
+        old_find(*args)
+      end
+    end
+  end
   def to_s
   	  "<a href=\"/users/#{id}\">#{name}</a>".html_safe
   end
@@ -46,5 +56,27 @@ class User < ActiveRecord::Base
       t.integer :credit7, :default => 0, :null => false
       t.integer :credit8, :default => 0, :null => false
 =end
-  Guest = User.find 0
+  Guest = User.new do |user|
+    user.id = 0
+    user.name = 'guest'
+    user.nickname = ''
+    user.password = ''
+    user.email = ''
+    #usergroup = 0
+    #admingroup = 0
+    user.regip = '127.0.0.1'
+    user.lastloginip = '127.0.0.1'
+    user.readnum = 0
+    user.viewnum = 0
+    user.onlinetime = 0
+    user.credit = 0
+    user.credit1 = 0
+    user.credit2 = 0
+    user.credit3 = 0
+    user.credit4 = 0
+    user.credit5 = 0
+    user.credit6 = 0
+    user.credit7 = 0
+    user.credit8 = 0
+  end
 end

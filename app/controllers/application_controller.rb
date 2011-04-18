@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
       "<a href=\"/\">#{name}</a>".html_safe
     end
     #cache
-    @site[:themes] = {}
+    @site[:themes] = {'default' => {}}
     Dir.foreach(Themes_Dir) do |file|
       theme_config_file = File.join Themes_Dir, file, "theme.yml"
       if File.file? theme_config_file

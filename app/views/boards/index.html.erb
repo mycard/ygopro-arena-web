@@ -51,8 +51,6 @@
 <span class="headactions"><a href="index.php?showoldetails=yes#online" class="nobdr"><img src="images/default/collapsed_yes.gif" alt="" /></a></span>
 
 <h3>
-<strong><%=t 'stat.onlineuser' %></strong>
-- <%=t 'stat.total' %> <em>0</em> 
-- <%=t 'stat.max' %> <em>0</em> <%=t 'stat.at' %> <em><%=l Time.now, :format => :long %> </em>.
+<%= render 'layouts/onlineuserbar' %>
 </h3>
 </div>

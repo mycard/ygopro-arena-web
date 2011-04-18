@@ -64,10 +64,12 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-
+    if !params[:user][:theme].blank? && @site[:themes].has_key?(params[:theme])
+      cookies[:user][:theme] = params[:theme]
+    end
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(:back, :notice => 'User was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -117,6 +119,7 @@ class UsersController < ApplicationController
     end
   end
   def theme
+    p params[:theme], @site[:themes].has_key?(params[:theme])
     if params[:theme].blank?
       cookies[:theme] = nil
       @correct_user.update_attribute(:theme, nil)
