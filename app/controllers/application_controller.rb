@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
         @site[:themes][file] = YAML.load_file(theme_config_file)
       end
     end
-    p @site[:themes]
+    #p @site[:themes]
   end
   def redirect_to_thc
     redirect_to("http://www.touhou.cc/bbs/"+params[:anything]+"?"+env['QUERY_STRING'])
