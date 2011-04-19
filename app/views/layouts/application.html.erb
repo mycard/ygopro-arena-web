@@ -3,24 +3,13 @@
   <head>
     <title> <%= @site.name %><% if !@actions.empty? %>  - <%= @actions.last.respond_to?(:name) ? @actions.last.name : @actions.last %> <% end %> </title>
     <%= render 'layouts/header' %>
-    
-<%# ApplicationHelper::addon_header.each { |s| %>
-    <%#= render 'layouts/'+s %>
-<%# } %>
   </head>
-  
+
   <body>
     <%= render 'layouts/top' %>
-<%# ApplicationHelper::addon_top.each { |s| %>
-    <%#= render 'layouts/'+s %>
-<%# } %>
     <div id="wrapper">
-    <%= yield %>
+      <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
-<%# ApplicationHelper::addon_footer.each { |s| %>
-    <%#= render 'layouts/'+s %>
-<%# } %>
-    
   </body>
 </html>

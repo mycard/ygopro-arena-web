@@ -1,0 +1,13 @@
+js css 目录为touhou.cc美工提供的皮肤相关
+  另外css/ui-lightness里那个css的调用有问题，部分地方调用1.7.1的，而另一些地方调用1.8.11的
+  于是我复制了一份改名什么的
+  这里待修正
+forumdata templates imags/common images/default这些是兼容夜露的
+
+以上两个将会修正，直接用<xxx src=>的调用方法不行，浏览器会解析相对路径什么的导致路径出错
+准备都加入到javascripts stylesheets images里面 然后用RoR的各种helper调用
+
+javascripts stylesheets images RoR内置
+404.html 422.html 500.html 报错页面 现在除了500之外其他错误还没出现过
+favicon.ico 标题栏小图标
+robots.txt 搜索引擎抓取许可

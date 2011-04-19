@@ -30,7 +30,7 @@ Reliz::Application.routes.draw do
   match 'boards/:board_id/new' => 'topics#new', :board_id => /\d+/ #
   #get 'topics/control' => 'topics#control'
   
-  match '(:something)(/:id)/:anything/', :controller => 'application', :action => 'redirect_to_thc', :something => /boards|topics|posts|users/, :id => /\d+/, :anything => /.*/
+  #match '(:something)(/:id)/:anything/', :controller => 'application', :action => 'redirect_to_thc', :something => /boards|topics|posts|users/, :id => /\d+/, :anything => /.*/
   
   
   

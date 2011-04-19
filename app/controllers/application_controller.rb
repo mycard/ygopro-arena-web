@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  Themes_Dir = 'app/views/themes'
+  Themes_Dir = 'app/themes'
   
   protect_from_forgery
   before_filter :load_settings
@@ -60,7 +60,11 @@ class ApplicationController < ActionController::Base
     end
     #p @site[:themes]
   end
-  def redirect_to_thc
-    redirect_to("http://www.touhou.cc/bbs/"+params[:anything]+"?"+env['QUERY_STRING'])
-  end
+  #def redirect_to_thc
+    #p 'WARNING: '+params[:anything]+"?"+env['QUERY_STRING']
+    #redirect_to("http://www.touhou.cc/bbs/"+params[:anything]+"?"+env['QUERY_STRING'])
+    #respond_to do |format|
+      #format.html  { render :error => "404" }
+    #end
+  #end
 end
