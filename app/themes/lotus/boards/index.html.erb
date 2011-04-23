@@ -1,81 +1,80 @@
 <div style="height:30px;"></div>
-<div id="body" >
-
 <div  class=" box ui-widget-content ui-corner-all ui-helper-clearfix">
-<div id="fuzhu"></div>
- <div class="ui-dialog-titlebar ui-widget-header ui-corner-all">
-   <table width="100%"  height="27px"border="0" cellspacing="0" cellpadding="0" >
-     <tr>
-       <td  width="590px"style="padding-left:5px">幻想乡综合讨论区</td>
-       <td width="590px" style="padding-right:5px" align="right">-</td>
-     </tr>
-   </table>
- </div>
-<% @boards.each do |board| %>
- <div id=b2_2>
-   <table width="100%" height="93px" border="0" cellspacing="0" cellpadding="0">
-     <tr>
-       <td width="171px">
-         
-	   		<div  id=b2_2_d1>
-				<div id=b2_2_d1_avatar><%= board.logo %></div>
-			</div>
-		</td>
-		<td width:"686px">
-		<div id=b2_2_d2>
-                   
-			<div id=b2_2_d2_inf1><div style="float:left;"><%= board %></div><div style="float:right;"><img src="css/new.png" /></div></div>
-			<div id=b2_2_d2_inf2><%= board.introduction %></div>
-			<div id=b2_2_d2_inf3><div style="float:left; margin-top:5px;"> <%=t 'board.topic' %>: <%= board.topics.count %> <%=t 'board.post' %>：<%= board.posts.count %></div> <div style="margin-left:10px; float:left; margin-top:2px;"><img src="css/post.png" /></div></div>
-		</div>
-	   </td>
-       <td width="283px">
-	   <div width="283px"style=" margin-bottom:10px; height:90px;border-left-style:solid; border-color:#CCCCCC; border-width:1px;" >
-	   	<div id=b2_2_d3_1></div>
-		<div id=b2_2_d3_2></div>
-		</div>
-	   </td>
-     </tr>
-   </table>
- </div>
-<% end %>
- 
- 
+  <div id="fuzhu"></div>
+  <div class="ui-dialog-titlebar ui-widget-header ui-corner-all">
+    <table width="100%"  height="27px"border="0" cellspacing="0" cellpadding="0" >
+      <tr>
+        <td  width="590px"style="padding-left:5px">幻想乡综合讨论区</td>
+        <td width="590px" style="padding-right:5px" align="right">-</td>
+      </tr>
+    </table>
+  </div>
+  <% @boards.each do |board| %>
+    <div id=b2_2>
+      <table width="100%" height="93px" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="171px">
+
+            <div  id=b2_2_d1>
+              <div id=b2_2_d1_avatar><%= board.logo %></div>
+            </div>
+          </td>
+          <td width:"686px">
+              <div id=b2_2_d2>
+
+              <div id=b2_2_d2_inf1><div style="float:left;"><%= board %></div><div style="float:right;"><%= image_tag 'topic/new.png' %> </div></div>
+              <div id=b2_2_d2_inf2><%= board.introduction %></div>
+              <div id=b2_2_d2_inf3><div style="float:left; margin-top:5px;"> <%=t 'board.topic' %>: <%= board.topics.count %> <%=t 'board.post' %>：<%= board.posts.count %></div> <div style="margin-left:10px; float:left; margin-top:2px;"><%= image_tag 'topic/post.png' %></div></div>
+            </div>
+          </td>
+          <td width="283px">
+            <div width="283px"style=" margin-bottom:10px; height:90px;border-left-style:solid; border-color:#CCCCCC; border-width:1px;" >
+              <div id=b2_2_d3_1></div>
+              <div id=b2_2_d3_2></div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+
+
 </div>
 <div class="box ui-widget-content ui-corner-all ui-helper-clearfix">
-<div id="fuzhu"></div>
-<div class="ui-dialog-titlebar ui-widget-header ui-corner-all" >
-<table width="100%"  height="27px"border="0" cellspacing="0" cellpadding="0" >
-     <tr>
-       <td  width="590px"style="padding-left:5px">友情链接</td>
-       <td width="590px" style="padding-right:5px" align="right">-</td>
-     </tr>
-   </table></div>
-<div id=footer2>
-	<div id=ft_1>
-	<table id="ft_1_t" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <div id="fuzhu"></div>
+  <div class="ui-dialog-titlebar ui-widget-header ui-corner-all" >
+    <table width="100%"  height="27px"border="0" cellspacing="0" cellpadding="0" >
+      <tr>
+        <td  width="590px"style="padding-left:5px">友情链接</td>
+        <td width="590px" style="padding-right:5px" align="right">-</td>
+      </tr>
+    </table></div>
+  <div id=footer2>
+    <div id=ft_1>
+      <table id="ft_1_t" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="590px">
-		  <div id="ft_1_t_d1">
-		  <div id="ft_1_t_d2"> </div>
-		   </div>
-		  </td>
-		  
+            <div id="ft_1_t_d1">
+              <div id="ft_1_t_d2"> </div>
+            </div>
+          </td>
+
           <td width="590px"></td>
         </tr>
       </table>
-	</div>
-	<div id=ft_2>
-	  
-	</div>
-	<div id=ft_3></div>
+    </div>
+    <div id=ft_2>
+
+    </div>
+    <div id=ft_3></div>
+  </div>
+  <div></div>
 </div>
-<div></div>
-</div>
+
 <div class="ui-dialog-titlebar ui-widget-header ui-corner-all">
-<table width="100%"  height="27px"border="0" cellspacing="0" cellpadding="0" >
-     <tr>
-        <%= render 'layouts/onlineuserbar' %>
-     </tr>
-   </table></div>
-</div>
+  <table width="100%"  height="27px"border="0" cellspacing="0" cellpadding="0" >
+    <tr>
+      <td width="590px"style="padding-left:5px"><%= render 'layouts/onlineuserbar' %></td>
+      <td width="590px" style="padding-right:5px" align="right">-</td>
+    </tr>
+  </table></div>
