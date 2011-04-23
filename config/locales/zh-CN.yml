@@ -36,6 +36,9 @@ zh-CN:
     submit: "提交"
     topic: "主题"
     post: "回复"
+  search:
+    search: "搜索"
+    advanced: "高级搜索"
   stat:
     onlineuser: "在线人数"
     total: "总计"

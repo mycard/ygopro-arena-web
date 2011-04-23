@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   		request_language = 
         request_language && request_language['HTTP_ACCEPT_LANGUAGE'][/[^,;]+/]
     )
-    I18n.locale = locale if File.exist?("#{RAILS_ROOT}/config/locales/#{request_language}.yml") 
+    I18n.locale = locale if File.exist?("#{::Rails.root}/config/locales/#{request_language}.yml") 
     User::Guest.name = t 'user.guest'
     #IE && FF are BANNED
   end 

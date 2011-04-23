@@ -23,7 +23,7 @@ Reliz::Application.routes.draw do
   
   
   resources :posts
-  match 'topics/:topic_id/new' => 'posts#new', :topic_id => /\d+/ #����ظ�
+  match 'topics/:topic_id/new' => 'posts#new', :topic_id => /\d+/ #
   
   resources :topics
   #match 'topic/:id/(/:page)' => 'topics#show', :id => /\d+/, :page => /\d+/ 

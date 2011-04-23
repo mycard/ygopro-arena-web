@@ -1,5 +1,6 @@
-                <label>
-                  <input name="textfield" type="text" value="请输入搜索内容" />
-                </label>
-                <input type="submit" name="Submit" value="搜索" />
-                <input type="submit" name="Submit2" value="高级搜索" />
+<%= form_tag :controller => :topics do %>
+
+    <%= text_field_tag "keyword" %>
+    <%= submit_tag t("search.search") %>
+<% end %>
+<%= link_to t("search.advanced") %>

@@ -7,7 +7,8 @@
 </p>
 </div><div class="mainbox list">
 <span class="headactions">
-<img id="category_3_img" src="images/default/collapsed_no.gif" title="sq/zk" alt="sq/zk" onclick="toggle_collapse('category_3');" />
+<%= image_tag 'common/collapsed_no.gif', :id => 'category_3_img', :title => 'sq/zk '%>
+
 </span>
 <%# @boards.each do |area|  %>
 <%# next if area.subboards.empty? %>
@@ -41,14 +42,15 @@
 <%# end %>
 <div id="ad_intercat_16"></div>
 <div class="mainbox list">
-<span class="headactions"><img id="boardlinks_img" src="images/default/collapsed_no.gif" alt="" onclick="toggle_collapse('boardlinks');" /></span>
+<span class="headactions">
+<%= image_tag 'common/collapsed_no.gif' %>
 <h3>link</h3>
 <div id="boardlinks" style="">
 
 </div>
 </div>
 <div class="mainbox list" id="online">
-<span class="headactions"><a href="index.php?showoldetails=yes#online" class="nobdr"><img src="images/default/collapsed_yes.gif" alt="" /></a></span>
+<span class="headactions"><a href="index.php?showoldetails=yes#online" class="nobdr"><%= image_tag 'common/collapsed_yes.gif' %></a></span>
 
 <h3>
 <%= render 'layouts/onlineuserbar' %>
