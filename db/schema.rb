@@ -13,14 +13,14 @@
 ActiveRecord::Schema.define(:version => 20111036031160) do
 
   create_table "boards", :force => true do |t|
-    t.string   "name"
-    t.text     "introduction"
-    t.text     "notice"
-    t.string   "logo"
-    t.string   "banner"
-    t.integer  "readperm"
-    t.integer  "topicperm"
-    t.integer  "postperm"
+    t.string   "name",         :default => "", :null => false
+    t.text     "introduction",                 :null => false
+    t.text     "notice",                       :null => false
+    t.string   "logo",         :default => "", :null => false
+    t.string   "banner",       :default => "", :null => false
+    t.integer  "readperm",     :default => 0,  :null => false
+    t.integer  "topicperm",    :default => 0,  :null => false
+    t.integer  "postperm",     :default => 0,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(:version => 20111036031160) do
     t.integer  "user_id",                          :null => false
     t.integer  "type_id"
     t.integer  "category_id",                      :null => false
-    t.string   "category_type", :default => "",    :null => false
-    t.string   "name",          :default => "",    :null => false
+    t.string   "category_type",                    :null => false
+    t.string   "name",                             :null => false
     t.boolean  "digest",        :default => false, :null => false
     t.integer  "displayorder",  :default => 0,     :null => false
     t.integer  "highlight",     :default => 0,     :null => false
@@ -99,9 +99,9 @@ ActiveRecord::Schema.define(:version => 20111036031160) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",          :default => "",    :null => false
+    t.string   "name",                             :null => false
     t.string   "nickname",      :default => "",    :null => false
-    t.string   "password",      :default => "",    :null => false
+    t.string   "password",                         :null => false
     t.string   "email",         :default => "",    :null => false
     t.integer  "usergroup_id",  :default => 0,     :null => false
     t.integer  "admingroup_id", :default => 0,     :null => false
@@ -120,6 +120,8 @@ ActiveRecord::Schema.define(:version => 20111036031160) do
     t.integer  "credit6",       :default => 0,     :null => false
     t.integer  "credit7",       :default => 0,     :null => false
     t.integer  "credit8",       :default => 0,     :null => false
+    t.string   "locale"
+    t.string   "theme"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
