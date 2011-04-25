@@ -10,17 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111036031160) do
+ActiveRecord::Schema.define(:version => 20111042572025) do
 
   create_table "boards", :force => true do |t|
-    t.string   "name",         :default => "", :null => false
-    t.text     "introduction",                 :null => false
-    t.text     "notice",                       :null => false
-    t.string   "logo",         :default => "", :null => false
-    t.string   "banner",       :default => "", :null => false
-    t.integer  "readperm",     :default => 0,  :null => false
-    t.integer  "topicperm",    :default => 0,  :null => false
-    t.integer  "postperm",     :default => 0,  :null => false
+    t.string   "name",          :default => "", :null => false
+    t.text     "introduction",                  :null => false
+    t.text     "notice",                        :null => false
+    t.string   "logo",          :default => "", :null => false
+    t.string   "banner",        :default => "", :null => false
+    t.integer  "readperm",      :default => 0,  :null => false
+    t.integer  "topicperm",     :default => 0,  :null => false
+    t.integer  "postperm",      :default => 0,  :null => false
+    t.integer  "superboard_id",                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

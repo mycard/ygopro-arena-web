@@ -1,46 +1,40 @@
-<!--<h1>Glupx</h1>
-<h2><%#= @actions.shift %>
-<%# @actions.each do |action| %>
- - <%#= action %>
-<%# end %></h2>-->
-<body id="index" onkeydown="if(event.keyCode==27) return false;">
 <div id="append_parent"></div><div id="ajaxwaitid"></div>
 <div id="topbar" name="TOP">
-<div class="topanel">
-<div id="memberp">
-<%= render 'layouts/userbar' %>
-</div>
-<%= render 'layouts/searchbar' %>
-</div>
+  <div class="topanel">
+    <div id="memberp">
+      <%= render 'layouts/userbar' %>
+    </div>
+    <%= render 'layouts/searchbar' %>
+  </div>
 </div>
 <div id="headerbg">
-<div class="header">
-<embed src="<%= image_path('common/banner.swf') %>" quality="high" wmode="transparent" style=" float:left; " pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="898" height="116"></embed>
-<div id="ad_headerbanner"></div>
-</div>
-
-<div id="dmenu">
-<div class="bg-dmenuleft"></div>
-<div class="bg-dmenu" style="position: relative;">
-<div id="menu">
-<%= render "layouts/navibar" %>
-</div>
-  <div id="style_switch">
-<%= render 'layouts/themebar' %>
+  <div class="header">
+    <embed src="<%= image_path('common/banner.swf') %>" quality="high" wmode="transparent" style=" float:left; " pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="898" height="116"></embed>
+    <div id="ad_headerbanner"></div>
   </div>
 
-</div>
-</div>
-<div id="myprompt_menu" style="display:none" class="promptmenu">
-<div class="promptcontent">
+  <div id="dmenu">
+    <div class="bg-dmenuleft"></div>
+    <div class="bg-dmenu" style="position: relative;">
+      <div id="menu">
+        <%= render "layouts/navibar" %>
+      </div>
+      <div id="style_switch">
+        <%= render 'layouts/themebar' %>
+      </div>
 
-<ul class="s_clear"><li style="display:none"><!--<a id="prompt_pm" href="pm.php?filter=newpm" target="_blank">private (0)</a> TODO--></li><li style="display:none"><a id="prompt_announcepm" href="pm.php?filter=announcepm" target="_blank">public (0)</a></li><li style="display:none"><a id="prompt_systempm" href="notice.php?filter=systempm" target="_blank">system (0)</a></li><li style="display:none"><a id="prompt_friend" href="notice.php?filter=friend" target="_blank">friend (0)</a></li><li style="display:none"><a id="prompt_threads" href="notice.php?filter=threads" target="_blank">post (0)</a></li></ul>
-</div>
-</div>
+    </div>
+  </div>
+  <div id="myprompt_menu" style="display:none" class="promptmenu">
+    <div class="promptcontent">
+
+      <ul class="s_clear"><li style="display:none"><!--<a id="prompt_pm" href="pm.php?filter=newpm" target="_blank">private (0)</a> TODO--></li><li style="display:none"><a id="prompt_announcepm" href="pm.php?filter=announcepm" target="_blank">public (0)</a></li><li style="display:none"><a id="prompt_systempm" href="notice.php?filter=systempm" target="_blank">system (0)</a></li><li style="display:none"><a id="prompt_friend" href="notice.php?filter=friend" target="_blank">friend (0)</a></li><li style="display:none"><a id="prompt_threads" href="notice.php?filter=threads" target="_blank">post (0)</a></li></ul>
+    </div>
+  </div>
 
 </div>
 
 <div id="nav">
-<%= render 'layouts/actionbar' %>
+  <%= render 'layouts/actionbar' %>
 </div>
 <div id="ad_text"></div>

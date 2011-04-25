@@ -5,7 +5,8 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.xml
   def index
-    @boards = Board.all#[Board.find(1)]#_all_by_id 1
+    @board = Board.root
+    @boards = @board.subboards
     @actions = []
     respond_to do |format|
       format.html # index.html.erb

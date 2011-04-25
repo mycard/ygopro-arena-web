@@ -1,60 +1,68 @@
-<div id="wrapper">
 <div id="wrap" class="wrap s_clear">
-<div class="itemtitle s_clear">
-<p class="right boardcount">
-<%=t 'datetime.today' %>: <em><%= Post.today.count %> </em>, 
-<%=t 'datetime.yesterday' %>: <em><%= Post.yesterday.count %></em>, 
-<%=t 'stat.total' %>: <em><%= Post.count %></em>
-</p>
-</div><div class="mainbox list">
-<span class="headactions">
-<%= image_tag 'common/collapsed_no.gif', :id => 'category_3_img', :title => 'sq/zk '%>
+  <div class="itemtitle s_clear">
+    <p class="right boardcount">
+      <%=t 'datetime.today' %>: <em><%= Post.today.count %> </em>, 
+      <%=t 'datetime.yesterday' %>: <em><%= Post.yesterday.count %></em>, 
+      <%=t 'stat.total' %>: <em><%= Post.count %></em>
+    </p>
+  </div>
+  <% @boards.each do |superboard|  %>
+    <div class="mainbox list">
+      <span class="headactions">
+        <%= image_tag 'common/collapsed_no.gif', :id => 'category_3_img', :title => 'sq/zk '%>
+      </span>
 
-</span>
-<%# @boards.each do |area|  %>
-<%# next if area.subboards.empty? %>
-	<h3><a href="index.php?gid=3" style="">测试版块</a></h3>
-	<table id="category_3" summary="category3" cellspacing="0" cellpadding="0" style="">
-	<% @boards.each do |board| %>
-		<tbody id="board<%= board.id %>">
-		<tr>
-		<th>
-  		<%= board.logo %>
-		<div class="left">
-		
-		<h2><%= board %></h2>
-		<p><%= board.introduction %></p></div>
-		</th>
-		<td class="boardnums">
-		<em><%= board.topics.size %></em> / <%= board.posts.size %></td>
-		<td class="boardlast">
-		<% if board.topics.last %>
-			<p><%= board.topics.last %></p>
-			<cite><%= board.posts.last.user %> - <span title="<%= board.posts.last.updated_at %>"><%=l board.posts.last.updated_at, :format => :short %></span></cite>
-		<% else %>
-			none
-		<% end %>
-		</td>
-			</tr>
-			</tbody>
-	<% end %>
-	</table>
-	</div>
-<%# end %>
-<div id="ad_intercat_16"></div>
-<div class="mainbox list">
-<span class="headactions">
-<%= image_tag 'common/collapsed_no.gif' %>
-<h3>link</h3>
-<div id="boardlinks" style="">
 
-</div>
-</div>
-<div class="mainbox list" id="online">
-<span class="headactions"><a href="index.php?showoldetails=yes#online" class="nobdr"><%= image_tag 'common/collapsed_yes.gif' %></a></span>
+      <h3><%= superboard %></h3>
+      <table id="category_<%= superboard.id %> " summary="category<%= superboard.id %>" cellspacing="0" cellpadding="0" style="">
+        <% superboard.subboards.each do |board| %>
+          <tbody id="board<%= board.id %>">
+            <tr>
+              <th>
+                <%= image_tag board.logo, :style => "float:left; margin-right: 10px" %>
+          <div class="left">
 
-<h3>
-<%= render 'layouts/onlineuserbar' %>
-</h3>
-</div>
+            <h2><%= board %></h2>
+            <p><%= board.introduction %></p>
+            <% unless board.subboards.empty? %>
+              <p><%=t 'board.subboard' %>: 
+                <% board.subboards.each do |subboard| %>
+                  <%= subboard %> 
+                <% end %>
+              </p>
+            <% end %>
+          </div>
+          </th>
+          <td class="boardnums">
+            <em><%= board.topics.size %></em> / <%= board.posts.size %></td>
+          <td class="boardlast">
+            <% if board.topics.last %>
+              <p><%= board.topics.last %></p>
+              <cite><%= board.posts.last.user %> - <span title="<%= board.posts.last.updated_at %>"><%=l board.posts.last.updated_at, :format => :short %></span></cite>
+            <% else %>
+              <%=t 'board.none' %>
+            <% end %>
+          </td>
+          </tr>
+          </tbody>
+        <% end %>
+      </table>
+  </div>
+  <% end %>
+  <div id="ad_intercat_16"></div>
+  <div class="mainbox list">
+    <span class="headactions">
+      <%= image_tag 'common/collapsed_no.gif' %>
+      <h3>link</h3>
+      <div id="boardlinks" style="">
+
+      </div>
+  </div>
+  <div class="mainbox list" id="online">
+    <span class="headactions"><a href="index.php?showoldetails=yes#online" class="nobdr"><%= image_tag 'common/collapsed_yes.gif' %></a></span>
+
+    <h3>
+      <%= render 'layouts/onlineuserbar' %>
+    </h3>
+  </div>
 </div>

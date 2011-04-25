@@ -36,6 +36,8 @@ zh-CN:
     submit: "提交"
     topic: "主题"
     post: "回复"
+    none: "从未"
+    subboard: "子版快"
   search:
     search: "搜索"
     advanced: "高级搜索"
