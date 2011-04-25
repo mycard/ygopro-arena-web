@@ -1,51 +1,52 @@
 <div id="header">
-<div id="h2" class="ui-dialog-titlebar ui-widget-header ui-corner-all">
-  <style type="text/css">
+  <div id="h2" class="ui-dialog-titlebar ui-widget-header ui-corner-all">
+    <style type="text/css">
     #userbar{margin-left: 900px;}
-  </style>
-  <%= render 'layouts/userbar' %>
-</div>
-<div id="h3" style="background-image:url(<%= image_path 'common/banner.jpg' %>);background-repeat:no-repeat; background-position:right;">
-<div id="logo" style=" color:#FFFFFF; width:800px; height:113px; float:left;">
-LOGO
-</div>
-<div class="toggler" >
-<div id="effect"><%= image_tag 'common/banner2.jpg' %> </div>
-</div>
-</div>
-<div class=" box ui-widget-content ui-corner-all ui-helper-clearfix" >
-<div id="h4" class="ui-dialog-titlebar ui-widget-header ui-corner-all"><table  border="0" cellspacing="0" cellpadding="0" id="tb1">
-    <tr>
-      <%= render "layouts/navibar" %>
-      <div style="float: right;"><%= render "layouts/searchbar" %></div>
-    </tr>
-  </table></div>
-<div id="h5" >
-  <table  border="0" cellspacing="0" cellpadding="0" id="tb2">
-    <tr>
-      
-      <td rowspan="2" width="80">
-	  <div id="dtx"><%= @correct_user.avatar :small %></div>
-	  </td>
-      <td width="700" height="28"style="padding-left:5px">欢迎回来 <%= @correct_user %></td>
-      <td width="400" align="right" style="padding-right:10px" >欢迎新会员 <%= User.last %></td>
-    </tr>
-    <tr>
-      <td width="700" style="padding-left:5px">公告：</td>
-      <td width ="400"align="right" style="padding-right:10px">天气</td>
-    </tr>
-  </table>
-</div>
-<div id="h6">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" id="tb3">
-    <tr>
-      <td  width="600"style="padding-left:15px"><%= render 'layouts/actionbar' %></td>
-      <td width="600"align="right" style="padding-right:20px">
-	  <select name="effects" id="effectTypes" style="visibility:hidden"><option value="fade">Drop</option></select>
-          <div style="float: right;"><%= render 'layouts/themebar' %></div>
-      </td>
-    </tr>
-  </table>
-</div>
-</div>
+    </style>
+    <%= render 'layouts/userbar' %>
+  </div>
+  <div id="h3" style="background-image:url(<%= image_path 'common/banner.jpg' %>);background-repeat:no-repeat; background-position:right;">
+    <div id="logo" style=" color:#FFFFFF; width:800px; height:113px; float:left;">
+      LOGO
+    </div>
+    <div class="toggler" >
+      <div id="effect"><%= image_tag 'common/banner2.jpg' %> </div>
+    </div>
+  </div>
+  <div class=" box ui-widget-content ui-corner-all ui-helper-clearfix" >
+    <div id="h4" class="ui-dialog-titlebar ui-widget-header ui-corner-all"><table  border="0" cellspacing="0" cellpadding="0" id="tb1">
+        <tr>
+          <%= render "layouts/navibar" %>
+        <div style="float: right;"><%= render "layouts/searchbar" %></div>
+        </tr>
+      </table></div>
+    <div id="h5" >
+      <table  border="0" cellspacing="0" cellpadding="0" id="tb2">
+        <% if logged? %>
+          <tr>
+            <td rowspan="2" width="80">
+              <div id="dtx"><%= @correct_user.avatar :small %></div>
+            </td>
+            <td width="700" height="28"style="padding-left:5px">欢迎回来 <%= @correct_user %></td>
+            <td width="400" align="right" style="padding-right:10px" >欢迎新会员 <%= User.last %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td width="700" style="padding-left:5px">公告：</td>
+          <td width ="400"align="right" style="padding-right:10px">天气</td>
+        </tr>
+      </table>
+    </div>
+    <div id="h6">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" id="tb3">
+        <tr>
+          <td  width="600"style="padding-left:15px"><%= render 'layouts/actionbar' %></td>
+          <td width="600"align="right" style="padding-right:20px">
+            <select name="effects" id="effectTypes" style="visibility:hidden"><option value="fade">Drop</option></select>
+            <div style="float: right;"><%= render 'layouts/themebar' %></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

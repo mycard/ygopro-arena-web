@@ -1,5 +1,5 @@
 module ApplicationHelper
   def logged?
-    @correct_user.id != 0
+    @correct_user != User::Guest
   end
 end
