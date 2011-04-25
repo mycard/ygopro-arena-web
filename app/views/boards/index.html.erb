@@ -6,49 +6,7 @@
       <%=t 'stat.total' %>: <em><%= Post.count %></em>
     </p>
   </div>
-  <% @boards.each do |superboard|  %>
-    <div class="mainbox list">
-      <span class="headactions">
-        <%= image_tag 'common/collapsed_no.gif', :id => 'category_3_img', :title => 'sq/zk '%>
-      </span>
-
-
-      <h3><%= superboard %></h3>
-      <table id="category_<%= superboard.id %> " summary="category<%= superboard.id %>" cellspacing="0" cellpadding="0" style="">
-        <% superboard.subboards.each do |board| %>
-          <tbody id="board<%= board.id %>">
-            <tr>
-              <th>
-                <%= image_tag board.logo, :style => "float:left; margin-right: 10px" %>
-          <div class="left">
-
-            <h2><%= board %></h2>
-            <p><%= board.introduction %></p>
-            <% unless board.subboards.empty? %>
-              <p><%=t 'board.subboard' %>: 
-                <% board.subboards.each do |subboard| %>
-                  <%= subboard %> 
-                <% end %>
-              </p>
-            <% end %>
-          </div>
-          </th>
-          <td class="boardnums">
-            <em><%= board.topics.size %></em> / <%= board.posts.size %></td>
-          <td class="boardlast">
-            <% if board.topics.last %>
-              <p><%= board.topics.last %></p>
-              <cite><%= board.posts.last.user %> - <span title="<%= board.posts.last.updated_at %>"><%=l board.posts.last.updated_at, :format => :short %></span></cite>
-            <% else %>
-              <%=t 'board.none' %>
-            <% end %>
-          </td>
-          </tr>
-          </tbody>
-        <% end %>
-      </table>
-  </div>
-  <% end %>
+  <%= render @boards %>
   <div id="ad_intercat_16"></div>
   <div class="mainbox list">
     <span class="headactions">

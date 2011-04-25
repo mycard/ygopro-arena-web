@@ -5,8 +5,8 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.xml
   def index
-    @board = Board.root
-    @boards = @board.subboards
+    @root = Board.root
+    @boards = @root.subboards
     @actions = []
     respond_to do |format|
       format.html # index.html.erb

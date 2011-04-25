@@ -1,0 +1,46 @@
+<% superboard = board %>
+<div class="ui-dialog-titlebar ui-widget-header ui-corner-all">
+  <table width="100%"  height="27px"border="0" cellspacing="0" cellpadding="0" >
+    <tr>
+      <td  width="590px"style="padding-left:5px"><%= superboard %></td>
+      <td width="590px" style="padding-right:5px" align="right">-</td>
+    </tr>
+  </table>
+</div>
+
+<% superboard.subboards.each do |board| %>
+  <div id=b<%= superboard.id %>_<%= board.id %>>
+    <table width="100%" height="93px" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="171px">
+
+          <div  id=b2_2_d1>
+            <div id=b2_2_d1_avatar><%= board.logo %></div>
+          </div>
+        </td>
+        <td width="686px">
+            <div id=b2_2_d2>
+
+            <div id=b2_2_d2_inf1><div style="float:left;"><%= board %></div><div style="float:right;"><%= image_tag 'topic/new.png' %> </div></div>
+            <div id=b2_2_d2_inf2><%= board.introduction %> 
+              <% unless board.subboards.empty? %>
+                <p><%=t 'board.subboard' %>: 
+                  <% board.subboards.each do |subboard| %>
+                    <%= subboard %> 
+                  <% end %>
+                </p>
+              <% end %>
+            </div>
+            <div id=b2_2_d2_inf3><div style="float:left; margin-top:5px;"> <%=t 'board.topic' %>: <%= board.topics.count %> <%=t 'board.post' %>：<%= board.posts.count %></div> <div style="margin-left:10px; float:left; margin-top:2px;"><%= image_tag 'topic/post.png' %></div></div>
+          </div>
+        </td>
+        <td width="283px">
+          <div width="283px"style=" margin-bottom:10px; height:90px;border-left-style:solid; border-color:#CCCCCC; border-width:1px;" >
+            <div id=b2_2_d3_1></div>
+            <div id=b2_2_d3_2></div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>
