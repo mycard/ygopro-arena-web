@@ -1,9 +1,7 @@
 class ApplicationController < ActionController::Base
   Themes_Dir = 'app/themes'
-  
   protect_from_forgery
   before_filter :load_settings
-
   before_filter :load_user
   before_filter :load_locale
   before_filter :load_theme

@@ -23,6 +23,7 @@ zh-CN:
   forum:
     next: "下一页"
     prev: "上一页"
+    link: "友情链接"
   board:
     control: "管理面板"
     name: "版块名称"

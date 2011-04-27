@@ -1,43 +1,41 @@
 <div  class=" box ui-widget-content ui-corner-all ui-helper-clearfix">
-<div id="fuzhu"></div>
- <%= render @boards %>
- 
+  <div id="fuzhu"></div>
+  <%= render @boards %>
+
 </div>
 <div class="box ui-widget-content ui-corner-all ui-helper-clearfix">
-<div id="fuzhu"></div>
-<div class="ui-dialog-titlebar ui-widget-header ui-corner-all" >
-<table width="100%"  height="27px" border="0" cellspacing="0" cellpadding="0" >
-     <tr>
-       <td  width="590px"style="padding-left:5px">友情鏈接</td>
-       <td width="590px" style="padding-right:5px" align="right">-</td>
-     </tr>
-   </table></div>
-<div id=footer2>
-	<div id=ft_1>
-	<table id="ft_1_t" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <div id="fuzhu"></div>
+  <div class="ui-dialog-titlebar ui-widget-header ui-corner-all" >
+    <table width="100%"  height="27px" border="0" cellspacing="0" cellpadding="0" >
+      <tr>
+        <td  width="590px"style="padding-left:5px"><%=t 'forum.link'%> </td>
+        <td width="590px" style="padding-right:5px" align="right">-</td>
+      </tr>
+    </table></div>
+  <div id=footer2>
+    <div id=ft_1>
+      <table id="ft_1_t" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="590px">
-		  <div id="ft_1_t_d1">
-		  <div id="ft_1_t_d2"> </div>
-		   </div>
-		  </td>
-		  
+            <%= render Link.all %> 
+          </td>
+
           <td width="590px"></td>
         </tr>
       </table>
-	</div>
-	<div id=ft_2>
-	  
-	</div>
-	<div id=ft_3></div>
-</div>
-<div></div>
+    </div>
+    <div id=ft_2>
+
+    </div>
+    <div id=ft_3></div>
+  </div>
+  <div></div>
 </div>
 <div class="ui-dialog-titlebar ui-widget-header ui-corner-all">
-<table width="100%"  height="27px"border="0" cellspacing="0" cellpadding="0" >
-     <tr>
-       <td  width="590px"style="padding-left:5px"><%= render 'layouts/onlineuserbar' %> </td>
-       <td width="590px" style="padding-right:5px" align="right">-</td>
-     </tr>
-   </table></div>
+  <table width="100%"  height="27px"border="0" cellspacing="0" cellpadding="0" >
+    <tr>
+      <td  width="590px"style="padding-left:5px"><%= render 'layouts/onlineuserbar' %> </td>
+      <td width="590px" style="padding-right:5px" align="right">-</td>
+    </tr>
+  </table></div>
 </div>

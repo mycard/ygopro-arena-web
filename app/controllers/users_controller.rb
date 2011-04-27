@@ -117,7 +117,7 @@ class UsersController < ApplicationController
     end
   end
   def theme
-    p params[:theme], @site[:themes].has_key?(params[:theme])
+    #p params[:theme], @site[:themes].has_key?(params[:theme])
     if params[:theme].blank?
       cookies[:theme] = nil
       @correct_user.update_attribute(:theme, nil)

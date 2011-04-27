@@ -10,10 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111042572025) do
+ActiveRecord::Schema.define(:version => 20111042772025) do
 
   create_table "boards", :force => true do |t|
     t.string   "name",          :default => "", :null => false
+    t.integer  "displayorder",  :default => 0,  :null => false
     t.text     "introduction",                  :null => false
     t.text     "notice",                        :null => false
     t.string   "logo",          :default => "", :null => false
@@ -30,6 +31,16 @@ ActiveRecord::Schema.define(:version => 20111042572025) do
     t.integer  "post_id"
     t.integer  "user_id"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "links", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "logo"
+    t.string   "introduction"
+    t.integer  "displayorder"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

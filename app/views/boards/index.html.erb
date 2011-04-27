@@ -7,15 +7,24 @@
     </p>
   </div>
   <%= render @boards %>
-  <div id="ad_intercat_16"></div>
-  <div class="mainbox list">
-    <span class="headactions">
-      <%= image_tag 'common/collapsed_no.gif' %>
-      <h3>link</h3>
-      <div id="boardlinks" style="">
 
+  <div class="mainbox list">
+    <span class="headactions"><%= image_tag 'common/collapsed_no.gif' %></span>
+    <h3><%=link_to t('forum.link'), links_path %></h3>
+    <div id="forumlinks">
+      <!--<div class="forumlinks">
+        <ul class="s_clear"><li><div class="forumlogo"><img src="http://www.touhou.cc/logo.gif" border="0" alt="东方幻想乡"></div><div class="forumcontent"><h5><a href="http://www.touhou.cc/bbs" target="_blank">东方幻想乡</a></h5><p>这里是幻想乡,一片充满生机和幸福的乐土.</p></div></li></ul>
+      </div>--> <!--详细-->
+      <div class="forumimglink">
+        <%= render Link.all %> 
       </div>
+      <!--<div class="forumtxtlink">
+        <ul class="s_clear">
+          <li><a href="http://www.sakuracountry.cn/" target="_blank" title="樱之国度">樱之国度</a></li><li><a href="http://www.awawh.com/bbs/" target="_blank" title="聚合网">聚合网</a></li><li><a href="http://www.thactclub.cn/bbs" target="_blank" title="TAC触手乡">TAC触手乡</a></li><li><a href="http://www.bilibili.us/" target="_blank" title="哔哩哔哩">哔哩哔哩</a></li><li><a href="http://www.moeloli.cn" target="_blank" title="萝莉学园">萝莉学园</a></li><li><a href="http://www.0ymt.net/" target="_blank" title="零乐漫坛">零乐漫坛</a></li><li><a href="http://www.fulifuli.org/" target="_blank" title="炮姐大逃杀">炮姐大逃杀</a></li><li><a href="http://www.hgacg.com/" target="_blank" title="后宫动漫论坛">后宫动漫论坛</a></li><li><a href="http://www.lv8n.com" target="_blank" title="中国本土同人联盟">中国本土同人联盟</a></li><li><a href="http://bbs.u17.com/" target="_blank" title="有妖气漫画论坛">有妖气漫画论坛</a></li><li><a href="http://www.touhou.cc/bbs/plugin.php?id=xh_forumlinks:forumlinks" target="_blank" title="点击申请">点击申请</a></li></ul>
+      </div>--><!--文字-->
+    </div>
   </div>
+
   <div class="mainbox list" id="online">
     <span class="headactions"><a href="index.php?showoldetails=yes#online" class="nobdr"><%= image_tag 'common/collapsed_yes.gif' %></a></span>
 
