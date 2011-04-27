@@ -7,6 +7,7 @@ class BoardsController < ApplicationController
   def index
     @root = Board.root
     @boards = @root.subboards
+    @links = Link.all
     @actions = []
     respond_to do |format|
       format.html # index.html.erb
