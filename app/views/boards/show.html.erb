@@ -20,7 +20,7 @@
 <%= render 'layouts/pages', :count => @board.topics.count %>
 <span id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})" class="pageback"><a href="index.php">返回首页</a></span>
 
-<span class="postbtn" id="newspecial" prompt="post_newthread"><%= link_to t('topic.new'), new_topic_path %></span>
+<span class="postbtn" id="newspecial" prompt="post_newthread"><%= link_to t('topic.new'), new_topic_path(:board_id => @board.id) %></span>
 <span><%= link_to t('board.control'), edit_board_path(@board) %></span>
 </div>
 
@@ -99,7 +99,7 @@
 <div class="pages_btns s_clear">
 <%= render 'layouts/pages', :count => @board.topics.count %>
 <span id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})" class="pageback"><a href="index.php">返回首页</a></span>
-<span class="postbtn" id="newspecialtmp" ><%= link_to t('topic.new'), new_topic_path %></span>
+<span class="postbtn" id="newspecialtmp" ><%= link_to t('topic.new'), new_topic_path(:board_id => @board.id) %></span>
 
 </div>
 <p id="notice"><%= notice %></p>
@@ -111,7 +111,7 @@
     <%=t 'topic.title' %><%= text_field_tag  "topic[name]" %>
   </p>
   <p>
-    <%= text_area_tag "post[content]" %>
+    <%= render 'topics/editor_lite' %>
    </p>
    <%= hidden_field_tag  "topic[category_id]", @board.id%>
    <%= hidden_field_tag  "topic[category_type]", :board%>

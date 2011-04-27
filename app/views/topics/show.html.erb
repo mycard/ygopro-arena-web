@@ -15,8 +15,8 @@
             </td>
             <td>
               <span class="pageback" id="visitedforums" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';showMenu({'ctrlid':this.id})"><a href="forumdisplay.php?fid=2&amp;page=1">返回列表</a></span>
-              <span class="replybtn" id="post_reply" prompt="post_reply"><a href="post.php?action=reply&amp;fid=2&amp;tid=29727" onclick="showWindow('reply', this.href);return false;">回复</a></span>
-              <span class="postbtn" id="newspecial" prompt="post_newthread" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})"><a href="post.php?action=newthread&amp;fid=2" onclick="showWindow('newthread', this.href);return false;">发帖</a></span>
+              <span class="replybtn" id="post_reply" prompt="post_reply"><%= link_to t('topic.reply'), new_post_path(:topic_id => @topic.id) %></span>
+              <span class="postbtn" id="newspecial" prompt="post_newthread"><%= link_to t('topic.new'), new_topic_path(:board_id => @topic.board.id) %></span>
             </td>
           </tr>
         </tbody></table>
@@ -127,8 +127,8 @@
                   </span>
                   <div class="postact s_clear">
                     <em>
-                      <a class="fastreply" href="post.php?action=reply&amp;fid=2&amp;tid=29727&amp;reppost=751931&amp;extra=page%3D1&amp;page=1" onclick="showWindow('reply', this.href);return false;">回复</a>
-                      <a class="repquote" href="post.php?action=reply&amp;fid=2&amp;tid=29727&amp;repquote=751931&amp;extra=page%3D1&amp;page=1" onclick="showWindow('reply', this.href);return false;">引用</a>
+                      <%= link_to t('topic.reply'), new_post_path(:topic_id => @topic.id), :class => :fastreply %>
+                      <%= link_to t('topic.quote'), new_post_path(:topic_id => @topic.id), :class => :fastreply %>
                       <%= link_to t('post.edit'), edit_post_path(post), :class => :editpost %>
                     </em>
                     <p>

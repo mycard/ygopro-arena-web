@@ -27,8 +27,12 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.xml
   def new
+    @topic = Topic.find(params[:topic_id])
+    if @topic.nil? or @topic.locked
+      return render :text => "Topic not found or locked."
+    end
     @post = Post.new
-
+    @actions = [@topic, :reply]
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post }

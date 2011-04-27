@@ -4,7 +4,7 @@
     <%=t 'topic.title' %><%= text_field_tag  "topic[name]" %>
   </p>
   <p>
-    <%= text_area_tag "post[content]" %>
+    <%= render 'topics/editor' %>
   </p>
   <%= hidden_field_tag  "topic[category_id]", @board.id %>
   <%= hidden_field_tag  "topic[category_type]", :board %>

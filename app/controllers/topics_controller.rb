@@ -49,8 +49,7 @@ class TopicsController < ApplicationController
     @actions = [@topic.category, @topic]
     @posts = Post.find_all_by_topic_id(params[:id], :offset => 10*@page-10, :limit => 10, :order => :displayorder)
 
-    @topic.viewnum += 1
-    @topic.save
+    @topic.update_attribute(:viewnum, @topic.viewnum + 1)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => params[:page] && !params[:page].empty? ? @posts : @topic }

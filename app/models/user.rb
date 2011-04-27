@@ -78,5 +78,7 @@ class User < ActiveRecord::Base
     user.credit6 = 0
     user.credit7 = 0
     user.credit8 = 0
-  end
+    def user.create
+    end
+   end
 end

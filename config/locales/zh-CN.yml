@@ -36,7 +36,7 @@ zh-CN:
     postperm: "回帖权限"
     submit: "提交"
     topic: "主题"
-    post: "回复"
+    post: "帖子"
     none: "从未"
     subboard: "子版快"
   search:
@@ -52,6 +52,7 @@ zh-CN:
   topic:
     new: "发帖"
     reply: "回复"
+    quote: "引用"
     title: "标题"
     submit: "提交"
     order: "排序"
