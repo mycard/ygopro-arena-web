@@ -17,7 +17,7 @@
 
 
 <div class="pages_btns s_clear">
-<%= render 'layouts/pages', :count => @board.topics.count %>
+<%= render 'entries/page', :count => @board.topics.count %>
 <span id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})" class="pageback"><a href="index.php">返回首页</a></span>
 
 <span class="postbtn" id="newspecial" prompt="post_newthread"><%= link_to t('topic.new'), new_topic_path(:board_id => @board.id) %></span>
@@ -97,7 +97,7 @@
 </form>
 </div>
 <div class="pages_btns s_clear">
-<%= render 'layouts/pages', :count => @board.topics.count %>
+<%= render 'entries/page', :count => @board.topics.count %>
 <span id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})" class="pageback"><a href="index.php">返回首页</a></span>
 <span class="postbtn" id="newspecialtmp" ><%= link_to t('topic.new'), new_topic_path(:board_id => @board.id) %></span>
 

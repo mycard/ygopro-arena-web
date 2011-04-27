@@ -1,0 +1,9 @@
+<% unless @site.themes.empty? %>
+  <div id ="theme">
+    <ul>
+      <% @site.themes.each_pair do |name, theme| %>
+        <li><%= link_to name, theme_path(name), :title => name %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

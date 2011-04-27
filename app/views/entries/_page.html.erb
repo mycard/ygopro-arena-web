@@ -1,0 +1,39 @@
+<%
+  perpage = 20
+  curpage ||= (params[:page] || 1).to_i
+  if count > perpage
+    offset = 2;
+    pages = (count-1) / perpage + 1
+    if 10 > pages
+      from = 1;
+      to = pages;
+    else
+      from = curpage - offset
+      to = from + page - 1;
+      if(from < 1)
+        to = curpage + 1 - from;
+        from = 1;
+        if(to - from < 10) 
+          to = 10;
+        end
+      elsif(to > pages)
+        from = pages - page + 1;
+        to = pages
+      end
+    end
+  %>
+  <div class="pages">
+  
+  <%= link_to curpage, :page => 1, :class => :first if curpage - offset > 1 && pages > 10 %>
+  <%= link_to t('forum.prev'), :page => curpage-1, :class => :prev if curpage > 1 %>
+  <% from.upto to do |i| %>
+    <%= link_to_if(i != curpage, i, :page => i){"<strong>#{i}</strong>".html_safe} %>
+  <% end %>
+  <%= link_to "...#{pages}", :page => pages, :class => :last if to < pages %>
+  <%= link_to t('forum.next'), :page => curpage+1, :class => :next if curpage < pages %>
+    
+  <!--
+      ($showkbd && !$simple && $pages > $page && !$ajaxtarget ? '<kbd><input type="text" name="custompage" size="3" onkeydown="if(event.keyCode==13) {window.location=\''.$mpurl.'page=\'+this.value; return false;}" /></kbd>' : '');
+  -->
+  </div>
+<% end %>
