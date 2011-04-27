@@ -59,10 +59,18 @@ class ApplicationController < ActionController::Base
     #p @site[:themes]
   end
   #def redirect_to_thc
-    #p 'WARNING: '+params[:anything]+"?"+env['QUERY_STRING']
-    #redirect_to("http://www.touhou.cc/bbs/"+params[:anything]+"?"+env['QUERY_STRING'])
-    #respond_to do |format|
-      #format.html  { render :error => "404" }
-    #end
+  #p 'WARNING: '+params[:anything]+"?"+env['QUERY_STRING']
+  #redirect_to("http://www.touhou.cc/bbs/"+params[:anything]+"?"+env['QUERY_STRING'])
+  #respond_to do |format|
+  #format.html  { render :error => "404" }
   #end
+  #end
+  alias old_redirect_to redirect_to
+  def redirect_to(*args)
+    if args.first == :back and env['HTTP_REFERER'].blank?
+      old_redirect_to(:root)
+    else
+      old_redirect_to *args
+    end
+  end
 end
