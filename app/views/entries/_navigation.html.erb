@@ -1,6 +1,7 @@
-<div id="navigation">
+<div id="navigations">
   <ul>
-    <li class="menu_1"><%=link_to t('navi.forum'), :"boards", :hidefocus => true, :id => :mn_index %></li>
-    <li class="menu_1"><%=link_to t('navi.forum'), :controller => :boards, :action => :index, :hidefocus => true, :id => :mn_index %></li>
+    <% @navigations.each do |navigation| %>
+      <li class="navigation"><%=link_to navigation.name, navigation.url %></li>
+    <% end %>
   </ul>
 </div>

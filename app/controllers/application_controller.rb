@@ -57,6 +57,8 @@ class ApplicationController < ActionController::Base
       end
     end
     #p @site[:themes]
+    
+    @navigations = Navigation.find_all_by_super_id 0
   end
   #def redirect_to_thc
   #p 'WARNING: '+params[:anything]+"?"+env['QUERY_STRING']
