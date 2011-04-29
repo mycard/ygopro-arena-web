@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111042872025) do
+ActiveRecord::Schema.define(:version => 20111042972029) do
 
   create_table "boards", :force => true do |t|
     t.string   "name",          :default => "", :null => false
@@ -95,6 +95,16 @@ ActiveRecord::Schema.define(:version => 20111042872025) do
     t.datetime "updated_at"
   end
 
+  create_table "roles", :force => true do |t|
+    t.string  "name",                                  :null => false
+    t.boolean "topic_delete",       :default => false, :null => false
+    t.integer "topic_digest",       :default => 0,     :null => false
+    t.integer "topic_displayorder", :default => 0,     :null => false
+    t.boolean "topic_highlight",    :default => false, :null => false
+    t.boolean "topic_edit",         :default => false, :null => false
+    t.boolean "topic_lock",         :default => false, :null => false
+  end
+
   create_table "settings", :primary_key => "name", :force => true do |t|
     t.text "value"
   end
@@ -119,27 +129,24 @@ ActiveRecord::Schema.define(:version => 20111042872025) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                             :null => false
-    t.string   "nickname",      :default => "",    :null => false
-    t.string   "password",                         :null => false
-    t.string   "email",         :default => "",    :null => false
-    t.integer  "usergroup_id",  :default => 0,     :null => false
-    t.integer  "admingroup_id", :default => 0,     :null => false
-    t.boolean  "locked",        :default => false, :null => false
-    t.string   "regip",         :default => "",    :null => false
-    t.string   "lastloginip",   :default => "",    :null => false
-    t.integer  "readnum",       :default => 0,     :null => false
-    t.integer  "viewnum",       :default => 0,     :null => false
-    t.integer  "onlinetime",    :default => 0,     :null => false
-    t.integer  "credit",        :default => 0,     :null => false
-    t.integer  "credit1",       :default => 0,     :null => false
-    t.integer  "credit2",       :default => 0,     :null => false
-    t.integer  "credit3",       :default => 0,     :null => false
-    t.integer  "credit4",       :default => 0,     :null => false
-    t.integer  "credit5",       :default => 0,     :null => false
-    t.integer  "credit6",       :default => 0,     :null => false
-    t.integer  "credit7",       :default => 0,     :null => false
-    t.integer  "credit8",       :default => 0,     :null => false
+    t.string   "name",                           :null => false
+    t.string   "nickname",    :default => "",    :null => false
+    t.string   "password",                       :null => false
+    t.string   "email",       :default => "",    :null => false
+    t.integer  "role_id",     :default => 0,     :null => false
+    t.boolean  "locked",      :default => false, :null => false
+    t.string   "regip",       :default => "",    :null => false
+    t.string   "lastloginip", :default => "",    :null => false
+    t.integer  "viewnum",     :default => 0,     :null => false
+    t.integer  "onlinetime",  :default => 0,     :null => false
+    t.integer  "credit1",     :default => 0,     :null => false
+    t.integer  "credit2",     :default => 0,     :null => false
+    t.integer  "credit3",     :default => 0,     :null => false
+    t.integer  "credit4",     :default => 0,     :null => false
+    t.integer  "credit5",     :default => 0,     :null => false
+    t.integer  "credit6",     :default => 0,     :null => false
+    t.integer  "credit7",     :default => 0,     :null => false
+    t.integer  "credit8",     :default => 0,     :null => false
     t.string   "locale"
     t.string   "theme"
     t.datetime "created_at"

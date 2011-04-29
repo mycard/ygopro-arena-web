@@ -1,12 +1,12 @@
 <div id="user">
   <% if logged? %>
-    <cite><a href="space.php?uid=359" class="noborder"><%= @correct_user %> </a></cite>
+    <cite><a href="space.php?uid=359" class="noborder"><%= @corrent_user %> </a></cite>
     <span class="pipe">|</span>
-    <%= link_to t('user.my'), @correct_user %>
-    <%= link_to t('user.space'), @correct_user %>
-    <%= link_to t('user.notice'), @correct_user %>
+    <%= link_to t('user.my'), @corrent_user %>
+    <%= link_to t('user.space'), @corrent_user %>
+    <%= link_to t('user.notice'), @corrent_user %>
     <span id="myprompt_check"></span>
-    <%= link_to t('user.pm'), @correct_user %>
+    <%= link_to t('user.pm'), @corrent_user %>
 
     <span class="pipe">|</span>
     <%= link_to t('user.logout'), logout_path %>

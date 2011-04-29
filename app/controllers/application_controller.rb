@@ -12,14 +12,14 @@ class ApplicationController < ActionController::Base
   end
   def load_user
     if session[:user_id]
-      @correct_user = User.find session[:user_id]
+      @corrent_user = User.find session[:user_id]
     end
-    unless @correct_user
-      @correct_user = User::Guest
+    unless @corrent_user
+      @corrent_user = User::Guest
     end
   end
   def load_locale
-  	locale = @correct_user.locale || (
+  	locale = @corrent_user.locale || (
   		request_language = 
         request_language && request_language['HTTP_ACCEPT_LANGUAGE'][/[^,;]+/]
     )
@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
     case #TODO: DRY
     when @site[:themes].has_key?(cookies[:theme])
       prepend_view_path File.join Themes_Dir, cookies[:theme]
-    when @site[:themes].has_key?(@correct_user.theme)
-      prepend_view_path File.join Themes_Dir, @correct_user.theme
+    when @site[:themes].has_key?(@corrent_user.theme)
+      prepend_view_path File.join Themes_Dir, @corrent_user.theme
     when @site[:themes].has_key?(@site.theme)
       prepend_view_path File.join Themes_Dir, @site.theme
     end

@@ -97,12 +97,13 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user
         session[:user_id] = @user.id
+        @user.update_attribute(:lastloginip, request.remote_ip)
         format.html { redirect_to(:root, :notice => 'Login Successfully.') }
         format.xml  { head :ok }
       else
         @user = User.new(params[:user])
-        #@user.errors.add 'incorrect_username_or_password' #TODO: 查API
-        return render :text => 'incorrect_username_or_password'
+        #@user.errors.add 'incorrent_username_or_password' #TODO: 查API
+        return render :text => 'incorrent_username_or_password'
         format.html { render :action => "login" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
@@ -120,10 +121,10 @@ class UsersController < ApplicationController
     #p params[:theme], @site[:themes].has_key?(params[:theme])
     if params[:theme].blank?
       cookies[:theme] = nil
-      @correct_user.update_attribute(:theme, nil)
+      @corrent_user.update_attribute(:theme, nil)
     elsif @site[:themes].has_key? params[:theme]
       cookies[:theme] = params[:theme]
-      @correct_user.update_attribute(:theme, params[:theme])
+      @corrent_user.update_attribute(:theme, params[:theme])
     end
     respond_to do |format|
       format.html { redirect_to :back }

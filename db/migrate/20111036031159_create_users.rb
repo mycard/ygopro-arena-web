@@ -5,12 +5,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string :nickname, :default => '', :null => false
       t.string :password, :null => false
       t.string :email, :default => '', :null => false
-      t.references :usergroup, :default => '', :null => false
-      t.references :admingroup, :default => '', :null => false
+      t.integer :role_id, :default => 5, :null => false
       t.boolean :locked, :default => false, :null => false
       t.string :regip, :default => '', :null => false
       t.string :lastloginip, :default => '', :null => false
-      t.integer :readnum, :default => 0, :null => false
       t.integer :viewnum, :default => 0, :null => false
       t.integer :onlinetime, :default => 0, :null => false
       t.integer :credit, :default => 0, :null => false

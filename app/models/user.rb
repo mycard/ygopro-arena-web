@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  #belongs_to :usergroup
-  #belongs_to :admingroup
+  belongs_to :role
+
   validates :name,  :presence => true,
                     :length => {:minimum => 1, :maximum => 254}  
   validates :email, :presence => true,   
@@ -9,11 +9,11 @@ class User < ActiveRecord::Base
                     :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
   has_many :topics
   has_many :posts, :through => :topics
-  before_save proc{!locked}
+  
   class <<self  #TODO
     alias old_find find
     def find(*args)
-      if args[0] == 0
+      if args[0].to_i.zero?
         Guest
       else
         old_find(*args)
@@ -34,42 +34,20 @@ class User < ActiveRecord::Base
       end
   	  "<a href=\"/users/#{id}\"><img src=\"http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.strip.downcase)}?size=#{size}\" /></a>".html_safe
   end
-=begin
-      t.string :name, :null => false
-      t.string :nickname, :default => '', :null => false
-      t.string :password, :null => false
-      t.string :email, :default => '', :null => false
-      t.references :usergroup, :default => '', :null => false
-      t.references :admingroup, :default => '', :null => false
-      t.string :regip, :default => '', :null => false
-      t.string :lastloginip, :default => '', :null => false
-      t.integer :readnum, :default => 0, :null => false
-      t.integer :viewnum, :default => 0, :null => false
-      t.integer :onlinetime, :default => 0, :null => false
-      t.integer :credit, :default => 0, :null => false
-      t.integer :credit1, :default => 0, :null => false
-      t.integer :credit2, :default => 0, :null => false
-      t.integer :credit3, :default => 0, :null => false
-      t.integer :credit4, :default => 0, :null => false
-      t.integer :credit5, :default => 0, :null => false
-      t.integer :credit6, :default => 0, :null => false
-      t.integer :credit7, :default => 0, :null => false
-      t.integer :credit8, :default => 0, :null => false
-=end
+  def credit
+    credit1
+  end
   Guest = User.new do |user|
     user.id = 0
     user.name = 'guest'
     user.nickname = ''
     user.password = ''
     user.email = ''
-    #usergroup = 0
-    #admingroup = 0
+    user.role_id  = 6
     user.regip = '127.0.0.1'
     user.lastloginip = '127.0.0.1'
-    user.readnum = 0
     user.viewnum = 0
     user.onlinetime = 0
-    user.credit = 0
     user.credit1 = 0
     user.credit2 = 0
     user.credit3 = 0

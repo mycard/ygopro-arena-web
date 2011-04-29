@@ -1,41 +1,18 @@
 Reliz::Application.routes.draw do
+  
+  root :to => 'boards#index'
+  resources :boards
+  resources :topics
+  resources :posts
+  resources :users
+    get 'theme/:theme' => 'users#theme', :as => :theme
+    get 'login' => 'users#login'
+    post 'login' => 'users#login_do'
+    get 'logout' => 'users#logout'
+    get 'register' => 'users#new'
   resources :links
-
-  resources :settings
-
   resources :moderations
 
-  resources :boards
-
-  root :to => 'boards#index'
-  
-  resources :users
-  get 'theme/:theme' => 'users#theme', :as => :theme
-  get 'login' => 'users#login'
-  post 'login' => 'users#login_do'
-  get 'logout' => 'users#logout'
-  get 'register' => 'users#new'
-  
-  resources :blocks
-
-  resources :boards
-  #match 'forum' => 'boards#index'
-  #match 'forum/:id/edit' => 'boards#edit', :id => /\d+/
-  #match 'forum/:id' => 'boards#show', :id => /\d+/
-  
-  
-  resources :posts
-  match 'topics/:topic_id/new' => 'posts#new', :topic_id => /\d+/ #
-  
-  resources :topics
-  #match 'topic/:id/(/:page)' => 'topics#show', :id => /\d+/, :page => /\d+/ 
-  match 'boards/:board_id/new' => 'topics#new', :board_id => /\d+/ #
-  #get 'topics/control' => 'topics#control'
-  
-  #match '(:something)(/:id)/:anything/', :controller => 'application', :action => 'redirect_to_thc', :something => /boards|topics|posts|users/, :id => /\d+/, :anything => /.*/
-  
-  
-  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

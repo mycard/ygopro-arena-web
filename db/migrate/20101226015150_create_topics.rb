@@ -15,7 +15,7 @@ class CreateTopics < ActiveRecord::Migration
       t.boolean :reverse, :default => false, :null => false
       t.boolean :private, :default => false, :null => false
 
-      t.timestamps
+      #t.timestamps
     end
   end
 

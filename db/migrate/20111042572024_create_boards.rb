@@ -15,7 +15,7 @@ class CreateBoards < ActiveRecord::Migration
       t.integer :postperm, :default => 0, :null => false
 
 
-      t.timestamps
+      #t.timestamps
     end
   end
 
