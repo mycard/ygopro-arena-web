@@ -1,22 +1,79 @@
-<p id="notice"><%= notice %></p>
+<% if @user == @corrent_user %>
 
-<p>
-  <b><%=t 'user.name' %>:</b>
-  <%= @user.name %>
-</p>
+  <div class="side">
+    <h2>个人中心</h2>
+    <div class="avatar"><%= @user.avatar %></div>
+    <ul class="tabs">
+      <li><%= link_to '个人资料', @user %></li>
+      <li><%= link_to '短消息', pms_path %></li>
+      <!--<li><a href="notice.php">提醒</a></li>
+      <li><a href="my.php?item=buddylist&amp;">我的好友</a></li>
+      <li><a href="http://www.touhou.cc/blog/space.php?uid=359" target="_blank">我的空间</a></li>-->
+
+      <hr class="shadowline">
+
+      <li><a href="memcp.php?action=profile&amp;typeid=5">论坛个性化设定</a></li>
+    </ul>
+  </div>
+  <div id="content">
+    <%= form_for(@user) do |f| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label t 'user.avatar' %>
+        修改头像请到 <%= link_to "http://gravatar.com" %>
+      </div>
+      <div class="field">
+        <%= f.label t 'user.nickname' %>
+        <%= f.text_field :nickname %>
+      </div>
+      <div class="field">
+        <%= f.label t 'user.password' %>
+        <%= f.text_field :password %>
+      </div>
+      <div class="field">
+        <%= f.label t 'user.email' %>
+        <%= f.text_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label t 'user.credit' %>
+        <%= @user.credit %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+
+<% else %>
+
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <b><%=t 'user.name' %>:</b>
+    <%= @user.name %>
+  </p>
 
 
-<p>
-  <b><%=t 'user.email' %>:</b>
-  <%= @user.email %>
-</p>
+  <p>
+    <b><%=t 'user.email' %>:</b>
+    <%= @user.email %>
+  </p>
 
-<p>
-  <b><%=t 'user.credit' %>:</b>
-  <%= @user.credit %>
-</p>
+  <p>
+    <b><%=t 'user.credit' %>:</b>
+    <%= @user.credit %>
+  </p>
 
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% end %>

@@ -4,12 +4,16 @@ Reliz::Application.routes.draw do
   resources :boards
   resources :topics
   resources :posts
-  resources :users
+  resources :users do
+    get 'pms' => "pms#index"
+    get 'topics' => "users#topic"
+  end
     get 'theme/:theme' => 'users#theme', :as => :theme
     get 'login' => 'users#login'
     post 'login' => 'users#login_do'
     get 'logout' => 'users#logout'
     get 'register' => 'users#new'
+  resources :pms
   resources :links
   resources :moderations
 
