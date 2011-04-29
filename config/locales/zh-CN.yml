@@ -20,6 +20,9 @@ zh-CN:
     topic: "主题"
     digest: "精华"
     guest: "游客"
+    avatar: "头像"
+    nickname: "昵称"
+    signature: "个人签名"
   forum:
     next: "下一页"
     prev: "上一页"
@@ -47,8 +50,6 @@ zh-CN:
     total: "总计"
     max: "最高"
     at: "于"
-  navi:
-    forum: "论坛"
   topic:
     new: "发帖"
     reply: "回复"
@@ -283,6 +284,6 @@ zh-CN:
     select:
       prompt: "请选择"
     submit:
-      create: "新增%{model}"
-      update: "更新%{model}"
-      submit: "储存%{model}"
+      create: "新增"
+      update: "修改"
+      submit: "储存"

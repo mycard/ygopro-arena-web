@@ -112,7 +112,11 @@
                 </div>
               </td></tr>
             <tr><td class="postcontent postbottom">
-                <div class="signatures" style="max-height:300px;maxHeightIE:300px;">新手~</div>
+                <% unless post.user.signature.empty? %>
+                  <div class="signatures" style="max-height:300px;maxHeightIE:300px;">
+                    <%=  post.user.signature %>
+                  </div>
+                <% end %>
                 <div id="ad_thread1_1"></div></td>
             </tr>
             <tr>

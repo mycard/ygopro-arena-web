@@ -37,10 +37,18 @@
         <%= f.label t 'user.nickname' %>
         <%= f.text_field :nickname %>
       </div>
-      <div class="field">
-        <%= f.label t 'user.password' %>
+<!--      <div class="field">
+        <%= f.label t 'user.old_password' %>
         <%= f.text_field :password %>
       </div>
+      <div class="field">
+        <%= f.label t 'user.new_password' %>
+        <%= f.text_field :password %>
+      </div>
+      <div class="field">
+        <%= f.label t 'user.password_repeat' %>
+        <%= f.text_field :password %>
+      </div>-->
       <div class="field">
         <%= f.label t 'user.email' %>
         <%= f.text_field :email %>
@@ -48,6 +56,10 @@
       <div class="field">
         <%= f.label t 'user.credit' %>
         <%= @user.credit %>
+      </div>
+      <div class="field">
+        <%= f.label t 'user.signature' %>
+        <%= f.text_area :signature %>
       </div>
 
       <div class="actions">
