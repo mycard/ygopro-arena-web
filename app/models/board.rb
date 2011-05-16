@@ -1,7 +1,7 @@
 class Board < ActiveRecord::Base
 
-  belongs_to :superboard, :class_name => "::Board"
-  has_many :subboards, :foreign_key => :superboard_id, :class_name => "::Board"
+  belongs_to :superboard, :class_name => :"::Board"
+  has_many :subboards, :foreign_key => :superboard_id, :class_name => :"::Board"
   has_many :topics, :foreign_key => :category_id
   has_many :posts, :through =>:topics
   default_scope order(:displayorder)

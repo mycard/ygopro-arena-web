@@ -71,11 +71,11 @@
 
 <label>&nbsp;</label>
  <span id="thread_<%= topic.id %>"><%= topic %></span>
- <%= link_to(t('topic.control.delete'), control_topic_path(topic, :deleted => 1)) if @corrent_user.role.topic_delete %>
- <%= link_to(t('topic.control.digest'), control_topic_path(topic, :digest => 1)) if @corrent_user.role.topic_digest > 0 %>
- <%= link_to(t('topic.control.displayorder'), control_topic_path(topic, :displayorder => 1)) if @corrent_user.role.topic_displayorder > 0 %>
- <%= link_to(t('topic.control.lock'), control_topic_path(topic, :locked => 1)) if @corrent_user.role.topic_lock %>
- <%= link_to(t('topic.control.highlight'), control_topic_path(topic, :highlight => 0xFF0000)) if @corrent_user.role.topic_highlight %>
+ <%= link_to(t('topic.control.delete'), control_topics_path(topic, :deleted => 1)) if @corrent_user.role.topic_delete %>
+ <%= link_to(t('topic.control.digest'), control_topics_path(topic, :digest => 1)) if @corrent_user.role.topic_digest > 0 %>
+ <%= link_to(t('topic.control.displayorder'), control_topics_path(topic, :displayorder => 1)) if @corrent_user.role.topic_displayorder > 0 %>
+ <%= link_to(t('topic.control.lock'), control_topics_path(topic, :locked => 1)) if @corrent_user.role.topic_lock %>
+ <%= link_to(t('topic.control.highlight'), control_topics_path(topic, :highlight => 0xFF0000)) if @corrent_user.role.topic_highlight %>
  
 </th>
 <td class="author">

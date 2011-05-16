@@ -64,7 +64,6 @@
                 </div>
                 <p><%= image_tag 'common/star_level2.gif', :alt => 'Rank:2' %></p>
                 <dl class="profile s_clear">
-                  <dt><%=t 'user.id' %></dt><dd><%= post.user.id %></dd>
                   <dt><%=t 'user.post' %></dt><dd><%= post.user.posts.count %></dd>
                   <dt><%=t 'user.topic' %></dt><dd><%= post.user.topics.count %></dd>
                   <dt><%=t 'user.digest' %></dt><dd><%= post.user.topics.where(:digest => true).count %></dd>

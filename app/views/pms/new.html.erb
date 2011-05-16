@@ -1,5 +1,20 @@
-<h1>New pm</h1>
+<%= form_for(@pm) do |f| %>
+  <% if @pm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pm.errors.count, "error") %> prohibited this pm from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @pm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+  </div>
+  <%= render 'topics/editor_lite', :name => "pm[content]" %>
+<% end %>
 <%= link_to 'Back', pms_path %>

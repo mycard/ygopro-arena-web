@@ -3,6 +3,7 @@ Reliz::Application.routes.draw do
   root :to => 'boards#index'
   resources :boards
   resources :topics
+  get 'topics/control' => "topics#control", :as => :control_topics
   resources :posts
   resources :users do
     get 'pms' => "pms#index"

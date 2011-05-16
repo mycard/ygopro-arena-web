@@ -4,9 +4,9 @@
     <span class="pipe">|</span>
     <%= link_to t('user.my'), @corrent_user %>
     <%= link_to t('user.space'), @corrent_user %>
-    <%= link_to t('user.notice'), @corrent_user %>
+    <%#= link_to t('user.notice'), @corrent_user %>
     <span id="myprompt_check"></span>
-    <%= link_to t('user.pm'), @corrent_user %>
+    <%= link_to t('user.pm'), pms_path %>
 
     <span class="pipe">|</span>
     <%= link_to t('user.logout'), logout_path %>
