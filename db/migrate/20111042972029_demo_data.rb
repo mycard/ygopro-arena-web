@@ -1,6 +1,5 @@
 class DemoData < ActiveRecord::Migration
   def self.up
-=begin
     Board.create  :id => 1,
                   :superboard_id => 0,
                   :name => "综合讨论中心"
@@ -102,7 +101,6 @@ class DemoData < ActiveRecord::Migration
                  :topic_lock => true
     Role.create  :id => 5,
                  :name => "普通用户"
-=end
     Role.create  :id => 6,
                  :name => "游客"
 

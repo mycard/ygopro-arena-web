@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111042972029) do
+ActiveRecord::Schema.define(:version => 20111052032430) do
 
   create_table "boards", :force => true do |t|
     t.string   "name",          :default => "", :null => false
@@ -74,9 +74,10 @@ ActiveRecord::Schema.define(:version => 20111042972029) do
   end
 
   create_table "pms", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "from_user_id"
-    t.text     "content"
+    t.integer  "from_user_id",                    :null => false
+    t.integer  "to_user_id",                      :null => false
+    t.boolean  "read",         :default => false, :null => false
+    t.text     "content",                         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -130,10 +131,11 @@ ActiveRecord::Schema.define(:version => 20111042972029) do
 
   create_table "users", :force => true do |t|
     t.string   "name",                           :null => false
-    t.string   "nickname",    :default => "",    :null => false
     t.string   "password",                       :null => false
     t.string   "email",       :default => "",    :null => false
     t.integer  "role_id",     :default => 0,     :null => false
+    t.string   "nickname",    :default => "",    :null => false
+    t.text     "signature",                      :null => false
     t.boolean  "locked",      :default => false, :null => false
     t.string   "regip",       :default => "",    :null => false
     t.string   "lastloginip", :default => "",    :null => false

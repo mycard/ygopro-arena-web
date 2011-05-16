@@ -1,7 +1,7 @@
 <% @pms.each do |pm| %>
   <tr>
-    <td><%= pm.user %></td>
-    <td><%= pm.user %></td>
+    <td><%= pm.from_user %></td>
+    <td><%= pm.to_user %></td>
     <td><%= pm.content %></td>
     <td><%= link_to 'Show', pm %></td>
     <td><%= link_to 'Edit', edit_pm_path(pm) %></td>

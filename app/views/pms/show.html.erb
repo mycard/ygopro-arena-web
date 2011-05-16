@@ -1,20 +1,25 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>User:</b>
-  <%= @pm.user %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @pm.user %>
-</p>
-
-<p>
-  <b>Content:</b>
-  <%= @pm.content %>
-</p>
-
-
-<%= link_to 'Edit', edit_pm_path(@pm) %> |
-<%= link_to 'Back', pms_path %>
+<ul class="pm_list">
+  <% @pms.each do |pm| %>
+    <li id="pm_<%= pm.id %>" class="s_clear ">
+      <a href="space.php?uid=7721" target="_blank" class="avatar"><img src="http://www.touhou.cc/ucenter/avatar.php?uid=7721&amp;size=small"></a>
+      <p class="cite">
+        <cite><a href="space.php?uid=7721" target="_blank">lastworm</a></cite>2010-8-23 20:55</p>
+      <div class="summary">
+        求你的签名的完整图~~</div>
+      <p class="more"><a href="pm.php?uid=7721&amp;filter=privatepm&amp;daterange=5#new" class="to">查看消息</a></p>
+      <span class="action">
+        <input name="uid[]" class="checkbox" type="checkbox" value="7721">
+        <a href="pm.php?action=del&amp;uid=7721&amp;filter=privatepm" id="pmd_2799" onclick="deletepm(this, 2799);return false;" class="delete" title="删除">删除</a>
+      </span>
+    </li><li id="pm_157" class="s_clear colplural">
+      <a href="space.php?uid=316" target="_blank" class="avatar"><img src="http://www.touhou.cc/ucenter/avatar.php?uid=316&amp;size=small"></a>
+      <p class="cite">
+        <cite><a href="space.php?uid=316" target="_blank">祈愿之湖</a></cite>2010-1-16 13:43</p>
+      <div class="summary">
+        什么事情都是先抱怨的你自然不能体会菠萝的辛苦，你以为自己掏钱弄一个论坛容易嘛？你以为每天晚上熬夜修复论坛BUG容易嘛？你知道这个论坛升级了几次嘛？你知道菠萝他是为啥干这个的嘛？不知道的话，先好好学习下再说 ...</div>
+      <p class="more"><a href="pm.php?uid=316&amp;filter=privatepm&amp;daterange=5#new" class="to">查看消息</a></p>
+      <span class="action">
+        <input name="uid[]" class="checkbox" type="checkbox" value="316">
+        <a href="pm.php?action=del&amp;uid=316&amp;filter=privatepm" id="pmd_157" onclick="deletepm(this, 157);return false;" class="delete" title="删除">删除</a>
+      </span>
+    </li></ul>

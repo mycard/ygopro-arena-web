@@ -216,8 +216,14 @@ zh-CN:
       last_word_connector: ", 和 "
     select:
       prompt: "请选择"
-
   activerecord:
+    models:
+      user: 用户
+    attributes:
+      pm:
+        to_user: "收件人"
+        content: "正文"
+
     errors:
       template: # ~ 2.3.5 backward compatible
         header:
