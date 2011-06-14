@@ -10,10 +10,10 @@ development:
   reconnect: false
   database: reliz
   pool: 5
-  username: zh99998-test
+  username: zh99998
   password: zh99998
   host: lab.66rpg.com
-  port: 3306
+  port: 3309
   encoding: utf8
 
 # Warning: The database defined as "test" will be erased and
