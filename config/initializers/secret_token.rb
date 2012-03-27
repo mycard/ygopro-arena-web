@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Reliz::Application.config.secret_token = 'cc1f062f92fe8a36c495361553a3f5fa7bd19c4b680f8003f9ae83b1b8dcdaba15c55cfe8dba9f6e90f2a2ebf5bcf92fb1852c71b58eaa107c756242f4efb5ff'
+MycardServerHttp::Application.config.secret_token = 'a32b24adbf3c1eb8ce92cd7ad099a14ff05bbf94ac397ddfe6ed0afd74cbaf58597ae575e1ef8e595a03f9a3f97b777ab500690efdfd8e58518da7775957da9c'

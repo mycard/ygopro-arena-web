@@ -5,8 +5,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.xml
   def index
-    @root = Board.root
-    @boards = @root.subboards
+    @boards = Board.where(:superboard_id => 0)
     @links = Link.all
     @actions = []
     respond_to do |format|
@@ -18,11 +17,12 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.xml
   def show
-    @page = params[:page] && !params[:page].empty? ? params[:page].to_i : 1
+    
     @board = Board.find(params[:id])
     @actions = [@board]
-    order = 'displayorder DESC, updated_at DESC' if params[:order].blank?
-    @topics = @board.topics.all(:offset => 20*@page-20, :limit => 20, :order => order)
+    order = params[:order].blank? ? 'displayorder DESC, updated_at DESC' : params[:order]
+    @topics = @board.topics.page(params[:page]).order(order)
+    #@topics = @board.topics.all(:offset => 20*@page-20, :limit => 20, :order => order)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => params[:page] && !params[:page].empty? ? @topics : @board}

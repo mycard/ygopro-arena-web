@@ -1,7 +1,21 @@
 <% name ||= 'post[content]' %>
 <% content ||= nil %>
 <!-- 文本框name的值，看不明白的话不用更改，指定文本框name的时候直接调用name即可 -->
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<%= javascript_include_tag 'markitup/jquery.markitup.js' %>
+<!-- markItUp! toolbar settings -->
+<%= javascript_include_tag 'markitup/sets/bbcode/set.js' %>
+<!-- markItUp! skin -->
+<%= stylesheet_link_tag 'markitup/skins/markitup/style.css' %>
+<!--  markItUp! toolbar skin -->
+<%= stylesheet_link_tag "markitup/sets/bbcode/style.css" %>
 <div class="editor_lite">
-                   <%= text_area_tag name, content, :id => :fastpostmessage, :rows => 5, :cols => 80,  :tabindex => 4, :class => :txtarea %>
-                    <!--id和class直接对应于HTML码，从DZ的主题上遗留下来的，应该修改-->
+  <%= text_area_tag name, content, :id => :fastpostmessage, :rows => 5, :cols => 80,  :tabindex => 4, :class => :txtarea %>
+  <!--id和class直接对应于HTML码，从DZ的主题上遗留下来的，应该修改-->
 </div>
+<script type="text/javascript">
+$(document).ready(function()	{
+	$('#fastpostmessage').markItUp(mySettings);
+});
+</script>

@@ -1,91 +1,69 @@
-<% if @user == @corrent_user %>
-
-  <div class="side">
-    <h2>个人中心</h2>
-    <div class="avatar"><%= @user.avatar %></div>
-    <ul class="tabs">
-      <li><%= link_to '个人资料', @user %></li>
-      <li><%= link_to '短消息', pms_path %></li>
-      <!--<li><a href="notice.php">提醒</a></li>
-      <li><a href="my.php?item=buddylist&amp;">我的好友</a></li>
-      <li><a href="http://www.touhou.cc/blog/space.php?uid=359" target="_blank">我的空间</a></li>-->
-
-      <hr class="shadowline">
-
-      <li><a href="memcp.php?action=profile&amp;typeid=5">论坛个性化设定</a></li>
-    </ul>
+<div align="center" style="padding-top:150px; cursor:pointer;">
+  <div align="right" style="width:600px; font-size:30px; padding-bottom:20px; color:#ffcc66"><%= @user.name %> </div>
+  
+  
+  <div style="color: white">
+    <p>
+      胜<%= @user.wins.count %>:负<%= @user.losts.count %> 总场次：<%= @user.duels.count %>
+    </p>
+    <p>
+      <b>常用怪兽:</b>
+      <%= render @user.cards.main_monsters.top(10) %>
+    </p>
+    <p>
+      <b>常用额外:</b>
+      <%= render @user.cards.extra.top(5) %>
+    </p>
+    <p>
+      <b>常用魔法:</b>
+      <%= render @user.cards.magics.top(5) %>
+    </p>
+    <p>
+      <b>常用陷阱:</b>
+      <%= render @user.cards.traps.top(5) %>
+    </p>
   </div>
-  <div id="content">
-    <%= form_for(@user) do |f| %>
-      <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  
+  
+  
+  <div style="width:600px; display:none; " id="mian1" class="main1" >
+    <div style="line-height:25px; background-color:#1c1b1b; height:25px; color:#d6edff; font-weight:bold; ">
+      <div style='width:50px; float:left;'><em>场次</em></div>
+      <div style='width:200px; float:left;'><em>对手</em></div>
+      <div style='width:100px; float:left;' align='center'><em>胜负</em></div>
+      <div style='width:100px; float:left;' align='center'><em>得分</em></div>
+      <div style='width:100px; float:left;' align='center'><em>战斗终分</em></div>
+    </div>
+    <% final_credits = @user.credits %>
+    <% @user.top_duels(20).each_with_index do |duel, index| %>
+      <div style='clear:both;'></div>
+      <div style='line-height:25px; padding-top:3px; font-weight:bold; ' align='center'>
 
-          <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
+        <!--场次-->
+        <div style='width:50px; float:left; color:white '  >
+          <%= link_to (@user.duels.count - index), duel, :style=>"color:white" %> 
         </div>
-      <% end %>
-
-      <div class="field">
-        <%= f.label t 'user.avatar' %>
-        修改头像请到 <%= link_to "http://gravatar.com" %>
-      </div>
-      <div class="field">
-        <%= f.label t 'user.nickname' %>
-        <%= f.text_field :nickname %>
-      </div>
-<!--      <div class="field">
-        <%= f.label t 'user.old_password' %>
-        <%= f.text_field :password %>
-      </div>
-      <div class="field">
-        <%= f.label t 'user.new_password' %>
-        <%= f.text_field :password %>
-      </div>
-      <div class="field">
-        <%= f.label t 'user.password_repeat' %>
-        <%= f.text_field :password %>
-      </div>-->
-      <div class="field">
-        <%= f.label t 'user.email' %>
-        <%= f.text_field :email %>
-      </div>
-      <div class="field">
-        <%= f.label t 'user.credit' %>
-        <%= @user.credit %>
-      </div>
-      <div class="field">
-        <%= f.label t 'user.signature' %>
-        <%= f.text_area :signature %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit %>
+        <!--对手-->
+        <div style='width:200px; float:left; '  align='left'>
+          <% opponent = duel.user1 == @user ? duel.user2 : duel.user1 %>
+          <%= link_to opponent.name, opponent, :style => 'color:#ffe793; text-decoration:none' %>
+        </div>
+        <!--胜负-->
+        <div style='width:100px; float:left; color:<% if duel.winner == @user %>#58db3e<% else %>red<% end %>'>
+          <%= duel.winner == @user ? "WIN" : "LOSE" %>
+        </div>
+        <!--得分-->
+        <div style='width:100px; float:left; color:<% if duel.winner == @user %>#58db3e<% else %>red<% end %>'>
+          <%= duel.user1 == @user ? duel.user1_credits : duel.user2_credits %>
+        </div>
+        <!--战斗终分-->
+        <div style='width:100px; float:left; color:<% if index.zero? %>red<% else %>#d6edff<% end %>; '>
+          <%= final_credits %>
+          <% final_credits -= duel.user1 == @user ? duel.user1_credits : duel.user2_credits %>
+        </div>
       </div>
     <% end %>
   </div>
-
-<% else %>
-
-  <p id="notice"><%= notice %></p>
-
-  <p>
-    <b><%=t 'user.name' %>:</b>
-    <%= @user.name %>
-  </p>
-
-
-  <p>
-    <b><%=t 'user.email' %>:</b>
-    <%= @user.email %>
-  </p>
-
-  <p>
-    <b><%=t 'user.credit' %>:</b>
-    <%= @user.credit %>
-  </p>
-
-<% end %>
+</div>
+<div style="clear:both"></div>
+<div align="center"><%= link_to "更多...", {:controller => :duels, :action => :index, :user_id => @user.id}, :style=>"color:white" %></div>

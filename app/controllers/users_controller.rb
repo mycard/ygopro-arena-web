@@ -1,4 +1,7 @@
+#encoding: UTF-8
 class UsersController < ApplicationController
+  require 'open-uri'
+  layout 'ygo'
   #ApplicationHelper::addon_header.push "zh_header"
   #ApplicationHelper::addon_top.push "zh_top"
   #ApplicationHelper::addon_footer.push "zh_footer"
@@ -17,7 +20,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-	@actions = [@user.name]
+    @actions = [@user.name]
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
@@ -46,10 +49,26 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     
+    #验证ygocore服务器是否可注册，true为成功，false为重名，nil为异常
+    success = open("http://140.113.242.66:7922/?userregist=NEW&username=#{CGI.escape @user.name}&password=#{CGI.escape @user.password}") do |file|
+      file.set_encoding("GBK")
+      case file.read.encode("UTF-8")
+      when "注册成功"
+        open("http://140.113.242.66:7922/?pass=zh99998&operation=saveuser"){} rescue nil
+        true
+      when "用户已存在"
+        @user.errors.add :name, "用户已存在"
+        false
+      else
+        nil
+      end
+    end rescue nil
+    @user.errors.add :name, "注册失败，可能是服务器故障，请与管理员联系 Email/GT/QQ: zh99998@gmail.com" if success.nil?
+    
     respond_to do |format|
-      if @user.save
+      if success and @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to(:root, :notice => 'User was successfully created.') }
+        format.html { redirect_to(@user, :notice => '注册成功') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -57,7 +76,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
   # PUT /users/1
   # PUT /users/1.xml
   def update
@@ -93,7 +111,26 @@ class UsersController < ApplicationController
   end
   def login_do
     @actions = [:login]
-    @user = User.find_by_name_and_password(params[:user][:name], params[:user][:password])
+    user = User.find_by_name(params[:user][:name])
+    if user and params[:user][:password] == user.password
+      @user = user
+    elsif user.nil? or user.password.nil?
+      username = params[:user][:name]
+      password = params[:user][:password]
+      open("http://140.113.242.66:7922/?operation=passcheck&username=#{CGI.escape username}&pass=#{CGI.escape password}") do |file|
+        file.set_encoding("GBK")
+        case file.read.encode("UTF-8")
+        when "true"
+          if user
+            user.password = password
+            @user = user
+            @user.save
+          else
+            @user = User.create(:name => username, :password => password)
+          end
+        end
+      end rescue nil
+    end
     respond_to do |format|
       if @user
         session[:user_id] = @user.id
@@ -121,10 +158,10 @@ class UsersController < ApplicationController
     #p params[:theme], @site[:themes].has_key?(params[:theme])
     if params[:theme].blank?
       cookies[:theme] = nil
-      @corrent_user.update_attribute(:theme, nil)
+      @current_user.update_attribute(:theme, nil)
     elsif @site[:themes].has_key? params[:theme]
       cookies[:theme] = params[:theme]
-      @corrent_user.update_attribute(:theme, params[:theme])
+      @current_user.update_attribute(:theme, params[:theme])
     end
     respond_to do |format|
       format.html { redirect_to :back }

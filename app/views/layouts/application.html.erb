@@ -1,10 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
   <head>
-    <title> <%= @site.name %><% if !@actions.empty? %>  - <%= @actions.last.respond_to?(:name) ? @actions.last.name : @actions.last %> <% end %> </title>
+    <title> <%= @site.name %><% if @actions && !@actions.empty? %>  - <%= @actions.last.respond_to?(:name) ? @actions.last.name : @actions.last %> <% end %> </title>
+    <%#= stylesheet_link_tag    'application' %>    
+    <%= stylesheet_link_tag    'common' %>    
+    <%= stylesheet_link_tag    params[:controller] %>
+    <%= javascript_include_tag 'application' %>    
+    <%= javascript_include_tag 'common' %>
+    <%= javascript_include_tag params[:controller] %>
+    <%= csrf_meta_tags %>
     <%= render 'layouts/header' %>
   </head>
-
   <body>
     <%= render 'layouts/top' %>
     <div id="body">

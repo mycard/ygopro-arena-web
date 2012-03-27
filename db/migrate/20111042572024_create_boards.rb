@@ -6,8 +6,8 @@ class CreateBoards < ActiveRecord::Migration
       t.string :name, :default => '', :null => false
       t.references :superboard, :null => false
       t.integer :displayorder, :default => '0', :null => false
-      t.text :introduction, :default => '', :null => false
-      t.text :notice, :default => '', :null => false
+      t.text :introduction, :null => false
+      t.text :notice, :null => false
       t.string :logo, :default => '', :null => false
       t.string :banner, :default => '', :null => false
       t.integer :readperm, :default => 0, :null => false

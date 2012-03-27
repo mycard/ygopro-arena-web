@@ -1,0 +1,89 @@
+body{
+  background:black image-url("background.png");
+  font-family:"Microsoft Yahei";
+}
+a{
+  text-decoration:none;
+}
+a:visited{
+  color:black;
+}
+a:link{
+  color:black;
+}
+.main{
+  width:900px;
+  margin: 0 auto;
+}
+FOOTER .main{
+  font-size:10px;
+  color:white;
+  padding-left:480px;
+}
+#nav{
+  width:100%;
+  height:35px;
+  background:rgba(189,159,136,0.7);
+  box-shadow:0 0 10px #a28a76;
+  padding-top:10px;
+}
+#nav a {
+  display:block;
+  width:100px;
+  font-size:17px;
+  float:left;
+}
+#mainbody {
+  margin-top:0px;
+}
+#mainbody .main{
+  background:rgba(255,255,255,0.2);
+  margin-top:0px;
+  padding:20px;
+  border-radius:0 0 10px 10px;
+  box-shadow:0 0 4px #2f2f2f;
+  color:white;
+  height:200px;
+}
+#roombox{
+  margin-top:15px;
+  width:700px;
+  float:left;
+  height:620px;
+  overflow:auto;
+}
+#bar{
+  float:right;
+  width:200px;
+}
+.online{
+  font-size:13px;
+  border-bottom:1px dashed #5c5c5c;
+  display:block;
+  margin-top:4px;
+}
+.room{
+  width:30%;
+  height:100px;
+  background:rgba(189,173,161,0.5);
+  float:left;
+  margin:5px;
+}
+.roomname{
+  display:block;
+  font-size:20px;
+  text-align:center;
+  margin-top:15px;
+}
+.playername{
+  font-size:13px;
+  color:#ffcda8;
+  display:block;
+  text-align:center;
+}
+.roominfo{
+  font-size:10px;
+  color:#ffad6e;
+  display:block;
+  text-align:center;
+}

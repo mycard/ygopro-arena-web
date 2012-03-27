@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user1: 
+  user2: 
+  winner: 
+  winreason: 1
+  replay: MyString
+  credits: 1
+
+two:
+  user1: 
+  user2: 
+  winner: 
+  winreason: 1
+  replay: MyString
+  credits: 1

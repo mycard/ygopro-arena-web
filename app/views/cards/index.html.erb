@@ -1,0 +1,20 @@
+<h1>热门卡排行</h1>
+
+
+<p>
+  <b>常用怪兽:</b>
+  <%= render @cards.main_monsters.top(10) %>
+</p>
+<p>
+  <b>常用额外:</b>
+  <%= render @cards.extra.top(5) %>
+</p>
+<p>
+  <b>常用魔法:</b>
+  <%= render @cards.magics.top(5) %>
+</p>
+<p>
+  <b>常用陷阱:</b>
+  <%= render @cards.traps.top(5) %>
+</p>
+</div>

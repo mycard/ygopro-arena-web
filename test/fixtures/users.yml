@@ -1,17 +1,17 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
   name: MyString
   password: MyString
   email: MyString
-  credit: 1
-  usergroup: 
-  admingroup: 
+  credits: 1
+  win: 1
+  lost: 1
 
 two:
   name: MyString
   password: MyString
   email: MyString
-  credit: 1
-  usergroup: 
-  admingroup: 
+  credits: 1
+  win: 1
+  lost: 1

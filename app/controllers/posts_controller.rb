@@ -53,7 +53,7 @@ class PostsController < ApplicationController
     if @post.topic.nil? or @post.topic.locked
       return render :text => "Topic not found or locked."
     end
-    @post.user = @corrent_user
+    @post.user = @current_user
     @post.displayorder = @post.topic.floor
     respond_to do |format|
       if @post.save

@@ -4,7 +4,7 @@ class CreateNavigations < ActiveRecord::Migration
       t.string :name
       t.string :url
       t.integer :displayorder
-      t.references :usergroup
+      t.references :role
       t.references :super
       #t.timestamps
     end

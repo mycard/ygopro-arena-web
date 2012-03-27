@@ -1,23 +1,35 @@
-Reliz::Application.routes.draw do
+MycardServerHttp::Application.routes.draw do
+  get "rooms/index"
+
+  get "mycard/update"
+
+  root :to => "boards#index"
   
-  root :to => 'boards#index'
+  resources :duels do
+    get 'user1_deck.:format' => "duels#user1_deck"
+    get 'user2_deck.:format' => "duels#user2_deck"
+  end
+  resources :cards
+  resources :users do
+    resources :duels
+  end
   resources :boards
   resources :topics
+  resources :rooms
   get 'topics/control' => "topics#control", :as => :control_topics
   resources :posts
   resources :users do
     get 'pms' => "pms#index"
     get 'topics' => "users#topic"
   end
-    get 'theme/:theme' => 'users#theme', :as => :theme
-    get 'login' => 'users#login'
-    post 'login' => 'users#login_do'
-    get 'logout' => 'users#logout'
-    get 'register' => 'users#new'
+  get 'theme/:theme' => 'users#theme', :as => :theme
+  get 'login' => 'users#login'
+  post 'login' => 'users#login_do'
+  get 'logout' => 'users#logout'
+  get 'register' => 'users#new'
   resources :pms
   resources :links
   resources :moderations
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -67,11 +79,11 @@ Reliz::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  # match ':controller(/:action(/:id))(.:format)'
 end

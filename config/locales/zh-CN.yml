@@ -14,7 +14,7 @@ zh-CN:
     password: "密码"
     password_repeat: "重复密码"
     email: "邮箱"
-    credit: "积分"
+    credits: "积分"
     id: "ID"
     post: "帖子"
     topic: "主题"

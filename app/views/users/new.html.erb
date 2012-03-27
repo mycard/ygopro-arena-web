@@ -1,33 +1,97 @@
-<%= form_for(@user) do |f| %>
+<style type="text/css">
+
+  .main_div{margin:50px auto 10px auto;padding:0;width:500px;height:340px;font-size:12px;font-family:微软雅黑;border-radius:5px;border:1px solid #eeeeee;
+            -webkit-box-shadow: #999 0px 2px 3px;-moz-box-shadow: #999 0px 2px 3px;box-shadow: #999 0px 2px 3px; color:#999999;background: #FFFFFF;
+            position:absolute;left:50%;top:50%;margin-left:-250px;margin-top:-170px;}
+  .inner_div{margin:20px 0 5px 40px; letter-spacing:1px; float:left;clear:left;}
+  body{background:#eeeeee;} .floatleft{float:left;}
+  .form_label{margin:4px 10px 0 0;padding:0;height:17px;width:65px;text-align:right;color:#666666;}
+  .from_input{border:1px solid #CCCCCC;width:220px;height:20px;padding:2px 5px;border-radius:5px;box-shadow:0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 1px 0 #FFFFFF;
+              -moz-box-shadow:0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 1px 0 #FFFFFF; -webkit-box-shadow:0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 1px 0 #FFFFFF; }
+
+  .film_bit_download{margin:0 0 0 75px;border:1px solid #6DAFE3;cursor:pointer;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);font-weight:bold;
+                     background: #8CC0E8;
+                     background: -webkit-gradient(linear, 0 0, 0 bottom, from(#8CC0E8), to(#1494E1));background: -webkit-linear-gradient(#8CC0E8, #1494E1);
+                     background: -moz-linear-gradient(#8CC0E8, #1494E1);background: -ms-linear-gradient(#8CC0E8, #1494E1);
+                     background: -o-linear-gradient(#8CC0E8, #1494E1);background: linear-gradient(#8CC0E8, #1494E1);}
+  .film_bit_download:hover{background: #58A2DA;
+                           background: -webkit-gradient(linear, 0 0, 0 bottom, from(#58A2DA), to(#147EBD));background: -webkit-linear-gradient(#58A2DA, #147EBD);
+                           background: -moz-linear-gradient(#58A2DA, #147EBD);background: -ms-linear-gradient(#58A2DA, #147EBD);
+                           background: -o-linear-gradient(#58A2DA, #147EBD);background: linear-gradient(#58A2DA, #147EBD);}
+  .film_bit_download:active{margin:1px 0 0 75px;-moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none;}
+</style>
+
+<script type="text/javascript">
+  function postOrder() {
+    var userNum = $("#username").val().length;
+    var passNum = $("#password").val().length;
+    var userVal = $("#username").val();
+    var userspecial = userVal.search(/[\$\=\ \,\<\>\[\]]/);
+    if ($("#username").val() =="" || $("#password").val() =="" ||  $("#rePassword").val() ==""){
+      alert("请填写完整");
+      return false;
+    }
+    else if(userspecial != -1){
+      alert("用户名不能包含特殊字符");
+      return false;
+    }
+    else if ( (userNum + passNum) > 18){
+      alert("用户名和密码长度总和不得超过18个字符");
+      return false;
+    }
+    else if( $("#password").val() !=  $("#rePassword").val()){
+      alert("两次密码输入不一致");
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+</script>
+
+<%= form_for(@user, :html => {:onsubmit => "return postOrder();"}) do |f| %>
   <% if @user.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" style="color:black">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label t('user.name') %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label t('user.password') %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label t('user.password_repeat') %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label t('user.email') %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="actions">
-    <%= f.submit  t('user.register') %>
+  <!--<p>用户注册说明：用户名和密码长度总和不得超过18个字符 ，用户名不得包含“$”以及“=” 号，否则无法登陆，其他无限制</p>-->
+
+  <div class="main_div">
+    <div style="font-size:18px;margin:20px 0 10px 25px;padding:0 0 10px 0;border-bottom:1px solid #eeeeee;width:450px;">用户注册</div>
+    <div class="inner_div">
+      <div class="floatleft form_label"><%= f.label t('user.name') %>：</div>
+      <div class="floatleft">
+        <%= f.text_field :name, :id => :username, :class => :from_input %>
+      </div>
+    </div>
+    <div class="inner_div">
+      <div class="floatleft form_label"><%= f.label t('user.password') %>：</div>
+      <div class="floatleft">
+        <%= f.text_field :password, :id => :password, :class => :from_input %>
+      </div>
+    </div>
+    <div class="inner_div">
+      <div class="floatleft form_label"><%= f.label t('user.password_repeat') %>：</div>
+      <div class="floatleft">
+        <%= f.text_field :password, :id => :rePassword, :class => :from_input %>
+      </div>
+    </div>
+    <div class="inner_div">
+      <div class="floatleft form_label"><%= f.label t('user.email') %>：</div>
+      <div class="floatleft">
+        <%= f.text_field :email, :id => :email, :class => :from_input %>
+      </div>
+    </div>
+    <div class="inner_div">
+      <%= f.submit t('user.register'), :class=>"film_bit_download", :style=>"width:54px;height:25px;padding:4px 14px;border:1px solid #eeeeee;border-radius:5px;color:#ffffff;" %>
+    </div>
   </div>
 <% end %>

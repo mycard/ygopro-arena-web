@@ -14,7 +14,7 @@
 <p class="channelinfo"><%= @board.notice %></p><p id="modedby">
 版主: *空缺中*</p>
 </div>
-
+<%= image_tag @board.banner %>
 
 <div class="pages_btns s_clear">
 <%= render 'entries/page', :count => @board.topics.count %>
@@ -49,7 +49,6 @@
 <td class="lastpost"><cite><a href="boarddisplay.php?fid=68&amp;filter=&amp;orderby=lastpost" class="order order_active"><%= t 'topic.post_last' %></a></cite></td>
 </tr>
 </thead>
-
 <% @topics.each do |topic| %>
 
 <tbody id="normalthread_<%= topic.id %>">
@@ -71,11 +70,11 @@
 
 <label>&nbsp;</label>
  <span id="thread_<%= topic.id %>"><%= topic %></span>
- <%= link_to(t('topic.control.delete'), control_topics_path(topic, :deleted => 1)) if @corrent_user.role.topic_delete %>
- <%= link_to(t('topic.control.digest'), control_topics_path(topic, :digest => 1)) if @corrent_user.role.topic_digest > 0 %>
- <%= link_to(t('topic.control.displayorder'), control_topics_path(topic, :displayorder => 1)) if @corrent_user.role.topic_displayorder > 0 %>
- <%= link_to(t('topic.control.lock'), control_topics_path(topic, :locked => 1)) if @corrent_user.role.topic_lock %>
- <%= link_to(t('topic.control.highlight'), control_topics_path(topic, :highlight => 0xFF0000)) if @corrent_user.role.topic_highlight %>
+ <%= link_to(t('topic.control.delete'), control_topics_path(topic, :deleted => 1)) if @current_user.role.topic_delete %>
+ <%= link_to(t('topic.control.digest'), control_topics_path(topic, :digest => 1)) if @current_user.role.topic_digest > 0 %>
+ <%= link_to(t('topic.control.displayorder'), control_topics_path(topic, :displayorder => 1)) if @current_user.role.topic_displayorder > 0 %>
+ <%= link_to(t('topic.control.lock'), control_topics_path(topic, :locked => 1)) if @current_user.role.topic_lock %>
+ <%= link_to(t('topic.control.highlight'), control_topics_path(topic, :highlight => 0xFF0000)) if @current_user.role.topic_highlight %>
  
 </th>
 <td class="author">
@@ -92,7 +91,8 @@
 </td>
 </tr>
 </tbody>
-<% end %></table>
+<% end %>
+</table>
 
 </form>
 </div>
@@ -100,11 +100,11 @@
 <%= render 'entries/page', :count => @board.topics.count %>
 <span id="visitedboards" onmouseover="$('visitedboards').id = 'visitedboardstmp';this.id = 'visitedboards';showMenu({'ctrlid':this.id})" class="pageback"><a href="index.php">返回首页</a></span>
 <span class="postbtn" id="newspecialtmp" ><%= link_to t('topic.new'), new_topic_path(:board_id => @board.id) %></span>
-
+<%= will_paginate @topics %>
 </div>
 <p id="notice"><%= notice %></p>
 
-<%# fast newtopic %>
+<!--快速发帖-->
 
 <%= form_tag :controller => :topics do %>
   <p>

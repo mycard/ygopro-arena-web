@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> <%= @site.name %><% if @actions && !@actions.empty? %>  - <%= @actions.last.respond_to?(:name) ? @actions.last.name : @actions.last %> <% end %> </title>
+    <%= stylesheet_link_tag    'application' %>    
+    <%= stylesheet_link_tag    params[:controller] %>
+    <%= javascript_include_tag 'application' %>    
+    <%= javascript_include_tag params[:controller] %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/header' %>
+  </head>
+  <body>
+    <%= render 'layouts/top' %>
+    <div id="body">
+      <%= yield %>
+    </div>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

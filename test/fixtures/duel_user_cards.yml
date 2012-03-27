@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  duel: 
+  user: 
+  card: 
+  main: false
+
+two:
+  duel: 
+  user: 
+  card: 
+  main: false

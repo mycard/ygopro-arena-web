@@ -1,6 +1,6 @@
 <div id="welcome">
   <% if logged? %>
-    <%=t 'forum.welcom' %> <%= @corrent_user %> ,  <%= link_to t('forum.mypost'), @corrent_user %> <%= link_to t('forum.newpost'), @corrent_user %>
+    <%=t 'forum.welcom' %> <%= @current_user %> ,  <%= link_to t('forum.mypost'), @current_user %> <%= link_to t('forum.newpost'), @current_user %>
   <% else %>  
     你可以<%= link_to t('user.register'), new_user_path %>一个帐号，并以此<%= link_to t('user.login'), login_user_path %> ，以浏览更多精彩内容，并随时发布观点，与大家交流。
   <% end %>

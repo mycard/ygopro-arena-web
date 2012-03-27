@@ -3,7 +3,7 @@ class PmsController < ApplicationController
   # GET /pms.xml
   def index
     @actions = [:pm]
-    @pms = Pm.find_all_by_to_user_id @corrent_user.id
+    @pms = Pm.find_all_by_to_user_id @current_user.id
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,10 +15,10 @@ class PmsController < ApplicationController
   # GET /pms/1.xml
   def show
     @pm = Pm.find(params[:id])
-    if @pm.from_user != @corrent_user && @pm.to_user != @corrent_user
+    if @pm.from_user != @current_user && @pm.to_user != @current_user
       return render :text => "pm unexisted"
     end
-    #@pms = PM.find(:all, ["from_user_id =? or to_user_id =?", @corrent_user.id])
+    #@pms = PM.find(:all, ["from_user_id =? or to_user_id =?", @current_user.id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -48,7 +48,7 @@ class PmsController < ApplicationController
   def create
     params[:pm][:to_user] = User.find_by_name params[:pm][:to_user][:name]
     @pm = Pm.new(params[:pm])
-    @pm.from_user = @corrent_user
+    @pm.from_user = @current_user
     respond_to do |format|
       if @pm.save
         format.html { redirect_to(@pm, :notice => 'Pm was successfully created.') }

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> <%= @site.name %><% if @actions && !@actions.empty? %>  - <%= @actions.last.respond_to?(:name) ? @actions.last.name : @actions.last %> <% end %> </title>
+<%#= stylesheet_link_tag    'application' %>
+    <%= stylesheet_link_tag    'ygo' %>
+    <%= stylesheet_link_tag    params[:controller] %>
+    <%= javascript_include_tag 'application' %>    
+    <%= javascript_include_tag 'ygo' %>
+    <%= javascript_include_tag params[:controller] %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="body">
+      <%= yield %>
+    </div>
+    <div style="clear:both"/>
+    <div style="line-height:50px; padding-top:20px; padding-bottom:10px; font-size:12px; color:#0099FF" align="center" >YGO DULE BATTLENET</div>
+  </body>
+</html>

@@ -1,33 +1,19 @@
-<h1>Listing users</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Password</th>
-    <th>Email</th>
-    <th>Credit</th>
-    <th>Usergroup</th>
-    <th>Admingroup</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.name %></td>
-    <td><%= user.password %></td>
-    <td><%= user.email %></td>
-    <td><%= user.credit %></td>
-    <td><%= user.usergroup %></td>
-    <td><%= user.admingroup %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New User', new_user_path %>
+<div align="center" style="padding-top:130px;">
+  <div align="right" style="width:600px; font-size:50px; padding-bottom:20px; color:#ffffff">TOP10</div>
+  <div style="width:600px; display:none; " id="mian1" class="main1" >
+    <div style="line-height:25px; background-color:#1c1b1b; height:25px; color:#d6edff; font-weight:bold; ">
+      <div style='width:90px; float:left;'><em>名次</em></div>
+      <div style='width:200px; float:left;'><em>决斗者</em></div>
+      <div style='width:100px; float:left;' align='center'><em>积分</em></div>
+      <div style='width:100px; float:left;' align='center'><em>胜率/胜/负</em></div>
+      <div style='width:100px; float:left;' align='center'><em>得分纪录</em></div>
+    </div>
+    <% top_users = User.order(:credits).reverse_order.limit(10) %>
+    <% top_users.each_with_index do |user, index| %>
+      <%= render :partial => "record", :locals => { :user => user, :index => index } %>
+    <% end %>
+    <% if logged? && !top_users.include?(@current_user) %>
+      <%= render :partial => "record", :locals => { :user => @current_user, :index => User.where("credits>?", @current_user.credits).count } %>
+    <% end %>
+  </div>
+</div>

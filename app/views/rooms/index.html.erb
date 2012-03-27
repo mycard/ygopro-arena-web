@@ -1,0 +1,67 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js "></script>
+<script type="text/javascript">
+  if(window.navigator&&window.navigator.registerProtocolHandler){
+    window.navigator.registerProtocolHandler('web+mycard',"http://localhost:3000/calendar/render?cid\x3d%s","test");
+  }
+</script>
+<script>
+  var baseUrl = '/rooms.json';
+  function load_rooms(){
+    $.getJSON(baseUrl, function(data) {
+      var rooms = '';
+      var users = '当前在线</br>';
+      var roomcount = 0;
+      $.each(data, function(key, room) {
+        rooms += '<div class="room"><div style="float:left;position:absolute;margin-left:8px;font-size:16px;'
+        if(room.status == 'wait'){
+          rooms += 'color:#33CCFF;">等待中';
+        }else{
+          rooms += ';">决斗中';
+        }
+        rooms += '</div><a class="roomname">' + room.name + '</a>';
+        if(room.users[0]){
+          rooms += '<a class="playername">' + room.users[0].name + '</a>';
+        }
+        if(room.users[1]){
+          rooms += '<a class="playername">' + room.users[1].name + '</a>';
+        }
+        for(i in room.users){
+          user = room.users[i];
+          users += '<a class="online">' + user.name + '</a>';
+        }
+        rooms += '</div>';
+        roomcount++;
+      })
+      $('#roombox').html(rooms);
+      $('#online').html(users);
+      $('#roomcount').html(roomcount);
+    });
+  };
+  load_rooms();
+  setInterval((load_rooms), 5000);
+</script>
+<style>
+  #roombox {position: relative;}
+</style>
+<div id="mainbody">
+  <div class="main" style="height:900px;">
+    <div id="announcement">公告：系统测试中 出现bug请淡定</div>
+    <div id="roombox">
+      <div id="rooms">正在读取房间列表...</div>
+    </div>
+    <div id="bar">
+      <div id="info">
+        当前房间数量</br><a style="font-size:25px" id="roomcount">0</a>/150
+      </div>
+      </br>
+      <div id="online">
+        当前在线</br>
+      </div>
+    </div>
+  </div>
+</div>
+<FOOTER>
+  <div class="main">
+    By Losses Territory Studio & Mycard Team.</br>Apache 2.0 License.
+  </div>
+</FOOTER>

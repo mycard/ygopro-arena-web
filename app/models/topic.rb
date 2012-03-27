@@ -3,8 +3,13 @@ class Topic < ActiveRecord::Base
   #belongs_to :type
   belongs_to :board, :foreign_key => :category_id
   has_many :posts
-  default_scope where(:deleted => false)
+  default_scope where(:deleted => false).order(:id).reverse_order
+  self.per_page = 20
+  
   alias category board
+  def user
+    super || User::Guest
+  end
   def to_s
     result = name
     if color?

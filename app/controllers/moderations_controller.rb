@@ -41,7 +41,7 @@ class ModerationsController < ApplicationController
   # POST /moderations.xml
   def create
     @moderation = Moderation.new(params[:moderation])
-    @moderation.user = @corrent_user
+    @moderation.user = @current_user
     case params[:moderation][:assocation_type]
     when "topic"
       #@moderation.association_ = Topic.find params[:moderation][:assocation_id]

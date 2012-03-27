@@ -50,7 +50,7 @@ class TopicsController < ApplicationController
     @posts = Post.find_all_by_topic_id(params[:id], :offset => 10*@page-10, :limit => 10, :order => :displayorder)
 
     @topic.update_attribute(:viewnum, @topic.viewnum + 1)
-    @corrent_user.update_attribute(:viewnum, @corrent_user.viewnum + 1)
+    @current_user.update_attribute(:viewnum, @current_user.viewnum + 1)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => params[:page] && !params[:page].empty? ? @posts : @topic }
@@ -84,13 +84,13 @@ class TopicsController < ApplicationController
 	#TODO: 验证category_id有效性
     @topic = Topic.new(params[:topic])
     #@topic.category_id = Board.find(params[:topic][:category_id])
-    @topic.user = @corrent_user
+    @topic.user = @current_user
     @topic.displayorder = 0
     
     @post = Post.new(params[:post])
     @post.displayorder = 1
     @post.topic = @topic
-    @post.user = @corrent_user
+    @post.user = @current_user
 
     respond_to do |format|
       if @topic.save && @post.save

@@ -1,0 +1,99 @@
+<div id="post_<%= post.id %>"><table id="post_<%= post.id %>" summary="post_<%= post.id %>" cellspacing="0" cellpadding="0">
+    <tbody><tr>
+        <td class="postauthor" rowspan="2">
+          <div class="postinfo" style="margin-left: 20px; font-weight: 800">
+            <%= post.user %>
+          </div>
+          <div>
+            <div class="avatar" onmouseover="showauthor(this, 'userinfo751931')"><%= post.user.avatar %></div>
+            <p><%= post.user.role %></p>
+            <p><em><%= post.user.nickname %></em></p>
+
+          </div>
+          <p><%= image_tag 'common/star_level2.gif', :alt => 'Rank:2' %></p>
+          <dl class="profile s_clear">
+            <dt><%=t 'user.post' %></dt><dd><%= post.user.posts.count %></dd>
+            <dt><%=t 'user.topic' %></dt><dd><%= post.user.topics.count %></dd>
+            <dt><%=t 'user.digest' %></dt><dd><%= post.user.topics.where(:digest => true).count %></dd>
+            <dt><%=t 'user.credits' %></dt><dd><%= post.user.credits %></dd>
+          </dl>
+          <!--<p><a href="magic.php?action=mybox&amp;operation=use&amp;type=1&amp;pid=751931&amp;magicid=7" onclick="showWindow('magics', this.href);doane(event);"><img src="images/magics/rtk_s.gif" title="对博丽开水使用狗仔卡"></a></p>-->
+          <hr class="shadowline">
+          <p>
+            管理此人<br>
+            <a href="topicadmin.php?action=getip&amp;fid=2&amp;tid=29727&amp;pid=751931" onclick="ajaxmenu(this, 0, 1, 2);doane(event)" title="查看 IP" class="lightlink">IP</a>&nbsp;
+            <a href="admincp.php?action=members&amp;username=%B2%A9%C0%F6%BF%AA%CB%AE&amp;submit=yes&amp;frames=yes" target="_blank" class="lightlink">编辑</a>&nbsp;
+            <a href="admincp.php?action=members&amp;operation=ban&amp;username=%B2%A9%C0%F6%BF%AA%CB%AE&amp;frames=yes" target="_blank" class="lightlink">禁止</a>&nbsp;
+            <a href="modcp.php?action=threads&amp;op=posts&amp;do=search&amp;searchsubmit=1&amp;users=%B2%A9%C0%F6%BF%AA%CB%AE" target="_blank" class="lightlink">帖子</a>
+          </p>
+        </td>
+        <td class="postcontent">
+          <div class="postinfo">
+            <strong><a title="复制本帖链接" id="postnum751931" href="javascript:;" onclick="setCopy('http://www.touhou.cc/bbs/redirect.php?goto=findpost&amp;ptid=29727&amp;pid=751931&amp;fromuid=359', '帖子地址已经复制到剪贴板')"><em><%= post.displayorder %></em><sup>#</sup></a>
+            </strong>
+            <div class="posterinfo">
+              <div class="pagecontrol">
+              </div>
+              <div class="authorinfo">
+                <%= link_to image_tag('common/online_member.gif', :class => :authicon, :id => 'authicon751931'), post.user %>
+
+                <em id="authorposton751931"><%=l post.created_at, :format => :short %> </em>
+                | <a href="viewthread.php?tid=29727&amp;page=1&amp;authorid=14806" rel="nofollow">只看该作者</a>
+              </div>
+            </div>
+          </div>
+          <div class="defaultpost">
+            <div id="ad_thread2_1"></div><div id="ad_thread3_1"></div><div id="ad_thread4_1"></div>
+            <div class="postmessage ">
+              <!--<div id="threadtitle">
+                <h1>蕾蒂+毒人 怎么破</h1>
+              </div>-->
+
+              <div class="t_msgfontfix">
+                <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_msgfont" id="postmessage_751931"><%= bbcodeize post.content  %> </td></tr></tbody></table>
+              </div>
+
+              <div id="post_rate_div_751931"></div>
+            </div>
+
+          </div>
+        </td></tr>
+      <tr><td class="postcontent postbottom">
+          <% unless post.user.signature.blank? %>
+            <div class="signatures" style="max-height:300px;maxHeightIE:300px;">
+              <%=  post.user.signature %>
+            </div>
+          <% end %>
+          <div id="ad_thread1_1"></div></td>
+      </tr>
+      <tr>
+        <td class="postauthor"></td>
+        <td class="postcontent">
+          <div class="postactions">
+            <span class="right">
+              <label for="manage751931">
+                <input type="checkbox" id="manage751931" onclick="pidchecked(this);modclick(this, 751931)" value="751931">
+                管理
+              </label>
+            </span>
+            <div class="postact s_clear">
+              <em>
+                <%= link_to t('topic.reply'), new_post_path(:topic_id => @topic.id), :class => :fastreply %>
+                <%= link_to t('topic.quote'), new_post_path(:topic_id => @topic.id), :class => :fastreply %>
+                <%= link_to t('post.edit'), edit_post_path(post), :class => :editpost %>
+              </em>
+              <p>
+                <a href="misc.php?action=rate&amp;tid=29727&amp;pid=751931" onclick="showWindow('rate', this.href);return false;">评分</a>
+                <a href="javascript:;" onclick="scrollTo(0,0);">TOP</a>
+              </p>
+            </div>
+          </div>
+
+        </td>
+      </tr>
+      <tr class="threadad">
+        <td class="postauthor"></td>
+        <td class="adcontent">
+        </td>
+      </tr>
+    </tbody></table></div>

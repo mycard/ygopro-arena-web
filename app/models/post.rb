@@ -2,6 +2,9 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
   has_many :comments
+  def user
+    super || User::Guest
+  end
   def self.today
     Post.where(['created_at > ?',  Date.today ])
   end

@@ -1,0 +1,77 @@
+<%= form_for(@card) do |f| %>
+  <% if @card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+      <ul>
+      <% @card.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.number_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :card_type %><br />
+    <%= f.text_field :card_type %>
+  </div>
+  <div class="field">
+    <%= f.label :monster_type %><br />
+    <%= f.text_field :monster_type %>
+  </div>
+  <div class="field">
+    <%= f.label :monster_atk %><br />
+    <%= f.number_field :monster_atk %>
+  </div>
+  <div class="field">
+    <%= f.label :monster_def %><br />
+    <%= f.number_field :monster_def %>
+  </div>
+  <div class="field">
+    <%= f.label :monster_attribute %><br />
+    <%= f.text_field :monster_attribute %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :monster_level %><br />
+    <%= f.number_field :monster_level %>
+  </div>
+  <div class="field">
+    <%= f.label :lore %><br />
+    <%= f.text_area :lore %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :stats %><br />
+    <%= f.text_field :stats %>
+  </div>
+  <div class="field">
+    <%= f.label :archetypes %><br />
+    <%= f.text_field :archetypes %>
+  </div>
+  <div class="field">
+    <%= f.label :mediums %><br />
+    <%= f.text_field :mediums %>
+  </div>
+  <div class="field">
+    <%= f.label :tokens %><br />
+    <%= f.number_field :tokens %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

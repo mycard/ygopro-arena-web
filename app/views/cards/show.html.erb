@@ -1,0 +1,75 @@
+<%= image_tag(@card.image) %>
+
+<%= @card.name %>
+
+<p>
+  <b>编号:</b>
+  <%= @card.number %>
+</p>
+
+<p>
+  <b>卡类:</b>
+  <%= @card.card_type %>
+</p>
+<% if @card.monster?  %>
+  <% if !@card.monster_type.blank?  %>
+    <p>
+      <b>Monster type:</b>
+      <%= @card.monster_type %>
+    </p>
+  <% end %>
+  <p>
+    <b>攻击力:</b>
+    <%= @card.monster_atk %>
+  </p>
+
+  <p>
+    <b>守备力:</b>
+    <%= @card.monster_def %>
+  </p>
+
+  <p>
+    <b>属性:</b>
+    <%= @card.monster_attribute %>
+  </p>
+
+  <p>
+    <b>种族:</b>
+    <%= @card.type %>
+  </p>
+
+  <p>
+    <b><% if @card.card_type == :超量怪兽 %>阶级<% else %>星级<% end %> :</b>
+    <%= @card.monster_level %>
+  </p>
+  
+<% end %>
+<p>
+  <b>效果:</b>
+  <%= @card.lore %>
+</p>
+
+<!--<p>
+  <b>Status:</b>
+  <%= @card.status %>
+</p>
+
+<p>
+  <b>Stats:</b>
+  <%= @card.stats %>
+</p>
+
+<p>
+  <b>Archetypes:</b>
+  <%= @card.archetypes %>
+</p>
+
+<p>
+  <b>Mediums:</b>
+  <%= @card.mediums %>
+</p>
+
+<p>
+  <b>Tokens:</b>
+  <%= @card.tokens %>
+</p>-->

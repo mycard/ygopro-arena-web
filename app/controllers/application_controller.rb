@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  Themes_Dir = 'app/themes'
+  Themes_Dir = File.expand_path 'app/themes', Rails.root
   protect_from_forgery
   before_filter :load_settings
   before_filter :load_user
@@ -12,34 +12,34 @@ class ApplicationController < ActionController::Base
   end
   def load_user
     if session[:user_id]
-      @corrent_user = User.find session[:user_id]
+      @current_user = User.find_by_id session[:user_id]
     end
-    unless @corrent_user
-      @corrent_user = User::Guest
+    unless @current_user
+      @current_user = User::Guest
     end
   end
   def load_locale
-  	locale = @corrent_user.locale || (
-  		request_language = 
-        request_language && request_language['HTTP_ACCEPT_LANGUAGE'][/[^,;]+/]
-    )
-    I18n.locale = locale if File.exist?("#{::Rails.root}/config/locales/#{request_language}.yml") 
+  	#locale = @current_user.locale || (
+  	#	request_language = 
+    #    request_language && request_language['HTTP_ACCEPT_LANGUAGE'][/[^,;]+/]
+    #)
+    I18n.locale = 'zh-CN'#locale if File.exist?("#{::Rails.root}/config/locales/#{request_language}.yml") 
     User::Guest.name = t 'user.guest'
-    #IE && FF are BANNED
+    #IE && FF are not support
   end 
   def load_theme
     case #TODO: DRY
     when @site[:themes].has_key?(cookies[:theme])
       prepend_view_path File.join Themes_Dir, cookies[:theme]
-    when @site[:themes].has_key?(@corrent_user.theme)
-      prepend_view_path File.join Themes_Dir, @corrent_user.theme
+    when @site[:themes].has_key?(@current_user.theme)
+      prepend_view_path File.join Themes_Dir, @current_user.theme
     when @site[:themes].has_key?(@site.theme)
       prepend_view_path File.join Themes_Dir, @site.theme
     end
   end
   def load_settings
   	@site = {
-  		:name => "Reliz", 
+  		:name => "Mycard", 
   		:theme => nil,
   	}
   	def @site.method_missing(method, *args)
@@ -50,6 +50,7 @@ class ApplicationController < ActionController::Base
     end
     #cache
     @site[:themes] = {'default' => {}}
+    
     Dir.foreach(Themes_Dir) do |file|
       theme_config_file = File.join Themes_Dir, file, "theme.yml"
       if File.file? theme_config_file
