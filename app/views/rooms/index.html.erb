@@ -1,9 +1,4 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js "></script>
-<script type="text/javascript">
-  if(window.navigator&&window.navigator.registerProtocolHandler){
-    window.navigator.registerProtocolHandler('web+mycard',"http://localhost:3000/calendar/render?cid\x3d%s","test");
-  }
-</script>
 <script>
   var baseUrl = '/rooms.json';
   function load_rooms(){
