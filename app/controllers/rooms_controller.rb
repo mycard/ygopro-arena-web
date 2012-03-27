@@ -1,6 +1,6 @@
 #encoding: UTF-8
 class RoomsController < ApplicationController
-  User_Filter = /\[(\d+),(.+?),(-1|0)\]/
+  User_Filter = /\[(\d+),(.+?)(?:,(-1|0)|)\]/
   Room_Filter = /\[(\d+),(.+?),(wait|start)(#{User_Filter}+?)\]/
   require 'open-uri'
   layout 'losses'
@@ -16,11 +16,16 @@ class RoomsController < ApplicationController
             room = {id: id.to_i, name: name, status: status}
             room[:users] = []
             users.scan(User_Filter) do |player, name, certified|
-              if certified=="-1"
+              certified = if certified.nil?
+                name[-5,5] != "(未认证)"
+              else
+                certified == "-1"
+              end
+              if certified
                 user = User.find_by_name(name)
                 user = {player: player.to_i, id: user ? user.id : 0, name: name, certified: true}
               else
-                user = {player: player.to_i, id: 0, name: name, certified: certified=="-1"}
+                user = {player: player.to_i, id: 0, name: name, certified: false}
               end
               room[:users] << user
             end
