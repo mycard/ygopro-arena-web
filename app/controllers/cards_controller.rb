@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class CardsController < ApplicationController
   layout 'ygo'
   # GET /cards
