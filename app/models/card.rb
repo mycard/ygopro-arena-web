@@ -40,4 +40,7 @@ class Card < ActiveRecord::Base
   def extra?
     [:融合怪兽, :同调怪兽, :超量怪兽].include? card_type 
   end
+  def to_s
+    name
+  end
 end

@@ -7,10 +7,10 @@ class DuelsController < ApplicationController
     if params[:user_id]
       @user = User.find params[:user_id] 
       @duels = @user.duels
-      @actions = ["YGO战网", @user, '对战列表']
+      @actions = [{"YGO战网" => users_path}, @user, '对战列表']
     else
       @duels = Duel.where(true)
-      @actions = ["YGO战网", '对战列表']
+      @actions = [{"YGO战网" => users_path}, '对战列表']
     end
     @duels = @duels.reverse_order.page(params[:page])
     respond_to do |format|
@@ -23,7 +23,7 @@ class DuelsController < ApplicationController
   # GET /duels/1.json
   def show
     @duel = Duel.find(params[:id])
-    @actions = ["YGO战网", '对战列表', @duel]
+    @actions = [{"YGO战网" => users_path}, {'对战列表' => duels_path}, @duel]
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @duel }

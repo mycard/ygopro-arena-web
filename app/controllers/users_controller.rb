@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     @users = User.all
-    @actions = ["YGO战网", "用户排行"]
+    @actions = [{"YGO战网" => users_path}, "用户排行"]
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-    @actions = ["YGO战网", @user]
+    @actions = [{"YGO战网" => users_path}, @user]
     respond_to do |format|
       format.html # show.html.erb
       #format.xml  { render :xml => @user }

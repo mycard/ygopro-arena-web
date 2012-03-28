@@ -1,4 +1,7 @@
 <%= @site %>
 <% @actions.each do |action| %>
-  &raquo; <span class="action"><%= action %></span>
+  &raquo; 
+  <span class="action">
+    <%= action.is_a?(Hash) ? link_to(action.keys[0], action.values[0]) : action %>
+  </span>
 <% end %>

@@ -6,10 +6,10 @@ class CardsController < ApplicationController
     if params[:user_id]
       @user = User.find params[:user_id]
       @cards = @user.cards
-      @actions = ["YGO战网", @user, "常用卡片"]
+      @actions = [{"YGO战网" => users_path}, @user, "常用卡片"]
     else
       @cards = Card.joins(:duel_user_cards)
-      @actions = ["YGO战网", "卡片排行"]
+      @actions = [{"YGO战网" => users_path}, "卡片排行"]
     end
 
     respond_to do |format|
@@ -22,7 +22,7 @@ class CardsController < ApplicationController
   # GET /cards/1.json
   def show
     @card = Card.find(params[:id])
-
+    @actions = [{"YGO战网" => users_path}, {"YGO战网" => cards_path}, @card]
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @card }
