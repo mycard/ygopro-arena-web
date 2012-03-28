@@ -7,53 +7,56 @@
     padding-top:10px;
     padding-buttom:10px;
     width:600px;
+    text-align: center;
   }
-</style>
-<div align="center" style="padding-top:150px; cursor:pointer;">
-  <div align="right" style="width:600px; font-size:30px; padding-bottom:20px; color:#ffcc66"><%= @user.name %> </div>  
-  <div style="width:750px; font-size:14px; padding-bottom:10px; line-height:40px; color:#ffcc66" align="left" ><a href="#" style=" color:#ffcc66">YGO战网</a>　>>　<%= link_to @user.name, @user, :style=>"color:#ffcc66" %>　>>　<a href="" style=" color:#ffcc66">对战列表</a></div>
-  <div style="width:600px; display:none; " id="mian1" class="main1" >
-    <div style="line-height:25px; background-color:#1c1b1b; height:25px; color:#d6edff; font-weight:bold; ">
-      <div style='width:50px; float:left;'><em>场次</em></div>
-      <div style='width:200px; float:left;'><em>对手</em></div>
-      <div style='width:100px; float:left;' align='center'><em>胜负</em></div>
-      <div style='width:100px; float:left;' align='center'><em>得分</em></div>
-      <!--<div style='width:100px; float:left;' align='center'><em>战斗终分</em></div>-->
-    </div>
-<!--这里的效率很低，待优化-->
-    <% first_index = @user.duels.where("id<=?",@duels.to_enum.first.id).count %>
-    <%# final_credits = Duels.where("id<=?",@duels.to_enum.first.id).sum %>
-    <% @duels.each_with_index do |duel, index| %>
-      <div style='clear:both;'></div>
-      <div style='line-height:25px; padding-top:3px; font-weight:bold; ' align='center'>
 
-        <!--场次-->
-        <div style='width:50px; float:left; color:white '  >
-          <%= link_to (first_index - index), duel, :style=>"color:white" %> 
-        </div>
-        <!--对手-->
-        <div style='width:200px; float:left; '  align='left'>
-          <% opponent = duel.user1 == @user ? duel.user2 : duel.user1 %>
-          <%= link_to opponent.name, opponent, :style => 'color:#ffe793; text-decoration:none' %>
-        </div>
-        <!--胜负-->
-        <div style='width:100px; float:left; color:<% if duel.winner == @user %>#58db3e<% else %>red<% end %>'>
-          <%= duel.winner == @user ? "WIN" : "LOSE" %>
-        </div>
-        <!--得分-->
-        <div style='width:100px; float:left; color:<% if duel.winner == @user %>#58db3e<% else %>red<% end %>'>
-          <%= duel.user1 == @user ? duel.user1_credits : duel.user2_credits %>
-        </div>
-        <!--战斗终分-->
-        <!--<div style='width:100px; float:left; color:<% if index.zero? %>red<% else %>#d6edff<% end %>; '>
-  <%#= final_credits %>
-  <%# final_credits -= duel.user1 == @user ? duel.user1_credits : duel.user2_credits %>
-        </div>-->
-      </div>
+  #duels{width: 600px;text-align: center}
+  #duels thead {line-height:25px; background-color:#1c1b1b; height:25px; color:#d6edff; font-weight:bold; }
+  #duels tbody {line-height:25px; padding-top:3px; font-weight:bold;}
+  #duels .index {color:white}
+  #duels .win {color:#58db3e}
+  #duels .lose {color:red}
+  #duels .current {color:red}
+</style>
+<table id="duels">
+  <thead>
+    <tr>
+      <% if @user %>
+        <th>场次</th>
+        <th>对手</th>
+        <th>胜负</th>
+        <th>得分</th>
+      <% else %>
+        <th>场次</th>
+        <th>玩家1</th>
+        <th>玩家2</th>
+        <th>玩家1得分</th>
+        <th>玩家2得分</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr><td colspan="7"><%= will_paginate @duels %></td></tr>
+  </tfoot>
+  <tbody>
+    <% first_index = @user.duels.where("id<=?",@duels.to_enum.first.id).count if @user %><!--这里的效率很低，待优化-->
+    <% @duels.each_with_index do |duel, index| %>
+      <tr>
+        <% if @user %>
+          <td class="index"><%= link_to (first_index - index), duel %></td>
+          <td class="user opponent"><% opponent = duel.user1 == @user ? duel.user2 : duel.user1 %><%= link_to opponent.name, opponent %></td>
+          <td class="result <%= duel.winner == @user ? "win" : "lose" %>"><%= duel.winner == @user ? "WIN" : "LOSE" %></td>
+          <td class="credits <%= duel.winner == @user ? "win" : "lose" %>"><%= duel.user1 == @user ? duel.user1_credits : duel.user2_credits %></td>
+        <% else %>
+          <td class="index"><%= link_to duel.id, duel %></td>
+          <td class="user user1"><%= link_to duel.user1.name, duel.user1 %></td>
+          <td class="user user2"><%= link_to duel.user2.name, duel.user2 %></td>
+          <td class="credits user1 <%= duel.winner == duel.user1 ? "win" : "lose" %>"><%= duel.user1_credits %></td>
+          <td class="credits user2 <%= duel.winner == duel.user2 ? "win" : "lose" %>"><%= duel.user2_credits %></td>
+        <% end %>
+      </tr>
     <% end %>
-  </div>
-</div>
-<div style="clear:both"/>
-<div align="center">
-  <%= will_paginate @duels %>
-</div>
+  </tbody>
+</table>
+
+

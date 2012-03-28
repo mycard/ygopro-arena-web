@@ -1,3 +1,4 @@
+<div id="replay">录像下载</div>
 <style type="text/css">
   <!--
 
@@ -36,84 +37,76 @@
     }
   }
 </script>
-<div style="padding-top:150px; " align="center">
-  <div style="width:600px; font-size:30px; padding-bottom:10px; color:#ffcc66;font-weight: bold;" align="right">DUEL INFO </div>
-
-  <div style="width:750px; font-size:14px; padding-bottom:10px; line-height:40px; color:#ffcc66" align="left" ><a href="#" style=" color:#ffcc66">YGO战网</a>　>>　<a href="#" style=" color:#ffcc66">对战列表</a>　>>　<%=l @duel.created_at %>  <span class="STYLE2"><a href="#" style=" color:#33CCFF">录像下载</a></span></div>
-
-  <div style="color: white; width:750px;" align="left">
-    <div class="user_act" id="user1" onClick="show(1)">
-      <%= @duel.user1.name %> 
-      <% if @duel.winner == @duel.user1 %>
-        <span class="STYLE3">WINNER</span>
-      <% else %>
-        <span class="STYLE4">LOSER</span>
+<div style="color: white; width:750px;" align="left">
+  <div class="user_act" id="user1" onClick="show(1)">
+    <%= @duel.user1.name %> 
+    <% if @duel.winner == @duel.user1 %>
+      <span class="STYLE3">WINNER</span>
+    <% else %>
+      <span class="STYLE4">LOSER</span>
+    <% end %>
+    <span class="STYLE2"><% if @duel.user1_public or @current_user == @duel.user1 %><%= link_to image_tag('deck_download.png', :border=>false, :style => 'float:right;padding:12px 12px 0 0'), "/duels/#{@duel.id}/user1_deck.ydk" %><% end %> </span>
+    <% if @current_user == @duel.user1 %>
+      <%= form_for(@duel, :html => {:style => "display:inline"}) do |f| %>
+        <span style="font-size:12px;color:white;float:right;padding-right:24px">公开卡组<%= f.check_box :user1_public, :onclick=>"submit()" %></span>
       <% end %>
-      <span class="STYLE2"><% if @duel.user1_public or @current_user == @duel.user1 %><%= link_to image_tag('deck_download.png', :border=>false, :style => 'float:right;padding:12px 12px 0 0'), "/duels/#{@duel.id}/user1_deck.ydk" %><% end %> </span>
-      <% if @current_user == @duel.user1 %>
-        <%= form_for(@duel, :html => {:style => "display:inline"}) do |f| %>
-          <span style="font-size:12px;color:white;float:right;padding-right:24px">公开卡组<%= f.check_box :user1_public, :onclick=>"submit()" %></span>
-        <% end %>
-      <% end %>  
-    </div>
-    <div class="user" id="user2" onClick="show(2)" > 
-      <%= @duel.user2.name %> 
-      <% if @duel.winner == @duel.user2 %>
-        <span class="STYLE3">WINNER</span>
-      <% else %>
-        <span class="STYLE4">LOSER</span>
+    <% end %>  
+  </div>
+  <div class="user" id="user2" onClick="show(2)" > 
+    <%= @duel.user2.name %> 
+    <% if @duel.winner == @duel.user2 %>
+      <span class="STYLE3">WINNER</span>
+    <% else %>
+      <span class="STYLE4">LOSER</span>
+    <% end %>
+    <% if @duel.user2_public or @current_user == @duel.user2 %><%= link_to image_tag('deck_download.png', :border=>false, :style => 'float:right;padding:12px 12px 0 0'), "/duels/#{@duel.id}/user2_deck.ydk" %><% end %>
+    <% if @current_user == @duel.user2 %>
+      <%= form_for(@duel, :html => {:style => "display:inline"}) do |f| %>
+        <%= f.check_box :user2_public, :onclick=>"submit()" %> <span style="font-size:12px;color:white">公开卡组</span>
       <% end %>
-      <% if @duel.user2_public or @current_user == @duel.user2 %><%= link_to image_tag('deck_download.png', :border=>false, :style => 'float:right;padding:12px 12px 0 0'), "/duels/#{@duel.id}/user2_deck.ydk" %><% end %>
-      <% if @current_user == @duel.user2 %>
-        <%= form_for(@duel, :html => {:style => "display:inline"}) do |f| %>
-          <%= f.check_box :user2_public, :onclick=>"submit()" %> <span style="font-size:12px;color:white">公开卡组</span>
-        <% end %>
-      <% end %>  
-    </div>
-    <div style="clear:both"/>
-    <div id="cards1">
-      <% if @duel.user1_public or @current_user == @duel.user1 %>
-        <p><b>主卡组:</b> </p>
-        <% @duel.user1_main.each do |card| %>
-          <div class="card">
-            <%= link_to image_tag(card.image, :title => card.name), card %>
-          </div>
-        <% end %>
-
-        <div style="clear:both"/>
-        <p><b>额外:</b> </p>
-        <% @duel.user1_extra.each do |card| %>
-          <div class="card">
-            <%= link_to image_tag(card.image, :title => card.name), card %>
-          </div>
-        <% end %>
-      <% else %>
-        卡组未公开
-      <% end %>
-    </div>
+    <% end %>  
   </div>
   <div style="clear:both"/>
-  <div style="color: white; width:700px; " align="left">
-    <div id="cards2">
-      <% if @duel.user2_public or @current_user == @duel.user2 %>
-        <p><b>主卡组:</b> </p>
-        <% @duel.user2_main.each do |card| %>
-          <div class="card">
-            <%= link_to image_tag(card.image, :title => card.name, :width => 54, :height => 81), card %>
-          </div>
-        <% end %>
-        <div style="clear:both"/>
-        <p><b>额外:</b> </p>
-        <% @duel.user2_extra.each do |card| %>
-          <div class="card">
-            <%= link_to image_tag(card.image, :title => card.name, :width => 54, :height => 81), card %>
-          </div>
-        <% end %>
-      <% else %>
-        卡组未公开
+  <div id="cards1">
+    <% if @duel.user1_public or @current_user == @duel.user1 %>
+      <p><b>主卡组:</b> </p>
+      <% @duel.user1_main.each do |card| %>
+        <div class="card">
+          <%= link_to image_tag(card.image, :title => card.name), card %>
+        </div>
       <% end %>
-    </div>
-  </div>
-  <div align="center"></div>
 
+      <div style="clear:both"/>
+      <p><b>额外:</b> </p>
+      <% @duel.user1_extra.each do |card| %>
+        <div class="card">
+          <%= link_to image_tag(card.image, :title => card.name), card %>
+        </div>
+      <% end %>
+    <% else %>
+      卡组未公开
+    <% end %>
+  </div>
+</div>
+<div style="clear:both"/>
+<div style="color: white; width:700px; " align="left">
+  <div id="cards2">
+    <% if @duel.user2_public or @current_user == @duel.user2 %>
+      <p><b>主卡组:</b> </p>
+      <% @duel.user2_main.each do |card| %>
+        <div class="card">
+          <%= link_to image_tag(card.image, :title => card.name, :width => 54, :height => 81), card %>
+        </div>
+      <% end %>
+      <div style="clear:both"/>
+      <p><b>额外:</b> </p>
+      <% @duel.user2_extra.each do |card| %>
+        <div class="card">
+          <%= link_to image_tag(card.image, :title => card.name, :width => 54, :height => 81), card %>
+        </div>
+      <% end %>
+    <% else %>
+      卡组未公开
+    <% end %>
+  </div>
 </div>

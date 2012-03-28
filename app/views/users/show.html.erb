@@ -1,69 +1,62 @@
-<div align="center" style="padding-top:150px; cursor:pointer;">
-  <div align="right" style="width:600px; font-size:30px; padding-bottom:20px; color:#ffcc66"><%= @user.name %> </div>
-  
-  
-  <div style="color: white">
-    <p>
-      胜<%= @user.wins.count %>:负<%= @user.losts.count %> 总场次：<%= @user.duels.count %>
-    </p>
-    <p>
-      <b>常用怪兽:</b>
-      <%= render @user.cards.main_monsters.top(10) %>
-    </p>
-    <p>
-      <b>常用额外:</b>
-      <%= render @user.cards.extra.top(5) %>
-    </p>
-    <p>
-      <b>常用魔法:</b>
-      <%= render @user.cards.magics.top(5) %>
-    </p>
-    <p>
-      <b>常用陷阱:</b>
-      <%= render @user.cards.traps.top(5) %>
-    </p>
-  </div>
-  
-  
-  
-  <div style="width:600px; display:none; " id="mian1" class="main1" >
-    <div style="line-height:25px; background-color:#1c1b1b; height:25px; color:#d6edff; font-weight:bold; ">
-      <div style='width:50px; float:left;'><em>场次</em></div>
-      <div style='width:200px; float:left;'><em>对手</em></div>
-      <div style='width:100px; float:left;' align='center'><em>胜负</em></div>
-      <div style='width:100px; float:left;' align='center'><em>得分</em></div>
-      <div style='width:100px; float:left;' align='center'><em>战斗终分</em></div>
-    </div>
+<style>
+  #duels{width: 600px;text-align: center}
+  #duels thead {line-height:25px; background-color:#1c1b1b; height:25px; color:#d6edff; font-weight:bold; }
+  #duels tbody {line-height:25px; padding-top:3px; font-weight:bold;}
+  #duels .index {color:white}
+  #duels .win {color:#58db3e}
+  #duels .lose {color:red}
+  #duels .current {color:red}
+</style>
+
+
+<div id="duels">
+  胜<%= @user.wins.count %>:负<%= @user.losts.count %> 总场次：<%= @user.duels.count %>
+</div>
+
+<div id="cards">
+  <p>
+    <b>常用怪兽:</b>
+    <%= render @user.cards.main_monsters.top(10) %>
+  </p>
+  <p>
+    <b>常用额外:</b>
+    <%= render @user.cards.extra.top(5) %>
+  </p>
+  <p>
+    <b>常用魔法:</b>
+    <%= render @user.cards.magics.top(5) %>
+  </p>
+  <p>
+    <b>常用陷阱:</b>
+    <%= render @user.cards.traps.top(5) %>
+  </p>
+</div>
+
+<table id="duels">
+  <thead>
+    <tr>
+      <th>场次</th>
+      <th>对手</th>
+      <th>胜负</th>
+      <th>得分</th>
+      <th>战斗终分</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <%= link_to "更多...", {:controller => :duels, :action => :index, :user_id => @user.id} %>
+    </tr>
+  </tfoot>
+  <tbody>
     <% final_credits = @user.credits %>
     <% @user.top_duels(20).each_with_index do |duel, index| %>
-      <div style='clear:both;'></div>
-      <div style='line-height:25px; padding-top:3px; font-weight:bold; ' align='center'>
-
-        <!--场次-->
-        <div style='width:50px; float:left; color:white '  >
-          <%= link_to (@user.duels.count - index), duel, :style=>"color:white" %> 
-        </div>
-        <!--对手-->
-        <div style='width:200px; float:left; '  align='left'>
-          <% opponent = duel.user1 == @user ? duel.user2 : duel.user1 %>
-          <%= link_to opponent.name, opponent, :style => 'color:#ffe793; text-decoration:none' %>
-        </div>
-        <!--胜负-->
-        <div style='width:100px; float:left; color:<% if duel.winner == @user %>#58db3e<% else %>red<% end %>'>
-          <%= duel.winner == @user ? "WIN" : "LOSE" %>
-        </div>
-        <!--得分-->
-        <div style='width:100px; float:left; color:<% if duel.winner == @user %>#58db3e<% else %>red<% end %>'>
-          <%= duel.user1 == @user ? duel.user1_credits : duel.user2_credits %>
-        </div>
-        <!--战斗终分-->
-        <div style='width:100px; float:left; color:<% if index.zero? %>red<% else %>#d6edff<% end %>; '>
-          <%= final_credits %>
-          <% final_credits -= duel.user1 == @user ? duel.user1_credits : duel.user2_credits %>
-        </div>
-      </div>
+      <tr>
+        <td class="index"><%= link_to (@user.duels.count - index), duel %></td>
+        <td class="opponent"><% opponent = duel.user1 == @user ? duel.user2 : duel.user1 %><%= link_to opponent.name, opponent %></td>
+        <td class="result <%= duel.winner == @user ? "win" : "lose" %>"><%= duel.winner == @user ? "WIN" : "LOSE" %></td>
+        <td class="credits <%= duel.winner == @user ? "win" : "lose" %>"><%= duel.user1 == @user ? duel.user1_credits : duel.user2_credits %></td>
+        <td class="final_credits <%= "current" if index.zero? %>"><%= final_credits %><% final_credits -= duel.user1 == @user ? duel.user1_credits : duel.user2_credits %></td>
+      </tr>
     <% end %>
-  </div>
-</div>
-<div style="clear:both"></div>
-<div align="center"><%= link_to "更多...", {:controller => :duels, :action => :index, :user_id => @user.id}, :style=>"color:white" %></div>
+  </tbody>
+</table>

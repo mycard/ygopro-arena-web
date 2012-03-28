@@ -1,19 +1,42 @@
-<div align="center" style="padding-top:130px;">
-  <div align="right" style="width:600px; font-size:50px; padding-bottom:20px; color:#ffffff">TOP10</div>
-  <div style="width:600px; display:none; " id="mian1" class="main1" >
-    <div style="line-height:25px; background-color:#1c1b1b; height:25px; color:#d6edff; font-weight:bold; ">
-      <div style='width:90px; float:left;'><em>名次</em></div>
-      <div style='width:200px; float:left;'><em>决斗者</em></div>
-      <div style='width:100px; float:left;' align='center'><em>积分</em></div>
-      <div style='width:100px; float:left;' align='center'><em>胜率/胜/负</em></div>
-      <div style='width:100px; float:left;' align='center'><em>得分纪录</em></div>
-    </div>
+<style>
+  #users {width:600px;text-align: center}
+  #users thead {line-height:25px; background-color:#1c1b1b; height:25px; color:#d6edff; font-weight:bold;}
+  #users tbody {line-height:25px; padding-top:3px; font-weight:bold; }
+  #users .index {color:#d6edff}
+  #users .name a {color:#FFE793}
+  #users .credits {color:#FF6468}
+  #users .ratio {color:#58DB3E; text-align:right}
+  #users .win {color:red; text-align:right}
+  #users .lost {color:blue; text-align:right}
+  #users .show a {color:#DFC84B}
+</style>
+
+<table id="users">
+  <thead>
+    <tr>
+      <th>名次</th>
+      <th>决斗者</th>
+      <th>积分</th>
+      <th colspan="3">胜率/胜/负</th>
+      <th>得分纪录</th>
+    </tr>
+  </thead>
+  <tbody>
     <% top_users = User.order(:credits).reverse_order.limit(10) %>
-    <% top_users.each_with_index do |user, index| %>
-      <%= render :partial => "record", :locals => { :user => user, :index => index } %>
-    <% end %>
     <% if logged? && !top_users.include?(@current_user) %>
-      <%= render :partial => "record", :locals => { :user => @current_user, :index => User.where("credits>?", @current_user.credits).count } %>
+      <% top_users += @current_user %>
+      <% my_index = User.where("credits>=?", @current_user.credits).count %>
     <% end %>
-  </div>
-</div>
+    <% top_users.each_with_index do |user, index| %>
+      <tr>
+        <td class="index"><%= user == @current_user ? my_index : index.next %></td>
+        <td class="name"><%= link_to user.name, user %></td>
+        <td class="credits"><%= user.credits %></td>
+        <td class="ratio"><%= user.win.zero? && user.lost.zero? ? 0 : user.win * 100 / (user.win + user.lost) %>%</td>
+        <td class="win"><%= user.win %></td>
+        <td class="lost"><%= user.lost %></td>
+        <td class="show"><%= link_to '详情', user %></td>
+      </tr>
+    <% end %>
+  </tbody> 
+</table>

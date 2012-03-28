@@ -2,6 +2,7 @@ MycardServerHttp::Application.routes.draw do
   get "rooms/index"
 
   get "mycard/update"
+  get "mycard/download"
 
   root :to => "boards#index"
   
@@ -12,6 +13,7 @@ MycardServerHttp::Application.routes.draw do
   resources :cards
   resources :users do
     resources :duels
+    resources :cards
   end
   resources :boards
   resources :topics

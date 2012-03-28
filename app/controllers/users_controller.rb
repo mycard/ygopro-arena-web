@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     @users = User.all
-
+    @actions = ["YGO战网", "用户排行"]
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -20,17 +20,17 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-    @actions = [@user.name]
+    @actions = ["YGO战网", @user]
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @user }
+      #format.xml  { render :xml => @user }
     end
   end
 
   # GET /users/new
   # GET /users/new.xml
   def new
-    @actions = [:register]
+    @actions = ["注册"]
     @user = User.new
 
     respond_to do |format|
@@ -106,11 +106,11 @@ class UsersController < ApplicationController
     end
   end
   def login
-    @actions = [:login]
+    @actions = ["登陆"]
     @user = User.new
   end
   def login_do
-    @actions = [:login]
+    @actions = ["登陆"]
     user = User.find_by_name(params[:user][:name])
     if user and params[:user][:password] == user.password
       @user = user
@@ -135,7 +135,7 @@ class UsersController < ApplicationController
       if @user
         session[:user_id] = @user.id
         @user.update_attribute(:lastloginip, request.remote_ip)
-        format.html { redirect_to(:root, :notice => 'Login Successfully.') }
+        format.html { redirect_to(@user, :notice => 'Login Successfully.') }
         format.xml  { head :ok }
       else
         @user = User.new(params[:user])

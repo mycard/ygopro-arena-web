@@ -13,4 +13,13 @@ class MycardController < ApplicationController
       format.json { render json: result }
     end
   end
+  def download
+    file = Dir.glob('public/mycard/mycard-*-win32.7z').last
+    if file
+      file = File.basename(file)
+      respond_to do |format|
+        format.html {redirect_to "/mycard/#{file}" }
+      end
+    end
+  end
 end

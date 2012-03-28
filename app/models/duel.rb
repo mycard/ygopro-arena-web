@@ -24,4 +24,7 @@ class Duel < ActiveRecord::Base
   def user2_extra
     user_cards(user2, false)
   end
+  def to_s
+    "决斗详情"
+  end
 end

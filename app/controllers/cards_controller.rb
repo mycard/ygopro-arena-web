@@ -3,7 +3,14 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.joins(:duel_user_cards)
+    if params[:user_id]
+      @user = User.find params[:user_id]
+      @cards = @user.cards
+      @actions = ["YGO战网", @user, "常用卡片"]
+    else
+      @cards = Card.joins(:duel_user_cards)
+      @actions = ["YGO战网", "卡片排行"]
+    end
 
     respond_to do |format|
       format.html # index.html.erb
