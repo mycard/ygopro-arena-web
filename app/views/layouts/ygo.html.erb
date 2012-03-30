@@ -18,8 +18,10 @@
     <nav id="actions">
       <%= render 'entries/action' %>
     </nav>
-    <div id="main">
-      <%= yield %>
+    <div align="center"><!--不加这个的话 飞入效果会抽一下，直接加到下面那个div上不管用，style="text-align:center; float:center"也不管用-->
+      <div id="main">
+        <%= yield %>
+      </div>
     </div>
     <footer id="footer">
       YGO DULE BATTLENET

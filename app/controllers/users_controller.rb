@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @actions = [{"YGO战网" => users_path}, "用户排行"]
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @users }
+      #format.xml  { render :xml => @users }
     end
   end
 
@@ -50,26 +50,37 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     
     #验证ygocore服务器是否可注册，true为成功，false为重名，nil为异常
-    success = open("http://140.113.242.66:7922/?userregist=NEW&username=#{CGI.escape @user.name}&password=#{CGI.escape @user.password}") do |file|
-      file.set_encoding("GBK")
-      case file.read.encode("UTF-8")
-      when "注册成功"
-        open("http://140.113.242.66:7922/?pass=zh99998&operation=saveuser"){} rescue nil
-        true
-      when "用户已存在"
-        @user.errors.add :name, "用户已存在"
-        false
-      else
-        nil
+    reply = ""
+    success = begin
+      open("http://140.113.242.66:7922/?userregist=NEW&username=#{CGI.escape @user.name}&password=#{CGI.escape @user.password}") do |file|
+        file.set_encoding("GBK")
+        case reply = file.read.encode("UTF-8", :invalid=>:replace, :undef=>:replace )
+        when /注册成功/
+          open("http://140.113.242.66:7922/?pass=zh99998&operation=saveuser"){} rescue nil
+          true
+        when "用户已存在"
+          @user.errors.add :name, "用户已存在"
+          false
+        else
+          nil
+        end
       end
-    end rescue nil
-    @user.errors.add :name, "注册失败，可能是服务器故障，请与管理员联系 Email/GT/QQ: zh99998@gmail.com" if success.nil?
+    rescue Exception => exception
+      reply = ([exception] + exception.backtrace).join("\n")
+      nil
+    end
+    @user.errors.add :name, "注册失败，可能是服务器故障，请与管理员联系 Email/GT/QQ: zh99998@gmail.com 详情: #{reply}" if success.nil?
     
     respond_to do |format|
-      if success and @user.save
-        session[:user_id] = @user.id
-        format.html { redirect_to(@user, :notice => '注册成功') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
+      if success 
+        if@user.save
+          session[:user_id] = @user.id
+          format.html { redirect_to(@user, :notice => '注册成功') }
+          format.xml  { render :xml => @user, :status => :created, :location => @user }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }

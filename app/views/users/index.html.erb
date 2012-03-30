@@ -24,7 +24,7 @@
   <tbody>
     <% top_users = User.order(:credits).reverse_order.limit(10) %>
     <% if logged? && !top_users.include?(@current_user) %>
-      <% top_users += @current_user %>
+      <% top_users << @current_user %>
       <% my_index = User.where("credits>=?", @current_user.credits).count %>
     <% end %>
     <% top_users.each_with_index do |user, index| %>

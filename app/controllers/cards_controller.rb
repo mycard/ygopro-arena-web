@@ -23,14 +23,22 @@ class CardsController < ApplicationController
   # GET /cards/1.json
   def show
     @card = Card.find(params[:id])
-    @actions = [{"YGO战网" => users_path}, {"YGO战网" => cards_path}, @card]
+    @actions = [{"YGO战网" => users_path}, {"卡片列表" => cards_path}, @card]
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @card }
       format.png { redirect_to @card.image }
     end
   end
-
+  
+  def search
+    @cards = Card.where(:name => params[:name].split(','))
+    respond_to do |format|
+      #format.html { render }
+      format.json { render json: @cards }
+      format.jsonp { render text: "#{params[:callback]}(#{@cards.to_json})" }
+    end
+  end
   # GET /cards/new
   # GET /cards/new.json
   def new

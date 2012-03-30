@@ -14,7 +14,7 @@ class MycardController < ApplicationController
     end
   end
   def download
-    file = Dir.glob('public/mycard/mycard-*-win32.7z').last
+    file = Dir.glob('public/mycard/mycard-*-win32.7z').max
     if file
       file = File.basename(file)
       respond_to do |format|

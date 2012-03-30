@@ -12,6 +12,15 @@ class Duel < ActiveRecord::Base
     result = cards.where('user_id=? and main = ?', user, main)
     result.order("field(card_type, #{(main ? main_order : extra_order).collect{|type|"'#{type}'"}.join(',')})", 'cards.id')
   end
+  def user1
+    super || User::Guest
+  end
+  def user2
+    super || User::Guest
+  end
+  def winner
+    super || User::Guest
+  end
   def user1_main
     user_cards(user1, true)
   end

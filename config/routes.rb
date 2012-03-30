@@ -11,6 +11,7 @@ MycardServerHttp::Application.routes.draw do
     get 'user2_deck.:format' => "duels#user2_deck"
   end
   resources :cards
+  get 'search/cards' => 'cards#search'
   resources :users do
     resources :duels
     resources :cards

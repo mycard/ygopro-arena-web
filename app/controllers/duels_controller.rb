@@ -49,8 +49,35 @@ class DuelsController < ApplicationController
   # POST /duels
   # POST /duels.json
   def create
-    @duel = Duel.new(params[:duel])
-
+    @duel = Duel.new
+    @duel.winreason = params[:duel][:winreason]
+    @duel.replay = params[:duel][:replay]
+    @duel.version = params[:duel][:version]
+    @duel.user1 = User.find_by_name params[:duel][:user1_name] if params[:duel][:user1_name]
+    @duel.user2 = User.find_by_name params[:duel][:user2_name] if params[:duel][:user2_name]
+    [params[:duel][:user1_main], params[:duel][:user1_extra], params[:duel][:user2_main], params[:duel][:user2_extra]].each_with_index do |cards, index|
+      user = index / 2 == 0 ? @duel.user1 : @duel.user2
+      main = index % 2 == 0
+      cards.split(',').collect do |card_number|
+        card = Card.find_by_number(card_number)
+        card = Card.create(:id => card_number, :name => card_number, :number => card_number) if card.nil?
+        @duel.duel_user_cards << DuelUserCard.new(user: user, card: card, main: main)
+      end
+    end
+    @duel.winner = params[:duel][:winner_pos] == "true" ? @duel.user1 : @duel.user2
+    if params[:duel][:credits] == "true"
+      if @duel.winner == @duel.user1
+        @duel.user1_credits = 10
+        @duel.user2_credits = -10
+      else
+        @duel.user1_credits = -10
+        @duel.user2_credits = 10
+      end
+    else
+      @duel.user1_credits = 0
+      @duel.user2_credits = 0
+    end
+    @duel.created_at = Time.zone.parse params[:duel][:created_at]#.to_i
     respond_to do |format|
       if @duel.save
         format.html { redirect_to @duel, notice: 'Duel was successfully created.' }
