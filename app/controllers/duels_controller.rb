@@ -53,8 +53,8 @@ class DuelsController < ApplicationController
     @duel.winreason = params[:duel][:winreason]
     @duel.replay = params[:duel][:replay]
     @duel.version = params[:duel][:version]
-    @duel.user1 = User.find_by_name params[:duel][:user1_name] if params[:duel][:user1_name]
-    @duel.user2 = User.find_by_name params[:duel][:user2_name] if params[:duel][:user2_name]
+    @duel.user1 = User.find_or_create_by_name params[:duel][:user1_name] if params[:duel][:user1_name]
+    @duel.user2 = User.find_or_create_by_name params[:duel][:user2_name] if params[:duel][:user2_name]
     [params[:duel][:user1_main], params[:duel][:user1_extra], params[:duel][:user2_main], params[:duel][:user2_extra]].each_with_index do |cards, index|
       user = index / 2 == 0 ? @duel.user1 : @duel.user2
       main = index % 2 == 0
