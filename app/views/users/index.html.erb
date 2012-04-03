@@ -3,6 +3,7 @@
   #users thead {line-height:25px; background-color:#1c1b1b; height:25px; color:#d6edff; font-weight:bold;}
   #users tbody {line-height:25px; padding-top:3px; font-weight:bold; }
   #users .index {color:#d6edff}
+  #users .me {color:deepskyblue}
   #users .name a {color:#FFE793}
   #users .credits {color:#FF6468}
   #users .ratio {color:#58DB3E; text-align:right}
@@ -17,7 +18,9 @@
       <th>名次</th>
       <th>决斗者</th>
       <th>积分</th>
-      <th colspan="3">胜率/胜/负</th>
+      <th>胜率</th>
+      <th>胜</th>
+      <th>负</th>
       <th>得分纪录</th>
     </tr>
   </thead>
@@ -29,12 +32,18 @@
     <% end %>
     <% top_users.each_with_index do |user, index| %>
       <tr>
-        <td class="index"><%= user == @current_user ? my_index : index.next %></td>
+        <% if user == @current_user %>
+          <td class="index me"><%= my_index %></td>
+        <% else %>
+          <td class="index"><%= index.next %></td>
+        <% end %>
         <td class="name"><%= link_to user.name, user %></td>
         <td class="credits"><%= user.credits %></td>
-        <td class="ratio"><%= user.win.zero? && user.lost.zero? ? 0 : user.win * 100 / (user.win + user.lost) %>%</td>
-        <td class="win"><%= user.win %></td>
-        <td class="lost"><%= user.lost %></td>
+        <% win = user.wins.count %>
+        <% all = user.duels.count %>
+        <td class="ratio"><%= all.zero? ? 0 : 100 * win / all %>%</td>
+        <td class="win"><%= win %></td>
+        <td class="lost"><%= all - win %></td>
         <td class="show"><%= link_to '详情', user %></td>
       </tr>
     <% end %>

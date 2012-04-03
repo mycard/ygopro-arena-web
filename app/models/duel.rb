@@ -12,6 +12,9 @@ class Duel < ActiveRecord::Base
     result = cards.where('user_id=? and main = ?', user, main)
     result.order("field(card_type, #{(main ? main_order : extra_order).collect{|type|"'#{type}'"}.join(',')})", 'cards.id')
   end
+  def replay
+    "http://140.113.242.66/#{super}"
+  end
   def user1
     super || User::Guest
   end

@@ -1,17 +1,40 @@
-<p>
-  <b>常用怪兽:</b>
-  <%= render @cards.main_monsters.top(10) %>
-</p>
-<p>
-  <b>常用额外:</b>
-  <%= render @cards.extra.top(5) %>
-</p>
-<p>
-  <b>常用魔法:</b>
-  <%= render @cards.magics.top(5) %>
-</p>
-<p>
-  <b>常用陷阱:</b>
-  <%= render @cards.traps.top(5) %>
-</p>
+<style>
+  .card  {float:left; padding-left:10px; padding-bottom:9px;}
+  .card img{width:40px; height:50px; border:0px;}
+  .user{  width:330px; font-size:20px; color:#ffcc66; float:left; cursor:pointer;  line-height:40px;padding-left: 12px;font-weight: bold;}
+  .user_act{  width:330px; font-size:20px; color:#ffcc66; float:left; cursor:pointer; background-color:#111111; line-height:40px;padding-left: 12px;font-weight: bold;}
+  #cards{background-color:#111111; overflow:hidden; padding:12px;text-align: left}
+</style>
+
+<div id="cards">
+  <p><b>常用怪兽:</b> </p>
+  <% @cards.main_monsters.top(10).each do |card| %>
+    <div class="card">
+      <%= link_to image_tag(card.image, :title => card.name), card %>
+    </div>
+  <% end %>
+
+  <div style="clear:both"></div>
+  <p><b>常用额外:</b> </p>
+  <% @cards.extra.top(5).each do |card| %>
+    <div class="card">
+      <%= link_to image_tag(card.image, :title => card.name), card %>
+    </div>
+  <% end %>
+
+  <div style="clear:both"></div>
+  <p><b>常用魔法:</b> </p>
+  <% @cards.magics.top(5).each do |card| %>
+    <div class="card">
+      <%= link_to image_tag(card.image, :title => card.name), card %>
+    </div>
+  <% end %>
+
+  <div style="clear:both"></div>
+  <p><b>常用陷阱:</b> </p>
+  <% @cards.traps.top(5).each do |card| %>
+    <div class="card">
+      <%= link_to image_tag(card.image, :title => card.name), card %>
+    </div>
+  <% end %>
 </div>

@@ -65,7 +65,7 @@
         <table cellspacing="0" cellpadding="0">
           <tbody><tr>
               <td class="postauthor">
-                <div class="avatar"><%= @current_user.avatar %></td>
+                <div class="avatar"><%= image_tag @current_user.avatar.url(:middle) %></td>
               <td class="postcontent">
                 <!--<input type="hidden" name="formhash" value="ba0236f6">
                 <input type="hidden" name="subject" value="">

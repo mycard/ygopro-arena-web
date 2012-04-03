@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120309231620) do
+ActiveRecord::Schema.define(:version => 20120402031416) do
 
   create_table "boards", :force => true do |t|
     t.string  "name",          :default => "", :null => false
@@ -60,12 +60,15 @@ ActiveRecord::Schema.define(:version => 20120309231620) do
     t.integer  "user1_id"
     t.integer  "user2_id"
     t.integer  "winner_id"
-    t.integer  "winreason"
-    t.string   "replay"
-    t.integer  "user1_credits"
-    t.integer  "user2_credits"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "winreason",     :default => 0,    :null => false
+    t.string   "replay",        :default => "",   :null => false
+    t.integer  "user1_credits", :default => 0,    :null => false
+    t.integer  "user2_credits", :default => 0,    :null => false
+    t.integer  "version"
+    t.boolean  "user1_public",  :default => true, :null => false
+    t.boolean  "user2_public",  :default => true, :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   add_index "duels", ["user1_id"], :name => "index_duels_on_user1_id"
@@ -177,32 +180,36 @@ ActiveRecord::Schema.define(:version => 20120309231620) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                           :null => false
+    t.string   "name",                                   :null => false
     t.string   "password"
-    t.string   "email"
-    t.string   "nickname",    :default => "",    :null => false
+    t.string   "email",               :default => "",    :null => false
+    t.string   "nickname",            :default => "",    :null => false
     t.text     "signature"
-    t.integer  "credits",     :default => 0,     :null => false
-    t.integer  "credit1",     :default => 0,     :null => false
-    t.integer  "credit2",     :default => 0,     :null => false
-    t.integer  "credit3",     :default => 0,     :null => false
-    t.integer  "credit4",     :default => 0,     :null => false
-    t.integer  "credit5",     :default => 0,     :null => false
-    t.integer  "credit6",     :default => 0,     :null => false
-    t.integer  "credit7",     :default => 0,     :null => false
-    t.integer  "credit8",     :default => 0,     :null => false
-    t.integer  "win",         :default => 0,     :null => false
-    t.integer  "lost",        :default => 0,     :null => false
-    t.integer  "role_id",     :default => 5,     :null => false
-    t.boolean  "locked",      :default => false, :null => false
-    t.string   "regip",       :default => "",    :null => false
-    t.string   "lastloginip", :default => "",    :null => false
-    t.integer  "viewnum",     :default => 0,     :null => false
-    t.integer  "onlinetime",  :default => 0,     :null => false
+    t.integer  "credits",             :default => 0,     :null => false
+    t.integer  "credit1",             :default => 0,     :null => false
+    t.integer  "credit2",             :default => 0,     :null => false
+    t.integer  "credit3",             :default => 0,     :null => false
+    t.integer  "credit4",             :default => 0,     :null => false
+    t.integer  "credit5",             :default => 0,     :null => false
+    t.integer  "credit6",             :default => 0,     :null => false
+    t.integer  "credit7",             :default => 0,     :null => false
+    t.integer  "credit8",             :default => 0,     :null => false
+    t.integer  "win",                 :default => 0,     :null => false
+    t.integer  "lost",                :default => 0,     :null => false
+    t.integer  "role_id",             :default => 5,     :null => false
+    t.boolean  "locked",              :default => false, :null => false
+    t.string   "regip",               :default => "",    :null => false
+    t.string   "lastloginip",         :default => "",    :null => false
+    t.integer  "viewnum",             :default => 0,     :null => false
+    t.integer  "onlinetime",          :default => 0,     :null => false
     t.string   "locale"
     t.string   "theme"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["name"], :name => "index_users_on_name"

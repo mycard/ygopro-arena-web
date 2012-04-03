@@ -55,6 +55,7 @@ class DuelsController < ApplicationController
     @duel.version = params[:duel][:version]
     @duel.user1 = User.find_or_create_by_name params[:duel][:user1_name] if params[:duel][:user1_name]
     @duel.user2 = User.find_or_create_by_name params[:duel][:user2_name] if params[:duel][:user2_name]
+    return if @duel.user1 == @duel.user2
     [params[:duel][:user1_main], params[:duel][:user1_extra], params[:duel][:user2_main], params[:duel][:user2_extra]].each_with_index do |cards, index|
       user = index / 2 == 0 ? @duel.user1 : @duel.user2
       main = index % 2 == 0
@@ -68,16 +69,24 @@ class DuelsController < ApplicationController
     if params[:duel][:credits] == "true"
       if @duel.winner == @duel.user1
         @duel.user1_credits = 10
-        @duel.user2_credits = -10
+        @duel.user2_credits = -8
       else
-        @duel.user1_credits = -10
+        @duel.user1_credits = -8
         @duel.user2_credits = 10
       end
     else
-      @duel.user1_credits = 0
-      @duel.user2_credits = 0
+      @duel.user1_credits = 1
+      @duel.user2_credits = 1
     end
-    @duel.created_at = Time.zone.parse params[:duel][:created_at]#.to_i
+    if @duel.user1
+      @duel.user1.credits += @duel.user1_credits 
+      @duel.user1.save
+    end
+    if @duel.user2
+      @duel.user2.credits += @duel.user2_credits
+      @duel.user2.save
+    end
+    @duel.created_at = Time.zone.parse params[:duel][:created_at]
     respond_to do |format|
       if @duel.save
         format.html { redirect_to @duel, notice: 'Duel was successfully created.' }

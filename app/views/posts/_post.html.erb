@@ -5,7 +5,7 @@
             <%= post.user %>
           </div>
           <div>
-            <div class="avatar" onmouseover="showauthor(this, 'userinfo751931')"><%= post.user.avatar %></div>
+            <div class="avatar" onmouseover="showauthor(this, 'userinfo751931')"><%= image_tag post.user.avatar.url(:middle) %></div>
             <p><%= post.user.role %></p>
             <p><em><%= post.user.nickname %></em></p>
 

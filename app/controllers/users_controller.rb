@@ -19,11 +19,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id]) || User.find_by_name(params[:id])
     @actions = [{"YGO战网" => users_path}, @user]
     respond_to do |format|
       format.html # show.html.erb
       #format.xml  { render :xml => @user }
+      format.png {redirect_to @user.avatar.url(:middle)}
     end
   end
 
@@ -41,7 +42,20 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    if @current_user != User::Guest
+      @user = User.find(params[:id])
+      @actions = [@user, "修改头像"]
+      if @current_user != @user
+        respond_to do |format|
+          format.html {redirect_to(edit_user_path(@current_user), :notice => '请先登录.')}
+        end
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to(:login, :notice => '请先登录.')}
+      end
+    end
+    
   end
 
   # POST /users
@@ -91,16 +105,22 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-    if !params[:user][:theme].blank? && @site[:themes].has_key?(params[:theme])
-      cookies[:user][:theme] = params[:theme]
-    end
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to(:back, :notice => 'User was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+    if @user == @current_user
+      if !params[:user][:theme].blank? && @site[:themes].has_key?(params[:theme])
+        cookies[:user][:theme] = params[:theme]
+      end
+      respond_to do |format|
+        if @user.update_attributes(params[:user])
+          format.html { redirect_to(:back, :notice => 'User was successfully updated.') }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to(:back, :notice => '只能修改自己的头像') }
       end
     end
   end
