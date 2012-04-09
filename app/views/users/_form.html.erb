@@ -1,41 +1,23 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user, :url => user_path, :html => { :multipart => true } do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div id="avatar">
+    <div><%= image_tag @user.avatar.url(:middle) %></div>
+    <div><%= f.file_field :avatar, style:"width:120px", onchange: "submit(); this.disabled=true;" %></div>
   </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :credit %><br />
-    <%= f.text_field :credit %>
-  </div>
-  <div class="field">
-    <%= f.label :usergroup %><br />
-    <%= f.text_field :usergroup %>
-  </div>
-  <div class="field">
-    <%= f.label :admingroup %><br />
-    <%= f.text_field :admingroup %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <p><%= f.label :name %>: <%= @user.name %> </p>
+  <p><%= f.label :nickname %>: <%= f.text_field :nickname %><%= f.submit %></p>
+  <p><%= f.label :id %>: <%= @user.id %></p>
+  <p><%= f.label :email %>: <%= f.text_field :email %><%= f.submit %></p>
+  <p><%= f.label :created_at %>: <%=l @user.created_at, :format => :long %></p>
+  <p>决斗统计：胜<%= @user.wins.count %>:负<%= @user.losts.count %> 总场次：<%= @user.duels.count %></p>
 <% end %>

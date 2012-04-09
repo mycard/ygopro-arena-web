@@ -9,6 +9,8 @@
 
   #user p {text-align: left}
   #user #avatar{float:right}
+  #user_nickname{width: 150px}
+  #user_email{width: 150px}
   .card  {float:left; padding-left:10px; padding-bottom:9px;}
   .card img{width:40px; height:50px; border:0px;}
   .user{  width:330px; font-size:20px; color:#ffcc66; float:left; cursor:pointer;  line-height:40px;padding-left: 12px;font-weight: bold;}
@@ -17,28 +19,17 @@
 </style>
 
 <div id="user">
-  <%= form_for @user, :url => user_path, :html => { :multipart => true } do |f| %>
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-        <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+  <% if @user == @current_user %>
+    <%= render 'form' %>
+  <% else %>
     <div id="avatar">
       <div><%= image_tag @user.avatar.url(:middle) %></div>
-      <% if @user == @current_user %>
-        <div><%= f.file_field :avatar, style:"width:120px", onchange: "submit(); this.disabled=true;" %></div>
-      <% end %>
     </div>
-    <p>用户名: <%= @user.name %></p>
-    <p>id: <%= @user.id %></p>
-    <p>邮箱: <%= @user.email %></p>
-    <p>注册时间: <%=l @user.created_at, :format => :long %></p>
+    <p><%= User.human_attribute_name :name %>: <%= @user.name %> </p>
+    <% unless @user.nickname.blank? %><p><%= User.human_attribute_name :nickname %>: <%= @user.nickname %></p><% end %>
+    <p><%= User.human_attribute_name :id %>: <%= @user.id %></p>
+    <p><%= User.human_attribute_name :email %>: <%= @user.email %></p>
+    <p><%= User.human_attribute_name :created_at %>: <%=l @user.created_at, :format => :long %></p>
     <p>决斗统计：胜<%= @user.wins.count %>:负<%= @user.losts.count %> 总场次：<%= @user.duels.count %></p>
   <% end %>
 </div>
