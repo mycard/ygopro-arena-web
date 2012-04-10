@@ -7,7 +7,7 @@ class BoardsController < ApplicationController
   def index
     @boards = Board.where(:superboard_id => 0)
     @links = Link.all
-    @actions = []
+    @actions = [{'论坛'=>:boards}]
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @boards }
@@ -19,6 +19,7 @@ class BoardsController < ApplicationController
   def show
     
     @board = Board.find(params[:id])
+    @actions = [{'论坛'=>:boards}, @board]
     @actions = [@board]
     order = params[:order].blank? ? 'displayorder DESC, updated_at DESC' : params[:order]
     @topics = @board.topics.page(params[:page]).order(order)
@@ -42,6 +43,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/1/edit
   def edit
+    return
     @board = Board.find(params[:id])
     @actions = [@board, :edit]
   end
@@ -49,6 +51,7 @@ class BoardsController < ApplicationController
   # POST /boards
   # POST /boards.xml
   def create
+    return
     @board = Board.new(params[:board])
 
     respond_to do |format|
@@ -65,6 +68,7 @@ class BoardsController < ApplicationController
   # PUT /boards/1
   # PUT /boards/1.xml
   def update
+    return
     @board = Board.find(params[:id])
 
     respond_to do |format|
@@ -81,6 +85,7 @@ class BoardsController < ApplicationController
   # DELETE /boards/1
   # DELETE /boards/1.xml
   def destroy
+    return
     @board = Board.find(params[:id])
     @board.destroy
 

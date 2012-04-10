@@ -1,6 +1,5 @@
 <%= form_tag :controller => :topics do %>
-
-    <%= text_field_tag "keyword" %>
-    <%= submit_tag t("search.search") %>
+  <%= text_field_tag "keyword" %>
+  <%= submit_tag t("search.search") %>
+  <%= link_to t("search.advanced") %>
 <% end %>
-<%= link_to t("search.advanced") %>

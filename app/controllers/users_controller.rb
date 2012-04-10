@@ -67,17 +67,17 @@ class UsersController < ApplicationController
       if @user.save
         reply = begin
           open("http://140.113.242.66:7922/?pass=zh99998&operation=forceuserpass&username=#{CGI.escape @user.name}&password=#{CGI.escape @user.password}", 'r:GBK') do |file|
-            case reply = file.read.encode("UTF-8", :invalid=>:replace, :undef=>:replace )
+        case reply = file.read.encode("UTF-8", :invalid=>:replace, :undef=>:replace )
             when "ok"
-              open("http://140.113.242.66:7922/?pass=zh99998&operation=saveuser"){} rescue nil
-              true
-            else
+          open("http://140.113.242.66:7922/?pass=zh99998&operation=saveuser"){} rescue nil
+          true
+        else
               reply
-            end
-          end
-        rescue Exception => exception
-          ([exception] + exception.backtrace).join("\n")
         end
+      end
+    rescue Exception => exception
+          ([exception] + exception.backtrace).join("\n")
+    end
         if reply == true
           session[:user_id] = @user.id
           format.html { redirect_to(@user, :notice => '注册成功') }

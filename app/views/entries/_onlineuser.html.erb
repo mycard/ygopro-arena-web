@@ -1,3 +1,5 @@
 <div id="onlineuser">
-  <%=t 'stat.onlineuser' %>: <%= Session.count(:conditions => ["updated_at > ?", 30.minutes.ago]) %> 
+<strong><%=t 'stat.onlineuser' %></strong>
+- <%=t 'stat.total' %> <em>0</em> 
+- <%=t 'stat.max' %> <em>0</em> <%=t 'stat.at' %> <em><%=l Time.now, :format => :long %> </em>.
 </div>

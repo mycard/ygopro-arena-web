@@ -220,12 +220,6 @@ zh-CN:
     models:
       user: 用户
     attributes:
-      user:
-        name: 用户名
-        nickname: 昵称
-        id: id
-        email: 邮箱
-        created_at: 注册时间
       pm:
         to_user: "收件人"
         content: "正文"

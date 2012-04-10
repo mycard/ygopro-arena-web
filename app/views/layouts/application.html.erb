@@ -2,20 +2,45 @@
 <html>
   <head>
     <title> <%= @site.name %><% if @actions && !@actions.empty? %>  - <%= @actions.last.respond_to?(:name) ? @actions.last.name : @actions.last %> <% end %> </title>
-    <%#= stylesheet_link_tag    'application' %>    
-    <%= stylesheet_link_tag    'common' %>    
+    <!--[if lt IE 9]><%= javascript_include_tag 'html5shiv' %><![endif]-->
+    <%= stylesheet_link_tag    'common' %>
     <%= stylesheet_link_tag    params[:controller] %>
     <%= javascript_include_tag 'application' %>    
+    
     <%= javascript_include_tag 'common' %>
     <%= javascript_include_tag params[:controller] %>
     <%= csrf_meta_tags %>
-    <%= render 'layouts/header' %>
   </head>
   <body>
-    <%= render 'layouts/top' %>
+    <!--TODO:首部待规范化-->
+    <div id="topbar" class="topanel">
+      <%= render 'entries/user' %>
+      <%= render 'entries/search' %>
+    </div>
+    <header id="headerbg">
+      <div class="header">
+        <embed src="<%= image_path('common/banner.swf') %>" quality="high" wmode="transparent" style="float:left;" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="898" height="116"></embed>
+        <div class="bg-dmenuleft"></div>
+      </div>
+
+      <div id="dmenu" class="bg-dmenu">
+        <nav id="menu">
+          <%= render "entries/navigation" %>
+        </nav>
+      </div>
+    </header>
+    <nav id="actions">
+      <%= render 'entries/action' %>
+    </nav>
+
     <div id="body">
       <%= yield %>
     </div>
-    <%= render 'layouts/footer' %>
+    <div id="bottom">
+      <a href="javascript:;" onclick="scrollTo(0,0);">回顶部</a>
+    </div>
+    <footer id="footer">
+      <p><%= link_to 'Mycard Project', :root %></p>
+    </footer>
   </body>
 </html>

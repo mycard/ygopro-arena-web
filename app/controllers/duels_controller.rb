@@ -68,15 +68,31 @@ class DuelsController < ApplicationController
     @duel.winner = params[:duel][:winner_pos] == "true" ? @duel.user1 : @duel.user2
     if params[:duel][:credits] == "true"
       if @duel.winner == @duel.user1
-        @duel.user1_credits = 10
-        @duel.user2_credits = -8
+        if @duel.user2.credits <= 0
+          @duel.user1_credits = 3
+          @duel.user2_credits = -1
+        elsif @duel.user2.credits <= 10
+          @duel.user1_credits = 5
+          @duel.user2_credits = -2
+        else
+          @duel.user1_credits = 10
+          @duel.user2_credits = -4
+        end
       else
-        @duel.user1_credits = -8
-        @duel.user2_credits = 10
+        if @duel.user1.credits <= 0
+          @duel.user2_credits = 3
+          @duel.user1_credits = -1
+        elsif @duel.user1.credits <= 10
+          @duel.user2_credits = 5
+          @duel.user1_credits = -2
+        else
+          @duel.user2_credits = 10
+          @duel.user1_credits = -4
+        end
       end
     else
-      @duel.user1_credits = 1
-      @duel.user2_credits = 1
+      @duel.user1_credits = 0
+      @duel.user2_credits = 0
     end
     if @duel.user1
       @duel.user1.credits += @duel.user1_credits 

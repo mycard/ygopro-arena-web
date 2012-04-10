@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409100915) do
+ActiveRecord::Schema.define(:version => 20120402031416) do
 
   create_table "boards", :force => true do |t|
     t.string  "name",          :default => "", :null => false
@@ -60,12 +60,15 @@ ActiveRecord::Schema.define(:version => 20120409100915) do
     t.integer  "user1_id"
     t.integer  "user2_id"
     t.integer  "winner_id"
-    t.integer  "winreason"
-    t.string   "replay"
-    t.integer  "user1_credits"
-    t.integer  "user2_credits"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "winreason",     :default => 0,    :null => false
+    t.string   "replay",        :default => "",   :null => false
+    t.integer  "user1_credits", :default => 0,    :null => false
+    t.integer  "user2_credits", :default => 0,    :null => false
+    t.integer  "version"
+    t.boolean  "user1_public",  :default => true, :null => false
+    t.boolean  "user2_public",  :default => true, :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   add_index "duels", ["user1_id"], :name => "index_duels_on_user1_id"
@@ -153,16 +156,6 @@ ActiveRecord::Schema.define(:version => 20120409100915) do
     t.boolean "topic_lock",         :default => false, :null => false
   end
 
-  create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
   create_table "settings", :primary_key => "name", :force => true do |t|
     t.text "value"
   end
@@ -189,7 +182,7 @@ ActiveRecord::Schema.define(:version => 20120409100915) do
   create_table "users", :force => true do |t|
     t.string   "name",                                   :null => false
     t.string   "password"
-    t.string   "email"
+    t.string   "email",               :default => "",    :null => false
     t.string   "nickname",            :default => "",    :null => false
     t.text     "signature"
     t.integer  "credits",             :default => 0,     :null => false

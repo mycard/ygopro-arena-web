@@ -1,7 +1,5 @@
 #encoding: UTF-8
 class RoomsController < ApplicationController
-  User_Filter = /\[(\d+),(.+?)(?:,(-1|0)|)\]/
-  Room_Filter = /\[(\d+),(.+?),(wait|start)(#{User_Filter}+?)\]/
   require 'open-uri'
   layout 'losses'
   def index
@@ -10,7 +8,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json  do
-        open('http://140.113.242.66:7922/?operation=getroom') do |file|
+        open('http://140.113.242.66:7922/?operation=getroomjson') do |file|
           file.set_encoding("GBK")
           file.read.encode("UTF-8").scan(Room_Filter) do |id, name, status, users|
             room = {id: id.to_i, name: name, status: status}
