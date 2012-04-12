@@ -30,13 +30,13 @@
     <p><%= User.human_attribute_name :id %>: <%= @user.id %></p>
     <p><%= User.human_attribute_name :email %>: <%= @user.email %></p>
     <p><%= User.human_attribute_name :created_at %>: <%=l @user.created_at, :format => :long %></p>
-    <p>决斗统计：胜<%= @user.wins.count %>:负<%= @user.losts.count %> 总场次：<%= @user.duels.count %></p>
+    <p><%= Duel.human_attribute_name :record %>：<%= @user.wins.count %> <%= Duel.human_attribute_name :wins %>, <%= @user.losts.count %> <%= Duel.human_attribute_name :losses %>, <%= Duel.human_attribute_name :total %>: <%= @user.duels.count %></p>
   <% end %>
 </div>
 
 <div style="clear:both"></div>
 <div id="cards">
-  <p><b>常用怪兽:</b> </p>
+  <p><b><%= User.human_attribute_name :top_monsters %>:</b> </p>
   <% @user.cards.main_monsters.top(10).each do |card| %>
     <div class="card">
       <%= link_to image_tag(card.image, :title => card.name), card %>
@@ -44,7 +44,7 @@
   <% end %>
 
   <div style="clear:both"></div>
-  <p><b>常用额外:</b> </p>
+  <p><b><%= User.human_attribute_name :top_extras %>:</b> </p>
   <% @user.cards.extra.top(5).each do |card| %>
     <div class="card">
       <%= link_to image_tag(card.image, :title => card.name), card %>
@@ -52,7 +52,7 @@
   <% end %>
 
   <div style="clear:both"></div>
-  <p><b>常用魔法:</b> </p>
+  <p><b><%= User.human_attribute_name :top_spells %>:</b> </p>
   <% @user.cards.magics.top(5).each do |card| %>
     <div class="card">
       <%= link_to image_tag(card.image, :title => card.name), card %>
@@ -60,7 +60,7 @@
   <% end %>
 
   <div style="clear:both"></div>
-  <p><b>常用陷阱:</b> </p>
+  <p><b><%= User.human_attribute_name :top_traps %>:</b> </p>
   <% @user.cards.traps.top(5).each do |card| %>
     <div class="card">
       <%= link_to image_tag(card.image, :title => card.name), card %>
@@ -72,16 +72,16 @@
 <table id="duels">
   <thead>
     <tr>
-      <th>场次</th>
-      <th>对手</th>
-      <th>胜负</th>
-      <th>得分</th>
-      <th>战斗终分</th>
+      <th><%= Duel.human_attribute_name :id %></th>
+      <th><%= Duel.human_attribute_name :opponent %></th>
+      <th><%= Duel.human_attribute_name :result %></th>
+      <th><%= Duel.human_attribute_name :points %></th>
+      <th><%= Duel.human_attribute_name :total_points %></th>
     </tr>
   </thead>
   <tfoot>
     <tr>
-      <td colspan="5"><%= link_to "更多...", {:controller => :duels, :action => :index, :user_id => @user.id} %></td>
+      <td colspan="5"><%= link_to t('more'), {:controller => :duels, :action => :index, :user_id => @user.id} %></td>
     </tr>
   </tfoot>
   <tbody>

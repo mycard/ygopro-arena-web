@@ -7,10 +7,10 @@ class DuelsController < ApplicationController
     if params[:user_id]
       @user = User.find params[:user_id] 
       @duels = @user.duels
-      @actions = [{"YGO战网" => users_path}, @user, '对战列表']
+      @actions = [{t('mycard.battlenet') => users_path}, @user, Duel.human_attribute_name(:index)]
     else
       @duels = Duel.where(true)
-      @actions = [{"YGO战网" => users_path}, '对战列表']
+      @actions = [{t('mycard.battlenet') => users_path}, Duel.human_attribute_name(:index)]
     end
     @duels = @duels.reverse_order.page(params[:page])
     respond_to do |format|
@@ -23,7 +23,7 @@ class DuelsController < ApplicationController
   # GET /duels/1.json
   def show
     @duel = Duel.find(params[:id])
-    @actions = [{"YGO战网" => users_path}, {'对战列表' => duels_path}, @duel]
+    @actions = [{t('mycard.battlenet') => users_path}, {Duel.human_attribute_name(:index) => duels_path}, @duel]
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @duel }
@@ -53,8 +53,8 @@ class DuelsController < ApplicationController
     @duel.winreason = params[:duel][:winreason]
     @duel.replay = params[:duel][:replay]
     @duel.version = params[:duel][:version]
-    @duel.user1 = User.find_or_create_by_name params[:duel][:user1_name] if params[:duel][:user1_name]
-    @duel.user2 = User.find_or_create_by_name params[:duel][:user2_name] if params[:duel][:user2_name]
+    @duel.user1 = User.find_by_name params[:duel][:user1_name] if params[:duel][:user1_name]
+    @duel.user2 = User.find_by_name params[:duel][:user2_name] if params[:duel][:user2_name]
     return if @duel.user1 == @duel.user2
     [params[:duel][:user1_main], params[:duel][:user1_extra], params[:duel][:user2_main], params[:duel][:user2_extra]].each_with_index do |cards, index|
       user = index / 2 == 0 ? @duel.user1 : @duel.user2

@@ -19,12 +19,14 @@ class ApplicationController < ActionController::Base
     end
   end
   def load_locale
-  	#locale = @current_user.locale || (
-  	#	request_language = 
-    #    request_language && request_language['HTTP_ACCEPT_LANGUAGE'][/[^,;]+/]
-    #)
-    I18n.locale = 'zh-CN'#locale if File.exist?("#{::Rails.root}/config/locales/#{request_language}.yml") 
-    User::Guest.name = t 'user.guest'
+    if @current_user.locale
+      I18n.locale = @current_user.locale
+    else
+      request.user_preferred_languages.each do |request_language|
+        break I18n.locale = request_language if File.exist?("#{::Rails.root}/config/locales/#{request_language}.yml") 
+      end
+    end
+    User::Guest.name = User.human_attribute_name :guest
     #IE && FF are not support
   end 
   def load_theme
@@ -60,20 +62,5 @@ class ApplicationController < ActionController::Base
     #p @site[:themes]
     
     @navigations = Navigation.find_all_by_super_id 0
-  end
-  #def redirect_to_thc
-  #p 'WARNING: '+params[:anything]+"?"+env['QUERY_STRING']
-  #redirect_to("http://www.touhou.cc/bbs/"+params[:anything]+"?"+env['QUERY_STRING'])
-  #respond_to do |format|
-  #format.html  { render :error => "404" }
-  #end
-  #end
-  alias old_redirect_to redirect_to
-  def redirect_to(*args)
-    if args.first == :back and env['HTTP_REFERER'].blank?
-      old_redirect_to(:root)
-    else
-      old_redirect_to *args
-    end
   end
 end

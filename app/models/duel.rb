@@ -37,6 +37,6 @@ class Duel < ActiveRecord::Base
     user_cards(user2, false)
   end
   def to_s
-    "决斗详情"
+    Duel.human_attribute_name(:detail)
   end
 end

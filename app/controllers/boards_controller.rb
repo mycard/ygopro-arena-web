@@ -7,7 +7,7 @@ class BoardsController < ApplicationController
   def index
     @boards = Board.where(:superboard_id => 0)
     @links = Link.all
-    @actions = [{'论坛'=>:boards}]
+    @actions = [Board.human_attribute_name(:index)]
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @boards }
@@ -19,7 +19,7 @@ class BoardsController < ApplicationController
   def show
     
     @board = Board.find(params[:id])
-    @actions = [{'论坛'=>:boards}, @board]
+    @actions = [{Board.human_attribute_name(:index) => boards_path}, @board]
     @actions = [@board]
     order = params[:order].blank? ? 'displayorder DESC, updated_at DESC' : params[:order]
     @topics = @board.topics.page(params[:page]).order(order)

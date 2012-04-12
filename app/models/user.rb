@@ -2,19 +2,18 @@
 class User < ActiveRecord::Base
   
   has_attached_file :avatar, :styles => { :middle => ["120x120#", :png], :small => ["48x48#", :png] }, :default_url => lambda { |avatar| "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(avatar.instance.email.strip.downcase)}?size=#{120}" }
-  #has_and_belongs_to_many :cards, :table_name => :duels_users_cards
+  
   has_many :duel_user_cards
   has_many :cards, :through => :duel_user_cards
   has_many :wins, :class_name => "Duel", :foreign_key => :winner_id
-
   belongs_to :role
-
   validates :name,  :presence => true,
-    :length => {:minimum => 1, :maximum => 254}  
-  #  validates :email, :presence => true,   
-  #                    :length => {:minimum => 3, :maximum => 254},  
-  #                    :uniqueness => true,  
-  #                    :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+    :length => {:minimum => 1, :maximum => 254},
+    :uniqueness => true
+  validates :email, :presence => true,
+    :length => {:minimum => 3, :maximum => 254},  
+    :uniqueness => true,
+    :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
   has_many :topics
   has_many :posts, :through => :topics
   
@@ -31,17 +30,17 @@ class User < ActiveRecord::Base
   def to_s
     "<a href=\"/users/#{id}\">#{name}</a>".html_safe
   end
-#  def avatar(size=nil)
-#    size = case size
-#    when :small
-#      48
-#    when Integer
-#      size
-#    else
-#    	120
-#    end
-#    "<a href=\"/users/#{id}\"><img src=\"http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.strip.downcase)}?size=#{size}\" /></a>".html_safe
-#  end
+  #  def avatar(size=nil)
+  #    size = case size
+  #    when :small
+  #      48
+  #    when Integer
+  #      size
+  #    else
+  #    	120
+  #    end
+  #    "<a href=\"/users/#{id}\"><img src=\"http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.strip.downcase)}?size=#{size}\" /></a>".html_safe
+  #  end
   
   
   class <<self  #TODO

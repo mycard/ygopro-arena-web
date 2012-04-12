@@ -12,14 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label t('user.name') %><br />
+    <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label t('user.password') %><br />
+    <%= f.label :password %><br />
     <%= f.password_field :password %>
   </div>
   <div class="actions">
-    <%= f.submit t('user.login') %>
+    <%= f.submit %>
   </div>
 <% end %>

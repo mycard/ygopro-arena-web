@@ -1,4 +1,7 @@
 class MycardController < ApplicationController
+  layout false
+  def index
+  end
   def update
     result = []
     version = params[:version]

@@ -5,6 +5,7 @@ gem "activerecord-import", ">= 0.2.0"
 gem 'will_paginate'
 gem 'will-paginate-i18n'
 gem "paperclip", "~> 3.0"
+gem 'http_accept_language'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

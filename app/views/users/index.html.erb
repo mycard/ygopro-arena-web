@@ -6,22 +6,22 @@
   #users .me {color:deepskyblue}
   #users .name a {color:#FFE793}
   #users .credits {color:#FF6468}
-  #users .ratio {color:#58DB3E; text-align:right}
-  #users .win {color:red; text-align:right}
-  #users .lost {color:blue; text-align:right}
+  #users .ratio {color:#58DB3E;}
+  #users .win {color:red;}
+  #users .lost {color:blue;}
   #users .show a {color:#DFC84B}
 </style>
 
 <table id="users">
   <thead>
     <tr>
-      <th>名次</th>
-      <th>决斗者</th>
-      <th>积分</th>
-      <th>胜率</th>
-      <th>胜</th>
-      <th>负</th>
-      <th>得分纪录</th>
+      <th><%= User.human_attribute_name :ranking %> </th>
+      <th><%= User.human_attribute_name :name %></th>
+      <th><%= Duel.human_attribute_name :points %></th>
+      <th><%= Duel.human_attribute_name :wins %></th>
+      <th><%= Duel.human_attribute_name :losses %></th>
+      <th><%= User.human_attribute_name :ratio %></th>
+      <th><%= User.human_attribute_name :detail %></th>
     </tr>
   </thead>
   <tbody>
@@ -41,10 +41,10 @@
         <td class="credits"><%= user.credits %></td>
         <% win = user.wins.count %>
         <% all = user.duels.count %>
-        <td class="ratio"><%= all.zero? ? 0 : 100 * win / all %>%</td>
         <td class="win"><%= win %></td>
         <td class="lost"><%= all - win %></td>
-        <td class="show"><%= link_to '详情', user %></td>
+        <td class="ratio"><%= all.zero? ? 0 : 100 * win / all %>%</td>
+        <td class="show"><%= link_to User.human_attribute_name(:show), user %></td>
       </tr>
     <% end %>
   </tbody> 

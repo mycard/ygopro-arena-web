@@ -2,14 +2,12 @@
 class UsersController < ApplicationController
   require 'open-uri'
   layout 'ygo'
-  #ApplicationHelper::addon_header.push "zh_header"
-  #ApplicationHelper::addon_top.push "zh_top"
-  #ApplicationHelper::addon_footer.push "zh_footer"
+
   # GET /users
   # GET /users.xml
   def index
     @users = User.all
-    @actions = [{"YGO战网" => users_path}, "用户排行"]
+    @actions = [{t('mycard.battlenet') => users_path}, User.human_attribute_name(:index)]
     respond_to do |format|
       format.html # index.html.erb
       #format.xml  { render :xml => @users }
@@ -20,7 +18,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find_by_id(params[:id]) || User.find_by_name(params[:id])
-    @actions = [{"YGO战网" => users_path}, @user]
+    @actions = [{t('mycard.battlenet') => users_path}, @user]
     respond_to do |format|
       format.html # show.html.erb
       #format.xml  { render :xml => @user }
@@ -31,7 +29,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    @actions = ["注册"]
+    @actions = [User.human_attribute_name(:register)]
     @user = User.new
 
     respond_to do |format|
@@ -62,7 +60,7 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-    @actions = ["注册"]
+    @actions = [User.human_attribute_name(:register)]
     respond_to do |format|
       if @user.save
         reply = begin
@@ -129,11 +127,11 @@ class UsersController < ApplicationController
     end
   end
   def login
-    @actions = ["登陆"]
+    @actions = [User.human_attribute_name(:login)]
     @user = User.new
   end
   def login_do
-    @actions = ["登陆"]
+    @actions = [User.human_attribute_name(:login)]
     user = User.find_by_name(params[:user][:name])
     if user and params[:user][:password] == user.password
       @user = user

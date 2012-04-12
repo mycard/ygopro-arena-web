@@ -19,11 +19,15 @@
                            background: -moz-linear-gradient(#58A2DA, #147EBD);background: -ms-linear-gradient(#58A2DA, #147EBD);
                            background: -o-linear-gradient(#58A2DA, #147EBD);background: linear-gradient(#58A2DA, #147EBD);}
   .film_bit_download:active{margin:1px 0 0 75px;-moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none;}
-  
+
   #title{display:none}
   #actions{display:none}
   #footer{display:none}
   #main{display:block}
+  #error_explanation{position:fixed;right:10px;top:50%;margin:-176px 0 0 0;z-index:10;color:#000000;border:3px solid #FF0066;border-radius:5px;background:#ffffff;width:310px;box-shadow:0px 2px 5px #999999;}
+  #error_explanation h2{background:#FF0066;margin:0;padding:4px 4px 4px 8px;font-size:14px;color:#ffffff;text-align:left; letter-spacing:0px}
+  #error_explanation h4{margin:4px 0 0 4px;padding:4px;text-align:left; font-weight:normal;font-size:12px;}
+  #error_explanation ul{padding:0 0 0 40px; text-align:left;font-size:12px;}
 </style>
 
 <script type="text/javascript">
@@ -56,9 +60,9 @@
 
 <%= form_for(@user, :html => {:onsubmit => "return postOrder();"}) do |f| %>
   <% if @user.errors.any? %>
-    <div id="error_explanation" style="color:black">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
+    <div id="error_explanation">
+      <h2><%=t 'activerecord.errors.template.header', :count => @user.errors.size, :model => @user.class.model_name.human %></h2>
+      <h4><%=t 'activerecord.errors.template.body', :count => @user.errors.size %></h4>
       <ul>
         <% @user.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -70,33 +74,33 @@
   <!--<p>用户注册说明：用户名和密码长度总和不得超过18个字符 ，用户名不得包含“$”以及“=” 号，否则无法登陆，其他无限制</p>-->
 
   <div class="main_div">
-    <div style="font-size:18px;margin:20px 0 10px 25px;padding:0 0 10px 0;border-bottom:1px solid #eeeeee;width:450px;">用户注册</div>
+    <div style="font-size:18px;margin:20px 0 10px 25px;padding:0 0 10px 0;border-bottom:1px solid #eeeeee;width:450px;"><%=t User.human_attribute_name :register %> </div>
     <div class="inner_div">
-      <div class="floatleft form_label"><%= f.label t('user.name') %>：</div>
+      <div class="floatleft form_label"><%= f.label :name %>：</div>
       <div class="floatleft">
         <%= f.text_field :name, :id => :username, :class => :from_input %>
       </div>
     </div>
     <div class="inner_div">
-      <div class="floatleft form_label"><%= f.label t('user.password') %>：</div>
+      <div class="floatleft form_label"><%= f.label :password %>：</div>
       <div class="floatleft">
         <%= f.text_field :password, :id => :password, :class => :from_input %>
       </div>
     </div>
     <div class="inner_div">
-      <div class="floatleft form_label"><%= f.label t('user.password_repeat') %>：</div>
+      <div class="floatleft form_label"><%= f.label :password_repeat %>：</div>
       <div class="floatleft">
         <%= f.text_field :password, :id => :rePassword, :class => :from_input %>
       </div>
     </div>
     <div class="inner_div">
-      <div class="floatleft form_label"><%= f.label t('user.email') %>：</div>
+      <div class="floatleft form_label"><%= f.label :email %>：</div>
       <div class="floatleft">
         <%= f.text_field :email, :id => :email, :class => :from_input %>
       </div>
     </div>
     <div class="inner_div">
-      <%= f.submit t('user.register'), :class=>"film_bit_download", :style=>"width:54px;height:25px;padding:4px 14px;border:1px solid #eeeeee;border-radius:5px;color:#ffffff;" %>
+      <%= f.submit :class=>"film_bit_download", :style=>"width:54px;height:25px;padding:4px 14px;border:1px solid #eeeeee;border-radius:5px;color:#ffffff;" %>
     </div>
   </div>
 <% end %>

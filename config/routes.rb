@@ -4,7 +4,7 @@ MycardServerHttp::Application.routes.draw do
   get "mycard/update"
   get "mycard/download"
 
-  root :to => "boards#index"
+  root :to => "mycard#index"
   
   resources :duels do
     get 'user1_deck.:format' => "duels#user1_deck"

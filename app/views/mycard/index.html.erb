@@ -1,0 +1,16 @@
+<meta charset="UTF-8" />
+<%= @site.name %> <br />
+<br />
+<%= link_to User.human_attribute_name(:register), register_path %><br />
+<br />
+<%= link_to User.human_attribute_name(:login), login_path %><br />
+<%= link_to t('mycard.download'), mycard_download_path %><br />
+<br />
+<%= link_to User.human_attribute_name(:index), users_path %><br />
+<%= link_to User.human_attribute_name(:show), logged? ? @current_user : User.first %><br />
+<%= link_to Card.human_attribute_name(:index), cards_path %><br />
+<%= link_to Card.human_attribute_name(:show), Card.first %><br />
+<%= link_to Duel.human_attribute_name(:index), duels_path %><br />
+<%= link_to Duel.human_attribute_name(:show), Duel.last %><br />
+<%= link_to Board.human_attribute_name(:index), boards_path %><br />
+<%= link_to 'API', '/api' %><br />

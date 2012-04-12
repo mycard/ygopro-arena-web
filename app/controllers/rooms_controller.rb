@@ -8,22 +8,14 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json  do
-        open('http://140.113.242.66:7922/?operation=getroomjson') do |file|
-          file.set_encoding("GBK")
-          file.read.encode("UTF-8").scan(Room_Filter) do |id, name, status, users|
-            room = {id: id.to_i, name: name, status: status}
-            room[:users] = []
-            users.scan(User_Filter) do |player, name, certified|
-              certified = if certified.nil?
-                name[-5,5] != "(未认证)"
+        open('http://140.113.242.66:7922/?operation=getroomjson', 'r:GBK') do |file|
+          JSON.parse(file.read.encode("UTF-8"))["rooms"].each do |r|
+            room = {id: r["roomid"].to_i, name: r["roomname"], status: r["istart"].to_sym, users: []}
+            r["users"].each do |u| 
+              if u["id"] == "0"
+                user = {player: u["pos"].to_i%2+1, id: 0, name: u["name"], certified: false}
               else
-                certified == "-1"
-              end
-              if certified
-                user = User.find_by_name(name)
-                user = {player: player.to_i, id: user ? user.id : 0, name: name, certified: true}
-              else
-                user = {player: player.to_i, id: 0, name: name, certified: false}
+                user = {player: u["pos"].to_i%2+1, id: User.find_by_name(u["name"]).id, name: u["name"], certified: true}
               end
               room[:users] << user
             end
