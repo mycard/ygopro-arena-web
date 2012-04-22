@@ -258,7 +258,10 @@ zh-CN:
       board:
         index: "论坛"
   mycard:
-    download: "mycard下载"
+    download: "立即下载"
     battlenet: "YGO战网"
   more:
     "更多..."
+  search:
+    search: "搜索"
+    advanced: "高级搜索"

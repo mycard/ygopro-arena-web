@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @actions = [{t('mycard.battlenet') => users_path}, @user]
     respond_to do |format|
       format.html # show.html.erb
-      #format.xml  { render :xml => @user }
+      format.json  { render :json => {id: @user.id, name: @user.name, nickname: @user.nickname} }
       format.png {redirect_to @user.avatar.url(:middle)}
     end
   end
@@ -63,28 +63,10 @@ class UsersController < ApplicationController
     @actions = [User.human_attribute_name(:register)]
     respond_to do |format|
       if @user.save
-        reply = begin
-          open("http://140.113.242.66:7922/?pass=zh99998&operation=forceuserpass&username=#{CGI.escape @user.name}&password=#{CGI.escape @user.password}", 'r:GBK') do |file|
-        case reply = file.read.encode("UTF-8", :invalid=>:replace, :undef=>:replace )
-            when "ok"
-          open("http://140.113.242.66:7922/?pass=zh99998&operation=saveuser"){} rescue nil
-          true
-        else
-              reply
-        end
-      end
-    rescue Exception => exception
-          ([exception] + exception.backtrace).join("\n")
-    end
-        if reply == true
-          session[:user_id] = @user.id
-          format.html { redirect_to(@user, :notice => '注册成功') }
-          format.xml  { render :xml => @user, :status => :created, :location => @user }
-        else
-          @user.errors.add :name, "注册失败，可能是服务器故障，请与管理员联系 Email/GT/QQ: zh99998@gmail.com 详情: #{reply}"
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-        end
+        boardcast_user(@user)
+        session[:user_id] = @user.id
+        format.html { redirect_to(@user, :notice => '注册成功') }
+        format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
@@ -138,32 +120,29 @@ class UsersController < ApplicationController
     elsif user.nil? or user.password.nil?
       username = params[:user][:name]
       password = params[:user][:password]
-      open("http://140.113.242.66:7922/?operation=passcheck&username=#{CGI.escape username}&pass=#{CGI.escape password}") do |file|
-        file.set_encoding("GBK")
-        case file.read.encode("UTF-8")
-        when "true"
-          if user
+      Server.each do |server|
+        open("http://#{server.ip}:#{server.http_port}/?operation=passcheck&username=#{CGI.escape username}&pass=#{CGI.escape password}") do |file|
+          if file.read == "true"
             user.password = password
             @user = user
             @user.save
-          else
-            @user = User.create(:name => username, :password => password)
+            break
           end
-        end
-      end rescue nil
+        end rescue nil
+        break if @user
+      end
     end
     respond_to do |format|
       if @user
         session[:user_id] = @user.id
         @user.update_attribute(:lastloginip, request.remote_ip)
+        boardcast_user(@user)
         format.html { redirect_to(@user, :notice => 'Login Successfully.') }
-        format.xml  { head :ok }
+        format.json  { render json: @user }
       else
         @user = User.new(params[:user])
-        #@user.errors.add 'incorrent_username_or_password' #TODO: 查API
-        return render :text => 'incorrent_username_or_password'
-        format.html { render :action => "login" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.html { render :text => 'incorrent_username_or_password' }
+        format.json { head json: nil }
       end
     end
     
@@ -187,6 +166,16 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :back }
       format.xml  { head :ok }
+    end
+  end
+  def boardcast_user(user)
+    Server.find_each do |server|
+      url = "http://#{server.ip}:#{server.http_port}/?pass=#{server.password}&operation=forceuserpass&username=#{CGI.escape user.name}&password=#{CGI.escape user.password}"
+      if RUBY_PLATFORM["win"] || RUBY_PLATFORM["ming"]
+        open(url){} rescue nil
+      else
+        Process.spawn('curl', url)
+      end
     end
   end
 end

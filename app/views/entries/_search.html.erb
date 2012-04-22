@@ -1,4 +1,4 @@
-<%= form_tag :controller => :topics do %>
+<%= form_tag :controller => :topics, :html => {id: search} do %>
   <%= text_field_tag "keyword" %>
   <%= submit_tag t("search.search") %>
   <%= link_to t("search.advanced") %>

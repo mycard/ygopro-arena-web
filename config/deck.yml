@@ -1,0 +1,441 @@
+圣刻:
+- name: 圣刻龙
+  operator: instr
+  count: 3
+圣刻遗式:
+- parent: 圣刻
+- card_type: 仪式魔法
+  count: 3
+- name: 邪遗式熏风乌贼怪
+  count: 1
+甲虫:
+- name: 甲虫装机
+  operator: instr
+  count: 6
+发条甲虫:
+- parent: 甲虫
+- name: 发条猎人
+  count: 1
+- name: 发条鼠
+  count: 1
+- name: 发条空母 发条巨舰
+  count: 1
+发条:
+- name: 发条
+  operator: instr
+  count: 6
+暗黑界:
+- name: 暗黑界
+  operator: instr
+  count: 6
+技抽暗黑界:
+- parent: 暗黑界
+- name: 技能吸收
+  count: 2
+代行:
+- name: 神圣球体
+  count: 3
+TG代行:
+- name: 科技属 突击兵
+  count: 1
+- name: 科技属 狼人
+  count: 1
+神光代行:
+- name: 神光之宣告者
+  count: 1
+罪:
+- name: 罪
+  operator: instr
+  count: 3
+- card_type: 场地魔法
+  count: 3
+技抽罪: 
+- parent: 罪
+- name: 技能吸收
+  count: 2
+守墓罪:
+- parent: 罪
+- name: 守墓
+  operator: instr
+  count: 2
+齿车罪:
+- parent: 罪
+- name: 齿车街
+  count: 2
+EH:
+- name: 元素英雄
+  operator: instr
+  count: 4
+光2HB:
+- parent: EH
+- name: 二重电光
+  count: 2
+废二:
+- name: 废品同调士
+  count: 2
+- name: 二重身战士
+  count: 2
+王道废二:
+- parent: 废二
+- name: 王道战士
+  count: 2
+TG废二:
+- parent: 废二
+- name: 科技属 突击兵
+  count: 1
+- name: 科技属 狼人
+  count: 1
+遗式:
+- name: 遗式
+  operator: instr
+  count: 4
+- card_type: 仪式魔法
+  count: 1
+手控向遗式:
+- parent: 遗式
+- name: 邪遗式熏风乌贼怪
+  count: 2
+L10遗式:
+- parent: 遗式
+- name: 邪遗式魂魄巨灵
+  count: 2
+冰结界:
+- name: 冰结界
+  operator: instr
+  count: 6
+苏生冰结界:
+- parent: 冰结界
+- name: 冰结界的传道师
+  count: 2
+帝:
+- name: 帝
+  operator: instr
+  count: 4
+蛙帝:
+- parent: 帝
+- name: 黄泉青蛙
+  count: 1
+次元帝:
+- parent: 帝
+- name: 异次元的侦察机
+  count: 1
+埃及使者:
+- name: 被封印
+  operator: instr
+  count: 3
+书抽:
+- parent: 埃及使者
+- name: 王立魔法图书馆
+  count: 2
+龙抽:
+- parent: 埃及使者
+- name: 调和的宝札
+  count: 2
+竹光抽:
+- parent: 埃及使者
+- name: 黄金色的竹光
+  count: 2
+凡骨抽:
+- parent: 埃及使者
+- name: 凡人的意志
+  count: 1
+兔超量:
+- name: 救援兔
+  count: 2
+侏罗纪入魔兔:
+- parent: 兔超量
+- type: 恐龙
+  count: 2
+- name: 入魔
+  operator: instr
+  count: 2
+侏罗纪忍者兔:
+- parent: 兔超量
+- type: 恐龙
+  count: 2
+- name: 忍法 超变化之术
+  count: 2
+暗轴入魔兔:
+- parent: 兔超量
+- name: 入魔
+  operator: instr
+  count: 4
+- name: 侵略的泛发感染
+  count: 1
+六武众:
+- name: 六武众
+  operator: instr
+  count: 4
+荒行六武:
+- parent: 六武众
+- name: 六武众的荒行
+  count: 2
+水火六武:
+- parent: 六武众
+- name: 真六武众 瑞穗
+  count: 1
+- name: 真六武众 竹刀
+  count: 1
+永火:
+- name: 永火
+  operator: instr
+  count: 4
+剑斗兽:
+- name: 剑斗
+  operator: instr
+  count: 4
+到来斗:
+- parent: 剑斗兽
+- name: 英雄到来
+  count: 1
+鸟斗:
+- parent: 剑斗兽
+- name: 神鸟攻击
+  count: 1
+X剑士:
+- name: X-剑士
+  operator: instr
+  count: 6
+- name: XX-剑士
+  operator: instr
+  count: 2
+光帝剑:
+- name: 光帝 克赖斯
+  count: 1
+- name: 凤凰剑圣 基亚·弗里德
+  count: 1
+不死:
+- type: 不死
+  count: 6
+- name: 僵尸带菌者
+  count: 1
+倒计时:
+- name: 终焉的倒计时
+  count: 2
+入魔:
+- name: 入魔
+  operator: instr
+  count: 6
+壶削:
+- name: 日全食之书
+  count: 1
+- name: 太阳之书
+  count: 1
+虫削:
+- parent: 壶削
+- name: 针虫
+  count: 2
+次元削:
+- parent: 壶削
+- name: 次元裂缝
+  count: 1
+黑羽:
+- name: 黑羽
+  operator: instr
+  count: 6
+旋风黑羽:
+- parent: 黑羽
+- name: 黑旋风
+  count: 1
+墓地黑羽:
+- parent: 黑羽
+- name: 黑羽-大旆之伐由
+  count: 2
+变形斗士:
+- name: 变形斗士
+  operator: instr
+  count: 4
+- name: 动力工具龙
+  count: 2
+副作用:
+- name: 药物的副作用
+  count: 2
+命运女郎:
+- name: 命运女郎
+  operator: instr
+  count: 4
+大日:
+- name: 大日
+  operator: instr
+  count: 4
+波纹大日:
+- parent: 大日
+- name: 静寂之杖-波纹
+  count: 2
+双剑大日:
+- parent: 大日
+- name: 闪光之双剑-雷震
+  count: 2
+机巧:
+- name: 机巧
+  operator: instr
+  count: 5
+机甲机巧:
+- parent: 机巧
+- name: 机甲
+  operator: instr
+  count: 3
+齿轮:
+- name: 齿轮
+  operator: instr
+  count: 4
+血代齿轮:
+- parent: 齿轮
+- name: 血之代偿
+  count: 2
+机甲齿轮:
+- parent: 齿轮
+- name: 机甲
+  operator: instr
+  count: 3
+龙族:
+- type: 龙
+  count: 6
+- name: 真红眼暗铁龙
+  count: 1
+次元龙族:
+- parent: 龙族
+- name: 日食翼龙
+  count: 2
+光道:
+- name: 光道
+  operator: instr
+  count: 6
+混沌光道:
+- parent: 光道
+- monster_attribute: 暗
+  count: 4
+光化光道:
+- parent: 光道
+- name: 光芒使者
+  operator: instr
+  count: 3  
+熔岩:
+- name: 熔岩
+  operator: instr
+  count: 4
+星圣:
+- name: 星圣
+  operator: instr
+  count: 4
+守墓:
+- name: 守墓
+  operator: instr
+  count: 6
+云魔物:
+- name: 云魔物
+  operator: instr
+  count: 4
+亚马逊:
+- name: 亚马逊
+  operator: instr
+  count: 6
+反击天使:
+- type: 天使
+  count: 4
+- card_type: 反击陷阱
+  count: 7
+宝玉兽:
+- name: 宝玉兽
+  operator: instr
+  count: 4
+宝石骑士:
+- name: 宝石骑士
+  operator: instr
+  count: 5
+- name: 宝石骑士融合
+  count: 1
+薰风:
+- name: 薰风
+  operator: instr
+  count: 6
+风暗薰风:
+- parent: 薰风
+- name: 暗黑神鸟 斯摩夫
+  count: 1
+念动力薰风:
+- parent: 薰风
+- type: 念动力
+  count: 7
+核成:
+- name: 核成
+  operator: instr
+  count: 6
+废铁:
+- name: 废铁奇美拉
+  count: 2
+异虫:
+- name: 异虫
+  operator: instr
+  count: 4
+忍者:
+- name: 忍者
+  operator: instr
+  count: 6
+机巧:
+- name: 机巧
+  operator: instr
+  count: 5
+极星:
+- name: 极星
+  operator: instr
+  count: 6
+火山:
+- name: 火山
+  operator: instr
+  count: 6
+电子:
+- name: 电子龙
+  operator: instr
+  count: 4
+电池人:
+- name: 电池人
+  operator: instr
+  count: 4
+- name: 漏电
+  count: 1
+白骨:
+- name: 白骨
+  operator: instr
+  count: 6
+神居天使:
+- name: 神之居城
+  count: 2
+- monster_level: 5
+  operator: ">="
+  count: 1
+自然:
+- name: 自然
+  operator: instr
+  count: 6
+连锁BURN:
+- name: 连锁暴击
+  count: 1
+邪心英雄:
+- name: 邪心英雄
+  operator: instr
+  count: 4
+命运英雄:
+- name: 命运英雄
+  operator: instr
+  count: 6
+龙骑士D:
+- parent: 命运英雄
+- name: 龙骑士 D-终
+  count: 1
+魔轰神:
+- name: 魔轰神
+  operator: instr
+  count: 7
+龙骑兵团:
+- name: 龙骑兵团
+  operator: instr
+  count: 4
+龙骑星爆:
+- parent: 龙骑兵团
+- name: 爆裂模式
+  count: 1
+R6龙骑:
+- parent: 龙骑兵团
+- name: 圣刻龙王-阿图姆龙王
+  count: 1

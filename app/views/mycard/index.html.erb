@@ -1,16 +1,68 @@
-<meta charset="UTF-8" />
-<%= @site.name %> <br />
-<br />
-<%= link_to User.human_attribute_name(:register), register_path %><br />
-<br />
-<%= link_to User.human_attribute_name(:login), login_path %><br />
-<%= link_to t('mycard.download'), mycard_download_path %><br />
-<br />
-<%= link_to User.human_attribute_name(:index), users_path %><br />
-<%= link_to User.human_attribute_name(:show), logged? ? @current_user : User.first %><br />
-<%= link_to Card.human_attribute_name(:index), cards_path %><br />
-<%= link_to Card.human_attribute_name(:show), Card.first %><br />
-<%= link_to Duel.human_attribute_name(:index), duels_path %><br />
-<%= link_to Duel.human_attribute_name(:show), Duel.last %><br />
-<%= link_to Board.human_attribute_name(:index), boards_path %><br />
-<%= link_to 'API', '/api' %><br />
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8"> 
+
+  <link href='http://fonts.googleapis.com/css?family=Nunito:700' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag 'application' %>    
+  <%= javascript_include_tag 'mycard' %>
+  <%= stylesheet_link_tag    'mycard' %>
+  <title>Mycard - 萌卡</title>
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {   
+      $('#slider').cycle({   
+        fx:    'fade',  //特效           speed:  7500,
+        timeout:  7200,
+        random:  1
+      });
+    }); </script>
+</head>
+<body>
+  <header>
+    <nav id="nav">
+      <a class="nav_logo">MyCard</a>
+      <%= link_to "在线大厅", rooms_path, :class => "nav_link" %>
+      <%= link_to "用户排行", users_path,:class => "nav_link" %>
+      <%= link_to "常用卡片", cards_path, :class => "nav_link" %>
+      <%= link_to "常用卡组", decks_path, :class => "nav_link" %>
+      <%= link_to "论坛", boards_path, :class => "nav_link" %>
+
+    </nav>
+  </header>
+  <div id="main">
+    <div id="main_sub">
+      <div id="information">
+        <div>
+          <a class="title">Mycard</a>
+          <a class="subtitle">萌卡</a>
+          </br>
+          <a class="subinc">——大家一起萌起来 (/￣▽￣)/～</a>
+          <div id="download">
+            <%= link_to t('mycard.download'), mycard_download_path, :class => "download_active" %>
+            <a class="download_information">最新版本:<%= Dir.glob('public/mycard/mycard-*-win32.7z').max =~ /mycard\/mycard-(.*)-win32.7z/; $1 %></a>
+          </div>
+        </div>
+      </div>
+      <div id="slider">
+        <div class="show1"></div>
+        <div class="show2"></div>
+        <div class="show3"></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div id="footer1">
+      <h2>其他服务</h2>
+      <a href="/api">API</a>
+    </div>
+    <div id="footer2">
+    </div>
+    <div id="footer3">
+      <h2>版权申明</h2>
+      <a href="http://oapo.qzworld.net">
+        本作品的创作传播应遵循OAPO协议。
+        <img src="http://oapo.qzworld.net/images/icons/fee.png"></img>
+        <img src="http://oapo.qzworld.net/images/icons/use.png"></img>
+      </a>
+    </div>
+  </footer>
+</body>

@@ -1,4 +1,10 @@
 MycardServerHttp::Application.routes.draw do
+  resources :servers
+
+  resources :libraries
+
+  resources :decks
+
   get "rooms/index"
 
   get "mycard/update"

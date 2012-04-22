@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402031416) do
+ActiveRecord::Schema.define(:version => 20120417233009) do
 
   create_table "boards", :force => true do |t|
     t.string  "name",          :default => "", :null => false
@@ -56,19 +56,31 @@ ActiveRecord::Schema.define(:version => 20120402031416) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "decks", :force => true do |t|
+    t.integer  "library_id"
+    t.integer  "user_id"
+    t.integer  "duel_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "decks", ["duel_id"], :name => "index_decks_on_duel_id"
+  add_index "decks", ["library_id"], :name => "index_decks_on_library_id"
+  add_index "decks", ["user_id"], :name => "index_decks_on_user_id"
+
   create_table "duels", :force => true do |t|
     t.integer  "user1_id"
     t.integer  "user2_id"
     t.integer  "winner_id"
-    t.integer  "winreason",     :default => 0,    :null => false
-    t.string   "replay",        :default => "",   :null => false
-    t.integer  "user1_credits", :default => 0,    :null => false
-    t.integer  "user2_credits", :default => 0,    :null => false
+    t.integer  "winreason"
+    t.string   "replay"
+    t.integer  "user1_credits"
+    t.integer  "user2_credits"
     t.integer  "version"
-    t.boolean  "user1_public",  :default => true, :null => false
-    t.boolean  "user2_public",  :default => true, :null => false
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+    t.boolean  "user1_public",  :default => true, :null => false
+    t.boolean  "user2_public",  :default => true, :null => false
   end
 
   add_index "duels", ["user1_id"], :name => "index_duels_on_user1_id"
@@ -84,6 +96,16 @@ ActiveRecord::Schema.define(:version => 20120402031416) do
   add_index "duels_users_cards", ["card_id"], :name => "index_duels_users_cards_on_card_id"
   add_index "duels_users_cards", ["duel_id"], :name => "index_duels_users_cards_on_duel_id"
   add_index "duels_users_cards", ["user_id"], :name => "index_duels_users_cards_on_user_id"
+
+  create_table "libraries", :force => true do |t|
+    t.string   "name"
+    t.text     "contents"
+    t.integer  "parent_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "libraries", ["parent_id"], :name => "index_libraries_on_parent_id"
 
   create_table "links", :force => true do |t|
     t.string   "name"
@@ -156,6 +178,16 @@ ActiveRecord::Schema.define(:version => 20120402031416) do
     t.boolean "topic_lock",         :default => false, :null => false
   end
 
+  create_table "servers", :force => true do |t|
+    t.string   "name"
+    t.string   "password"
+    t.string   "ip"
+    t.integer  "port"
+    t.integer  "http_port"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "settings", :primary_key => "name", :force => true do |t|
     t.text "value"
   end
@@ -213,5 +245,40 @@ ActiveRecord::Schema.define(:version => 20120402031416) do
   end
 
   add_index "users", ["name"], :name => "index_users_on_name"
+
+  create_table "users_copy", :force => true do |t|
+    t.string   "name",                                   :null => false
+    t.string   "password"
+    t.string   "email",               :default => "",    :null => false
+    t.string   "nickname",            :default => "",    :null => false
+    t.text     "signature"
+    t.integer  "credits",             :default => 0,     :null => false
+    t.integer  "credit1",             :default => 0,     :null => false
+    t.integer  "credit2",             :default => 0,     :null => false
+    t.integer  "credit3",             :default => 0,     :null => false
+    t.integer  "credit4",             :default => 0,     :null => false
+    t.integer  "credit5",             :default => 0,     :null => false
+    t.integer  "credit6",             :default => 0,     :null => false
+    t.integer  "credit7",             :default => 0,     :null => false
+    t.integer  "credit8",             :default => 0,     :null => false
+    t.integer  "win",                 :default => 0,     :null => false
+    t.integer  "lost",                :default => 0,     :null => false
+    t.integer  "role_id",             :default => 5,     :null => false
+    t.boolean  "locked",              :default => false, :null => false
+    t.string   "regip",               :default => "",    :null => false
+    t.string   "lastloginip",         :default => "",    :null => false
+    t.integer  "viewnum",             :default => 0,     :null => false
+    t.integer  "onlinetime",          :default => 0,     :null => false
+    t.string   "locale"
+    t.string   "theme"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  add_index "users_copy", ["name"], :name => "index_users_on_name"
 
 end

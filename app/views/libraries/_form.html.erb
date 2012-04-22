@@ -1,0 +1,29 @@
+<%= form_for(@library) do |f| %>
+  <% if @library.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@library.errors.count, "error") %> prohibited this library from being saved:</h2>
+
+      <ul>
+      <% @library.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :contents %><br />
+    <%= f.text_area :contents %>
+  </div>
+  <div class="field">
+    <%= f.label :parent %><br />
+    <%= f.text_field :parent %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

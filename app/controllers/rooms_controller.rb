@@ -8,18 +8,21 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json  do
-        open('http://140.113.242.66:7922/?operation=getroomjson', 'r:GBK') do |file|
-          JSON.parse(file.read.encode("UTF-8"))["rooms"].each do |r|
-            room = {id: r["roomid"].to_i, name: r["roomname"], status: r["istart"].to_sym, users: []}
-            r["users"].each do |u| 
-              if u["id"] == "0"
-                user = {player: u["pos"].to_i%2+1, id: 0, name: u["name"], certified: false}
-              else
-                user = {player: u["pos"].to_i%2+1, id: User.find_by_name(u["name"]).id, name: u["name"], certified: true}
+        Server.all.each_with_index do |server, index|
+          open("http://#{server.ip}:#{server.http_port}/?operation=getroomjson", 'r:GBK') do |file|
+            JSON.parse(file.read.encode("UTF-8"))["rooms"].each do |r|
+              room = {id: ('A'.ord+index).chr + r["roomid"], name: r["roomname"], status: r["istart"].to_sym, users: []}
+              r["users"].each do |u| 
+                if u["id"] == "0"
+                  user = {player: u["pos"].to_i%2+1, id: 0, name: u["name"], certified: false}
+                else
+                  user = User.find_by_name(u["name"])
+                  user = {player: u["pos"].to_i%2+1, id: user ? user.id : 0, name: u["name"], certified: true}
+                end
+                room[:users] << user
               end
-              room[:users] << user
+              @rooms << room
             end
-            @rooms << room
           end
         end
         render json: @rooms

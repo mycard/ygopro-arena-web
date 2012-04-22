@@ -25,7 +25,7 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
     @actions = [{"YGO战网" => users_path}, {"卡片列表" => cards_path}, @card]
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { redirect_to "http://www.ourocg.cn/Cards/View-#{@card.id}"}
       format.json { render json: @card }
       format.png { redirect_to @card.image }
     end

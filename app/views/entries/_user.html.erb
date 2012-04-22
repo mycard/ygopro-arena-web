@@ -1,17 +1,10 @@
 <div id="user">
   <% if logged? %>
-    <cite><a href="space.php?uid=359" class="noborder"><%= @current_user %> </a></cite>
-    <span class="pipe">|</span>
-    <%= link_to t('user.my'), @current_user %>
-    <%= link_to t('user.space'), @current_user %>
-    <%#= link_to t('user.notice'), @current_user %>
-    <span id="myprompt_check"></span>
-    <%= link_to t('user.pm'), pms_path %>
-
-    <span class="pipe">|</span>
-    <%= link_to t('user.logout'), logout_path %>
+    <%= link_to @current_user.name, @current_user %>
+    <%= link_to Pm.model_name.human, pms_path %>
+    <%= link_to User.human_attribute_name('logout'), logout_path %>
   <% else %>
-    <%= link_to t('user.login'), login_path %>
-    <%= link_to t('user.register'), new_user_path %>
+    <%= link_to User.human_attribute_name('login'), login_path %>
+    <%= link_to User.human_attribute_name('register'), register_path %>
   <% end %>
 </div>

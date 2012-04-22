@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @deck.name %>
+</p>
+
+<p>
+  <b>String:</b>
+  <%= @deck.string %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @deck.category %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @deck.user_id %>
+</p>
+
+<p>
+  <b>Duel:</b>
+  <%= @deck.duel_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_deck_path(@deck) %> |
+<%= link_to 'Back', decks_path %>

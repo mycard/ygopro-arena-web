@@ -99,3 +99,30 @@ task :refresh_user_count => :environment do
     puts "(#{user.id}/#{count})#{user.name}"
   end
 end
+
+task :refresh_user_pass => :environment do
+  require 'cgi'
+  require 'open-uri'
+  servers = Server.all
+  users = []
+  User.find_each do |user|
+    if user.password.nil? 
+      print "#{user.id} #{user.name} ..无密码\n"
+      next
+    end
+    users << user
+  end
+  threads = []
+  100.times do |i|
+    threads << Thread.new do      
+      while user = users.pop
+        out = "#{user.id} #{user.name} "
+        servers.each do |server|
+          open("http://#{server.ip}:#{server.http_port}/?pass=#{server.password}&operation=forceuserpass&username=#{CGI.escape user.name}&password=#{CGI.escape user.password}"){|f|out << f.read + " "} rescue out << $!.inspect.encode("UTF-8", :invalid => :replace, :undef => :replace)
+        end
+        print out+"\n"
+      end
+    end
+  end
+  threads.each{|thread|thread.join}
+end

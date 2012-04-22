@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
   belongs_to :role
   validates :name,  :presence => true,
     :length => {:minimum => 1, :maximum => 254},
-    :uniqueness => true
+    :uniqueness => {:case_sensitive => false}
   validates :email, :presence => true,
     :length => {:minimum => 3, :maximum => 254},  
-    :uniqueness => true,
+    :uniqueness => {:case_sensitive => false},
     :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
   has_many :topics
   has_many :posts, :through => :topics

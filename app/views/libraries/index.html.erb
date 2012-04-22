@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <th>卡组</th>
+    <th>数量</th>
+  </tr>
+
+<% Library.joins(:decks).group('library_id').order("COUNT(*) DESC").select('*, COUNT(*) as count').each do |library| %>
+  <tr>
+    <td><%= link_to library.name, library %></td>
+    <td><%= library.count %></td>
+  </tr>
+<% end %>
+</table>

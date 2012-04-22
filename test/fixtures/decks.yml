@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  string: MyString
+  category: MyString
+  user_id: 
+  duel_id: 
+
+two:
+  name: MyString
+  string: MyString
+  category: MyString
+  user_id: 
+  duel_id: 

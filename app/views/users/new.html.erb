@@ -28,6 +28,8 @@
   #error_explanation h2{background:#FF0066;margin:0;padding:4px 4px 4px 8px;font-size:14px;color:#ffffff;text-align:left; letter-spacing:0px}
   #error_explanation h4{margin:4px 0 0 4px;padding:4px;text-align:left; font-weight:normal;font-size:12px;}
   #error_explanation ul{padding:0 0 0 40px; text-align:left;font-size:12px;}
+  .field_with_errors label{color:#FF0066; text-shadow:1px 1px 5px #cccccc;font-weight:bold;}
+  .field_with_errors input{border:1px solid #FF0066;box-shadow:1px 1px 5px #999999,0px 0px 2px #999999 inset;}
 </style>
 
 <script type="text/javascript">
@@ -76,25 +78,25 @@
   <div class="main_div">
     <div style="font-size:18px;margin:20px 0 10px 25px;padding:0 0 10px 0;border-bottom:1px solid #eeeeee;width:450px;"><%=t User.human_attribute_name :register %> </div>
     <div class="inner_div">
-      <div class="floatleft form_label"><%= f.label :name %>：</div>
+      <div class="floatleft form_label"><%= f.label :name %></div>
       <div class="floatleft">
         <%= f.text_field :name, :id => :username, :class => :from_input %>
       </div>
     </div>
     <div class="inner_div">
-      <div class="floatleft form_label"><%= f.label :password %>：</div>
+      <div class="floatleft form_label"><%= f.label :password %></div>
       <div class="floatleft">
-        <%= f.text_field :password, :id => :password, :class => :from_input %>
+        <%= f.password_field :password, :id => :password, :class => :from_input %>
       </div>
     </div>
     <div class="inner_div">
-      <div class="floatleft form_label"><%= f.label :password_repeat %>：</div>
+      <div class="floatleft form_label"><%= f.label :password_repeat %></div>
       <div class="floatleft">
-        <%= f.text_field :password, :id => :rePassword, :class => :from_input %>
+        <%= f.password_field :password, :id => :rePassword, :class => :from_input %>
       </div>
     </div>
     <div class="inner_div">
-      <div class="floatleft form_label"><%= f.label :email %>：</div>
+      <div class="floatleft form_label"><%= f.label :email %></div>
       <div class="floatleft">
         <%= f.text_field :email, :id => :email, :class => :from_input %>
       </div>

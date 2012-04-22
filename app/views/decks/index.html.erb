@@ -1,0 +1,18 @@
+<h1>Listing decks</h1>
+
+<table>
+  <tr>
+    <th>卡组</th>
+    <th>数量</th>
+  </tr>
+<% Deck.find(:all, select: "*, count(*) as count", group: :category, order: "count DESC").each do |deck| %>
+  <tr>
+    <td><%= deck.category %></td>
+    <td><%= deck.count %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Deck', new_deck_path %>
