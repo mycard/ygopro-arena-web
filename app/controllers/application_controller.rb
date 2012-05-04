@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
     Dir.foreach(Themes_Dir) do |file|
       theme_config_file = File.join Themes_Dir, file, "theme.yml"
       if File.file? theme_config_file
-        @site[:themes][file] = YAML.load_file(theme_config_file)
+        @site[:themes][file] = YAML.load_file(theme_config_file) rescue {}
       end
     end
     #p @site[:themes]

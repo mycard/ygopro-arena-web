@@ -21,11 +21,30 @@
   <header>
     <nav id="nav">
       <a class="nav_logo">MyCard</a>
-      <%= link_to "在线大厅", rooms_path, :class => "nav_link" %>
-      <%= link_to "用户排行", users_path,:class => "nav_link" %>
-      <%= link_to "常用卡片", cards_path, :class => "nav_link" %>
-      <%= link_to "常用卡组", decks_path, :class => "nav_link" %>
-      <%= link_to "论坛", boards_path, :class => "nav_link" %>
+
+      <ul class="menu" id="menu">
+        <li><%= link_to "在线大厅", rooms_path, :class => "nav_link" %></li>
+        <li><%= link_to "竞技场", users_path,:class => "nav_link" %>
+          <ul>
+            <li><%= link_to "排行榜", users_path, :class => "nav_sub" %></li>
+            <li><%= link_to "决斗记录", duels_path, :class => "nav_sub" %></li>
+            <li><%= link_to "我的中心", logged? ? @current_user : login_path, :class => "nav_sub" %></li>
+          </ul>
+        </li>
+        
+        <li>
+          <%= link_to "卡组统计", decks_path, :class => "nav_link" %>
+          <ul>
+            <li><%= link_to "卡组排行", decks_path, :class => "nav_sub"  %></li>
+            <li><%= link_to "单卡排行", cards_path, :class => "nav_sub"  %></li>
+          </ul>
+        </li>
+        <li><%= link_to "论坛", boards_path, :class => "nav_link" %></li>
+      </ul>
+      <script type="text/javascript">
+        var menu=new menu.dd("menu");
+        menu.init("menu","menuhover");
+      </script>
 
     </nav>
   </header>
@@ -56,6 +75,8 @@
       <a href="/api">API</a>
     </div>
     <div id="footer2">
+      <h2>合作伙伴</h2>
+      <%= render Link.all %>
     </div>
     <div id="footer3">
       <h2>版权申明</h2>
