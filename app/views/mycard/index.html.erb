@@ -3,6 +3,7 @@
   <meta charset="UTF-8"> 
 
   <link href='http://fonts.googleapis.com/css?family=Nunito:700' rel='stylesheet' type='text/css'>
+  <!--[if lt IE 9]><%= javascript_include_tag 'html5shiv' %><![endif]-->
   <%= javascript_include_tag 'application' %>    
   <%= javascript_include_tag 'mycard' %>
   <%= stylesheet_link_tag    'mycard' %>
@@ -35,7 +36,7 @@
           <a class="title">Mycard</a>
           <a class="subtitle">萌卡</a>
           </br>
-          <a class="subinc">——大家一起萌起来 (/￣▽￣)/～</a>
+          <a class="subinc">程序在开发中 bug什么的要淡定哦</a>
           <div id="download">
             <%= link_to t('mycard.download'), mycard_download_path, :class => "download_active" %>
             <a class="download_information">最新版本:<%= Dir.glob('public/mycard/mycard-*-win32.7z').max =~ /mycard\/mycard-(.*)-win32.7z/; $1 %></a>
