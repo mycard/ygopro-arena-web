@@ -20,12 +20,9 @@
     <header id="headerbg">
       <div class="header">
         <embed src="<%= image_path('common/banner.swf') %>" quality="high" wmode="transparent" style="float:left;" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="898" height="116"></embed>
-        <div class="bg-dmenuleft"></div>
-        <div id="dmenu" class="bg-dmenu">
-          <nav id="menu">
-            <%= render "entries/navigation" %>
-          </nav>
-        </div>
+        <nav id="nav">
+          <%= render "entries/navigation" %>
+        </nav>
       </div>
     </header>
     <nav id="actions">
