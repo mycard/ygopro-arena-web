@@ -3,7 +3,31 @@
     text-align:left;
     width:900px;
 }
+#nav {
+    padding-top: 22px;
+    padding-left: 170px;
+    width:728px;
+    height:36px;
+    background:#DCE1E8 image-url("navbg.png") no-repeat;
+    float:left;
+    margin:auto;
 
+}
+#nav a{
+    float:left;
+    width:88px;
+    height:36px;
+    background: image-url("common/menu_bg.gif") no-repeat;
+    padding-top: 12px;
+    color:white;
+}
+#nav li.current a {
+    background:image-url("common/menu_h_bg.gif") no-repeat;
+	color:#333;
+	height:36px;
+	font-weight:bold;
+	font-size:14px;
+}
 * {
 	word-wrap:break-word;
 }
@@ -322,45 +346,7 @@ hr {
 	font-size:16px;
 	font-weight:400;
 }
-#menu {
-	position:absolute;
-	right:0;
-	bottom:0;
-	_bottom:-2px;
-	height:26px;
-}
-#menu li {
-	display:inline;
-	float:left;
-	margin-left:5px;
-}
-#menu a {
-	float:left;
-	padding:0 14px;
-	height:25px;
-	border:solid #B0E4EF;
-	border-width:1px 1px 0;
-	background:transparent none;
-	line-height:25px;
-	color:#FFF;
-	text-decoration:none;
-	overflow:hidden;
-}
-#menu a.dropmenu {
-	padding-right:20px;
-	background-image:image-url("common/arrow_down.gif");
-	background-repeat:no-repeat;
-	background-position:95% 50%;
-}
-#menu a:hover {
-	border-color:#00B2E8;
-	color:#333;
-}
-#menu li.current a {
-	height:26px;
-	border-color:#00B2E8;
-	color:#333;
-}
+
 #actions {
 	margin:-8px auto 0;
 	background:image-url("common/icon_nav.gif") no-repeat 0 50%;
@@ -1933,24 +1919,7 @@ img.inline {
 	height:116px;
 	margin:auto;
 }
-#dmenu {
-	height:58px;
-	margin:auto;
-        position:relative;
-}
-.bg-dmenuleft {
-        clear:both;
-	width:76px;
-	height:58px;
-	background:image-url("common/bg_cat.gif") no-repeat;
-	float:left;
-}
-.bg-dmenu {
-	width:822px;
-	height:58px;
-	background:#DCE1E8 image-url("common/bg_dmenu.gif") no-repeat;
-	float:left;
-}
+
 #actions {
 	width:1024px;
 	height:53px;
@@ -2041,45 +2010,7 @@ img.inline {
 	text-align:left;
 	line-height:23px;
 }
-#menu {
-	padding:0;
-	width:700px;
-	height:36px;
-	position:absolute;
-	left:100px;
-	bottom:0;
-}
-#menu a {
-	float:left;
-	width:88px;
-	height:36px;
-	border:0;
-	background:transparent image-url("common/menu_bg.gif") no-repeat;
-	line-height:45px;
-	color:#FFF;
-	text-align:center;
-	overflow:hidden;
-	padding:0;
-}
-#menu a.dropmenu {
-	float:left;
-	width:88px;
-	height:36px;
-	border:0;
-	background:transparent image-url("common/menu_bg.gif") no-repeat;
-	line-height:45px;
-	color:#FFF;
-	text-align:center;
-	overflow:hidden;
-	padding:0;
-}
-#menu li.current a {
-	background:image-url("common/menu_h_bg.gif") no-repeat;
-	color:#333;
-	height:36px;
-	font-weight:bold;
-	font-size:14px;
-}
+
 .postattachlist {
 	width:600px !important;
 }
