@@ -53,6 +53,8 @@ zh-CN:
     - :month
     - :day
   datetime:
+    today: "今日"
+    yesterday: "昨日"
     distance_in_words:
       about_x_hours:
         one: 大约一小时
@@ -265,3 +267,80 @@ zh-CN:
   search:
     search: "搜索"
     advanced: "高级搜索"
+    
+  #old
+  user:
+    login: "登陆"
+    register: "注册"
+    logout: "退出"
+    my: "我的中心"
+    space: "空间"
+    notice: "提醒"
+    pm: "短消息"
+    name: "用户名"
+    password: "密码"
+    password_repeat: "重复密码"
+    email: "邮箱"
+    credits: "积分"
+    id: "ID"
+    post: "帖子"
+    topic: "主题"
+    digest: "精华"
+    guest: "游客"
+    avatar: "头像"
+    nickname: "昵称"
+    signature: "个人签名"
+  forum:
+    next: "下一页"
+    prev: "上一页"
+    link: "友情链接"
+  board:
+    control: "管理面板"
+    name: "版块名称"
+    introduction: "版块简介"
+    notice: "版块公告"
+    logo: "板块图标"
+    banner: "板块顶图"
+    readperm: "阅读权限"
+    topicperm: "主题权限"
+    postperm: "回帖权限"
+    submit: "提交"
+    topic: "主题"
+    post: "帖子"
+    none: "从未"
+    subboard: "子版快"
+  search:
+    search: "搜索"
+    advanced: "高级搜索"
+  stat:
+    onlineuser: "在线人数"
+    total: "总计"
+    max: "最高"
+    at: "于"
+  topic:
+    new: "发帖"
+    reply: "回复"
+    quote: "引用"
+    title: "标题"
+    submit: "提交"
+    order: "排序"
+    displayorder: "置顶"
+    digest: "精华"
+    user_name: "作者"
+    view_num: "查看"
+    reply_num: "回复"
+    post_last: "最后回复"
+    created_at: "发表时间"
+    updated_at: "回复时间"
+    control:
+      delete: "删除"
+      displayorder: "置顶"
+      digest: "精华"
+      lock: "锁定"
+      highlight: "高亮"
+  post:
+    edit: "编辑"
+    content: "正文"
+    submit: "提交"
+    private: "仅楼主可见"
+    anonymous: "匿名发帖"
