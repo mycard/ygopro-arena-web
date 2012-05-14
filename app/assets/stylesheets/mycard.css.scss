@@ -1,6 +1,15 @@
 /*
  *= require dropdown
 */
+@mixin background-gradient($from:#3966AE,$to:#263C7B){
+	background: $from;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from($from), to($to));
+	background: -webkit-linear-gradient($from, $to);
+	background: -moz-linear-gradient($from, $to);
+	background: -ms-linear-gradient($from, $to);
+	background: -o-linear-gradient($from, $to);
+	background: linear-gradient($from, $to);
+}
 *{
 margin:0;
 padding:0;
@@ -22,7 +31,6 @@ color:white;
 }
 #nav a:hover{
 color:white;
-margin-left:10px;
 }
 #nav a:visited{
 color:white;
@@ -40,27 +48,28 @@ color:white;
 margin:0 auto;
 font:small-caps 12px "\5FAE\8F6F\96C5\9ED1";
 text-shadow:1px 1px 2px #0C2549;
+@include background-gradient();
 }
 .nav_logo{
 width:120px;
 height:30px;
-margin:10px;
-padding:0 0 0 5px;
+margin:0 0 0 5px;
+padding:10px 0 10px 5px;
 border-width:0 1px 0 0;
 border-style:solid;
-border-color:#354e70;
+border-color:rgba(0, 0, 0, 0.2);
 display:block;
 font:25px bold 'Nunito',sans-serif;
 float:left;
 }
 .nav_link{
-width:80px;
+
+min-width:60px;
 height:30px;
-padding:0;
-margin-top:10px;
+padding:10px;
 border-width:0 1px 0 0;
 border-style:solid;
-border-color:#354e70;
+border-color:rgba(0, 0, 0, 0.2);
 display:block;
 font:15px/30px "\5FAE\8F6F\96C5\9ED1";
 float:left;
