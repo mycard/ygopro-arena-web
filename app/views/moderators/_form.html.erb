@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
   </div>
   <div class="field">
-    <%= f.label :board %><br />
-    <%= f.text_field :board %>
+    <%= f.label :board_id %><br />
+    <%= f.select :board_id, Board.all.collect{|board|[board.name, board.id]} %>
   </div>
   <div class="actions">
     <%= f.submit %>
