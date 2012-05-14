@@ -4,6 +4,7 @@ class Board < ActiveRecord::Base
   has_many :subboards, :foreign_key => :superboard_id, :class_name => "Board"
   has_many :topics, :foreign_key => :category_id
   has_many :posts, :through =>:topics
+  has_and_belongs_to_many :moderators, :class_name => "User", :join_table => :moderators
   default_scope order(:displayorder)
   
   def to_s

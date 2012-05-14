@@ -10,12 +10,15 @@
     <%= javascript_include_tag 'common' %>
     <%= javascript_include_tag params[:controller] %>
     <%= csrf_meta_tags %>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   </head>
   <body>
     <!--TODO:首部待规范化-->
     <div id="topbar" class="topanel">
-      <%= render 'entries/user' %>
-      <%= render 'entries/search' %>
+      <div id="top">
+        <%= render 'entries/user' %>
+        <%= render 'entries/search' %>
+      </div>
     </div>
     <header id="headerbg">
       <div class="header">

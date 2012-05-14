@@ -4,15 +4,8 @@
 <div id="boardheader" class="s_clear">
 <h1 style=""><% @board.name %></h1>
 <p class="boardstats">[ <strong><%= @board.topics.size %></strong> 主题 / <%= @board.posts.size %> 帖子]</p>
-<div class="boardaction">
-<!--<div class="right">
-<a href="my.php?item=attention&amp;type=board&amp;action=add&amp;fid=68" id="ajax_attention" class="attention" onclick="ajaxmenu(this);doane(event);">关注</a>
-
-<a href="my.php?item=favorites&amp;fid=68" id="ajax_favorite" onclick="ajaxmenu(this);doane(event);">收藏</a>
-<a href="rss.php?fid=68&amp;auth=80baas4p%2BS%2FNnT%2BlQanrr%2Blzuk13j9xswULkRK6FhUrlnnrhZxiBsSc%2FwKk" target="_blank" class="feed">RSS</a></div>-->
-</div>
 <p class="channelinfo"><%= @board.notice %></p><p id="modedby">
-版主: *空缺中*</p>
+版主: <%=render @board.moderators %> </p>
 </div>
 <%= image_tag @board.banner %>
 
@@ -105,12 +98,10 @@
 <!--快速发帖-->
 
 <%= form_tag :controller => :topics do %>
-  <p>
+   <div class="field" id="topic_name_field">
     <%=t 'topic.title' %><%= text_field_tag  "topic[name]" %>
-  </p>
-  <p>
+    </div>
     <%= render 'topics/editor_lite' %>
-   </p>
    <%= hidden_field_tag  "topic[category_id]", @board.id%>
    <%= hidden_field_tag  "topic[category_type]", :board%>
    <%= submit_tag t("topic.submit") %>

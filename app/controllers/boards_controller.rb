@@ -17,13 +17,11 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.xml
   def show
-    
     @board = Board.find(params[:id])
     @actions = [{Board.human_attribute_name(:index) => boards_path}, @board]
     @actions = [@board]
-    order = params[:order].blank? ? 'displayorder DESC, updated_at DESC' : params[:order]
+    order = params[:order].blank? ? 'displayorder DESC, id DESC' : params[:order]
     @topics = @board.topics.page(params[:page]).order(order)
-    #@topics = @board.topics.all(:offset => 20*@page-20, :limit => 20, :order => order)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => params[:page] && !params[:page].empty? ? @topics : @board}

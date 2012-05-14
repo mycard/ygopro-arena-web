@@ -1,5 +1,7 @@
-<%= form_tag :controller => :topics, :html => {id: search} do %>
+<div id="search">
+<%= form_tag topics_path do %>
   <%= text_field_tag "keyword" %>
-  <%= submit_tag t("search.search") %>
+  <%= submit_tag t("search.search"), id: "search_submit" %>
   <%= link_to t("search.advanced") %>
 <% end %>
+</div>
