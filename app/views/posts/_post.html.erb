@@ -50,7 +50,7 @@
               </div>-->
 
               <div class="t_msgfontfix">
-                <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_msgfont" id="postmessage_751931"><%= bbcodeize post.content  %> </td></tr></tbody></table>
+                <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_msgfont" id="postmessage_751931"><%= post.content.bbcode_to_html.html_safe %> </td></tr></tbody></table>
               </div>
 
               <div id="post_rate_div_751931"></div>
