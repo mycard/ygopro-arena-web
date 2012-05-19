@@ -1,8 +1,8 @@
 <%= form_for(@post, :html => { :multipart => true }) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
+      <h2><%=t 'activerecord.errors.template.header', :count => @post.errors.size, :model => @post.class.model_name.human %></h2>
+      <h4><%=t 'activerecord.errors.template.body', :count => @post.errors.size %></h4>
       <ul>
         <% @post.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>

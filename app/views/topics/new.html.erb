@@ -1,12 +1,5 @@
-<%= form_tag :controller => :topics do %>
-  <p>
-    <%= @board.id %>
-    <%=t 'topic.title' %><%= text_field_tag  "topic[name]" %>
-  </p>
-  <p>
-    <%= render 'topics/editor' %>
-  </p>
-  <%= hidden_field_tag  "topic[category_id]", @board.id %>
-  <%= hidden_field_tag  "topic[category_type]", :board %>
-  <%= submit_tag t("topic.submit") %>
-<% end %>
+<h1>New topic</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', topics_path %>

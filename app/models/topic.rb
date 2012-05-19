@@ -4,6 +4,8 @@ class Topic < ActiveRecord::Base
   belongs_to :board, :foreign_key => :category_id
   has_many :posts
   accepts_nested_attributes_for :posts
+  validates :name,  :presence => true
+  
   default_scope where(:deleted => false)
   self.per_page = 20
   

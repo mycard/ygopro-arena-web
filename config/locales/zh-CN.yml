@@ -200,7 +200,8 @@ zh-CN:
     errors:
       <<: *errors
     models:
-      user: 用户
+      user: "用户"
+      topic: "主题"
     attributes:
       pm:
         to_user: "收件人"
@@ -259,8 +260,12 @@ zh-CN:
         top_traps: "热门陷阱"
       board:
         index: "论坛"
+      topic:
+        name: "标题"
+        posts: "帖子"
       post:
         attachments: "附件"
+        content: "正文"
   mycard:
     download: "立即下载"
     battlenet: "YGO战网"

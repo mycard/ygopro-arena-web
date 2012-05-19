@@ -1,27 +1,19 @@
 <%= form_for(@topic) do |f| %>
   <% if @topic.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
-
+      <h2><%=t 'activerecord.errors.template.header', :count => @topic.errors.size, :model => @topic.class.model_name.human %></h2>
+      <h4><%=t 'activerecord.errors.template.body', :count => @topic.errors.size %></h4>
       <ul>
-      <% @topic.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @topic.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
-  </div>
-  <div class="field">
     <%= f.label :board %><br />
-    <%= f.text_field :board %>
+    <%= f.select :category_id, Board.all.collect{|board|[board.name, board.id]} %>
   </div>
   <div class="field">
     <%= f.label :name %><br />
@@ -32,16 +24,8 @@
     <%= f.text_field :displayorder %>
   </div>
   <div class="field">
-    <%= f.label :views %><br />
-    <%= f.text_field :views %>
-  </div>
-  <div class="field">
     <%= f.label :readperm %><br />
     <%= f.text_field :readperm %>
-  </div>
-  <div class="field">
-    <%= f.label :notice %><br />
-    <%= f.check_box :notice %>
   </div>
   <div class="field">
     <%= f.label :reverse %><br />
@@ -51,6 +35,7 @@
     <%= f.label :private %><br />
     <%= f.check_box :private %>
   </div>
+  <%= f.hidden_field :category_type %>
   <div class="actions">
     <%= f.submit %>
   </div>

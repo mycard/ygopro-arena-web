@@ -8,10 +8,8 @@ class User < ActiveRecord::Base
   has_many :wins, :class_name => "Duel", :foreign_key => :winner_id
   belongs_to :role
   validates :name,  :presence => true,
-    :length => {:minimum => 1, :maximum => 254},
     :uniqueness => {:case_sensitive => false}
   validates :email, :presence => true,
-    :length => {:minimum => 3, :maximum => 254},  
     :uniqueness => {:case_sensitive => false},
     :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
   has_many :topics

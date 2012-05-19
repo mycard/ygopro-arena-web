@@ -4,6 +4,8 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :attachments
   accepts_nested_attributes_for :attachments
+  
+  validates :content,  :presence => true
   def user
     super || User::Guest
   end
