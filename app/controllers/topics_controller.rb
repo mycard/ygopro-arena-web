@@ -51,6 +51,9 @@ class TopicsController < ApplicationController
 
     @topic.update_attribute(:viewnum, @topic.viewnum + 1)
     @current_user.update_attribute(:viewnum, @current_user.viewnum + 1)
+    
+    @post = Post.new(topic: @topic)
+    @post.attachments.build
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => params[:page] && !params[:page].empty? ? @posts : @topic }
@@ -87,13 +90,15 @@ class TopicsController < ApplicationController
     @topic.user = @current_user
     @topic.displayorder = 0
     
-    @post = Post.new(params[:post])
-    @post.displayorder = 1
-    @post.topic = @topic
-    @post.user = @current_user
+    @topic.posts.first.displayorder = 1
+    @topic.posts.first.user = @current_user
+    #@post = Post.new(params[:post])
+    #@post.displayorder = 1
+    #@post.topic = @topic
+    #@post.user = @current_user
 
     respond_to do |format|
-      if @topic.save && @post.save
+      if @topic.save
         format.html { redirect_to(@topic, :notice => 'Topic was successfully created.') }
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else

@@ -32,6 +32,8 @@ class PostsController < ApplicationController
       return render :text => "Topic not found or locked."
     end
     @post = Post.new
+    @post.attachments.build
+    @post.attachments.build
     @actions = [@topic, :reply]
     respond_to do |format|
       format.html # new.html.erb
@@ -42,6 +44,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    @post.attachments.build
     @actions = [@post, :edit]
   end
 

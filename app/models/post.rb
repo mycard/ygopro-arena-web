@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
   has_many :comments
+  has_many :attachments
+  accepts_nested_attributes_for :attachments
   def user
     super || User::Guest
   end

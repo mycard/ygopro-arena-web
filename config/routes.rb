@@ -1,4 +1,6 @@
 MycardServerHttp::Application.routes.draw do
+  resources :attachments
+
   resources :moderators
 
   resources :servers

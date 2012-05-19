@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Data file name:</b>
+  <%= @attachment.data_file_name %>
+</p>
+
+<p>
+  <b>Data content type:</b>
+  <%= @attachment.data_content_type %>
+</p>
+
+<p>
+  <b>Data file size:</b>
+  <%= @attachment.data_file_size %>
+</p>
+
+<p>
+  <b>Data updated at:</b>
+  <%= @attachment.data_updated_at %>
+</p>
+
+<p>
+  <b>Post:</b>
+  <%= @attachment.post_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_attachment_path(@attachment) %> |
+<%= link_to 'Back', attachments_path %>

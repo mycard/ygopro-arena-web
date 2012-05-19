@@ -259,6 +259,8 @@ zh-CN:
         top_traps: "热门陷阱"
       board:
         index: "论坛"
+      post:
+        attachments: "附件"
   mycard:
     download: "立即下载"
     battlenet: "YGO战网"

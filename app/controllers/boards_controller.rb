@@ -1,7 +1,4 @@
 class BoardsController < ApplicationController
-  #ApplicationHelper::addon_header.push "zh_header"
-  #ApplicationHelper::addon_top.push "zh_top"
-  #ApplicationHelper::addon_footer.push "zh_footer"
   # GET /boards
   # GET /boards.xml
   def index
@@ -21,7 +18,14 @@ class BoardsController < ApplicationController
     @actions = [{Board.human_attribute_name(:index) => boards_path}, @board]
     @actions = [@board]
     order = params[:order].blank? ? 'displayorder DESC, id DESC' : params[:order]
+    
+    
     @topics = @board.topics.page(params[:page]).order(order)
+    @topic = Topic.new #快速发帖
+    @topic.category_id = @board.id
+    @topic.category_type = :board
+    @topic.posts.build.attachments.build
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => params[:page] && !params[:page].empty? ? @topics : @board}

@@ -1,52 +1,67 @@
-<%= form_for(@post) do |f| %>
+<%= form_for(@post, :html => { :multipart => true }) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :topic %><br />
-    <%= f.text_field :topic %>
+  <!--<div class="field">
+  <%= f.label :topic %><br />
+  <%= f.text_field :topic %>
   </div>
   <div class="field">
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
-  </div>
+  <%= f.label :user %><br />
+  <%= f.text_field :user %>
+  </div>-->
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :id => :fastpostmessage %>
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function()	{
+      $('#fastpostmessage').markItUp(mySettings);
+    });
+  </script>
+  <!--<div class="field">
+  <%= f.label :displayorder %><br />
+  <%= f.text_field :displayorder %>
   </div>
   <div class="field">
-    <%= f.label :displayorder %><br />
-    <%= f.text_field :displayorder %>
+  <%= f.label :readperm %><br />
+  <%= f.text_field :readperm %>
   </div>
   <div class="field">
-    <%= f.label :readperm %><br />
-    <%= f.text_field :readperm %>
+  <%= f.label :private %><br />
+  <%= f.check_box :private %>
   </div>
   <div class="field">
-    <%= f.label :private %><br />
-    <%= f.check_box :private %>
+  <%= f.label :anonymous %><br />
+  <%= f.check_box :anonymous %>
   </div>
   <div class="field">
-    <%= f.label :anonymous %><br />
-    <%= f.check_box :anonymous %>
+  <%= f.label :ubb %><br />
+  <%= f.check_box :ubb %>
   </div>
   <div class="field">
-    <%= f.label :ubb %><br />
-    <%= f.check_box :ubb %>
-  </div>
-  <div class="field">
-    <%= f.label :html %><br />
-    <%= f.check_box :html %>
-  </div>
+  <%= f.label :html %><br />
+  <%= f.check_box :html %>
+  </div>-->
+  <%= f.label "附件" %><br />
+  <%= f.fields_for :attachments do |attachment_form| %>
+    <div class="asset field">
+      <% if attachment_form.object.data.exists? %>
+        <%= attachment_form.object.data.original_filename %>
+      <% else %>
+        <%= attachment_form.file_field :data %>
+      <% end %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

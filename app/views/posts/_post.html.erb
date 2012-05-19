@@ -52,7 +52,19 @@
               <div class="t_msgfontfix">
                 <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_msgfont" id="postmessage_751931"><%= post.content.bbcode_to_html.html_safe %> </td></tr></tbody></table>
               </div>
-
+              <% if !post.attachments.empty? %>
+                <p>
+                  <b><%= post.attachments.size %> 个附件:</b>
+                <ul>
+                  <% post.attachments.each do |attachment| %>
+                    <li><%= link_to attachment.data.original_filename, attachment.data.url %></li>
+                    <% if attachment.data.content_type[0,5] == "image" %>
+                      <%= image_tag attachment.data.url %>
+                    <% end %>
+                  <% end %>
+                </ul>
+                </p>
+              <% end %>
               <div id="post_rate_div_751931"></div>
             </div>
 
