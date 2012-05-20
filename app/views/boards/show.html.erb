@@ -96,7 +96,7 @@
       <p id="notice"><%= notice %></p>
 
       <!--快速发帖-->
-      <%= form_for(@topic, :html => { :multipart => true }) do |f| %>
+      <%= form_for(@topic, :html => { :multipart => true, :id => :topic }) do |f| %>
         <div class="field" id="topic_name_field">
           <%= f.label "name" %>
           <%= f.text_field :name %>
@@ -114,6 +114,7 @@
             </div>
           <% end %>
         </div>
+        <div class="ajax-fc-container">You must enable javascript to see captcha here!</div>
         <%= f.hidden_field :category_id %>
         <%= f.hidden_field :category_type %>
         <div class="actions">
@@ -124,6 +125,14 @@
       <script type="text/javascript">
         $(document).ready(function()	{
           $('#fastpostmessage').markItUp(mySettings);
+        });
+      </script>
+      <script type="text/javascript" charset="utf-8">
+        $(function() {
+          $(".ajax-fc-container").captcha({
+            borderColor: "silver",
+            text: "验证码：请把<span>scissors</span>拖进圆圈"
+          });
         });
       </script>
       <dl id="onlinelist">

@@ -93,10 +93,11 @@ class TopicsController < ApplicationController
     @topic.posts.first.user = @current_user
     @actions = [@topic.category, @topic, "发表主题"]
     respond_to do |format|
-      if @topic.save
+      if params[:captcha] == session[:captcha] and @topic.save
         format.html { redirect_to(@topic, :notice => 'Topic was successfully created.') }
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else
+        @topic.errors[:base] << ("验证码错误") if params[:captcha] != session[:captcha]
         format.html { render :action => "new" }
         format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
       end

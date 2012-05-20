@@ -1,4 +1,6 @@
 MycardServerHttp::Application.routes.draw do
+  get "captcha/show"
+
   resources :attachments
 
   resources :moderators
@@ -43,6 +45,8 @@ MycardServerHttp::Application.routes.draw do
   resources :pms
   resources :links
   resources :moderations
+  
+  match "/captcha" => "captcha#show"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
