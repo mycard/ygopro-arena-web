@@ -133,6 +133,10 @@ zh-CN:
       create: 提交
       submit: 提交
       update: 提交
+    #label:
+    #  topic:
+    #    posts:
+    #      content: "正文"
   number:
     currency:
       format:
@@ -202,6 +206,7 @@ zh-CN:
     models:
       user: "用户"
       topic: "主题"
+      post: "帖子"
     attributes:
       pm:
         to_user: "收件人"
@@ -262,7 +267,8 @@ zh-CN:
         index: "论坛"
       topic:
         name: "标题"
-        posts: "帖子"
+        #post: 
+        #  content: "正文"
       post:
         attachments: "附件"
         content: "正文"

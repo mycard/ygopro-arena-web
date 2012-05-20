@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     @post.attachments.build
-    @actions = [@post, :edit]
+    @actions = [@post, "发表回复"]
   end
 
   # POST /posts
@@ -58,6 +58,8 @@ class PostsController < ApplicationController
     end
     @post.user = @current_user
     @post.displayorder = @post.topic.floor
+    @post.attachments.build
+    @actions = [@post, "发表回复"]
     respond_to do |format|
       if @post.save
         format.html { redirect_to(@post.topic, :notice => 'Post was successfully created.') }
@@ -73,7 +75,8 @@ class PostsController < ApplicationController
   # PUT /posts/1.xml
   def update
     @post = Post.find(params[:id])
-
+    @post.attachments.build
+    @actions = [@post, "编辑帖子"]
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to(@post.topic, :notice => 'Post was successfully updated.') }

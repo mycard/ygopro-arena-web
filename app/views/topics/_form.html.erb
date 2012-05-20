@@ -13,28 +13,44 @@
 
   <div class="field">
     <%= f.label :board %><br />
-    <%= f.select :category_id, Board.all.collect{|board|[board.name, board.id]} %>
+    <!--<%= f.select :category_id, Board.all.collect{|board|[board.name, board.id]} %>-->
+    <%= f.hidden :category_id %>
   </div>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :displayorder %><br />
-    <%= f.text_field :displayorder %>
+    <%= f.fields_for :posts, @post do |post_fields| %>
+      <%= post_fields.text_area :content, :id => :fastpostmessage %>
+      <div class="field">
+        <%= post_fields.label "附件" %><br />
+        <%= post_fields.fields_for :attachments do |attachment_form| %>
+          <div class="asset field">
+            <% if attachment_form.object.data.exists? %>
+              <%= attachment_form.object.data.original_filename %>
+            <% else %>
+              <%= attachment_form.file_field :data %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <script type="text/javascript">
+      $(document).ready(function()	{
+        $('#fastpostmessage').markItUp(mySettings);
+      });
+    </script>
+  </div>
+  <!--<div class="field">
+  <%= f.label :readperm %><br />
+  <%= f.text_field :readperm %>
   </div>
   <div class="field">
-    <%= f.label :readperm %><br />
-    <%= f.text_field :readperm %>
-  </div>
-  <div class="field">
-    <%= f.label :reverse %><br />
-    <%= f.check_box :reverse %>
-  </div>
-  <div class="field">
-    <%= f.label :private %><br />
-    <%= f.check_box :private %>
-  </div>
+  <%= f.label :private %><br />
+  <%= f.check_box :private %>
+  </div>-->
+  <%= f.hidden_field :displayorder %>
   <%= f.hidden_field :category_type %>
   <div class="actions">
     <%= f.submit %>

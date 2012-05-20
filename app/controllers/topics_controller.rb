@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
-#  ApplicationHelper::addon_header.push "zh_header"
-#  ApplicationHelper::addon_top.push "zh_top"
-#  ApplicationHelper::addon_footer.push "zh_footer"
+  #  ApplicationHelper::addon_header.push "zh_header"
+  #  ApplicationHelper::addon_top.push "zh_top"
+  #  ApplicationHelper::addon_footer.push "zh_footer"
   
 =begin
   查看主题: GET /topic/1
@@ -63,13 +63,11 @@ class TopicsController < ApplicationController
   # GET /forum/id/new
   # GET /forum/id/new.xml
   def new
-    #@topic = Topic.new
-    if params[:board_id].blank? || (@board = Board.find params[:board_id]).nil?
-    	return render( :text => :board_not_exist )
-    end
-    #p @board
-    #p '---------------------------------------------'
-	@actions = [:new_topic]
+    @topic = Topic.new
+    @post = Post.new(topic: @topic)
+    @post.attachments.build
+    @actions = [@topic.category, @topic, "发表主题"]
+    @actions = ["发表主题"]
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @topic }
@@ -79,24 +77,20 @@ class TopicsController < ApplicationController
   # GET /topics/1/edit
   def edit
     @topic = Topic.find(params[:id])
+    @post = @topic.posts.first
+    @post.attachments.build
+    @actions = [@topic.category, @topic, "编辑"]
   end
 
   # POST /board/id
   # POST /board/id.xml
   def create
-	#TODO: 验证category_id有效性
     @topic = Topic.new(params[:topic])
-    #@topic.category_id = Board.find(params[:topic][:category_id])
     @topic.user = @current_user
     @topic.displayorder = 0
-    
     @topic.posts.first.displayorder = 1
     @topic.posts.first.user = @current_user
-    #@post = Post.new(params[:post])
-    #@post.displayorder = 1
-    #@post.topic = @topic
-    #@post.user = @current_user
-
+    @actions = [@topic.category, @topic, "发表主题"]
     respond_to do |format|
       if @topic.save
         format.html { redirect_to(@topic, :notice => 'Topic was successfully created.') }
@@ -112,7 +106,9 @@ class TopicsController < ApplicationController
   # PUT /topics/1.xml
   def update
     @topic = Topic.find(params[:id])
-
+    @post = @topic.posts.first
+    @post.attachments.build
+    @actions = [@topic.category, @topic, "编辑"]
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
         format.html { redirect_to(@topic, :notice => 'Topic was successfully updated.') }

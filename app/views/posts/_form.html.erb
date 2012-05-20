@@ -52,16 +52,18 @@
   <%= f.label :html %><br />
   <%= f.check_box :html %>
   </div>-->
-  <%= f.label "附件" %><br />
-  <%= f.fields_for :attachments do |attachment_form| %>
-    <div class="asset field">
-      <% if attachment_form.object.data.exists? %>
-        <%= attachment_form.object.data.original_filename %>
-      <% else %>
-        <%= attachment_form.file_field :data %>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= f.label "附件" %><br />
+    <%= f.fields_for :attachments do |attachment_form| %>
+      <div class="asset field">
+        <% if attachment_form.object.data.exists? %>
+          <%= attachment_form.object.data.original_filename %>
+        <% else %>
+          <%= attachment_form.file_field :data %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
