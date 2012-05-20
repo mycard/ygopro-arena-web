@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class TopicsController < ApplicationController
   #  ApplicationHelper::addon_header.push "zh_header"
   #  ApplicationHelper::addon_top.push "zh_top"
