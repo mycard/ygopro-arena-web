@@ -59,13 +59,13 @@ class PostsController < ApplicationController
     end
     @post.user = @current_user
     @post.displayorder = @post.topic.floor
-    @post.attachments.build
     @actions = [@post, "发表回复"]
     respond_to do |format|
       if @post.save
         format.html { redirect_to(@post.topic, :notice => 'Post was successfully created.') }
         format.xml  { render :xml => @post, :status => :created, :location => @post.topic }
       else
+        @post.attachments.build
         format.html { render :action => "new" }
         format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
       end
@@ -76,13 +76,13 @@ class PostsController < ApplicationController
   # PUT /posts/1.xml
   def update
     @post = Post.find(params[:id])
-    @post.attachments.build
     @actions = [@post, "编辑帖子"]
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to(@post.topic, :notice => 'Post was successfully updated.') }
         format.xml  { head :ok }
       else
+        @post.attachments.build
         format.html { render :action => "edit" }
         format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
       end

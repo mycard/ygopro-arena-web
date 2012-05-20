@@ -98,6 +98,8 @@ class TopicsController < ApplicationController
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else
         @topic.errors[:base] << ("验证码错误") if params[:captcha] != session[:captcha]
+        @post = @topic.posts.first
+        @post.attachments.build
         format.html { render :action => "new" }
         format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
       end
@@ -108,14 +110,14 @@ class TopicsController < ApplicationController
   # PUT /topics/1.xml
   def update
     @topic = Topic.find(params[:id])
-    @post = @topic.posts.first
-    @post.attachments.build
     @actions = [@topic.category, @topic, "编辑"]
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
         format.html { redirect_to(@topic, :notice => 'Topic was successfully updated.') }
         format.xml  { head :ok }
       else
+        @post = @topic.posts.first
+        @post.attachments.build
         format.html { render :action => "edit" }
         format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
       end
