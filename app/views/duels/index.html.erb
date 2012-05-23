@@ -38,7 +38,7 @@
     </tr>
   </thead>
   <tfoot>
-    <tr><td colspan="7"><%= will_paginate @duels %></td></tr>
+    <tr><td colspan="7"><%= paginate @duels %></td></tr>
   </tfoot>
   <tbody>
     <% first_index = @user.duels.where("id<=?",@duels.to_enum.first.id).count if @user and !@user.duels.empty? %><!--这里的效率很低，待优化-->

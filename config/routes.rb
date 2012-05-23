@@ -38,8 +38,7 @@ MycardServerHttp::Application.routes.draw do
     get 'topics' => "users#topic"
   end
   get 'theme/:theme' => 'users#theme', :as => :theme
-  get 'login' => 'users#login'
-  post 'login' => 'users#login_do'
+  match 'login' => 'users#login'
   get 'logout' => 'users#logout'
   get 'register' => 'users#new'
   resources :pms
@@ -47,6 +46,7 @@ MycardServerHttp::Application.routes.draw do
   resources :moderations
   
   match "/captcha" => "captcha#show"
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

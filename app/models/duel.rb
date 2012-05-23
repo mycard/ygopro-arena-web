@@ -3,7 +3,6 @@ class Duel < ActiveRecord::Base
   belongs_to :user1, :class_name => "User"
   belongs_to :user2, :class_name => "User"
   belongs_to :winner, :class_name => "User"
-  self.per_page = 20
   has_many :duel_user_cards
   has_many :cards, :through => :duel_user_cards
   def user_cards(user, main)

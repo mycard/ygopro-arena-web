@@ -74,9 +74,15 @@
                 <% end %>
               </div>
               <%= f.hidden_field :topic_id %>
-              <div class="actions">
-                <%= f.submit %>
-              </div>
+              <% if logged? %>
+                <div class="actions">
+                  <%= f.submit %>
+                </div>
+              <% else %>
+                <div class="actions">
+                  要发帖，请先 <%= link_to "注册", register_path %> 或 <%= link_to "登录", login_path %>
+                </div>
+              <% end %>
             <% end %>
             <script type="text/javascript">
               $(document).ready(function()	{

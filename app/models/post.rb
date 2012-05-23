@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
@@ -6,6 +7,7 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :attachments
   
   validates :content,  :presence => true
+  validates :user_id, :numericality => { :greater_than => 0, :message => "发帖请先登录" }
   def user
     super || User::Guest
   end

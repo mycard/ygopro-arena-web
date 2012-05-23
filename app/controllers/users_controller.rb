@@ -65,7 +65,7 @@ class UsersController < ApplicationController
       if @user.save
         boardcast_user(@user)
         session[:user_id] = @user.id
-        format.html { redirect_to(@user, :notice => '注册成功') }
+        format.html { redirect_to(params[:continue] || @user, :notice => '注册成功') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -110,9 +110,7 @@ class UsersController < ApplicationController
   end
   def login
     @actions = [User.human_attribute_name(:login)]
-    @user = User.new
-  end
-  def login_do
+    return @user = User.new if params[:user].blank?
     @actions = [User.human_attribute_name(:login)]
     user = User.find_by_name(params[:user][:name])
     if user and params[:user][:password] == user.password
@@ -120,7 +118,7 @@ class UsersController < ApplicationController
     elsif user.nil? or user.password.nil?
       username = params[:user][:name]
       password = params[:user][:password]
-      Server.each do |server|
+      Server.all.each do |server|
         open("http://#{server.ip}:#{server.http_port}/?operation=passcheck&username=#{CGI.escape username}&pass=#{CGI.escape password}") do |file|
           if file.read == "true"
             user.password = password
@@ -137,7 +135,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         @user.update_attribute(:lastloginip, request.remote_ip)
         boardcast_user(@user)
-        format.html { redirect_to(@user, :notice => 'Login Successfully.') }
+        format.html { redirect_to(params[:continue] || @user, :notice => 'Login Successfully.') }
         format.json  { render json: @user }
       else
         @user = User.new(params[:user])
@@ -145,7 +143,6 @@ class UsersController < ApplicationController
         format.json { head json: nil }
       end
     end
-    
   end
   def logout
     session[:user_id] = nil

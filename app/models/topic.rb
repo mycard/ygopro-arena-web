@@ -1,12 +1,12 @@
+#encoding: UTF-8
 class Topic < ActiveRecord::Base
   belongs_to :user
-  #belongs_to :type
   belongs_to :board, :foreign_key => :category_id
   has_many :posts
   accepts_nested_attributes_for :posts
   validates :name,  :presence => true
+  validates :user_id, :numericality => { :greater_than => 0, :message => "发帖请先登录" }
   default_scope where(:deleted => false)
-  self.per_page = 20
   
   alias category board
   def user

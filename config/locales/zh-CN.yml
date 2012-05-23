@@ -204,6 +204,23 @@ zh-CN:
     errors:
       <<: *errors
     models:
+      attachment: "附件"
+      board: "版块"
+      card: "卡片"
+      comment: "(未使用)评论"
+      deck: "玩家使用卡组记录"
+      duel: "决斗记录"
+      duel_user_card: "玩家使用卡片记录"
+      library: "卡组分类"
+      link: "友情链接"
+      moderation: "(未使用)版务操作记录"
+      moderator: "版主"
+      navigation: "导航"
+      notice: "(未使用)提醒"
+      pm: "(未使用)短消息"
+      role: "(未使用)用户组"
+      server: "服务器"
+      setting: "(未使用)系统设置"
       user: "用户"
       topic: "主题"
       post: "帖子"

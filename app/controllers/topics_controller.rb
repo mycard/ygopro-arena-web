@@ -53,7 +53,8 @@ class TopicsController < ApplicationController
     @topic.update_attribute(:viewnum, @topic.viewnum + 1)
     @current_user.update_attribute(:viewnum, @current_user.viewnum + 1)
     
-    @post = Post.new(topic: @topic)
+    @post = Post.new
+    @post.topic = @topic
     @post.attachments.build
     respond_to do |format|
       format.html # show.html.erb
