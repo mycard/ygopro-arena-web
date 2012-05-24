@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :nickname, :role_id, :regip, :lastloginip, :viewnum, :onlinetime, :credit1, :credit2, :credit3, :credit4, :credit5, :credit6, :credit7, :credit8
+  attr_accessible :email, :password, :password_confirmation, :remember_me
   
   has_attached_file :avatar, :styles => { :middle => ["120x120#", :png], :small => ["48x48#", :png] }, :default_url => lambda { |avatar| "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(avatar.instance.email.strip.downcase)}?size=#{120}" }
   
