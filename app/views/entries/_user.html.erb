@@ -1,7 +1,7 @@
 <div id="user">
   <% if logged? %>
     <%= link_to @current_user.name, @current_user %>
-    <%= link_to Pm.model_name.human, pms_path %>
+    <%#= link_to Pm.model_name.human, pms_path %>
     <%= link_to User.human_attribute_name('logout'), logout_path %>
   <% else %>
     <%= link_to User.human_attribute_name('login'), login_path %>
