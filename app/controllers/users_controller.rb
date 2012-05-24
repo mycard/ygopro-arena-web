@@ -60,6 +60,9 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
+    #不知道什么原因，加了devise之后那两个字段就奇怪的变成空了
+    @user.name = params[:user][:name]
+    @user.password = params[:user][:password]
     @actions = [User.human_attribute_name(:register)]
     respond_to do |format|
       if @user.save
