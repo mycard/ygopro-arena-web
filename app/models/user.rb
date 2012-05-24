@@ -3,10 +3,10 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  #devise :database_authenticatable, :registerable,
+  #       :recoverable, :rememberable, :trackable, :validatable
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  #attr_accessible :email, :password, :password_confirmation, :remember_me
   
   has_attached_file :avatar, :styles => { :middle => ["120x120#", :png], :small => ["48x48#", :png] }, :default_url => lambda { |avatar| "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(avatar.instance.email.strip.downcase)}?size=#{120}" }
   
