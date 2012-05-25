@@ -12,7 +12,7 @@ class Duel < ActiveRecord::Base
     result.order("field(card_type, #{(main ? main_order : extra_order).collect{|type|"'#{type}'"}.join(',')})", 'cards.id')
   end
   def replay
-    "http://140.113.242.66/#{super}"
+    "http://122.0.65.71:7933/#{super}"
   end
   def user1
     super || User::Guest
