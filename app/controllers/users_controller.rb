@@ -64,11 +64,13 @@ class UsersController < ApplicationController
     #@user.name = params[:user][:name]
     #@user.password = params[:user][:password]
     @actions = [User.human_attribute_name(:register)]
+    @continue = params[:continue]
+    @from = params[:from].to_s.to_sym
     respond_to do |format|
       if @user.save
-        boardcast_user(@user)
+        boardcast_user(@user, :"ygopro-ocg")
         session[:user_id] = @user.id
-        format.html { redirect_to(params[:continue] || @user, :notice => '注册成功') }
+        format.html { redirect_to(params[:continue] ? URI.escape(params[:continue]) :  @user, :notice => '注册成功') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -138,7 +140,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         @user.update_attribute(:lastloginip, request.remote_ip)
         boardcast_user(@user)
-        format.html { redirect_to(params[:continue] || @user, :notice => 'Login Successfully.') }
+        format.html { redirect_to(params[:continue] ? URI.escape(params[:continue]) : @user, :notice => 'Login Successfully.') }
         format.json  { render json: @user }
       else
         @user = User.new(params[:user])
@@ -168,7 +170,7 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  def boardcast_user(user)
+  def boardcast_user(user, wait=nil)
     Server.find_each do |server|
       url = "http://#{server.ip}:#{server.http_port}/?pass=#{server.password}&operation=forceuserpass&username=#{CGI.escape user.name}&password=#{CGI.escape user.password}"
       if RUBY_PLATFORM["win"] || RUBY_PLATFORM["ming"]
@@ -176,6 +178,12 @@ class UsersController < ApplicationController
       else
         Process.spawn('curl', url)
       end
+    end
+    url = "http://ygopro-ocg.com/mycard.php?key=zh99998&username=#{CGI.escape user.name}&password=#{CGI.escape user.password}&email=#{CGI.escape user.email}"
+    if wait == :"ygopro-ocg" or RUBY_PLATFORM["win"] || RUBY_PLATFORM["ming"]
+      open(url){}
+    else
+      Process.spawn('curl', url)
     end
   end
 end

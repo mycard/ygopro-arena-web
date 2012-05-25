@@ -98,11 +98,13 @@
     <div class="inner_div">
       <div class="floatleft form_label"><%= f.label :email %></div>
       <div class="floatleft">
-        <%= f.text_field :email, :id => :email, :class => :from_input %>
+        <%= f.email_field :email, :id => :email, :class => :from_input %>
       </div>
     </div>
     <div class="inner_div">
       <%= f.submit :class=>"film_bit_download", :style=>"width:54px;height:25px;padding:4px 14px;border:1px solid #eeeeee;border-radius:5px;color:#ffffff;" %>
     </div>
+    <input type="hidden" name="continue" id="continue" value="<%=@continue%>" />
+    <input type="hidden" name="from" value="<%=@from%>" />
   </div>
 <% end %>
