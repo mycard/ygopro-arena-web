@@ -28,9 +28,9 @@
         <td class="boardnums">
           <em><%= board.topics.size %></em> / <%= board.posts.size %></td>
         <td class="boardlast">
-          <% if board.topics.last %>
-            <p><%= board.topics.last %></p>
-            <cite><%= board.posts.last.user %> - <span title="<%= board.posts.last.updated_at %>"><%=l board.posts.last.updated_at, :format => :short %></span></cite>
+          <% if post = board.posts.last %>
+            <p><%= post.topic %></p>
+            <cite><%= post.user %> - <span title="<%= post.updated_at %>"><%=l post.updated_at, :format => :short %></span></cite>
           <% else %>
             <%=t 'board.none' %>
           <% end %>
