@@ -1,4 +1,7 @@
-<div id="replay"><%= link_to '录像下载', @duel.replay %></div>
+<div id="replay">
+  <%= link_to '录像下载', @duel.replay %>
+  <%= link_to '(test)', 'mycard://'+@duel.replay[7, @duel.replay.size-7] %>
+</div>
 <style type="text/css">
   <!--
 
@@ -45,7 +48,11 @@
     <% else %>
       <span class="STYLE4">LOSER</span>
     <% end %>
-    <span class="STYLE2"><% if @duel.user1_public or @current_user == @duel.user1 %><%= link_to image_tag('deck_download.png', :border=>false, :style => 'float:right;padding:12px 12px 0 0'), "/duels/#{@duel.id}/user1_deck.ydk" %><% end %> </span>
+    <span class="STYLE2"><% if @duel.user1_public or @current_user == @duel.user1 %>
+          <%= link_to image_tag('deck_download.png', :border=>false, :style => 'float:right;padding:12px 12px 0 0'), "/duels/#{@duel.id}/user1_deck.ydk" %>
+          <%= link_to '(test)', "mycard://card.touhou.cc/duels/#{@duel.id}/user1_deck.ydk", :style => 'font-size:9px'%>
+      <% end %>
+    </span>
     <% if @current_user == @duel.user1 %>
       <%= form_for(@duel, :html => {:style => "display:inline"}) do |f| %>
         <span style="font-size:12px;color:white;float:right;padding-right:24px">公开卡组<%= f.check_box :user1_public, :onclick=>"submit()" %></span>
@@ -59,7 +66,10 @@
     <% else %>
       <span class="STYLE4">LOSER</span>
     <% end %>
-    <% if @duel.user2_public or @current_user == @duel.user2 %><%= link_to image_tag('deck_download.png', :border=>false, :style => 'float:right;padding:12px 12px 0 0'), "/duels/#{@duel.id}/user2_deck.ydk" %><% end %>
+    <% if @duel.user2_public or @current_user == @duel.user2 %>
+        <%= link_to image_tag('deck_download.png', :border=>false, :style => 'float:right;padding:12px 12px 0 0'), "/duels/#{@duel.id}/user2_deck.ydk" %>
+        <%= link_to '(test)', "mycard://card.touhou.cc/duels/#{@duel.id}/user2_deck.ydk", :style => 'font-size:9px' %>
+    <% end %>
     <% if @current_user == @duel.user2 %>
       <%= form_for(@duel, :html => {:style => "display:inline"}) do |f| %>
         <%= f.check_box :user2_public, :onclick=>"submit()" %> <span style="font-size:12px;color:white">公开卡组</span>

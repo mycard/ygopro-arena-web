@@ -10,10 +10,12 @@
         rooms += '<div class="room"><div style="float:left;position:absolute;margin-left:8px;font-size:16px;'
         if(room.status == 'wait'){
           rooms += 'color:#33CCFF;">等待中';
+          rooms += '</div><a class="roomname" href="mycard://<%= "#{@current_user.name}:#{@current_user.password}@" if logged? %>122.0.65.71:7911/'+ room.name + '">' + room.name + '</a>';
         }else{
           rooms += ';">决斗中';
+          rooms += '</div><a class="roomname">' + room.name + '</a>';
         }
-        rooms += '</div><a class="roomname">' + room.name + '</a>';
+
         if(room.users[0]){
           rooms += '<a class="playername">' + room.users[0].name + '</a>';
         }

@@ -55,6 +55,9 @@
       return false;
     }
     else{
+        <% if @from == :"ygopro-ocg" %>
+        $("#continue").val("http://ygopro-ocg.com/mycard.php?username=" + $("#username").val() + "&password=" + $("#password").val());
+        <% end %>
       return true;
     }
   }
