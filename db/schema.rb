@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120522232536) do
+ActiveRecord::Schema.define(:version => 20120531032103) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_file_name"
@@ -127,6 +127,27 @@ ActiveRecord::Schema.define(:version => 20120522232536) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "matches", :force => true do |t|
+    t.integer  "player1_id"
+    t.integer  "player1_score"
+    t.integer  "player2_id"
+    t.integer  "player2_score"
+    t.integer  "round"
+    t.integer  "duel1_id"
+    t.integer  "duel2_id"
+    t.integer  "duel3_id"
+    t.integer  "tournament_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "matches", ["duel1_id"], :name => "index_matches_on_duel1_id"
+  add_index "matches", ["duel2_id"], :name => "index_matches_on_duel2_id"
+  add_index "matches", ["duel3_id"], :name => "index_matches_on_duel3_id"
+  add_index "matches", ["player1_id"], :name => "index_matches_on_player1_id"
+  add_index "matches", ["player2_id"], :name => "index_matches_on_player2_id"
+  add_index "matches", ["tournament_id"], :name => "index_matches_on_tournament_id"
+
   create_table "moderations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "association_id"
@@ -229,6 +250,15 @@ ActiveRecord::Schema.define(:version => 20120522232536) do
     t.boolean  "private",       :default => false, :null => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+  end
+
+  create_table "tournaments", :force => true do |t|
+    t.string   "name"
+    t.string   "location_type"
+    t.string   "location"
+    t.text     "note"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|

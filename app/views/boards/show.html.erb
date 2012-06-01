@@ -1,17 +1,19 @@
 <style>
   #boardheader h1{
-    background-color: black;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.6);
     width:800px;
     height:40px;
     margin-top: 30px;
     padding-left: 120px;
     padding-top: 24px;
-    color: white;
-    font-size: 28px;
+    color: #ffffff;
+    position: relative;
+    font-size: 28px;    
     /* 背景透明 */
-    filter:alpha(opacity=60);
+    /*filter:alpha(opacity=60);
     -moz-opacity:0.6;
-    opacity:0.6;
+    opacity:0.6;*/
   }
   #notice{
     margin-left: 160px;
@@ -23,6 +25,7 @@
   #notice a{
     color: gold;
   }
+   #notice ol li{text-shadow:1px 1px 5px #000;}
   #boardstats strong{
     /*color: gold;*/
   }
@@ -37,7 +40,7 @@
     color: white;
   }
   #boardstats{
-    font-size: 16px;
+    font-size: 16px; 
     color: white;
     position: absolute;
     right: 60px;
@@ -47,7 +50,7 @@
 <div id="wrap" class="wrap s_clear">
   <article class="main content">
     <header id="boardheader" class="s_clear" style="position:relative">
-      <div style="position: absolute; height: 100%">
+      <div style="position: absolute; height: 100%;text-shadow:1px 1px 5px #000;">
         <h1><%= @board.name %></h1>
         <div id="notice"><%= @board.notice.bbcode_to_html.html_safe %></div>
         <p id="moderators">版主: <%=render @board.moderators %></p>

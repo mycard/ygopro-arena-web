@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player1: 
+  player1_score: 1
+  player2: 
+  player2_score: 1
+  round: 1
+  duel1: 
+  duel2: 
+  duel3: 
+  tournament: 
+
+two:
+  player1: 
+  player1_score: 1
+  player2: 
+  player2_score: 1
+  round: 1
+  duel1: 
+  duel2: 
+  duel3: 
+  tournament: 

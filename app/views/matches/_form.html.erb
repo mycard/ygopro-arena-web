@@ -1,0 +1,53 @@
+<%= form_for(@match) do |f| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :player1_id %><br />
+    <%= f.text_field :player1_id %>
+  </div>
+  <div class="field">
+    <%= f.label :player1_score %><br />
+    <%= f.number_field :player1_score %>
+  </div>
+  <div class="field">
+    <%= f.label :player2_id %><br />
+    <%= f.text_field :player2_id %>
+  </div>
+  <div class="field">
+    <%= f.label :player2_score %><br />
+    <%= f.number_field :player2_score %>
+  </div>
+  <div class="field">
+    <%= f.label :round %><br />
+    <%= f.number_field :round %>
+  </div>
+  <div class="field">
+    <%= f.label :duel1_id %><br />
+    <%= f.text_field :duel1_id %>
+  </div>
+  <div class="field">
+    <%= f.label :duel2_id %><br />
+    <%= f.text_field :duel2_id %>
+  </div>
+  <div class="field">
+    <%= f.label :duel3_id %><br />
+    <%= f.text_field :duel3_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tournament %><br />
+    <%= f.select :tournament_id, Tournament.all.collect{|tournament|[tournament.name, tournament.id]} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

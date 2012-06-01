@@ -374,3 +374,6 @@ zh-CN:
     submit: "提交"
     private: "仅楼主可见"
     anonymous: "匿名发帖"
+  tournament:
+    location:
+      qun: "QQ群"

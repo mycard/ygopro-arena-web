@@ -1,4 +1,8 @@
 MycardServerHttp::Application.routes.draw do
+  resources :matches
+
+  resources :tournaments
+
   get "captcha/show"
 
   resources :attachments

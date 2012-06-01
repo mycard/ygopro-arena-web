@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+  <%= @tournament.name %>
+</h2>
+
+<p>
+  <b>联系地点:</b>
+  <%= t 'tournament.location.' + @tournament.location_type %>
+  <% case @tournament.location_type %>
+  <% when "qun" %>
+      <a target="_blank" href="http://qun.qq.com/#jointhegroup/gid/<%= @tournament.location %>" alt="点击这里加入此群" title="点击这里加入此群"><%= @tournament.location %></a>
+  <% else %>
+      <%= @tournament.location %>
+  <% end %>
+</p>
+
+<p>
+  <b>备注:</b>
+  <%= @tournament.note %>
+</p>
+<p>
+  <b>时间:</b>
+  <%=l @tournament.updated_at.to_date %>
+</p>
+
+<%= link_to 'Edit', edit_tournament_path(@tournament) %> |
+<%= link_to 'Back', tournaments_path %>

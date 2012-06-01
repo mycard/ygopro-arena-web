@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Player1:</b>
+  <%=link_to @match.player1.name, @match.player1 %>
+</p>
+
+<p>
+  <b>Player1 score:</b>
+  <%= @match.player1_score %>
+</p>
+
+<p>
+  <b>Player2:</b>
+  <%=link_to @match.player2.name, @match.player2 %>
+</p>
+
+<p>
+  <b>Player2 score:</b>
+  <%= @match.player2_score %>
+</p>
+
+<p>
+  <b>Round:</b>
+  <%= @match.round %>
+</p>
+
+<p>
+  <b>Duel1:</b>
+  <%=link_to @match.duel1 %>
+</p>
+
+<p>
+  <b>Duel2:</b>
+  <%=link_to @match.duel2 %>
+</p>
+
+<p>
+  <b>Duel3:</b>
+  <%=link_to @match.duel3 %>
+</p>
+
+<p>
+  <b>Tournament:</b>
+  <%=link_to @match.tournament.name, @match.tournament %>
+</p>
+
+
+<%= link_to 'Edit', edit_match_path(@match) %> |
+<%= link_to 'Back', matches_path %>
