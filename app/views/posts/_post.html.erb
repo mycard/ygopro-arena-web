@@ -56,12 +56,7 @@
                 <p>
                   <b><%= post.attachments.size %> 个附件:</b>
                 <ul>
-                  <% post.attachments.each do |attachment| %>
-                    <li><%= link_to attachment.data.original_filename, attachment.data.url %></li>
-                    <% if attachment.data.content_type[0,5] == "image" %>
-                      <%= image_tag attachment.data.url %>
-                    <% end %>
-                  <% end %>
+                  <%=render post.attachments %>
                 </ul>
                 </p>
               <% end %>

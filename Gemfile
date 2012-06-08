@@ -21,7 +21,9 @@ group :assets do
   gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  unless RUBY_PLATFORM["mswin"] or RUBY_PLATFORM["ming"]
+  if RUBY_PLATFORM["mswin"] or RUBY_PLATFORM["ming"]
+    gem 'therubyrhino'
+  else
     gem 'therubyracer'
   end
 

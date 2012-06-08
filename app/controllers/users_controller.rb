@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @actions = [{t('mycard.battlenet') => users_path}, User.human_attribute_name(:index)]
     respond_to do |format|
       format.html # index.html.erb
-      #format.xml  { render :xml => @users }
+                  #format.xml  { render :xml => @users }
     end
   end
 
@@ -21,8 +21,8 @@ class UsersController < ApplicationController
     @actions = [{t('mycard.battlenet') => users_path}, @user]
     respond_to do |format|
       format.html # show.html.erb
-      format.json  { render :json => {id: @user.id, name: @user.name, nickname: @user.nickname} }
-      format.png {redirect_to @user.avatar.url(:middle)}
+      format.json { render :json => {id: @user.id, name: @user.name, nickname: @user.nickname} }
+      format.png { redirect_to @user.avatar.url(:middle) }
     end
   end
 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @user }
+      format.xml { render :xml => @user }
     end
   end
 
@@ -45,15 +45,15 @@ class UsersController < ApplicationController
       @actions = [@user, "修改头像"]
       if @current_user != @user
         respond_to do |format|
-          format.html {redirect_to(edit_user_path(@current_user), :notice => '请先登录.')}
+          format.html { redirect_to(edit_user_path(@current_user), :notice => '请先登录.') }
         end
       end
     else
       respond_to do |format|
-        format.html {redirect_to(:login, :notice => '请先登录.')}
+        format.html { redirect_to(:login, :notice => '请先登录.') }
       end
     end
-    
+
   end
 
   # POST /users
@@ -67,17 +67,24 @@ class UsersController < ApplicationController
     @continue = params[:continue]
     @from = params[:from].to_s.to_sym
     respond_to do |format|
-      if @user.save
+      open("http://ygopro-ocg.com/mycard.php?key=zh99998&username=#{CGI.escape @user.name}&password=#{CGI.escape @user.password}&email=#{CGI.escape @user.email}") do |f|
+        result = f.read
+        if result.to_i <= 0
+          @user.errors[:base] << "发生系统错误 (#{result}) 请联系zh99998@gmail.com"
+        end
+      end rescue @user.errors[:base] << "发生系统错误 (#{$!.inspect}) 请联系zh99998@gmail.com"
+      if !@user.errors.any? and @user.save
         boardcast_user(@user, :"ygopro-ocg")
         session[:user_id] = @user.id
-        format.html { redirect_to(params[:continue] ? URI.escape(params[:continue]) :  @user, :notice => '注册成功') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
+        format.html { redirect_to(params[:continue].blank? ? @user : URI.escape(params[:continue]) , :notice => '注册成功') }
+        format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
+
   # PUT /users/1
   # PUT /users/1.xml
   def update
@@ -89,10 +96,10 @@ class UsersController < ApplicationController
       respond_to do |format|
         if @user.update_attributes(params[:user])
           format.html { redirect_to(:back, :notice => 'User was successfully updated.') }
-          format.xml  { head :ok }
+          format.xml { head :ok }
         else
           format.html { render :action => "edit" }
-          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+          format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
         end
       end
     else
@@ -110,9 +117,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
+
   def login
     @actions = [User.human_attribute_name(:login)]
     return @user = User.new if params[:user].blank?
@@ -140,8 +148,8 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         @user.update_attribute(:lastloginip, request.remote_ip)
         boardcast_user(@user)
-        format.html { redirect_to(params[:continue] ? URI.escape(params[:continue]) : @user, :notice => 'Login Successfully.') }
-        format.json  { render json: @user }
+        format.html { redirect_to(params[:continue].blank? ? @user : URI.escape(params[:continue]), :notice => 'Login Successfully.') }
+        format.json { render json: @user }
       else
         @user = User.new(params[:user])
         format.html { render :text => 'incorrent_username_or_password' }
@@ -149,13 +157,15 @@ class UsersController < ApplicationController
       end
     end
   end
+
   def logout
     session[:user_id] = nil
     respond_to do |format|
       format.html { redirect_to(:back) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
+
   def theme
     #p params[:theme], @site[:themes].has_key?(params[:theme])
     if params[:theme].blank?
@@ -167,23 +177,26 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to :back }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
-  def boardcast_user(user, wait=nil)
+
+  def boardcast_user(user, from=nil)
     Server.find_each do |server|
       url = "http://#{server.ip}:#{server.http_port}/?pass=#{server.password}&operation=forceuserpass&username=#{CGI.escape user.name}&password=#{CGI.escape user.password}"
       if RUBY_PLATFORM["win"] || RUBY_PLATFORM["ming"]
-        open(url){} rescue nil
+        open(url) {} rescue nil
       else
         Process.spawn('curl', url)
       end
     end
-    url = "http://ygopro-ocg.com/mycard.php?key=zh99998&username=#{CGI.escape user.name}&password=#{CGI.escape user.password}&email=#{CGI.escape user.email}"
-    if wait == :"ygopro-ocg" or RUBY_PLATFORM["win"] || RUBY_PLATFORM["ming"]
-      open(url){}
-    else
-      Process.spawn('curl', url)
+    if from != :"ygopro-ocg"
+      url = "http://ygopro-ocg.com/mycard.php?key=zh99998&username=#{CGI.escape user.name}&password=#{CGI.escape user.password}&email=#{CGI.escape user.email}"
+      if RUBY_PLATFORM["win"] || RUBY_PLATFORM["ming"]
+        open(url) {}
+      else
+        Process.spawn('curl', url)
+      end
     end
   end
 end
