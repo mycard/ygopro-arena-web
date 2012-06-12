@@ -5,7 +5,7 @@ class DuelsController < ApplicationController
   # GET /duels.json
   def index
     if params[:user_id]
-      @user = User.find params[:user_id] 
+      @user = User.find params[:user_id]
       @duels = @user.duels
       @actions = [{t('mycard.battlenet') => users_path}, @user, Duel.human_attribute_name(:index)]
     else
@@ -18,7 +18,7 @@ class DuelsController < ApplicationController
       format.json { render json: @duels }
     end
   end
-  
+
   # GET /duels/1
   # GET /duels/1.json
   def show
@@ -66,42 +66,46 @@ class DuelsController < ApplicationController
       end
     end
     @duel.winner = params[:duel][:winner_pos] == "true" ? @duel.user1 : @duel.user2
-    if params[:duel][:credits] == "true"
-      if @duel.winner == @duel.user1
-        if @duel.user2.credits <= 0
-          @duel.user1_credits = 3
-          @duel.user2_credits = -1
-        elsif @duel.user2.credits <= 10
-          @duel.user1_credits = 5
-          @duel.user2_credits = -2
-        else
-          @duel.user1_credits = 10
-          @duel.user2_credits = -4
-        end
+
+    if @duel.winner == @duel.user1
+      if @duel.user2.credits <= 0
+        @duel.user1_credits = 3
+        @duel.user2_credits = -1
+      elsif @duel.user2.credits <= 10
+        @duel.user1_credits = 5
+        @duel.user2_credits = -2
       else
-        if @duel.user1.credits <= 0
-          @duel.user2_credits = 3
-          @duel.user1_credits = -1
-        elsif @duel.user1.credits <= 10
-          @duel.user2_credits = 5
-          @duel.user1_credits = -2
-        else
-          @duel.user2_credits = 10
-          @duel.user1_credits = -4
-        end
+        @duel.user1_credits = 10
+        @duel.user2_credits = -4
+      end
+      if params[:duel][:credits] == "false"
+        @duel.user2_credits = -5
       end
     else
-      @duel.user1_credits = 0
-      @duel.user2_credits = 0
+      if @duel.user1.credits <= 0
+        @duel.user2_credits = 3
+        @duel.user1_credits = -1
+      elsif @duel.user1.credits <= 10
+        @duel.user2_credits = 5
+        @duel.user1_credits = -2
+      else
+        @duel.user2_credits = 10
+        @duel.user1_credits = -4
+      end
+      if params[:duel][:credits] == "false"
+        @duel.user1_credits = -5
+      end
     end
+
     if @duel.user1
-      @duel.user1.credits += @duel.user1_credits 
-      @duel.user1.save
+      @duel.user1.update_attribute(:credits, @duel.user1.credits + @duel.user1_credits)
     end
     if @duel.user2
-      @duel.user2.credits += @duel.user2_credits
-      @duel.user2.save
+      @duel.user2.update_attribute(:credits, @duel.user2.credits + @duel.user2_credits)
     end
+    #p @duel.user1
+    #p @duel.user2
+    #STDIN.gets
     @duel.created_at = Time.zone.parse params[:duel][:created_at]
     respond_to do |format|
       if @duel.save
@@ -114,17 +118,17 @@ class DuelsController < ApplicationController
     end
   end
 
-  # PUT /duels/1
-  # PUT /duels/1.json
+# PUT /duels/1
+# PUT /duels/1.json
   def update
     @duel = Duel.find(params[:id])
     case @current_user
-    when @duel.user1
-      params[:duel] = {:user1_public => params[:duel][:user1_public]}
-    when @duel.user2
-      params[:duel] = {:user2_public => params[:duel][:user2_public]}
-    else
-      params[:duel] = {}
+      when @duel.user1
+        params[:duel] = {:user1_public => params[:duel][:user1_public]}
+      when @duel.user2
+        params[:duel] = {:user2_public => params[:duel][:user2_public]}
+      else
+        params[:duel] = {}
     end
     respond_to do |format|
       if @duel.update_attributes(params[:duel])
@@ -137,8 +141,8 @@ class DuelsController < ApplicationController
     end
   end
 
-  # DELETE /duels/1
-  # DELETE /duels/1.json
+# DELETE /duels/1
+# DELETE /duels/1.json
   def destroy
     @duel = Duel.find(params[:id])
     @duel.destroy
@@ -148,12 +152,13 @@ class DuelsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def user_deck(user_pos)
     @duel = Duel.find(params[:duel_id])
     unless (user_pos and @duel.user1_public or @duel.user1 == @current_user) or (!user_pos and @duel.user2_public or @duel.user2 == @current_user)
       return respond_to do |format|
-        format.ydk { redirect_to :format => :html}
-        format.html{ render :text => "卡组未公开"}
+        format.ydk { redirect_to :format => :html }
+        format.html { render :text => "卡组未公开" }
       end
     end
     if user_pos
@@ -163,16 +168,19 @@ class DuelsController < ApplicationController
       main = @duel.user2_main
       extra = @duel.user2_extra
     end
-    
+
     respond_to do |format|
-      format.html{ render :text => (["#created by ...", "#main"] + main.collect{|card|card.number} + ["#extra"] + extra.collect{|card|card.number} + ["!side"]).join("\r\n")}
-      format.ydk { render :text => (["#created by ...", "#main"] + main.collect{|card|card.number} + ["#extra"] + extra.collect{|card|card.number} + ["!side"]).join("\r\n")}
+      format.html { render :text => (["#created by ...", "#main"] + main.collect { |card| card.number } + ["#extra"] + extra.collect { |card| card.number } + ["!side"]).join("\r\n") }
+      format.ydk { render :text => (["#created by ...", "#main"] + main.collect { |card| card.number } + ["#extra"] + extra.collect { |card| card.number } + ["!side"]).join("\r\n") }
     end
   end
+
   def user1_deck
     user_deck(true)
   end
+
   def user2_deck
     user_deck(false)
   end
+
 end

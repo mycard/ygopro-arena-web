@@ -67,12 +67,12 @@ class UsersController < ApplicationController
     @continue = params[:continue]
     @from = params[:from].to_s.to_sym
     respond_to do |format|
-      open("http://ygopro-ocg.com/mycard.php?key=zh99998&username=#{CGI.escape @user.name}&password=#{CGI.escape @user.password}&email=#{CGI.escape @user.email}") do |f|
-        result = f.read
-        if result.to_i <= 0
-          @user.errors[:base] << "发生系统错误 (#{result}) 请联系zh99998@gmail.com"
-        end
-      end rescue @user.errors[:base] << "发生系统错误 (#{$!.inspect}) 请联系zh99998@gmail.com"
+    #  open("http://ygopro-ocg.com/mycard.php?key=zh99998&username=#{CGI.escape @user.name}&password=#{CGI.escape @user.password}&email=#{CGI.escape @user.email}") do |f|
+    #    result = f.read
+    #    if result.to_i <= 0
+    #      @user.errors[:base] << "发生系统错误 (#{result}) 请联系zh99998@gmail.com"
+    #    end
+    #  end rescue @user.errors[:base] << "发生系统错误 (#{$!.inspect}) 请联系zh99998@gmail.com"
       if !@user.errors.any? and @user.save
         boardcast_user(@user, :"ygopro-ocg")
         session[:user_id] = @user.id
