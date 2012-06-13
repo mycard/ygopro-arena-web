@@ -56,13 +56,26 @@ class DuelsController < ApplicationController
     @duel.user1 = User.find_by_name params[:duel][:user1_name] if params[:duel][:user1_name]
     @duel.user2 = User.find_by_name params[:duel][:user2_name] if params[:duel][:user2_name]
     return if @duel.user1 == @duel.user2
-    [params[:duel][:user1_main], params[:duel][:user1_extra], params[:duel][:user2_main], params[:duel][:user2_extra]].each_with_index do |cards, index|
+    card_numbers_arr = [params[:duel][:user1_main], params[:duel][:user1_extra], params[:duel][:user2_main], params[:duel][:user2_extra]]
+    card_numbers = []
+    card_numbers_arr.each do |zone|
+      card_numbers += zone.split(',')
+    end
+    sql = Card.where(number: card_numbers).select([:id, :number]).order(:id).group(:number).to_sql
+    card_number_id = {}
+    Duel.connection.execute(sql).each do |id, number|
+      card_number_id[number] = id
+    end
+    card_numbers_arr.each_with_index do |cards, index|
       user = index / 2 == 0 ? @duel.user1 : @duel.user2
       main = index % 2 == 0
       cards.split(',').collect do |card_number|
-        card = Card.find_by_number(card_number)
-        card = Card.create(:id => card_number, :name => card_number, :number => card_number) if card.nil?
-        @duel.duel_user_cards << DuelUserCard.new(user: user, card: card, main: main)
+        card_number = card_number.to_i
+        if !card_number_id[card_number]
+          Card.create(:id => card_number, :name => card_number, :number => card_number)
+          card_number_id[card_number] = card_number
+        end
+        @duel.duel_user_cards << DuelUserCard.new(user: user, card_id: card_number_id[card_number], main: main)
       end
     end
     @duel.winner = params[:duel][:winner_pos] == "true" ? @duel.user1 : @duel.user2

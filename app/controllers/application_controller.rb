@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   Themes_Dir = File.expand_path 'app/themes', Rails.root
-  protect_from_forgery
+  #protect_from_forgery
   before_filter :load_settings
   before_filter :load_user
   before_filter :load_locale
