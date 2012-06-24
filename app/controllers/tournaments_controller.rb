@@ -5,7 +5,7 @@ class TournamentsController < ApplicationController
   # GET /tournaments.json
   def index
     @tournaments = Tournament.all
-
+    @actions = [{"YGO战网" => users_path}, "比赛"]
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tournaments }
@@ -26,8 +26,9 @@ class TournamentsController < ApplicationController
   # GET /tournaments/new
   # GET /tournaments/new.json
   def new
+    return redirect_to(:controller => :users, :action => :login, :continue => new_tournament_path) if @current_user.id == 0
     @tournament = Tournament.new
-
+    @actions = [{"YGO战网" => users_path}, "发起比赛"]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @tournament }
@@ -42,8 +43,10 @@ class TournamentsController < ApplicationController
   # POST /tournaments
   # POST /tournaments.json
   def create
+    return redirect_to(login_path, continue: new_tournament_path) if @current_user.id == 0
     @tournament = Tournament.new(params[:tournament])
-
+    @tournament.status = 0
+    @tournament.user = @current_user
     respond_to do |format|
       if @tournament.save
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }

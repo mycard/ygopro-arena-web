@@ -1,33 +1,49 @@
 <%= form_for(@tournament) do |f| %>
-  <% if @tournament.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
+    <% if @tournament.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
 
-      <ul>
-      <% @tournament.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @tournament.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <br/>
+      <%= f.text_field :name %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :location_type %><br />
-    <%= f.text_field :location_type %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :note %><br />
-    <%= f.text_area :note %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label :location %>
+      <br/>
+      <%= f.select :location_type, [["QQ群", "qun"]] %>
+      <%= f.text_field :location %>
+    </div>
+    <div class="field">
+      <%= f.label :note %>
+      <br/>
+      <%= f.text_area :note %>
+    </div>
+    <div class="field">
+      <%= f.label :need_team %>
+      <%= f.check_box :need_team %>
+    </div>
+    <div class="field">
+      <%= f.label :need_deck %>
+      <%= f.check_box :need_deck %>
+    </div>
+    <div class="field">
+      <%= f.label :need_user %>
+      <%= f.check_box :need_user %>
+    </div>
+    <div class="field">
+      <%= f.label :created_at %>
+      <%= f.date_select :created_at, :start_year => Time.now.year %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

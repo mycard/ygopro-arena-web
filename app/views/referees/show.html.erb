@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @referee.user %>
+</p>
+
+<p>
+  <b>Tournament:</b>
+  <%= @referee.tournament %>
+</p>
+
+
+<%= link_to 'Edit', edit_referee_path(@referee) %> |
+<%= link_to 'Back', referees_path %>

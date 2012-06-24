@@ -7,10 +7,6 @@ require File.expand_path('../config/application', __FILE__)
 
 MycardServerHttp::Application.load_tasks
 
-if RUBY_PLATFORM["mswin"] or RUBY_PLATFORM["ming"]
-  STDOUT.set_encoding "GBK", "UTF-8", :invalid => :replace, :undef => :replace
-  #STDERR.set_encoding "GBK", "UTF-8"
-end
 def connect_fh(db='1.accdb')
   puts '连接数据库...'
   require 'win32ole'
@@ -103,9 +99,9 @@ end
 task :refresh_user_pass => :environment do
   require 'cgi'
   require 'open-uri'
-  servers = Server.all
+  servers = Server.all#where(:server_type => "ygopro")
   users = []
-  User.find_each do |user|
+  User.all.each do |user|
     if user.password.nil? 
       print "#{user.id} #{user.name} ..无密码\n"
       next
@@ -113,12 +109,13 @@ task :refresh_user_pass => :environment do
     users << user
   end
   threads = []
-  100.times do |i|
+  20.times do |i|
     threads << Thread.new do      
       while user = users.pop
         out = "#{user.id} #{user.name} "
         servers.each do |server|
-          open("http://#{server.ip}:#{server.http_port}/?pass=#{server.password}&operation=forceuserpass&username=#{CGI.escape user.name}&password=#{CGI.escape user.password}"){|f|out << f.read + " "} rescue out << $!.inspect.encode("UTF-8", :invalid => :replace, :undef => :replace)
+          url = server.register.gsub /\{key\}|\{id\}|\{name\}|\{password\}|\{email\}/, '{key}' => URI.encode_www_form_component(server.key), '{id}' => URI.encode_www_form_component(user.id), '{name}' => URI.encode_www_form_component(user.name), '{password}' => URI.encode_www_form_component(user.password), '{email}' => URI.encode_www_form_component(user.email)
+          open(url){|f|out << "\t"+f.read} rescue p $!
         end
         print out+"\n"
       end

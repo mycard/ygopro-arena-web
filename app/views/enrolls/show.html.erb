@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>比赛:</b>
+  <%=link_to @enroll.tournament.name, @enroll.tournament %>
+</p>
+
+<p>
+  <b>昵称:</b>
+  <%= @enroll.name %>
+</p>
+
+<p>
+  <b>联系方式:</b>
+  <%= @enroll.contact_type %>
+  <%= @enroll.contact %>
+</p>
+
+<%= link_to 'Edit', edit_enroll_path(@enroll) %> |
+<%= link_to 'Back', enrolls_path %>

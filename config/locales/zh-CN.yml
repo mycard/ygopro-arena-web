@@ -289,6 +289,27 @@ zh-CN:
       post:
         attachments: "附件"
         content: "正文"
+      tournament:
+        name: "比赛名称"
+        location: "联系方式"
+        note: "备注"
+        created_at: "比赛时间"
+        need_team: "战队赛"
+        need_deck: "需要上传卡组"
+        need_user: "仅允许mycard注册用户参加"
+      enroll:
+        tournament: "比赛"
+        team: "战队"
+        name: "昵称"
+        contact: "联系方式"
+        deck: "卡组"
+      match:
+        player1: "玩家1"
+        player1_score: "玩家1得分"
+        player2: "玩家1"
+        player2_score: "玩家1得分"
+        round: "轮次"
+
   mycard:
     download: "立即下载"
     battlenet: "YGO战网"
@@ -374,3 +395,6 @@ zh-CN:
     submit: "提交"
     private: "仅楼主可见"
     anonymous: "匿名发帖"
+  tournament:
+    location:
+      qun: "QQ群"

@@ -65,18 +65,12 @@ class UsersController < ApplicationController
     #@user.password = params[:user][:password]
     @actions = [User.human_attribute_name(:register)]
     @continue = params[:continue]
-    @from = params[:from].to_s.to_sym
+    @from = params[:from]
     respond_to do |format|
-    #  open("http://ygopro-ocg.com/mycard.php?key=zh99998&username=#{CGI.escape @user.name}&password=#{CGI.escape @user.password}&email=#{CGI.escape @user.email}") do |f|
-    #    result = f.read
-    #    if result.to_i <= 0
-    #      @user.errors[:base] << "发生系统错误 (#{result}) 请联系zh99998@gmail.com"
-    #    end
-    #  end rescue @user.errors[:base] << "发生系统错误 (#{$!.inspect}) 请联系zh99998@gmail.com"
       if !@user.errors.any? and @user.save
-        boardcast_user(@user, :"ygopro-ocg")
+        remote_register(@user, @from)
         session[:user_id] = @user.id
-        format.html { redirect_to(params[:continue].blank? ? @user : URI.escape(params[:continue]) , :notice => '注册成功') }
+        format.html { redirect_to(params[:continue].blank? ? @user : URI.escape(params[:continue]), :notice => '注册成功') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -123,36 +117,34 @@ class UsersController < ApplicationController
 
   def login
     @actions = [User.human_attribute_name(:login)]
+    @continue = params[:continue]
     return @user = User.new if params[:user].blank?
     @actions = [User.human_attribute_name(:login)]
-    user = User.find_by_name(params[:user][:name])
-    if user and params[:user][:password] == user.password
+
+    name = params[:user][:name]
+    password = params[:user][:password]
+
+    user = User.find_by_name(name)
+    if user and user.password.blank? and remote_login(name, password)
+      #远程登录
+      @user = User.find_by_name(name)
+      @user.update_attribute(:password, password)
+    elsif user and user.password == password
+      #本地登录
       @user = user
-    elsif user.nil? or user.password.nil?
-      username = params[:user][:name]
-      password = params[:user][:password]
-      Server.all.each do |server|
-        open("http://#{server.ip}:#{server.http_port}/?operation=passcheck&username=#{CGI.escape username}&pass=#{CGI.escape password}") do |file|
-          if file.read == "true"
-            user.password = password
-            @user = user
-            @user.save
-            break
-          end
-        end rescue nil
-        break if @user
-      end
     end
+
     respond_to do |format|
       if @user
         session[:user_id] = @user.id
         @user.update_attribute(:lastloginip, request.remote_ip)
-        boardcast_user(@user)
+        remote_register(@user)
         format.html { redirect_to(params[:continue].blank? ? @user : URI.escape(params[:continue]), :notice => 'Login Successfully.') }
         format.json { render json: @user }
       else
         @user = User.new(params[:user])
-        format.html { render :text => 'incorrent_username_or_password' }
+        @user.errors[:base] << '用户名或密码错误'
+        format.html
         format.json { head json: nil }
       end
     end
@@ -167,7 +159,6 @@ class UsersController < ApplicationController
   end
 
   def theme
-    #p params[:theme], @site[:themes].has_key?(params[:theme])
     if params[:theme].blank?
       cookies[:theme] = nil
       @current_user.update_attribute(:theme, nil)
@@ -181,22 +172,24 @@ class UsersController < ApplicationController
     end
   end
 
-  def boardcast_user(user, from=nil)
-    Server.find_each do |server|
-      url = "http://#{server.ip}:#{server.http_port}/?pass=#{server.password}&operation=forceuserpass&username=#{CGI.escape user.name}&password=#{CGI.escape user.password}"
-      if RUBY_PLATFORM["win"] || RUBY_PLATFORM["ming"]
-        open(url) {} rescue nil
-      else
-        Process.spawn('curl', url)
-      end
-    end
-    if from != :"ygopro-ocg"
-      url = "http://ygopro-ocg.com/mycard.php?key=zh99998&username=#{CGI.escape user.name}&password=#{CGI.escape user.password}&email=#{CGI.escape user.email}"
-      if RUBY_PLATFORM["win"] || RUBY_PLATFORM["ming"]
+  def remote_register(user, from=nil)
+    Server.all.each do |server|
+      url = server.register.gsub /\{key\}|\{id\}|\{name\}|\{password\}|\{email\}/, '{key}' => URI.encode_www_form_component(server.key), '{id}' => URI.encode_www_form_component(user.id), '{name}' => URI.encode_www_form_component(user.name), '{password}' => URI.encode_www_form_component(user.password), '{email}' => URI.encode_www_form_component(user.email)
+      if from == server.name
         open(url) {}
       else
-        Process.spawn('curl', url)
+        Thread.new { open(url) {} }
       end
     end
+  end
+
+  def remote_login(name, password, from=nil)
+    servers = Server.where("login is not null")
+    servers = servers.where(name: from) if from
+    servers.each do |server|
+      url = server.login.gsub /\{key\}|\{name\}|\{password\}/, '{key}' => URI.encode_www_form_component(server.key), '{name}' => URI.encode_www_form_component(name), '{password}' => URI.encode_www_form_component(password)
+      open(url) { |f| return server if f.read == "true" }
+    end
+    nil
   end
 end

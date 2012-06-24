@@ -1,4 +1,8 @@
 MycardServerHttp::Application.routes.draw do
+  resources :referees
+
+  resources :enrolls
+
   resources :matches
 
   resources :tournaments

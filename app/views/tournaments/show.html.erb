@@ -16,13 +16,104 @@
 </p>
 
 <p>
-  <b>备注:</b>
-  <%= @tournament.note %>
-</p>
-<p>
   <b>时间:</b>
-  <%=l @tournament.updated_at.to_date %>
+  <%= l @tournament.created_at.to_date %>
 </p>
 
-<%= link_to 'Edit', edit_tournament_path(@tournament) %> |
-<%= link_to 'Back', tournaments_path %>
+<p>
+  <%= @tournament.note %>
+</p>
+
+<% if logged? and (@tournament.referees | [@tournament.user]).include?(@current_user) %>
+    <div>
+      <% case @tournament.status %>
+      <% when 0 %>
+          <table>
+            <tr>
+              <th>裁判</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <% @tournament.referees.each do |referee| %>
+                <tr>
+                  <td><%= referee.user %></td>
+                  <td><%= link_to '删除', referee, confirm: 'Are you sure?', method: :delete %></td>
+                </tr>
+            <% end %>
+          </table>
+          <%= form_for(@referee = @tournament.referees.build) do |f| %>
+              <%= f.hidden_field :tournament_id %>
+              <%= f.text_field :user %>
+              <%= f.submit '添加裁判' %>
+          <% end %>
+          <%= link_to '修改比赛信息', edit_tournament_path(@tournament) %>
+          <%= form_for(@tournament) do |f| %>
+              <%= f.hidden_field :status, value: 1 %>
+              <%= f.submit '开始报名', confirm: '开始报名后将不能修改比赛及裁判信息 确定吗' %>
+          <% end %>
+      <% when 1 %>
+          <%= form_for(@tournament) do |f| %>
+              <%= f.text_area :report %>
+              <br/>
+              <%= f.submit '修改公告' %>
+          <% end %>
+          <%= form_for(@tournament) do |f| %>
+              <%= f.hidden_field :status, value: 2 %>
+              <%= f.submit '开始比赛', confirm: '开始比赛后将停止报名 确定么' %>
+          <% end %>
+      <% when 2 %>
+          <%= form_for(@tournament) do |f| %>
+              <%= f.text_area :report %>
+              <br/>
+              <%= f.submit '修改公告' %>
+          <% end %>
+      <% end %>
+    </div>
+<% end %>
+
+<div style="margin-top: 30px">
+  <% case @tournament.status %>
+  <% when 0 %>
+      报名尚未开始
+  <% when 1 %>
+      <div id="report">
+        <%= @tournament.report %>
+      </div>
+      <div style="margin-top: 30px">
+        <%= link_to '我要报名', controller: :enrolls, action: :new, tournament_id: @tournament.id %>
+      </div>
+      <table style="margin-top: 30px">
+        <tr>
+          <th>昵称</th>
+          <% if @tournament.need_team %>
+              <th>战队</th>
+          <% end %>
+          <th colspan="2">联系方式</th>
+        </tr>
+        <% @tournament.enrolls.each do |enroll| %>
+            <tr>
+              <td><%= enroll.name %></td>
+              <% if @tournament.need_team %>
+                  <td><%= enroll.team %></td>
+              <% end %>
+              <td><%= enroll.contact_type %></td>
+              <td>
+                <% case enroll.contact_type.to_sym %>
+                <% when :QQ %>
+                    <%= link_to enroll.contact, "tencent://message/?uin=#{enroll.contact}&Site=card.touhou.com&Menu=yes" %>
+                <% when :email %>
+                    <%= link_to enroll.contact, "mailto:#{enroll.contact}" %>
+                <% end %></td>
+            </tr>
+        <% end %>
+      </table>
+  <% when 2 %>
+      <div id="report">
+        <%= @tournament.report %>
+      </div>
+  <% when 3 %>
+      <div id="report">
+        <%= @tournament.report %>
+      </div>
+  <% end %>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120531032103) do
+ActiveRecord::Schema.define(:version => 20120618064745) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_file_name"
@@ -107,6 +107,21 @@ ActiveRecord::Schema.define(:version => 20120531032103) do
   add_index "duels_users_cards", ["duel_id"], :name => "index_duels_users_cards_on_duel_id"
   add_index "duels_users_cards", ["user_id"], :name => "index_duels_users_cards_on_user_id"
 
+  create_table "enrolls", :force => true do |t|
+    t.integer  "tournament_id"
+    t.string   "name"
+    t.integer  "user_id"
+    t.string   "contact_type"
+    t.string   "contact"
+    t.text     "deck"
+    t.integer  "score"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "enrolls", ["tournament_id"], :name => "index_enrolls_on_tournament_id"
+  add_index "enrolls", ["user_id"], :name => "index_enrolls_on_user_id"
+
   create_table "libraries", :force => true do |t|
     t.string   "name"
     t.text     "contents"
@@ -126,6 +141,63 @@ ActiveRecord::Schema.define(:version => 20120531032103) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "lm", :primary_key => "uid", :force => true do |t|
+    t.string  "username",      :limit => 15, :default => "",    :null => false
+    t.string  "password",      :limit => 32, :default => "",    :null => false
+    t.string  "secques",       :limit => 8,  :default => "",    :null => false
+    t.boolean "gender",                      :default => false, :null => false
+    t.boolean "adminid",                     :default => false, :null => false
+    t.integer "groupid",       :limit => 2,  :default => 0,     :null => false
+    t.integer "groupexpiry",                 :default => 0,     :null => false
+    t.string  "extgroupids",   :limit => 20, :default => "",    :null => false
+    t.string  "regip",         :limit => 15, :default => "",    :null => false
+    t.integer "regdate",                     :default => 0,     :null => false
+    t.string  "lastip",        :limit => 15, :default => "",    :null => false
+    t.integer "lastvisit",                   :default => 0,     :null => false
+    t.integer "lastactivity",                :default => 0,     :null => false
+    t.integer "lastpost",                    :default => 0,     :null => false
+    t.integer "posts",         :limit => 3,  :default => 0,     :null => false
+    t.integer "threads",       :limit => 3,  :default => 0,     :null => false
+    t.integer "digestposts",   :limit => 2,  :default => 0,     :null => false
+    t.integer "oltime",        :limit => 2,  :default => 0,     :null => false
+    t.integer "pageviews",     :limit => 3,  :default => 0,     :null => false
+    t.integer "credits",                     :default => 0,     :null => false
+    t.integer "extcredits1",                 :default => 0,     :null => false
+    t.integer "extcredits2",                 :default => 0,     :null => false
+    t.integer "extcredits3",                 :default => 0,     :null => false
+    t.integer "extcredits4",                 :default => 0,     :null => false
+    t.integer "extcredits5",                 :default => 0,     :null => false
+    t.integer "extcredits6",                 :default => 0,     :null => false
+    t.integer "extcredits7",                 :default => 0,     :null => false
+    t.integer "extcredits8",                 :default => 0,     :null => false
+    t.string  "email",         :limit => 40, :default => "",    :null => false
+    t.date    "bday",                                           :null => false
+    t.boolean "sigstatus",                   :default => false, :null => false
+    t.integer "tpp",           :limit => 1,  :default => 0,     :null => false
+    t.integer "ppp",           :limit => 1,  :default => 0,     :null => false
+    t.integer "styleid",       :limit => 2,  :default => 0,     :null => false
+    t.boolean "dateformat",                  :default => false, :null => false
+    t.boolean "timeformat",                  :default => false, :null => false
+    t.boolean "pmsound",                     :default => false, :null => false
+    t.boolean "showemail",                   :default => false, :null => false
+    t.boolean "newsletter",                  :default => false, :null => false
+    t.boolean "invisible",                   :default => false, :null => false
+    t.string  "timeoffset",    :limit => 4,  :default => "",    :null => false
+    t.boolean "prompt",                      :default => false, :null => false
+    t.boolean "accessmasks",                 :default => false, :null => false
+    t.boolean "editormode",                  :default => false, :null => false
+    t.boolean "customshow",                  :default => false, :null => false
+    t.boolean "xspacestatus",                :default => false, :null => false
+    t.boolean "customaddfeed",               :default => false, :null => false
+    t.integer "newbietaskid",  :limit => 2,  :default => 0,     :null => false
+    t.boolean "conisbind",                   :default => false, :null => false
+  end
+
+  add_index "lm", ["conisbind"], :name => "conisbind"
+  add_index "lm", ["email"], :name => "email"
+  add_index "lm", ["groupid"], :name => "groupid"
+  add_index "lm", ["username"], :name => "username", :unique => true
 
   create_table "matches", :force => true do |t|
     t.integer  "player1_id"
@@ -209,6 +281,16 @@ ActiveRecord::Schema.define(:version => 20120531032103) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "referees", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "tournament_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "referees", ["tournament_id"], :name => "index_referees_on_tournament_id"
+  add_index "referees", ["user_id"], :name => "index_referees_on_user_id"
+
   create_table "roles", :force => true do |t|
     t.string  "name",                                  :null => false
     t.boolean "topic_delete",       :default => false, :null => false
@@ -220,13 +302,16 @@ ActiveRecord::Schema.define(:version => 20120531032103) do
   end
 
   create_table "servers", :force => true do |t|
+    t.string   "server_type", :default => "ygopro", :null => false
     t.string   "name"
-    t.string   "password"
+    t.string   "key"
     t.string   "ip"
     t.integer  "port"
-    t.integer  "http_port"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "register",                          :null => false
+    t.string   "login"
+    t.string   "index",                             :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "settings", :primary_key => "name", :force => true do |t|
@@ -254,9 +339,13 @@ ActiveRecord::Schema.define(:version => 20120531032103) do
 
   create_table "tournaments", :force => true do |t|
     t.string   "name"
+    t.integer  "user_id",       :null => false
     t.string   "location_type"
     t.string   "location"
     t.text     "note"
+    t.integer  "status",        :null => false
+    t.boolean  "authentic",     :null => false
+    t.boolean  "team",          :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -303,8 +392,6 @@ ActiveRecord::Schema.define(:version => 20120531032103) do
     t.string   "last_sign_in_ip"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["name"], :name => "index_users_on_name"
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

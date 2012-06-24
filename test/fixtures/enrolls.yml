@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tournament: 
+  name: MyString
+  user: 
+  contact_type: MyString
+  contact: MyString
+  deck: MyText
+  score: 1
+
+two:
+  tournament: 
+  name: MyString
+  user: 
+  contact_type: MyString
+  contact: MyString
+  deck: MyText
+  score: 1

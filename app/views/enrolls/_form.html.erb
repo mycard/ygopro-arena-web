@@ -1,0 +1,45 @@
+<%= form_for(@enroll) do |f| %>
+    <% if @enroll.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@enroll.errors.count, "error") %> prohibited this enroll from being saved:</h2>
+
+          <ul>
+            <% @enroll.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :tournament %>
+      <%= f.select :tournament_id, Tournament.where(:status => 1).collect { |tournament| [tournament.name, tournament.id] } %>
+    </div>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <% if @enroll.tournament.need_team %>
+        <div class="field">
+          <%= f.label :team %>
+          <%= f.text_field :team %>
+        </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :contact %>
+      <%= f.select :contact_type, [["QQ", "QQ"], ["邮箱", "email"]] %>
+      <%= f.text_field :contact %>
+    </div>
+    <% if @enroll.tournament.need_deck %>
+        <div class="field">
+          <%= f.label :deck %>
+          <%= f.file_field :deck %>
+          <br/>
+          比赛要求中途不得换卡组, 请在这里上传卡组
+        </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

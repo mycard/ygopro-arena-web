@@ -1,0 +1,25 @@
+<%= form_for(@referee) do |f| %>
+  <% if @referee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@referee.errors.count, "error") %> prohibited this referee from being saved:</h2>
+
+      <ul>
+      <% @referee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :tournament %><br />
+    <%= f.text_field :tournament %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
