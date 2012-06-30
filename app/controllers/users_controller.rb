@@ -70,7 +70,7 @@ class UsersController < ApplicationController
       if !@user.errors.any? and @user.save
         remote_register(@user, @from)
         session[:user_id] = @user.id
-        format.html { redirect_to(params[:continue].blank? ? @user : URI.escape(params[:continue]), :notice => '注册成功') }
+        format.html { redirect_to(params[:continue].blank? ? @user : params[:continue].gsub(/\{name\}|\{password\}/, '{name}' => URI.encode_www_form_component(@user.name), '{password}' => URI.encode_www_form_component(@user.password)), :notice => '注册成功') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -139,7 +139,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         @user.update_attribute(:lastloginip, request.remote_ip)
         remote_register(@user)
-        format.html { redirect_to(params[:continue].blank? ? @user : URI.escape(params[:continue]), :notice => 'Login Successfully.') }
+        format.html { redirect_to(params[:continue].blank? ? @user : params[:continue].gsub(/\{name\}|\{password\}/, '{name}' => URI.encode_www_form_component(@user.name), '{password}' => URI.encode_www_form_component(@user.password)), :notice => 'Login Successfully.') }
         format.json { render json: @user }
       else
         @user = User.new(params[:user])

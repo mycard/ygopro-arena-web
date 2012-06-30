@@ -2,7 +2,12 @@ class ServersController < ApplicationController
   # GET /servers
   # GET /servers.json
   def index
-    @servers = Server.all
+    if params[:server_type]
+      @servers = Server.where(server_type: params[:server_type])
+    else
+      @servers = Server.all
+    end
+
 
     respond_to do |format|
       format.html # index.html.erb

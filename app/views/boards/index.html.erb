@@ -1,22 +1,107 @@
+<style>
+    .topic {
+        float: left;
+        width: 190px;
+        margin: 2px;
+    }
+
+    .posttop {
+        height: 146px;
+        overflow: hidden;
+    }
+
+    .first {
+        height: 92px;
+    }
+
+    .last {
+        height: 54px;
+    }
+
+    .name {
+        //如何设置单行
+    }
+
+    #stat {
+        float: right;
+        clear: both;
+    }
+
+    .first {
+        overflow: hidden;
+    }
+
+    .topics {
+        overflow: hidden;
+    }
+
+    .avatar_small {
+        float: left;
+    }
+</style>
+
 <div id="wrap" class="wrap s_clear">
-  <div class="itemtitle s_clear">
-    <p class="right boardcount">
-      <%=t 'datetime.today' %>: <em><%= Post.today.count %> </em>, 
-      <%=t 'datetime.yesterday' %>: <em><%= Post.yesterday.count %></em>, 
-      <%=t 'stat.total' %>: <em><%= Post.count %></em>
-    </p>
+  <div id="stat">
+    <%= t 'datetime.today' %>: <em><%= Post.today.count %> </em>,
+    <%= t 'datetime.yesterday' %>: <em><%= Post.yesterday.count %></em>,
+    <%= t 'stat.total' %>: <em><%= Post.count %></em>
   </div>
+  <div>最新帖子</div>
+  <div id="stream">
+    <ul id="topics">
+      <% Post.group(:topic_id).order(:created_at).reverse_order.limit(5).includes(:topic).each do |post| %>
+          <li class="topic">
+            <% last_post = post.topic.posts.order(:id).last %>
+            <div class="post<%= ' first' if last_post != post %>">
+              <div class="posttop">
+                <%= image_tag post.user.avatar.url(:small), width: 48, height: 48, class: "avatar_small" %>
+                <div>
+                  <span class="name"><%= link_to post.topic.name, post.topic %></span>
+                </div>
+                <div>
+                  <span><%= link_to post.user.name, post.user %></span>
+                  <span><%= distance_of_time_in_words_to_now post.created_at %> <%= t 'ago' %></span>
+                </div>
+                <%= post.content %>
+              </div>
+              <div class="postbottom">
+
+              </div>
+            </div>
+
+            <% if last_post != post %>
+                <% post = last_post %>
+                <div class="post last">
+                  <div class="posttop last">
+                    <%= image_tag post.user.avatar.url(:small), width: 48, height: 48, class: "avatar_small" %>
+                    <div>
+                      <span><%= link_to post.user.name, post.user %></span>
+                      <span><%= distance_of_time_in_words_to_now post.created_at %> <%= t 'ago' %></span>
+                    </div>
+                    <%= post.content %>
+                  </div>
+                </div>
+            <% end %>
+            <span><%=link_to post.topic.category.name, post.topic.category %></span>
+            <span>回复:<%=post.topic.posts.count %> </span><span>查看:<%=post.topic.viewnum %></span>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="itemtitle s_clear"></div>
   <%= render @boards %>
 
   <div class="mainbox list">
     <span class="headactions"><%= image_tag 'common/collapsed_no.gif' %></span>
-    <h3><%=link_to t('forum.link'), links_path %></h3>
+
+    <h3><%= link_to t('forum.link'), links_path %></h3>
+
     <div id="forumlinks">
       <!--<div class="forumlinks">
         <ul class="s_clear"><li><div class="forumlogo"><img src="http://www.touhou.cc/logo.gif" border="0" alt="东方幻想乡"></div><div class="forumcontent"><h5><a href="http://www.touhou.cc/bbs" target="_blank">东方幻想乡</a></h5><p>这里是幻想乡,一片充满生机和幸福的乐土.</p></div></li></ul>
       </div>--> <!--详细-->
       <div class="forumimglink">
-        <%= render @links %> 
+        <%= render @links %>
       </div>
       <!--<div class="forumtxtlink">
         <ul class="s_clear">

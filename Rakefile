@@ -99,7 +99,7 @@ end
 task :refresh_user_pass => :environment do
   require 'cgi'
   require 'open-uri'
-  servers = Server.all#where(:server_type => "ygopro")
+  servers = Server.where(:name => :"ygopro-ocg")#all#where(:server_type => "ygopro")
   users = []
   User.all.each do |user|
     if user.password.nil? 
@@ -115,7 +115,7 @@ task :refresh_user_pass => :environment do
         out = "#{user.id} #{user.name} "
         servers.each do |server|
           url = server.register.gsub /\{key\}|\{id\}|\{name\}|\{password\}|\{email\}/, '{key}' => URI.encode_www_form_component(server.key), '{id}' => URI.encode_www_form_component(user.id), '{name}' => URI.encode_www_form_component(user.name), '{password}' => URI.encode_www_form_component(user.password), '{email}' => URI.encode_www_form_component(user.email)
-          open(url){|f|out << "\t"+f.read} rescue p $!
+          open(url, server.server_type=='ygopro' ? 'r:GBK' : 'r'){|f|out << "\t"+f.read.encode("UTF-8", :undef => :replace, :invalid => :replace)} rescue p $!
         end
         print out+"\n"
       end
