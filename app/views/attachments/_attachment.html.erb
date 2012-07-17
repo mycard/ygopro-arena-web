@@ -6,11 +6,11 @@
   <% else %>
       <% case File.extname attachment.data.original_filename %>
       <% when ".yrp" %>
-          <span><%= link_to "播放", 'mycard://' + request.env['HTTP_HOST'] + URI.escape(URI.escape(attachment.data.url nil, timestamp: false )) %></span>
+          <span><%= link_to "播放", 'mycard://' + request.env['HTTP_HOST'] + URI.escape(attachment.data.url nil, timestamp: false ) %></span>
       <% when ".ydk" %>
-          <span><%= link_to "编辑", 'mycard://' + request.env['HTTP_HOST'] + URI.escape(URI.escape(attachment.data.url nil, timestamp: false )) %></span>
+          <span><%= link_to "编辑", 'mycard://' + request.env['HTTP_HOST'] + URI.escape(attachment.data.url nil, timestamp: false ) %></span>
       <% when ".deck" %>
-          <span><%= link_to "编辑", 'mycard://' + request.env['HTTP_HOST'] + URI.escape(URI.escape(attachment.data.url nil, timestamp: false )) %></span>
+          <span><%= link_to "编辑", 'mycard://' + request.env['HTTP_HOST'] + URI.escape(attachment.data.url nil, timestamp: false ) %></span>
       <% end %>
   <% end %>
 </li>

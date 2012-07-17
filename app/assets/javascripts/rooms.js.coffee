@@ -35,7 +35,7 @@ refresh_do = (rooms) ->
       $('#users').append $('<a />',
         class: 'user'
         text: user.name
-        #href: '/users/' + user.id unless user.id == 0
+        href: '/users/' + user.id unless user.id == 0
       )
     if user = room.player2
       room_html.append $('<a />',
@@ -52,7 +52,7 @@ refresh_do = (rooms) ->
       $('#users').append $('<a />',
         class: "user"
         text: user.name
-        #href: '/users/' + user.id unless user.id == 0
+        href: '/users/' + user.id unless user.id == 0
       )
     if room.status == 'wait'
       room_html.append $('<a />',
