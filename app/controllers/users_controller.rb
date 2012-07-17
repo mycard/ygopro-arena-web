@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => {id: @user.id, name: @user.name, nickname: @user.nickname} }
-      format.png { redirect_to @user.avatar.url(:middle) }
+      format.png { redirect_to @user.avatar.url(params[:size] || :middle) }
     end
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   def new
     @actions = [User.human_attribute_name(:register)]
     @user = User.new
-
+    @continue = params[:continue] || request.env['HTTP_REFERER']
     respond_to do |format|
       format.html # new.html.erb
       format.xml { render :xml => @user }
@@ -117,7 +117,7 @@ class UsersController < ApplicationController
 
   def login
     @actions = [User.human_attribute_name(:login)]
-    @continue = params[:continue]
+    @continue = params[:continue] || request.env['HTTP_REFERER']
     return @user = User.new if params[:user].blank?
     @actions = [User.human_attribute_name(:login)]
 

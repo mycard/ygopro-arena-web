@@ -1,4 +1,6 @@
 MycardServerHttp::Application.routes.draw do
+  get "stream/index"
+
   resources :referees
 
   resources :enrolls
@@ -52,7 +54,7 @@ MycardServerHttp::Application.routes.draw do
   resources :pms
   resources :links
   resources :moderations
-  
+  resources :stream
   match "/captcha" => "captcha#show"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   # The priority is based upon order of creation:

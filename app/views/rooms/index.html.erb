@@ -1,66 +1,151 @@
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js "></script>
-<script>
-  var baseUrl = '/rooms.json';
-  function load_rooms(){
-    $.getJSON(baseUrl, function(data) {
-      var rooms = '';
-      var users = '当前在线</br>';
-      var roomcount = 0;
-      $.each(data, function(key, room) {
-        rooms += '<div class="room"><div style="float:left;position:absolute;margin-left:8px;font-size:16px;'
-        if(room.status == 'wait'){
-          rooms += 'color:#33CCFF;">等待中';
-          rooms += '</div><a class="roomname" href="';
-          rooms +=encodeURI('mycard://<%= "#{URI.escape @current_user.name}:#{URI.escape @current_user.password}@" if logged? %>122.0.65.71:7911/'+ encodeURIComponent(room.name));
-          rooms += '">' + room.name + '</a>';
-        }else{
-          rooms += ';">决斗中';
-          rooms += '</div><a class="roomname">' + room.name + '</a>';
-        }
-
-        if(room.users[0]){
-          rooms += '<a class="playername">' + room.users[0].name + '</a>';
-        }
-        if(room.users[1]){
-          rooms += '<a class="playername">' + room.users[1].name + '</a>';
-        }
-        for(i in room.users){
-          user = room.users[i];
-          users += '<a class="online">' + user.name + '</a>';
-        }
-        rooms += '</div>';
-        roomcount++;
-      })
-      $('#roombox').html(rooms);
-      $('#online').html(users);
-      $('#roomcount').html(roomcount);
-    });
-  };
-  load_rooms();
-  setInterval((load_rooms), 5000);
-</script>
-<style>
-  #roombox {position: relative;}
-</style>
-<div id="mainbody">
-  <div class="main" style="height:900px;">
-    <div id="announcement">公告：系统测试中 出现bug请淡定</div>
-    <div id="roombox">
-      <div id="rooms">正在读取房间列表...</div>
-    </div>
-    <div id="bar">
-      <div id="info">
-        当前房间数量</br><a style="font-size:25px" id="roomcount">0</a>/150
-      </div>
-      </br>
-      <div id="online">
-        当前在线</br>
-      </div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title> <%= @site.name %>
+    <% if @actions && !@actions.empty? %> - <%= @actions.last.respond_to?(:name) ? @actions.last.name : @actions.last %>
+    <% end %> </title>
+  <%= javascript_tag do %>
+      window.server = <%= @server.to_json.html_safe %>;
+      <% if logged? %>
+      window.user = <%= @current_user.to_json.html_safe %>
+      <% end %>
+  <% end %>
+  <%= stylesheet_link_tag params[:controller] %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag params[:controller] %>
+  <%= csrf_meta_tags %>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+<header id='head_bar'>
+  <div id="logo">
+    <%= image_tag "logo.png", alt: "萌卡 Alpha" %>
+  </div>
+  </div>
+  <div id="head_bar_toolbar">
+    <div id="user" class="right">
+      <% if logged? %>
+          <%= link_to image_tag(@current_user.avatar.url(:small), width: 20, height: 20, class: "head_bar_toolbar_usericon"), @current_user %>
+          <%= link_to @current_user.name, @current_user %>
+          <%= link_to '退出', logout_path %>
+      <% else %>
+          <%= link_to '注册', register_path %>
+          <%= link_to '登录', login_path %>
+      <% end %>
+      <!--<img src="http://www.gravatar.com/avatar/3ac4f524863f588f399da6431667b69a?size=120" width="20" height="20" ><a href="#">Losses</a>
+      <a class="icon">✉</a><a href="#">Mail</a>
+      <a href="#">Exit</a>-->
     </div>
   </div>
+</header>
+<div id="actions" class="left">
+  <a class="action_header">选择分区</a>
+  <%= collection_select(:server, :id, Server.where(server_type: "ygopro"), :id, :name, {}, {class: "action", id: "server", onchange: "document.location='/rooms?server_id='+this.value"}) %>
+  <a class="action_header">房间操作</a>
+  <button class="action" id="action_newroom" onclick="newroom()">建立房间</button>
 </div>
-<FOOTER>
-  <div class="main">
-    By Losses Territory Studio & Mycard Team.</br>Apache 2.0 License.
+<div id="announcement"><a class="icon"></a>公告：系统测试中 出现bug请淡定</div>
+<div class="cleaner"></div>
+<div id="main">
+  <div id="rooms" class="left"></div>
+  <div id="users_header" class="right">
+    <a class="icon">👥</a>在线用户
   </div>
-</FOOTER>
+  <div id="users" class="right"></div>
+</div>
+
+<div id="newroom" style="display: none">
+  <form onsubmit="newroom_submit($('#name')[0].value, $('#password')[0].value, $('#pvp')[0].checked, $('#match')[0].checked, $('#tag')[0].checked, $('#tcg')[0].checked ? $('#ocg')[0].checked ? 2 : 1 : 0, $('#lp')[0].value); return false">
+    <label>房间名</label>
+    <input type="text" id="name" value="<%= rand(1000) %>"/><br/>
+    <label>房间密码</label>
+    <input type="password" id="password" value=""/><br/>
+    <input type="checkbox" id="pvp" value="pvp" onchange="if(this.checked){$('#tag')[0].checked = $('#tcg')[0].checked = false; $('#ocg')[0].checked = true; $('#lp')[0].value = 8000}"/><label>竞技场</label>
+    <input type="checkbox" id="match" value="match" checked="checked" onchange="if(this.checked){$('#tag')[0].checked = false}"/><label>三回决斗</label>
+    <hr/>
+    <h3>自定义模式</h3>
+    <input type="checkbox" id="tag" value="tag" onchange="if(this.checked){$('#pvp')[0].checked = $('#match')[0].checked = false}"/><label>TAG双打</label>
+    <input type="checkbox" id="ocg" value="ocg" checked="checked" onchange="if(!this.checked){$('#tcg')[0].checked = true;$('#pvp')[0].checked = false}"/><label>OCG</label>
+    <input type="checkbox" id="tcg" value="tcg" onchange="if(this.checked){$('#pvp')[0].checked = false}else{$('#ocg')[0].checked = true}"/><label>TCG</label><br/>
+    <label>初始LP</label>
+    <input type="number" id="lp" min="0" max="99999" value="8000" step="1000" onchange="if(this.value != 8000){$('#pvp')[0].checked = false}"/><br/>
+    <input type="submit" value="确定" />
+  </form>
+</div>
+<div id="joinroom" style="display: none">
+  <form onsubmit="joinroom_submit($('#joinroom_url')[0].value, $('#joinroom_password')[0].value); return false">
+  <label>房间密码</label>
+  <input type="password" id="joinroom_password" value=""/>
+  <input type="submit" value="确定"/>
+  <input type="hidden" id="joinroom_url" value=""/>
+  </form>
+</div>
+<script>
+    $('#newroom').dialog({
+        autoOpen:false,
+        resizable:false,
+        title:"建立房间"
+    })
+    $('#joinroom').dialog({
+        autoOpen:false,
+        resizable:false,
+        title:"加入房间"
+    })
+    function room_url(name, password) {
+        return encodeURI('mycard://' + (window.user.name ? encodeURIComponent(window.user.name) + ':' + encodeURIComponent(window.user.password) + '@' : '') + window.server.ip + ':' + window.server.port + '/' + encodeURIComponent(name) + (password ? '$' + encodeURIComponent(password) : ''));
+    }
+    function newroom() {
+        $('#newroom').dialog('open')
+    }
+    function newroom_submit(name, password, pvp, match, tag, ot, lp) {
+        if (ot != 0 || lp != '8000') {
+            result = ot + tag ? 2 : match ? 1 : 0 + 'FFF' + lp + ',' + name;
+        } else if (tag) {
+            result = "T#" + name;
+        } else if (pvp && match) {
+            result = "PM#" + name;
+        } else if (pvp) {
+            result = "P#" + name;
+        } else if (match) {
+            result = "M#" + name;
+        }
+        document.location = room_url(result, password)
+        $('#newroom').dialog('close')
+    }
+    function joinroom(name, private) {
+        if (private) {
+            $('#joinroom').dialog('open');
+            $('#joinroom_url')[0].value = room_url(name, '');
+        } else {
+            document.location = room_url(name);
+        }
+    }
+    function joinroom_submit(url, password) {
+        if (password) {
+            document.location = url + '$' + password;
+        }
+        $('#joinroom').dialog('close')
+    }
+</script>
+</body>
+<footer>
+  Created By Losses Don for my-card.in</br>
+  Protected by <a href="http://oapo.qzworld.net">OAPO</a>
+</footer>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
