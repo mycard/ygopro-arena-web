@@ -38,8 +38,8 @@
 
   import { mapGetters } from 'vuex'
 
-  import "../assets/Team-Boxed.css"
-  // import "../assets/Team-Clean.css"
+  import "../assets/css/Team-Boxed.css"
+  import "../assets/css/Team-Clean.css"
 
   export default {
     data() {

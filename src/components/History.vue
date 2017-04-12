@@ -51,9 +51,6 @@
 	import querystring from 'querystring';
 	import language from './lang';
 
-	import img1 from '../assets/images1.jpeg'
-	import img2 from '../assets/images2.jpeg'
-	import img3 from '../assets/images3.jpeg'
 	import API from '../api'
 
 	import tb_language from './tb_lang.js'

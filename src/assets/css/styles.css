@@ -9,14 +9,6 @@
   display:inline-block;
 }
 
-#promo {
-  text-align:center;
-  padding:40px;
-  background:url(./banner.jpg) no-repeat;
-  background-size:cover;
-  margin-top:50px;
-}
-
 div.jumbotron {
   border-radius:20px;
   padding:40px;
@@ -89,12 +81,6 @@ body {
 
 .content {
   margin-top:85px;
-}
-
-div.col-md-4.item {
-  background-image:url(./images3.jpeg);
-  background-repeat:initial;
-  background-size:cover;
 }
 
 .table td {

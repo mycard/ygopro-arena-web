@@ -6,7 +6,7 @@
         <!--<nav class="navbar navbar-inverse">-->
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand navbar-link" href="index.html"><img src="../assets/mycardlogo.png" id="logo">MyCard </a>
+            <a class="navbar-brand navbar-link" href="index.html"><img src="../assets/img/mycardlogo.png" id="logo">MyCard </a>
             <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
           </div>
           <div class="collapse navbar-collapse" id="navcol-1">

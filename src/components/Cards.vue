@@ -147,21 +147,21 @@
 
     import API from '../api';
 
-    import img0 from '../assets/500x300_deck.jpg'
+    import img0 from '../assets/img/500x300_deck.jpg'
     // import img1 from '../assets/MonsterWithBorder.jpg'
-    import img1 from '../assets/500x300_monster.jpg'
+    import img1 from '../assets/img/500x300_monster.jpg'
     // import img2 from '../assets/SpellWithBorder.jpg'
-    import img2 from '../assets/500x300_Spell.jpg'
+    import img2 from '../assets/img/500x300_Spell.jpg'
     // import img3 from '../assets/TrapWithBorder.jpg'
-    import img3 from '../assets/500x300_Trap.jpg'
+    import img3 from '../assets/img/500x300_Trap.jpg'
     // import img4 from '../assets/SideWithBorder.jpg'
-    import img4 from '../assets/500x300_side.jpg'
-    import img5 from '../assets/ExtraWithBorder.jpg'
+    import img4 from '../assets/img/500x300_side.jpg'
+    import img5 from '../assets/img/ExtraWithBorder.jpg'
 
 
     var dt = require('datatables.net')
     var dt2 = require('datatables.net-bs')
-    import "../assets/dataTables.bootstrap.min.css"
+    import "../assets/css/dataTables.bootstrap.min.css"
 
     var monsterTable;
     var spellTable;

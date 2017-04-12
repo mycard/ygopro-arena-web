@@ -156,9 +156,9 @@
 	import querystring from 'querystring';
 	import language from './lang';
 
-	import img1 from '../assets/images1.jpeg'
-	import img2 from '../assets/images2.jpeg'
-	import img3 from '../assets/images3.jpeg'
+	import img1 from '../assets/img/images1.jpeg'
+	import img2 from '../assets/img/images2.jpeg'
+	import img3 from '../assets/img/images3.jpeg'
 	import API from '../api'
 
 	import tb_language from './tb_lang.js'
