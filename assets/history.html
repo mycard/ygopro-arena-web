@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YGOPro</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+</head>
+
+<body>
+  <div id="app">
+
+     <el-form :inline="true" :model="formInline">
+        <el-form-item>
+            <el-select style="width: 100px;" v-model="type" placeholder="类别" @change="selectChange">
+                <el-option label="所有" value="0"></el-option>
+                <el-option label="竞技" value="1"></el-option>
+                <el-option label="娱乐" value="2"></el-option>
+            </el-select>
+        </el-form-item>
+        <!--<el-date-picker
+                v-model="date"
+                type="daterange"
+                align="right"
+                placeholder="选择日期范围"
+                :picker-options="pickerOptions2"
+                style="width: 220px;">
+        </el-date-picker>-->
+        <el-form-item>
+            <el-input v-model="username" @blur="searchTextChange" icon="search" style="width: 200px;"
+                      placeholder="用户名"></el-input>
+        </el-form-item>
+    </el-form>
+
+
+    <el-table :data="history.data" stripe style="width: 100%">
+      <el-table-column prop="usernamea" label="玩家A" width="180">
+        <template scope="scope">
+          <el-tag
+            :type="scope.row.userscorea > scope.row.userscoreb ? 'success' : 'gray'"
+            close-transition>{{scope.row.usernamea}}</el-tag>
+          <el-icon v-if="scope.row.userscorea < 0" class="el-icon-warning"></el-icon>
+        </template>
+      </el-table-column>
+      <el-table-column prop="usernameb" label="玩家B" width="180">
+        <template scope="scope">
+          <el-tag
+            :type="scope.row.userscoreb > scope.row.userscorea ? 'success' : 'gray'"
+            close-transition>{{scope.row.usernameb}}</el-tag>
+          <el-icon v-if="scope.row.userscoreb < 0" class="el-icon-warning"></el-icon>
+        </template>
+      </el-table-column>
+      <el-table-column label="类型" :formatter="formatter0" width="80"></el-table-column>
+      <el-table-column label="开始时间" :formatter="formatter1"></el-table-column>
+      <el-table-column label="结束时间" :formatter="formatter2"></el-table-column>
+    </el-table>
+    <div class="text-center" >
+      <el-pagination :page-size="pageSize" layout="total, prev, pager, next" :total="history.total" @current-change="clickpage"></el-pagination>
+    </div>
+  </div>
+</body>
+
+<script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-resource@1.2.0/dist/vue-resource.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    created: function () {
+      var lang = localStorage.getItem('lang') || 'cn';
+      this.init(lang)
+    },
+    watch: {
+        date: function (val) {
+          console.log(val)
+          if (val[0] != null) {
+              this.from_date = val[0].toString()
+              this.to_date = val[1].toString()
+          } else {
+              this.from_date = '';
+              this.to_date = '';
+          }
+          this.renderTable()
+        },
+      },
+    data: function () {
+      return {
+        page:1,
+        from_date:'',
+        to_date:'',
+        date: '',
+        username:'' ,
+        type: '0',
+        formInline: {
+        },
+        pickerOptions2: {
+            shortcuts: [
+            {
+                text: '今天',
+                onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime());
+                    picker.$emit('pick', [start, end]);
+                }
+            },
+            {
+                text: '昨天',
+                onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 1);
+                    picker.$emit('pick', [start, end]);
+                }
+            },
+            {
+                text: '最近一周',
+                onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                    picker.$emit('pick', [start, end]);
+                }
+            }, {
+                text: '最近一个月',
+                onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                    picker.$emit('pick', [start, end]);
+                }
+            }, {
+                text: '最近三个月',
+                onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                    picker.$emit('pick', [start, end]);
+                }
+            }]
+        },
+        pageSize:15,
+        history:{
+          total:0,
+          data:[]
+        }
+      }
+    },
+    methods:{
+      searchTextChange: function () {
+          var username = this.username
+          this.renderTable()
+      },
+      selectChange: function (val) {
+        this.type = val
+        this.renderTable()
+      },
+      init:function (lang) {
+        this.renderTable()
+      },
+      clickpage: function (num) {
+        this.page = num 
+        this.renderTable()
+      },
+      formatter0(row, column) {
+        if('athletic' === row.type){
+          return '竞技'
+        }else {
+          return '娱乐'
+        }
+      },
+      formatter1(row, column) {
+        var date = new Date(row.start_time)
+        return date.toLocaleString();
+      },
+      formatter2(row, column) {
+        var date = new Date(row.end_time)
+        return date.toLocaleString();
+      },
+      renderTable: function(){
+        // var URL = "http://localhost:3000" 
+        var URL = "https://mycard.moe/ygopro" 
+        var params = {
+          page:this.page,
+          username:this.username,
+          type:this.type,
+          from_date:this.from_date,
+          to_date:this.to_date
+        }
+        Vue.http.get(URL + '/api/history',{'params':params}).then((res) => {
+          this.history = res.data
+        }, (res) => {
+          //
+        })
+      }
+    }
+  })
+</script>
+
+</html>

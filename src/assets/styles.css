@@ -1,0 +1,104 @@
+#profile {
+  text-align:center;
+}
+
+#logo {
+  max-height:42px;
+  margin-right:10px;
+  margin-top:-8px;
+  display:inline-block;
+}
+
+#promo {
+  text-align:center;
+  padding:40px;
+  background:url(./banner.jpg) no-repeat;
+  background-size:cover;
+  margin-top:50px;
+}
+
+div.jumbotron {
+  border-radius:20px;
+  padding:40px;
+  background-color:rgba(255,255,255,0.5);
+  max-width:800px;
+  margin:0 auto;
+}
+
+body {
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+.site-section {
+  text-align:center;
+  padding-bottom:70px;
+}
+
+.site-section h1 {
+  font-weight:normal;
+  margin-bottom:30px;
+  margin-top:60px;
+}
+
+#why .item i {
+  font-size:40px;
+  color:rgb(245,145,30);
+}
+
+#welcome p {
+  max-width:800px;
+  font-size:20px;
+  margin:0 auto;
+  color:#666;
+}
+
+#why .item h2 {
+  font-weight:normal;
+  margin-top:13px;
+  margin-bottom:20px;
+  font-size:20px;
+}
+
+.dark-section {
+  background-color:#e6effc;
+}
+
+#head-portrait {
+  max-height:23px;
+  margin-right:4px;
+  margin-top:-3px;
+  display:inline-block;
+}
+
+#ranking-content {
+  margin-top:-35px;
+}
+
+#search-form {
+  margin-bottom:4px;
+}
+
+.search-condition {
+  display:inline-block;
+  margin-right:30px;
+}
+
+#check-boxes {
+  text-align:center;
+}
+
+.content {
+  margin-top:85px;
+}
+
+div.col-md-4.item {
+  background-image:url(./images3.jpeg);
+  background-repeat:initial;
+  background-size:cover;
+}
+
+.table td {
+  width:15%;
+}
+
+
