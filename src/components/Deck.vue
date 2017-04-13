@@ -2,7 +2,7 @@
   <div class="content">
     <div class="container">
 
-      <div class="fck">
+      <!--<div class="fck">
         <form id="search-form" class="search-form" @submit.prevent="onSubmit">
           <div class="form-group" v-bind:class="{ 'has-error': hasError}">
             <label class="control-label" for="searchText" v-if="hasError">{{lang.battle.notfound}}</label>
@@ -16,72 +16,59 @@
             </div>
           </div>
         </form>
-      </div>
+      </div>-->
 
       <div class="row">
-        <div class="col-md-12" id="profile">
+
+        <div class="col-md-4" id="profile">
           <div class="thumbnail">
-            <img v-bind:src="avatar_url" style="height:200px;margin-top:13px;">
+            <img v-bind:src="avatar_url" style="height:300px;margin-top:13px;">
             <div class="caption">
-              <h3> <i class="glyphicon glyphicon-user"></i> <strong>{{username}}</strong></h3>
-              <p class="text-muted" style="font-size:20px;">{{form.desc}}。 </p>
+              <h3>
+                <!--<i class="glyphicon glyphicon-user"></i> -->
+                <strong>{{username}}</strong></h3>
+              <p class="text-muted" style="font-size:20px;">{{form.desc}}</p>
             </div>
           </div>
         </div>
 
-
-
         <div class="col-md-8">
 
-          <i class="el-icon-edit"></i><el-button type="text" @click="dialogFormVisible = true" icon="el-icon-edit">编辑</el-button>
-
-          
-
-
+          <div class="alert alert-success alert-dismissible" role="alert" v-if="!isNew">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>            您可以参与编辑此页面。
+            <i class="el-icon-edit" @click.prevent="dialogFormVisible = true">编辑</i>
+          </div>
+          <div class="alert alert-success alert-dismissible" role="alert" v-if="isNew">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>            此卡组还未有任何信息。您可以参与编辑此页面。
+            <i class="el-icon-edit" @click.prevent="dialogFormVisible = true">编辑</i>
+          </div>
 
           <el-dialog :title="username" v-model="dialogFormVisible">
             <el-form :model="form">
               <el-form-item label="图片URL" :label-width="formLabelWidth">
                 <el-input v-model="avatar_url" auto-complete="off"></el-input>
               </el-form-item>
-              <el-form-item label="活动区域" :label-width="formLabelWidth">
-                <el-select v-model="form.region" placeholder="请选择活动区域">
-                  <el-option label="区域一" value="shanghai"></el-option>
-                  <el-option label="区域二" value="beijing"></el-option>
+              <el-form-item label="下拉类型" :label-width="formLabelWidth">
+                <el-select v-model="form.region" placeholder="请选择类型">
+                  <el-option label="一" value="shanghai"></el-option>
+                  <el-option label="二" value="beijing"></el-option>
                 </el-select>
               </el-form-item>
 
-               <el-form-item label="卡组描述" :label-width="formLabelWidth">
-                    <el-input
-                type="textarea"
-                :autosize="{ minRows: 2, maxRows: 6}"
-                placeholder="请输入内容"
-                v-model="form.desc">
-              </el-input>
+              <el-form-item label="卡组描述" :label-width="formLabelWidth">
+                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入内容" v-model="form.desc">
+                </el-input>
               </el-form-item>
 
-          
+
             </el-form>
             <div slot="footer" class="dialog-footer">
               <el-button @click="dialogFormVisible = false">取 消</el-button>
-              <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+              <el-button type="primary" @click="submitModify">确 定</el-button>
             </div>
           </el-dialog>
 
 
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">{{lang.athletic}} </h3>
-            </div>
-            
-          </div>
-  
-
-          <div class="alert alert-info alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>            {{lang.tagInfo}}
-          </div>
-
-        
 
         </div>
       </div>
@@ -94,9 +81,8 @@
   import querystring from 'querystring';
   import language from './lang';
 
-  import img1 from '../assets/img/images1.jpeg'
-  import img2 from '../assets/img/images2.jpeg'
-  import img3 from '../assets/img/images3.jpeg'
+  import unknow from '../assets/img/unknow.jpeg'
+
   import API from '../api'
 
   import tb_language from './tb_lang.js'
@@ -125,11 +111,11 @@
         },
         formLabelWidth: '120px',
 
-
+        isNew: true,
         searchText: "",
         hasError: false,
         username: "",
-        avatar_url: "",
+        avatar_url: unknow,
         isMobile: false,
         user_info: {
           exp: 0,
@@ -191,6 +177,29 @@
     },
 
     methods: {
+
+      submitModify: function () {
+
+        var param = {
+          name: this.username,
+          desc: this.form.desc,
+          url:this.avatar_url,
+          isNew: this.isNew
+        }
+        API.saveDeck(param).then((res) => {
+          console.log(res.data)
+          this.dialogFormVisible = false
+          this.$notify({
+            title: '操作成功',
+            message: '感谢您的提交!',
+            type: 'success'
+          })
+        }, (res) => {
+          this.hasError = true
+          console.log(res)
+        });
+      },
+
       onSubmit: function () {
         this.searchByUsername(this.searchText)
       },
@@ -217,18 +226,12 @@
           this.username = name
 
           if (res.data.code === 404) {
-            console.log('还没有数据 可以新增')
             this.isNew = true;
           } else {
             this.isNew = false;
-            console.log('有数据了 可以更新', JSON.stringify(res.data))
+            this.avatar_url = res.data.data.url 
+            this.form.desc = res.data.data.content 
           }
-
-          this.$notify({
-            title: '操作成功',
-            message: '操作成功',
-            type: 'success'
-          })
 
         }, (res) => {
           this.hasError = true

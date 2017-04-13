@@ -15,7 +15,8 @@
           <p class="text-center">{{lang.index.p3}} </p>
         </div>
         <div class="row projects">
-          <div @click="gogo('#/ranking')" class="col-lg-4 col-sm-6 item" v-bind:class="{ 'fix-width': !isMobile , 'fix-width-m': isMobile }"><img class="img-responsive" src="../assets/img/image6.png">
+          <div @
+          ="gogo('#/ranking')" class="col-lg-4 col-sm-6 item" v-bind:class="{ 'fix-width': !isMobile , 'fix-width-m': isMobile }"><img class="img-responsive" src="../assets/img/image6.png">
             <h3 class="name">
               <span style="text-decoration: underline;">{{lang.index.h1}}</span>
             </h3>
