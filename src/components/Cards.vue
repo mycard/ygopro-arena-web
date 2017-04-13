@@ -313,9 +313,9 @@
                                 "columnDefs": [
                                     {
                                         "render": function (data, type, row) {
-                                            return "<span title='" + data + "'>" + data + "</span>";
+                                            // return "<span title='" + data + "'>" + data + "</span>";
                                             // return "<img src='imag.png' />";
-                                            // return "<a href='cardinfo.html?id=" + row[6] + "'>" + data + "</a>";
+                                            return "<a href='?name=" + data + "#/deck'>" + data + "</a>";
                                         },
                                         "targets": 1
                                     },

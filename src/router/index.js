@@ -8,6 +8,7 @@ import Profile from '@/components/Profile'
 import Userinfo from '@/components/Userinfo'
 import Cardinfo from '@/components/Cardinfo'
 import History from '@/components/History'
+import Deck from '@/components/Deck'
 
 Vue.use(Router)
 
@@ -48,10 +49,15 @@ export default new Router({
       name: 'Cardinfo',
       component: Cardinfo
     },
-      {
+    {
       path: '/history',
       name: 'History',
       component: History
+    },
+      {
+      path: '/deck',
+      name: 'Deck',
+      component: Deck
     },
   ]
 })

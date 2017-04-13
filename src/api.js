@@ -46,4 +46,9 @@ export default class Api {
         return Vue.http.get(url);
     }
 
+    static getDeckInfo(opt) {
+        var tmp = "http://localhost:3000/api"
+        return Vue.http.get(`${tmp}/deckinfo`, { 'params': opt });
+    }
+
 }
