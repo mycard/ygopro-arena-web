@@ -18,8 +18,7 @@
   import "./assets/css/Projects-Clean.css"
   import "./assets/css/Pretty-Search-Form.css"
   // import "./assets/css/styles.css"
-  import "./assets/css/font-awesome.min.css"
-  import "./assets/fonts/material-icons.css"
+  // import "./assets/css/font-awesome.min.css"
 
   //js
   window.jQuery = window.$ = require('jquery');

@@ -43,30 +43,31 @@
             <i class="el-icon-edit" @click.prevent="dialogFormVisible = true">编辑</i>
           </div>
 
-          <el-dialog :title="username" v-model="dialogFormVisible">
-            <el-form :model="form">
-              <el-form-item label="图片URL" :label-width="formLabelWidth">
-                <el-input v-model="avatar_url" auto-complete="off"></el-input>
-              </el-form-item>
-              <el-form-item label="下拉类型" :label-width="formLabelWidth">
-                <el-select v-model="form.region" placeholder="请选择类型">
-                  <el-option label="一" value="shanghai"></el-option>
-                  <el-option label="二" value="beijing"></el-option>
-                </el-select>
-              </el-form-item>
+            <el-dialog :title="username" size="large" v-model="dialogFormVisible">
+              <el-form :model="form">
+                <el-form-item label="URL" :label-width="formLabelWidth">
+                  <el-input v-model="avatar_url" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="类型" :label-width="formLabelWidth">
+                  <el-select v-model="form.region" placeholder="请选择类型">
+                    <el-option label="一" value="shanghai"></el-option>
+                    <el-option label="二" value="beijing"></el-option>
+                  </el-select>
+                </el-form-item>
 
-              <el-form-item label="卡组描述" :label-width="formLabelWidth">
-                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入内容" v-model="form.desc">
-                </el-input>
-              </el-form-item>
+                <el-form-item label="描述" :label-width="formLabelWidth">
+                  <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入内容" v-model="form.desc">
+                  </el-input>
+                </el-form-item>
 
 
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="dialogFormVisible = false">取 消</el-button>
-              <el-button type="primary" @click="submitModify">确 定</el-button>
-            </div>
-          </el-dialog>
+              </el-form>
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="submitModify">确 定</el-button>
+              </div>
+            </el-dialog>
+
 
 
 
@@ -109,7 +110,7 @@
           resource: '',
           desc: ''
         },
-        formLabelWidth: '120px',
+        formLabelWidth: '40px',
 
         isNew: true,
         searchText: "",
