@@ -12,17 +12,11 @@
   import PageHeader from './components/PageHeader'
   import PageFooter from './components/PageFooter'
 
-  //css
-  // import "./assets/bootstrap/css/bootstrap.min.css"
-
   import "./assets/css/Projects-Clean.css"
   import "./assets/css/Pretty-Search-Form.css"
-  // import "./assets/css/styles.css"
-  // import "./assets/css/font-awesome.min.css"
 
   //js
   window.jQuery = window.$ = require('jquery');
-  require('./assets/bootstrap/js/bootstrap.min.js')
 
   export default {
     name: 'app',

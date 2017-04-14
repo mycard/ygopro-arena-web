@@ -24,3 +24,5 @@ export const CHANGE_INVOICE_STATUS = 'CHANGE_INVOICE_STATUS'
 
 
 export const GET_LANG = 'GET_LANG'
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'

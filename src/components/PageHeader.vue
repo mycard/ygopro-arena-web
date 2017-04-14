@@ -17,8 +17,8 @@
               <li role="presentation"><a href="https://rep.ygobbs.com">{{lang.battlelog}} </a></li>
               <!--<li role="presentation"><a href="https://mycard.moe/ygopro/">{{lang.download}} </a></li>-->
               <li role="presentation"><a href="#/download">{{lang.download}} </a></li>
-              <li v-if="isLogin" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img v-bind:src="avatar_url" id="head-portrait">{{username}} <span class="caret"></span></a>
+              <li v-if="user.isLogin" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img v-bind:src="user.avatar_url" id="head-portrait">{{user.username}} <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li role="presentation"><a href="#/profile">{{lang.profile}} </a></li>
                   <li class="divider" role="presentation"></li>
@@ -53,9 +53,6 @@
   export default {
     data() {
       return {
-        isLogin: false,
-        username: "",
-        avatar_url: "",
       }
     },
     created: function () {
@@ -64,6 +61,7 @@
     computed: {
       ...mapGetters({
         lang: 'getLang',
+        user: 'getUser'
       }),
     },
     methods: {
@@ -72,14 +70,10 @@
         if (token) {
           localStorage.setItem('token', token);
           this.render(token);
-          this.isLogin = true;
         } else {
           token = localStorage.getItem('token');
           if (token) {
             this.render(token);
-            this.isLogin = true;
-          } else {
-            this.isLogin = false;
           }
         }
 
@@ -92,11 +86,11 @@
       },
       render: function (token) {
         var user = querystring.parse(new Buffer(token, 'base64').toString());
-        this.username = user.username;
-        this.avatar_url = user.avatar_url;
+        this.$store.dispatch('login', user);
       },
       logout: function () {
         localStorage.removeItem('token');
+        this.$store.dispatch('logout',{});
         // var redirectUrl = "http://localhost:8081/index.html";
         var redirectUrl = "https://mycard.moe/ygopro/arena/index.html";
 
@@ -127,10 +121,10 @@
         localStorage.setItem('lang', 'en');
         // this.lang = language['en'];
         // this.$dispatch('lang-change', 'en')
-         this.curLang = 'en'
-         this.$store.dispatch('getLang', this);
+        this.curLang = 'en'
+        this.$store.dispatch('getLang', this);
 
-         this.$emit('helloworld')
+        this.$emit('helloworld')
       }
     }
   }

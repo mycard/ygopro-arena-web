@@ -628,7 +628,14 @@ export const getInvoiceAmount = ({commit}, context) => {
 }
 
 
-
 export const getLang = ({commit}, context) => {
      commit(types.GET_LANG, {lang: context.curLang})
+}
+
+export const login = ({commit}, user) => {
+     commit(types.LOGIN, {user: user})
+}
+
+export const logout = ({commit}, context) => {
+     commit(types.LOGOUT, {})
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <div id="promo" v-if="!isLogin" v-bind:style="{ backgroundImage: 'url(' + image + ')' }"> 
+    <div id="promo" v-if="!user.isLogin" v-bind:style="{ backgroundImage: 'url(' + image + ')' }">
       <div class="jumbotron">
         <h1>MyCard </h1>
         <p>{{lang.index.p1}}</p>
@@ -8,15 +8,14 @@
       </div>
     </div>
 
-    <div class="projects-clean" v-bind:class="{ 'fix-top': isLogin }">
+    <div class="projects-clean" v-bind:class="{ 'fix-top': user.isLogin }">
       <div class="container" id="project">
         <div class="intro">
           <h2 class="text-center">{{lang.index.p2}} </h2>
           <p class="text-center">{{lang.index.p3}} </p>
         </div>
         <div class="row projects">
-          <div @
-          ="gogo('#/ranking')" class="col-lg-4 col-sm-6 item" v-bind:class="{ 'fix-width': !isMobile , 'fix-width-m': isMobile }"><img class="img-responsive" src="../assets/img/image6.png">
+          <div @click="gogo('#/ranking')" class="col-lg-4 col-sm-6 item" v-bind:class="{ 'fix-width': !isMobile , 'fix-width-m': isMobile }"><img class="img-responsive" src="../assets/img/image6.png">
             <h3 class="name">
               <span style="text-decoration: underline;">{{lang.index.h1}}</span>
             </h3>
@@ -47,36 +46,26 @@
 </template>
 
 <script>
-  import language from './lang';
   import querystring from 'querystring';
-  import image from '../assets/img/banner.jpg' 
+  import image from '../assets/img/banner.jpg'
+  import { mapGetters } from 'vuex'
 
   export default {
     data() {
       return {
-        isLogin: false,
         isMobile: false,
-        image:image,
-        lang: {},
+        image: image,
       }
     },
+
+    computed: {
+      ...mapGetters({
+        lang: 'getLang',
+        user: 'getUser'
+      }),
+    },
+
     created: function () {
-      var lang = localStorage.getItem('lang') || 'cn';
-      this.init(lang)
-
-      var token = querystring.parse(location.search.slice(1)).sso;
-      if (token) {
-        localStorage.setItem('token', token);
-        this.isLogin = true;
-      } else {
-        token = localStorage.getItem('token');
-        if (token) {
-          this.isLogin = true;
-        } else {
-          this.isLogin = false;
-        }
-      }
-
       var clientWidth = document.body.clientWidth;
       if (clientWidth < 753) {
         this.isMobile = true
@@ -91,20 +80,11 @@
           self.isMobile = false;
         }
       }
-
     },
     methods: {
-      init: function (lang) {
-        this.lang = language[lang]
-      },
       gogo: function (url) {
         // window.open(url)
         window.location.href = url
-      }
-    },
-    events: {
-      'lang-change': function (lang) {
-        this.init(lang)
       }
     },
   }
@@ -135,7 +115,7 @@
   #promo {
     text-align: center;
     padding: 40px;
-    background-repeat:  no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     margin-top: 50px;
   }

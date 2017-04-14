@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-md-3" id="profile">
           <div class="thumbnail">
-            <img v-bind:src="avatar_url" style="height:200px;margin-top:13px;">
+            <img v-bind:src="user.avatar_url" style="height:200px;margin-top:13px;">
             <div class="caption">
-              <h3> <i class="glyphicon glyphicon-user"></i> <strong>{{username}}</strong></h3>
+              <h3> <i class="glyphicon glyphicon-user"></i> <strong>{{user.username}}</strong></h3>
               <!--<p class="text-nowrap text-muted" style="font-size:20px;">有妞不泡，大逆不道;遇妞则泡，替天行道。 </p>-->
             </div>
           </div>
@@ -94,15 +94,12 @@
 
 <script>
   import querystring from 'querystring';
-  import language from './lang';
   import API from '../api'
   import { mapGetters } from 'vuex'
 
   export default {
     data() {
       return {
-        username: "",
-        avatar_url: "",
         user_info: {
           exp: 0,
           pt: 500,
@@ -124,57 +121,23 @@
     computed: {
       ...mapGetters({
         lang: 'getLang',
+        user: 'getUser'
       }),
     },
 
-    watch: {
-      lang: function (val) {
-        
-      },
+    created: function () {
+      let opt = {
+        'username': this.user.username
+      }
+
+      API.getUserInfo(opt).then((res) => {
+        this.user_info = res.data
+      });
     },
 
-    created: function () {
-      this.init()
-      var lang = localStorage.getItem('lang');
-      this.initLang(lang)
-    },
-    events: {
-      'lang-change': function (lang) {
-        this.initLang(lang)
-      }
-    },
     methods: {
       init: function () {
-        var token = querystring.parse(location.search.slice(1)).sso;
-        if (token) {
-          this.render(token);
-          this.isLogin = true;
-        } else {
-          token = localStorage.getItem('token');
-          if (token) {
-            this.render(token);
-            this.isLogin = true;
-          } else {
-            this.isLogin = false;
-          }
-        }
       },
-      initLang: function (lang) {
-      },
-      render: function (token) {
-        var user = querystring.parse(new Buffer(token, 'base64').toString());
-        this.username = user.username;
-        this.avatar_url = user.avatar_url;
-
-        let opt = {
-          'username': user.username
-        }
-
-        API.getUserInfo(opt).then((res) => {
-          this.user_info = res.data
-        });
-
-      }
     },
   }
 

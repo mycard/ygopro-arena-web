@@ -20,3 +20,4 @@ export const getUserInfo = state => state.account.userInfo
 
 
 export const getLang = state => state.invoice.lang
+export const getUser = state => state.invoice.user
