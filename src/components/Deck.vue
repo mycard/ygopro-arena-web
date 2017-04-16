@@ -28,24 +28,24 @@
           <el-dialog :title="username" size="large" v-model="dialogFormVisible">
             <el-form :model="form">
               <el-form-item label="URL" :label-width="formLabelWidth">
-                <el-input v-model="avatar_url" auto-complete="off"></el-input>
+                <el-input v-model="avatar_url_new" auto-complete="off"></el-input>
               </el-form-item>
-              <el-form-item label="类型" :label-width="formLabelWidth">
+              <!--<el-form-item label="类型" :label-width="formLabelWidth">
                 <el-select v-model="form.region" placeholder="请选择类型">
                   <el-option label="一" value="shanghai"></el-option>
                   <el-option label="二" value="beijing"></el-option>
                 </el-select>
-              </el-form-item>
+              </el-form-item>-->
 
               <el-form-item label="描述" :label-width="formLabelWidth">
-                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入内容" v-model="form.desc">
+                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入内容" v-model="form.desc_new">
                 </el-input>
               </el-form-item>
 
 
             </el-form>
             <div slot="footer" class="dialog-footer">
-              <el-button @click="dialogFormVisible = false">取 消</el-button>
+              <el-button @click="cancelModify">取 消</el-button>
               <el-button type="primary" @click="submitModify">确 定</el-button>
             </div>
           </el-dialog>
@@ -59,7 +59,6 @@
 
 <script>
   import querystring from 'querystring';
-  import unknow from '../assets/img/unknow.jpeg'
   import API from '../api'
   import { mapGetters } from 'vuex'
   import moment from 'moment'
@@ -71,7 +70,8 @@
     data() {
       return {
         username: "",
-        avatar_url: unknow,
+        avatar_url: "assets/img/unknow.jpeg",
+        avatar_url_new: "",
         input3: 'asdasd',
         dialogTableVisible: false,
         dialogFormVisible: false,
@@ -83,7 +83,9 @@
           delivery: false,
           type: [],
           resource: '',
-          desc: ''
+          desc: '',
+          desc_new: '',
+
         },
         formLabelWidth: '40px',
         isNew: true,
@@ -118,18 +120,23 @@
     },
 
     methods: {
-
+      cancelModify: function(){
+        this.dialogFormVisible = false
+      },
       submitModify: function () {
         var param = {
           user: this.user.username,
           name: this.username,
-          desc: this.form.desc,
-          url: this.avatar_url,
+          desc: this.form.desc_new,
+          url: this.avatar_url_new,
           isNew: this.isNew
         }
         API.saveDeck(param).then((res) => {
           console.log(res.data)
           this.dialogFormVisible = false
+          this.isNew = false
+          this.form.desc = this.form.desc_new
+          this.avatar_url = this.avatar_url_new
           this.$notify({
             title: '操作成功',
             message: '感谢您的提交!',
