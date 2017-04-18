@@ -228,6 +228,7 @@
 
 		mounted: function () {
 			this.init2();
+			window.onhashchange = this.init;
 		},
 
 		computed: {
@@ -314,14 +315,14 @@
 									var userscorea = row[4];
 									var userscoreb = row[5];
 									if (userscorea < 0) {
-										return "<a href='userinfo.html?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>";
+										return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>";
 									}
 
 									if (userscorea > userscoreb) {
-										return "<a href='userinfo.html?username=" + data + "'><span class='label label-success'>" + data + "</span></a>";
+										return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a>";
 									}
 
-									return "<a href='userinfo.html?username=" + data + "'><span class='label label-info'>" + data + "</span></a>";
+									return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a>";
 								},
 								"targets": 0
 							},
@@ -330,14 +331,14 @@
 									var userscorea = row[4];
 									var userscoreb = row[5];
 									if (userscoreb < 0) {
-										return "<a href='userinfo.html?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>";
+										return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>";
 									}
 
 									if (userscorea < userscoreb) {
-										return "<a href='userinfo.html?username=" + data + "'><span class='label label-success'>" + data + "</span></a>";
+										return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a>";
 									}
 
-									return "<a href='userinfo.html?username=" + data + "'><span class='label label-info'>" + data + "</span></a>";
+									return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a>";
 								},
 								"targets": 1
 							},

@@ -48,12 +48,12 @@ export default class Api {
 
     static getDeckInfo(opt) {
         var tmp = "http://localhost:3000/api"
-        return Vue.http.get(`${tmp}/deckinfo`, { 'params': opt });
+        return Vue.http.get(`${URL}/deckinfo`, { 'params': opt });
     }
 
     static saveDeck(opt) {
         var tmp = "http://localhost:3000/api"
-        const url = `${tmp}/deckinfo`
+        const url = `${URL}/deckinfo`
         return Vue.http.post(url, opt, { 'emulateJSON': true });
     }
 
