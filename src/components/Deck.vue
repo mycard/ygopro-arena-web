@@ -105,7 +105,9 @@
         } else {
           this.isNew = false;
           this.avatar_url = res.data.data.url
+          this.avatar_url_new = res.data.data.url
           this.form.desc = res.data.data.content
+          this.form.desc_new = res.data.data.content
         }
       }, (res) => {
         this.hasError = true

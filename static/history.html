@@ -172,10 +172,10 @@
         }
       },
       formatter1(row, column) {
-				return moment(row.start_time).subtract(8, 'h').format('YYYY-MM-DD HH:mm')
+				return moment(row.start_time).format('YYYY-MM-DD HH:mm')
 			},
 			formatter2(row, column) {
-				return moment(row.end_time).subtract(8, 'h').format('YYYY-MM-DD HH:mm')
+				return moment(row.end_time).format('YYYY-MM-DD HH:mm')
 			},
       renderTable: function(){
         // var URL = "http://localhost:3000" 

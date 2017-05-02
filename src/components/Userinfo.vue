@@ -154,7 +154,6 @@
 
 <script>
 	import querystring from 'querystring';
-	import language from './lang';
 
 	import img1 from '../assets/img/images1.jpeg'
 	import img2 from '../assets/img/images2.jpeg'
@@ -196,9 +195,6 @@
 			}
 		},
 		created: function () {
-			this.init()
-			var lang = localStorage.getItem('lang');
-			this.initLang(lang);
 
 			var regex_match = /(nokia|iphone|android|motorola|^mot-|softbank|foma|docomo|kddi|up.browser|up.link|htc|dopod|blazer|netfront|helio|hosin|huawei|novarra|CoolPad|webos|techfaith|palmsource|blackberry|alcatel|amoi|ktouch|nexian|samsung|^sam-|s[cg]h|^lge|ericsson|philips|sagem|wellcom|bunjalloo|maui|symbian|smartphone|midp|wap|phone|windows ce|iemobile|^spice|^bird|^zte-|longcos|pantech|gionee|^sie-|portalmmm|jigs browser|hiptop|^benq|haier|^lct|operas*mobi|opera*mini|320x320|240x320|176x220)/i;
 			var u = navigator.userAgent;
@@ -213,21 +209,19 @@
 			}
 
 		},
-		events: {
-			'lang-change': function (lang) {
-				this.initLang(lang)
-			}
-		},
 
 		watch: {
 			lang: function (val) {
-				console.log('lang change1', val)
-				this.init2()
+				this.init()
 			},
 		},
 
 		mounted: function () {
-			this.init2();
+			var _this = this 
+			$("#search").click(function () {
+				_this.renderPage();
+			})
+			this.init()
 			window.onhashchange = this.init;
 		},
 
@@ -238,130 +232,116 @@
 		},
 
 		methods: {
+
 			onSubmit: function () {
 				this.searchByUsername(this.searchText)
 			},
+
 			init: function () {
 				var username = querystring.parse(location.hash.slice(11)).username
 				this.searchText = username;
 				this.searchByUsername(username)
 			},
-			init2: function () {
 
-				function renderPage() {
+			renderPage: function () {
+				if (rankTable) {
+					rankTable.destroy();
+				}
+
+				if (rankTable2) {
+					rankTable2.destroy();
+				}
+
+				var username = this.searchText
+				var type = 1;
+
+				rankTable = this.renderRankTable("#athletic_rank");
+				rankTable2 = this.renderRankTable("#entertain_rank");
+
+				if (!username) return;
+
+				API.getUserDueHistory({ username: username, type: "1", page_num: 100 }).then((res) => {
 					if (rankTable) {
 						rankTable.destroy();
 					}
+					rankTable = this.renderRankTable("#athletic_rank", res.data.data)
+				}, (res) => {
+					console.log(res)
+				});
 
+				API.getUserDueHistory({ username: username, type: "2", page_num: 100 }).then((res) => {
 					if (rankTable2) {
 						rankTable2.destroy();
 					}
-
-					var username = $("#searchText").val()
-					var type = 1;
-
-
-					rankTable = renderRankTable("#athletic_rank");
-					rankTable2 = renderRankTable("#entertain_rank");
-
-					if (!username) return;
-
-					API.getUserDueHistory({ username: username, type: "1", page_num: 100 }).then((res) => {
-						if (rankTable) {
-							rankTable.destroy();
-						}
-						rankTable = renderRankTable("#athletic_rank", res.data.data)
-					}, (res) => {
-						console.log(res)
-					});
-
-					API.getUserDueHistory({ username: username, type: "2", page_num: 100 }).then((res) => {
-						if (rankTable2) {
-							rankTable2.destroy();
-						}
-						rankTable2 = renderRankTable("#entertain_rank", res.data.data)
-					}, (res) => {
-						console.log(res)
-					});
-
-				}
-
-				function renderRankTable(id, tableData) {
-					tableData = tableData || [];
-					var lang = localStorage.getItem('lang') || 'cn';
-
-					var rank = 1;
-					var processData = tableData.map(function (d) {
-						return [d.usernamea, d.usernameb, moment(d.start_time).subtract(8, 'h').format('YYYY-MM-DD HH:mm'), moment(d.end_time).subtract(8, 'h').format('YYYY-MM-DD HH:mm'), d.userscorea, d.userscoreb];
-					});
-					var table = $(id).DataTable({
-						paging: true,
-						searching: false,
-						ordering: false,
-						lengthChange: false,
-						info: false,
-						data: processData,
-
-						columns: [
-							{ title: tb_language[lang].playerA },
-							{ title: tb_language[lang].playerB },
-							{ title: tb_language[lang].startTime },
-							{ title: tb_language[lang].endTime },
-
-						],
-						"columnDefs": [
-							{
-								"render": function (data, type, row) {
-									var userscorea = row[4];
-									var userscoreb = row[5];
-									if (userscorea < 0) {
-										return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>";
-									}
-
-									if (userscorea > userscoreb) {
-										return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a>";
-									}
-
-									return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a>";
-								},
-								"targets": 0
-							},
-							{
-								"render": function (data, type, row) {
-									var userscorea = row[4];
-									var userscoreb = row[5];
-									if (userscoreb < 0) {
-										return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>";
-									}
-
-									if (userscorea < userscoreb) {
-										return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a>";
-									}
-
-									return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a>";
-								},
-								"targets": 1
-							},
-						],
-						"language": lang === 'en' ? tb_language.en : tb_language.cn
-					});
-
-					return table;
-				}
-
-
-
-				renderPage();
-
-				$("#search").click(function () {
-					renderPage();
-				})
+					rankTable2 = this.renderRankTable("#entertain_rank", res.data.data)
+				}, (res) => {
+					console.log(res)
+				});
 			},
 
-			initLang: function (lang) {
-				this.lang = language[lang]
-				$("#search").trigger('click');
+			renderRankTable: function (id, tableData) {
+				tableData = tableData || [];
+				var lang = localStorage.getItem('lang') || 'cn';
+
+				var rank = 1;
+				var processData = tableData.map(function (d) {
+					return [d.usernamea, d.usernameb, moment(d.start_time).format('YYYY-MM-DD HH:mm'), moment(d.end_time).format('YYYY-MM-DD HH:mm'), d.userscorea, d.userscoreb];
+				});
+				var table = $(id).DataTable({
+					paging: true,
+					searching: false,
+					ordering: false,
+					lengthChange: false,
+					info: false,
+					data: processData,
+
+					columns: [
+						{ title: tb_language[lang].playerA },
+						{ title: tb_language[lang].playerB },
+						{ title: tb_language[lang].startTime },
+						{ title: tb_language[lang].endTime },
+
+					],
+					"columnDefs": [
+						{
+							"render": function (data, type, row) {
+								var userscorea = row[4];
+								var userscoreb = row[5];
+								if (userscorea < 0) {
+									return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>";
+								}
+
+								if (userscorea > userscoreb) {
+									return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a>";
+								}
+
+								return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a>";
+							},
+							"targets": 0
+						},
+						{
+							"render": function (data, type, row) {
+								var userscorea = row[4];
+								var userscoreb = row[5];
+								if (userscoreb < 0) {
+									return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>";
+								}
+
+								if (userscorea < userscoreb) {
+									return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a>";
+								}
+
+								return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a>";
+							},
+							"targets": 1
+						},
+					],
+					"language": lang === 'en' ? tb_language.en : tb_language.cn
+				});
+
+				return table;
 			},
+
 			searchByUsername: function (username) {
 				// 0 1 2
 				var rand = Math.floor(Math.random() * 3);
