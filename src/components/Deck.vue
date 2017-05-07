@@ -1,6 +1,9 @@
 <template>
   <div class="content">
     <div class="container">
+
+      <h4 style="text-align: center">{{title}}</h4>
+      <hr>
       <div class="row">
         <div class="col-md-4" id="profile">
           <div class="thumbnail">
@@ -18,17 +21,44 @@
 
           <div class="alert alert-success alert-dismissible" role="alert" v-if="!isNew">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>            您可以参与编辑此页面。
-            <i class="el-icon-edit" @click.prevent="dialogFormVisible = true">编辑</i>
+            <i class="el-icon-edit hand" @click.prevent="dialogFormVisible = true">编辑</i>
           </div>
           <div class="alert alert-success alert-dismissible" role="alert" v-if="isNew">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>            此卡组还未有任何信息。您可以参与编辑此页面。
-            <i class="el-icon-edit" @click.prevent="dialogFormVisible = true">编辑</i>
+            <i class="el-icon-edit hand" @click.prevent="dialogFormVisible = true">编辑</i>
+          </div>
+
+
+          <h4 class="color-blue"><i class="glyphicon glyphicon-list-alt"></i> 编辑历史 </h4>
+          <!--<div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">编辑历史 </h3>
+            </div>-->
+          <!--<div class="panel-body">-->
+          <!--<div style="width:100%;overflow-x:auto;overflow-y:hidden;">
+								<table id="rank" class="table table-striped table-bordered table-hover example" ></table>
+							</div>-->
+          <!--<div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
+              <table id="athletic_rank" class="table table-striped table-bordered table-hover example" :class="{ scroll: isMobile }"></table>
+            </div>-->
+          <!--</div>-->
+          <!--<div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
+							<table id="rank" class="table table-striped table-bordered table-hover example" :class="{ scroll: isMobile }" ></table>
+					</div>-->
+
+          <!--</div>-->
+
+          <div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
+            <table id="athletic_rank" class="table table-striped table-bordered table-hover example" :class="{ scroll: isMobile }"></table>
           </div>
 
           <el-dialog :title="username" size="large" v-model="dialogFormVisible">
             <el-form :model="form">
-              <el-form-item label="URL" :label-width="formLabelWidth">
-                <el-input v-model="avatar_url_new" auto-complete="off"></el-input>
+              <el-form-item label="标题" :label-width="formLabelWidth">
+                <el-input v-model="title_new" placeholder="请输入标题" auto-complete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="图片URL" :label-width="formLabelWidth">
+                <el-input v-model="avatar_url_new" placeholder="请输入您希望展示的图片的地址" auto-complete="off"></el-input>
               </el-form-item>
               <!--<el-form-item label="类型" :label-width="formLabelWidth">
                 <el-select v-model="form.region" placeholder="请选择类型">
@@ -38,7 +68,7 @@
               </el-form-item>-->
 
               <el-form-item label="描述" :label-width="formLabelWidth">
-                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入内容" v-model="form.desc_new">
+                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入您对此卡组的描述" v-model="form.desc_new">
                 </el-input>
               </el-form-item>
 
@@ -62,6 +92,7 @@
   import API from '../api'
   import { mapGetters } from 'vuex'
   import moment from 'moment'
+  import tb_language from './tb_lang.js'
 
   var rankTable;
   var rankTable2;
@@ -69,7 +100,10 @@
   export default {
     data() {
       return {
+        isMobile: false,
         username: "",
+        title: '',
+        title_new: '',
         avatar_url: "assets/img/unknow.jpeg",
         avatar_url_new: "",
         input3: 'asdasd',
@@ -92,11 +126,29 @@
       }
     },
     created: function () {
+      var regex_match = /(nokia|iphone|android|motorola|^mot-|softbank|foma|docomo|kddi|up.browser|up.link|htc|dopod|blazer|netfront|helio|hosin|huawei|novarra|CoolPad|webos|techfaith|palmsource|blackberry|alcatel|amoi|ktouch|nexian|samsung|^sam-|s[cg]h|^lge|ericsson|philips|sagem|wellcom|bunjalloo|maui|symbian|smartphone|midp|wap|phone|windows ce|iemobile|^spice|^bird|^zte-|longcos|pantech|gionee|^sie-|portalmmm|jigs browser|hiptop|^benq|haier|^lct|operas*mobi|opera*mini|320x320|240x320|176x220)/i;
+      var u = navigator.userAgent;
+      if (null == u) {
+        return true;
+      }
+      var result = regex_match.exec(u);
+      if (null == result) {
+        this.isMobile = false;
+      } else {
+        this.isMobile = true;
+      }
     },
     mounted: function () {
-      var name = querystring.parse(location.search.slice(1)).name
+      var queryObj = querystring.parse(location.search.slice(1))
+      var name = queryObj.name
+      var version = queryObj.version
+
       if (!name) return
-      API.getDeckInfo({ name: name }).then((res) => {
+
+
+      rankTable = this.renderRankTable("#athletic_rank");
+
+      API.getDeckInfo({ name: name, version: version }).then((res) => {
         this.hasError = false
         this.user_info = res.data
         this.username = name
@@ -104,10 +156,20 @@
           this.isNew = true;
         } else {
           this.isNew = false;
-          this.avatar_url = res.data.data.url
-          this.avatar_url_new = res.data.data.url
-          this.form.desc = res.data.data.content
-          this.form.desc_new = res.data.data.content
+
+          var dataPbj = JSON.parse(res.data.data.content)
+
+          this.title = dataPbj.title
+          this.title_new = dataPbj.title
+          this.avatar_url = dataPbj.url
+          this.avatar_url_new = dataPbj.url
+          this.form.desc = dataPbj.desc
+          this.form.desc_new = dataPbj.desc
+
+          if (rankTable) {
+            rankTable.destroy();
+          }
+          rankTable = this.renderRankTable("#athletic_rank", res.data.history)
         }
       }, (res) => {
         this.hasError = true
@@ -121,33 +183,81 @@
       }),
     },
 
+
     methods: {
-      cancelModify: function(){
+      init: function () {
+        // var username = querystring.parse(location.hash.slice(11)).username
+        // this.searchText = username;
+        // this.searchByUsername(username)
+
+      },
+
+      cancelModify: function () {
         this.dialogFormVisible = false
       },
       submitModify: function () {
         var param = {
           user: this.user.username,
           name: this.username,
+          title: this.title_new,
           desc: this.form.desc_new,
           url: this.avatar_url_new,
           isNew: this.isNew
         }
         API.saveDeck(param).then((res) => {
-          console.log(res.data)
           this.dialogFormVisible = false
           this.isNew = false
           this.form.desc = this.form.desc_new
           this.avatar_url = this.avatar_url_new
+          this.title = this.title_new
           this.$notify({
             title: '操作成功',
             message: '感谢您的提交!',
             type: 'success'
           })
+          
         }, (res) => {
           this.hasError = true
           console.log(res)
         });
+      },
+
+      renderRankTable: function (id, tableData) {
+
+        tableData = tableData || [];
+        var lang = localStorage.getItem('lang') || 'cn';
+
+        var processData = tableData.map(function (d) {
+          var contentObj = JSON.parse(d.content);
+          return [contentObj.author, contentObj.title || "", moment(d.start_time).format('YYYY-MM-DD HH:mm'), d];
+        });
+        var table = $(id).DataTable({
+          paging: false,
+          searching: false,
+          ordering: false,
+          lengthChange: false,
+          info: false,
+          data: processData,
+
+          columns: [
+            { title: '作者' },
+            { title: '标题' },
+            { title: '创建时间' },
+            { title: '操作' },
+          ],
+
+          "columnDefs": [
+            {
+              "render": function (data, type, row) {
+                return "<a  href='?name=" + data.name + "&version=" + data.id + "#/deck'><span class='label label-info'>查看此版本</span></a>";
+              },
+              "targets": 3
+            },
+          ],
+          "language": lang === 'en' ? tb_language.en : tb_language.cn
+        });
+
+        return table;
       },
 
     },
@@ -156,5 +266,7 @@
 </script>
 
 <style scoped>
-
+  .hand {
+    cursor: pointer
+  }
 </style>
