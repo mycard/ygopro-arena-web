@@ -2,6 +2,22 @@
   <div class="content">
     <div class="container">
 
+      <div class="fck">
+        <form id="search-form" class="search-form" @submit.prevent="onSubmit">
+          <div class="form-group" v-bind:class="{ 'has-error': hasError}">
+            <label class="control-label" for="searchText" v-if="hasError">搜索不到该卡组</label>
+            <div class="input-group">
+              <div class="input-group-addon"><span><i class="glyphicon glyphicon-search"></i></span></div>
+              <input class="form-control" type="text" id="searchText" v-model="searchText" placeholder="搜索其他卡组">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">{{lang.battle.search}}</button>
+                <button class="btn btn-default" style="display:none" type="submit" id="search">{{lang.battle.search}}</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
       <h4 style="text-align: center">{{title}}</h4>
       <hr>
       <div class="row">
@@ -19,14 +35,22 @@
 
         <div class="col-md-8">
 
-          <div class="alert alert-success alert-dismissible" role="alert" v-if="!isNew">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>            您可以参与编辑此页面。
-            <i class="el-icon-edit hand" @click.prevent="dialogFormVisible = true">编辑</i>
+          <div v-if="user.isLogin">
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <span v-if="!isNew">您可以参与编辑此页面。</span>
+              <span v-if="isNew">还没有人为这个卡组添上攻略哦! 点我编辑页面。</span>
+              <i class="el-icon-edit hand" @click.prevent="dialogFormVisible = true">编辑</i>
+            </div>
           </div>
-          <div class="alert alert-success alert-dismissible" role="alert" v-if="isNew">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>            此卡组还未有任何信息。您可以参与编辑此页面。
-            <i class="el-icon-edit hand" @click.prevent="dialogFormVisible = true">编辑</i>
+          <div v-else>
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <span>登录后才可编辑此页面。</span>
+              <a class="hand" @click.prevent="login" href="#">登录</a>
+            </div>
           </div>
+
 
 
           <h4 class="color-blue"><i class="glyphicon glyphicon-list-alt"></i> 编辑历史 </h4>
@@ -89,6 +113,7 @@
 
 <script>
   import querystring from 'querystring';
+  import crypto from 'crypto';
   import API from '../api'
   import { mapGetters } from 'vuex'
   import moment from 'moment'
@@ -101,6 +126,8 @@
     data() {
       return {
         isMobile: false,
+        searchText: "",
+        hasError: false,
         username: "",
         title: '',
         title_new: '',
@@ -123,6 +150,8 @@
         },
         formLabelWidth: '40px',
         isNew: true,
+        isClick: false,
+        todayCount: 0
       }
     },
     created: function () {
@@ -151,7 +180,7 @@
       API.getDeckInfo({ name: name, version: version }).then((res) => {
         this.hasError = false
         this.user_info = res.data
-        this.username = name
+        this.username = res.data.data.name
         if (res.data.code === 404) {
           this.isNew = true;
         } else {
@@ -192,34 +221,140 @@
 
       },
 
-      cancelModify: function () {
-        this.dialogFormVisible = false
-      },
-      submitModify: function () {
-        var param = {
-          user: this.user.username,
-          name: this.username,
-          title: this.title_new,
-          desc: this.form.desc_new,
-          url: this.avatar_url_new,
-          isNew: this.isNew
-        }
-        API.saveDeck(param).then((res) => {
-          this.dialogFormVisible = false
-          this.isNew = false
-          this.form.desc = this.form.desc_new
-          this.avatar_url = this.avatar_url_new
-          this.title = this.title_new
-          this.$notify({
-            title: '操作成功',
-            message: '感谢您的提交!',
-            type: 'success'
-          })
-          
+      onSubmit: function () {
+        var name = this.searchText
+
+        if (!name) return
+
+
+        API.getDeckInfo({ name: name }).then((res) => {
+
+          if (res.data.code === 404) {
+            this.hasError = true
+            this.isNew = true;
+          } else {
+            this.hasError = false
+            this.user_info = res.data
+            this.username = res.data.data.name
+            this.isNew = false;
+
+            var dataPbj = JSON.parse(res.data.data.content)
+
+            this.title = dataPbj.title
+            this.title_new = dataPbj.title
+            this.avatar_url = dataPbj.url
+            this.avatar_url_new = dataPbj.url
+            this.form.desc = dataPbj.desc
+            this.form.desc_new = dataPbj.desc
+
+            if (rankTable) {
+              rankTable.destroy();
+            }
+            rankTable = this.renderRankTable("#athletic_rank", res.data.history)
+          }
         }, (res) => {
           this.hasError = true
           console.log(res)
         });
+      },
+
+      login: function () {
+        var payload = new Buffer(querystring.stringify({
+          return_sso_url: location.href
+        })).toString('base64');
+
+        var request = querystring.stringify({
+          'sso': payload,
+          'sig': crypto.createHmac('sha256', 'zsZv6LXHDwwtUAGa').update(payload).digest('hex')
+        });
+        location.href = "https://ygobbs.com/session/sso_provider?" + request;
+      },
+
+      cancelModify: function () {
+        this.dialogFormVisible = false
+      },
+      submitModify: function () {
+
+        if (!this.title_new || !this.title_new.trim()) {
+          this.$notify({
+            title: '警告',
+            message: '请输入标题!',
+            type: 'error'
+          })
+          return;
+        }
+
+        if (!this.avatar_url_new || !this.avatar_url_new.trim()) {
+          this.$notify({
+            title: '警告',
+            message: '请输入图片URL!',
+            type: 'error'
+          })
+          return;
+        }
+
+        if (!this.form.desc_new || !this.form.desc_new.trim()) {
+          this.$notify({
+            title: '警告',
+            message: '请输入描述!',
+            type: 'error'
+          })
+          return;
+        }
+
+        if (this.todayCount >= 3) {
+          this.$notify({
+            title: '警告',
+            message: '您今天已经提交过3次,请明天再提交!',
+            type: 'error'
+          })
+          this.dialogFormVisible = false
+        } else {
+          if (this.isClick) {
+            this.$notify({
+              title: '警告',
+              message: '您操作得太快了!',
+              type: 'error'
+            })
+          } else {
+            this.isClick = true;
+            var param = {
+              user: this.user.username,
+              name: this.username,
+              title: this.title_new,
+              desc: this.form.desc_new,
+              url: this.avatar_url_new,
+              isNew: this.isNew
+            }
+            var _this = this;
+            API.saveDeck(param).then((res) => {
+              this.dialogFormVisible = false
+              this.isNew = false
+              this.form.desc = this.form.desc_new
+              this.avatar_url = this.avatar_url_new
+              this.title = this.title_new
+              this.$notify({
+                title: '操作成功',
+                message: '感谢您的提交!',
+                type: 'success'
+              })
+              _this.todayCount++;
+              setTimeout(function () {
+                _this.isClick = false;
+              }, 3000)
+            }, (res) => {
+              setTimeout(function () {
+                _this.isClick = false;
+              }, 3000)
+              this.hasError = true
+              console.log(res)
+            });
+          }
+
+        }
+
+
+
       },
 
       renderRankTable: function (id, tableData) {
@@ -227,14 +362,23 @@
         tableData = tableData || [];
         var lang = localStorage.getItem('lang') || 'cn';
 
+        var today = moment().format('YYYY-MM-DD');
+        var curUser = this.user.username;
+
+        var _this = this;
         var processData = tableData.map(function (d) {
           var contentObj = JSON.parse(d.content);
+          var dayStr = moment(d.start_time).format('YYYY-MM-DD');
+          if (curUser === contentObj.author && dayStr === today) {
+            _this.todayCount++;
+          }
           return [contentObj.author, contentObj.title || "", moment(d.start_time).format('YYYY-MM-DD HH:mm'), d];
         });
         var table = $(id).DataTable({
-          paging: false,
+          paging: true,
           searching: false,
           ordering: false,
+          pageLength: 10,
           lengthChange: false,
           info: false,
           data: processData,
@@ -268,5 +412,10 @@
 <style scoped>
   .hand {
     cursor: pointer
+  }
+  
+  .fck {
+    margin-bottom: 20px;
+    margin-top: -30px;
   }
 </style>
