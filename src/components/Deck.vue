@@ -178,14 +178,16 @@
       rankTable = this.renderRankTable("#athletic_rank");
 
       API.getDeckInfo({ name: name, version: version }).then((res) => {
-        this.hasError = false
-        this.user_info = res.data
-        this.username = res.data.data.name
+
         if (res.data.code === 404) {
+          // this.hasError = true
           this.isNew = true;
+          this.username = name
         } else {
           this.isNew = false;
-
+          this.hasError = false
+          this.user_info = res.data
+          this.username = res.data.data.name
           var dataPbj = JSON.parse(res.data.data.content)
 
           this.title = dataPbj.title
