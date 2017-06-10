@@ -10,6 +10,14 @@ const URL = "https://api.mycard.moe/ygopro/arena"
 
 export default class Api {
 
+    static uploadUrl = `${URL}/upload`
+
+    static getDownloadUrl(url) {
+        url = url.slice(7)
+        var downloadUrl = `${URL}/download/${url}`
+        return downloadUrl 
+    }
+
     static getCount(opt) {
         var request = query.stringify(opt);
         const url = `${config.COUNTER_URL}?${request}`;
@@ -47,13 +55,16 @@ export default class Api {
     }
 
     static getDeckInfo(opt) {
-        var tmp = "http://localhost:3000/api"
         return Vue.http.get(`${URL}/deckinfo`, { 'params': opt });
     }
 
     static saveDeck(opt) {
-        var tmp = "http://localhost:3000/api"
         const url = `${URL}/deckinfo`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
+    static saveDeckDemo(opt) {
+        const url = `${URL}/deckdemo`
         return Vue.http.post(url, opt, { 'emulateJSON': true });
     }
 

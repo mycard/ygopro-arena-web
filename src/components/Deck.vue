@@ -54,6 +54,7 @@
 
 
           <h4 class="color-blue"><i class="glyphicon glyphicon-list-alt"></i> 编辑历史 </h4>
+          
           <!--<div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">编辑历史 </h3>
@@ -75,6 +76,64 @@
           <div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
             <table id="athletic_rank" class="table table-striped table-bordered table-hover example" :class="{ scroll: isMobile }"></table>
           </div>
+
+
+          <h4 class="color-blue"><i class="glyphicon glyphicon-list-alt"></i> 卡组范例&下载 </h4>
+
+          <div v-if="user.isLogin">
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <span v-if="!isNew">您可以上传卡组范例。</span>
+              <span v-if="isNew">还没有卡组范例。</span>
+              <i class="el-icon-edit hand" @click.prevent="showDialog2">我要上传</i>
+            </div>
+          </div>
+          <div v-else>
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <span>登录后才可上传卡组范例。</span>
+              <a class="hand" @click.prevent="login" href="#">登录</a>
+            </div>
+          </div>
+
+      <el-row>
+        <el-col :span="7" v-for="(o, index) in demo1" :key="o" :offset="index > 0 ? 1 : 0">
+           <el-card :body-style="{ padding: '0px' }">
+            <img :src="o.url" class="image">
+            <div style="padding: 6px;">
+              <span style="font-size: 10px">标题: {{o.title}}</span>
+              <br>
+              <span style="font-size: 10px">上传者: {{o.author}}</span>
+              <div class="bottom clearfix">
+                <time class="time">{{o.create_time}}</time>
+                <el-button v-if="o.file" type="text" class="button" @click="downloadFile(o.file)">下载</el-button>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+      <br>
+      <el-row>
+        <el-col :span="7" v-for="(o, index) in demo2" :key="o" :offset="index > 0 ? 1 : 0">
+          <el-card :body-style="{ padding: '0px' }">
+            <img :src="o.url" class="image">
+            <div style="padding: 6px;">
+              <span style="font-size: 10px">标题: {{o.title}}</span>
+              <br>
+              <span style="font-size: 10px">上传者: {{o.author}}</span>
+              <div class="bottom clearfix">
+                <time class="time">{{o.create_time}}</time>
+                <el-button v-if="o.file" type="text" class="button" @click="downloadFile(o.file)">下载</el-button>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+       <br>
+          
+
+   
+                    
 
           <el-dialog :title="username" size="large" v-model="dialogFormVisible">
             <el-form :model="form">
@@ -104,6 +163,65 @@
             </div>
           </el-dialog>
 
+          <!--上传卡组范例-->
+            <el-dialog title="上传卡组范例" size="large" v-model="dialogFormVisible2">
+            <el-form :model="form">
+              <el-form-item label="标题" :label-width="formLabelWidth">
+                <el-input v-model="demo_title" placeholder="请输入标题" auto-complete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="图片URL" :label-width="formLabelWidth">
+                <el-input v-model="demo_url" placeholder="请输入您希望展示的图片的地址" auto-complete="off"></el-input>
+              </el-form-item>
+              <!--<el-form-item label="类型" :label-width="formLabelWidth">
+                <el-select v-model="form.region" placeholder="请选择类型">
+                  <el-option label="一" value="shanghai"></el-option>
+                  <el-option label="二" value="beijing"></el-option>
+                </el-select>
+              </el-form-item>-->
+
+              <!--<el-form-item label="描述" :label-width="formLabelWidth">
+                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入您对此卡组的描述" v-model="form.desc_new">
+                </el-input>
+              </el-form-item>-->
+
+
+              <el-form-item label="文件" :label-width="formLabelWidth">
+                  <!--<el-upload
+                    class="avatar-uploader"
+                    :action="uploadUrl"
+                    :show-file-list="false"
+                    :on-success="handleAvatarSuccess"
+                    :before-upload="beforeAvatarUpload">
+                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                    <div class="el-upload__tip" slot="tip">上传卡组文件，大小不能超过500kb</div>
+                  </el-upload>-->
+
+                  <el-upload
+                    class="upload-demo"
+                    :action="uploadUrl"
+                    :on-change="handleChange"
+                    :on-success="handleAvatarSuccess"
+                    :before-upload="beforeAvatarUpload"
+                    :file-list="fileList3">
+                    <el-button size="small" type="primary">点击上传</el-button>
+                    <div slot="tip" class="el-upload__tip">上传卡组文件，大小不能超过2M</div>
+                  </el-upload>
+             
+              </el-form-item>
+
+           
+
+          <!--<button v-if="downloadPath" @click.prevent="download" >下载</button>-->
+
+
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="cancelModify2">取 消</el-button>
+              <el-button type="primary" @click="submitModify2">确 定</el-button>
+            </div>
+          </el-dialog>
+
         </div>
       </div>
     </div>
@@ -119,12 +237,15 @@
   import moment from 'moment'
   import tb_language from './tb_lang.js'
 
+
   var rankTable;
   var rankTable2;
 
   export default {
     data() {
       return {
+        currentDate: new Date(),
+         fileList3: [],
         isMobile: false,
         searchText: "",
         hasError: false,
@@ -134,7 +255,7 @@
         avatar_url: "assets/img/unknow.jpeg",
         avatar_url_new: "",
         input3: 'asdasd',
-        dialogTableVisible: false,
+        dialogFormVisible2: false,
         dialogFormVisible: false,
         form: {
           name: '',
@@ -151,7 +272,14 @@
         formLabelWidth: '40px',
         isNew: true,
         isClick: false,
-        todayCount: 0
+        todayCount: 0,
+        uploadUrl: API.uploadUrl,
+        imageUrl:"",
+        downloadPath:"",
+        demo_title: "",
+        demo_url:"",
+        demo1: [],
+        demo2: []
       }
     },
     created: function () {
@@ -168,6 +296,7 @@
       }
     },
     mounted: function () {
+
       var queryObj = querystring.parse(location.search.slice(1))
       var name = queryObj.name
       var version = queryObj.version
@@ -196,6 +325,8 @@
           this.avatar_url_new = dataPbj.url
           this.form.desc = dataPbj.desc
           this.form.desc_new = dataPbj.desc
+          this.demo1 =  res.data.demo.slice(0,3)
+          this.demo2 =  res.data.demo.slice(3,6)
 
           if (rankTable) {
             rankTable.destroy();
@@ -206,6 +337,8 @@
         this.hasError = true
         console.log(res)
       });
+
+
     },
     computed: {
       		...mapGetters({
@@ -221,6 +354,35 @@
         // this.searchText = username;
         // this.searchByUsername(username)
 
+      },
+
+      handleChange(file, fileList) {
+        this.fileList3 = fileList.slice(-1);
+      },
+
+       handleAvatarSuccess(res, file) {
+         this.downloadPath = file.response.path
+        this.imageUrl = URL.createObjectURL(file.raw);
+      },
+      beforeAvatarUpload(file) {
+        // const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        // if (!isJPG) {
+        //   this.$message.error('上传头像图片只能是 JPG 格式!');
+        // }
+        if (!isLt2M) {
+          this.$message.error('上传文件大小不能超过 2MB!');
+        }
+        return  isLt2M;
+      },
+
+      download: function(){
+          window.location.href = API.getDownloadUrl(this.downloadPath)
+      },
+
+      downloadFile: function(path){
+          window.location.href = API.getDownloadUrl(path)
       },
 
       onSubmit: function () {
@@ -272,9 +434,60 @@
         location.href = "https://ygobbs.com/session/sso_provider?" + request;
       },
 
+      showDialog2: function(){
+        this.dialogFormVisible2 = true
+        setTimeout(function(){
+          console.log($(".el-upload__input"))
+           $(".el-upload__input").hide()
+        },100)
+
+      },
       cancelModify: function () {
         this.dialogFormVisible = false
       },
+        cancelModify2: function () {
+        this.dialogFormVisible2 = false
+      },
+       submitModify2: function () {
+        this.dialogFormVisible2 = false
+        
+        if (this.isClick) {
+            this.$notify({
+              title: '警告',
+              message: '您操作得太快了!',
+              type: 'error'
+            })
+          } else {
+            this.isClick = true;
+            var param = {
+              user: this.user.username,
+              name: this.username,
+              title: this.demo_title,
+              url: this.demo_url,
+              file: this.downloadPath
+            }
+            var _this = this;
+            API.saveDeckDemo(param).then((res) => {
+              this.dialogFormVisible2 = false
+             
+              this.$notify({
+                title: '操作成功',
+                message: '感谢您的提交!',
+                type: 'success'
+              })
+              setTimeout(function () {
+                _this.isClick = false;
+              }, 3000)
+            }, (res) => {
+              setTimeout(function () {
+                _this.isClick = false;
+              }, 3000)
+              this.hasError = true
+              console.log(res)
+            });
+          }
+
+       },
       submitModify: function () {
 
         if (!this.title_new || !this.title_new.trim()) {
@@ -420,4 +633,66 @@
     margin-bottom: 20px;
     margin-top: -30px;
   }
+
+  .el-upload__input {
+    
+  }
+  .el-upload__tip{
+  }
+
+
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #20a0ff;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+
+  .time {
+    font-size: 13px;
+    color: #999;
+  }
+  
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
+
+  .button {
+    padding: 0;
+    float: right;
+  }
+
+  .image {
+    width: 100%;
+    display: block;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+      display: table;
+      content: "";
+  }
+  
+  .clearfix:after {
+      clear: both
+  }
+
 </style>
