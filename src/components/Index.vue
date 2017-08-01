@@ -4,7 +4,8 @@
       <div class="jumbotron">
         <h1>MyCard </h1>
         <p>{{lang.index.p1}}</p>
-        <p><a class="text-uppercase btn btn-info btn-lg" href="#/download">Start Now!</a></p>
+        <p><a class="text-uppercase btn btn-info btn-lg" href="https://mycard.moe">Start Now!</a></p>
+        <!--<p><a class="text-uppercase btn btn-info btn-lg" href="#/download">Start Now!</a></p>-->
       </div>
     </div>
 

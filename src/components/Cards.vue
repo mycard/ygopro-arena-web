@@ -24,9 +24,9 @@
                                 <div class="input-group">
                                     <div class="input-group-addon">{{lang.source}}</div>
                                     <select name="server" class="form-control" id="server" v-on:change="onChange">
-                      <option value="233">233</option>
-                      <option value="mycard">MCPro</option>
-                    </select>
+                                        <option value="mycard">MCPro</option>
+                                        <option value="233">233</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -35,11 +35,11 @@
                                 <div class="input-group">
                                     <div class="input-group-addon">{{lang.type}}</div>
                                     <select name="source" class="form-control" id="source" v-on:change="onChange">
-                      <option value="entertain">{{lang.entertain}}</option>
-                      <option value="athletic">{{lang.athletic}}</option>
-                      <option value="custom">{{lang.custom}}</option>
-                      <option value="tag">{{lang.tag}}</option>
-                    </select>
+                                        <option value="athletic">{{lang.athletic}}</option>
+                                        <option value="entertain">{{lang.entertain}}</option>
+                                        <option value="custom">{{lang.custom}}</option>
+                                        <option value="tag">{{lang.tag}}</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -251,8 +251,8 @@
                         sideTable.destroy();
                     }
 
-                    var server = $("#server").val() || "233"
-                    var source = $("#source").val() || "entertain"
+                    var server = $("#server").val() || "mycard"
+                    var source = $("#source").val() || "athletic"
                     var final_source = server + "-" + source
 
                     $.get('https://api.mycard.moe/ygopro/analytics/single/type', {
