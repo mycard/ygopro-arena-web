@@ -68,4 +68,8 @@ export default class Api {
         return Vue.http.post(url, opt, { 'emulateJSON': true });
     }
 
+    static getReport(opt) {
+        return Vue.http.get(`${URL}/report`, { 'params': opt });
+    }
+
 }
