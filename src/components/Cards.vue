@@ -378,8 +378,8 @@
             },
             getCount: function () {
 
-                var server = $("#server").val() || "233"
-                var source = $("#source").val() || "entertain"
+                var server = $("#server").val() || "mycard"
+                var source = $("#source").val() || "athletic"
 
                 var opt = {
                     type: $("#type").val() || "day",
