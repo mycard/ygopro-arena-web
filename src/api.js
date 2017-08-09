@@ -45,7 +45,7 @@ export default class Api {
     }
 
     static getAvatar(opt) {
-        return `https://ygobbs.com/user_avatar/ygobbs.com/${opt.username}/400/1.png`
+        return Vue.http.get(`https://api.moecube.com/accounts/users/${opt.username}.avatar`)
     }
 
     static getCardInfo(opt) {

@@ -356,7 +356,12 @@
 				}
 				if (!username) return
 
-				this.avatar_url = API.getAvatar({ username: username });
+				var _this = this;
+				API.getAvatar({ username: username }).then((res) => {
+					_this.avatar_url = res.data
+				}, (res) => {
+					_this.avatar_url = "https://cdn01.moecube.com/accounts/default_avatar.jpg"
+				});
 
 				API.getUserInfo({ username: username }).then((res) => {
 					this.hasError = false
