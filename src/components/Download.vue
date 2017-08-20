@@ -20,7 +20,7 @@
         </div>
         <div @click="gogo('android')" class="col-md-4 col-sm-6 item1">
           <div class="box"><i class="fa fa-android"></i>
-            <h3 class="name">Andoroid </h3>
+            <h3 class="name">Android (YGOMobile) </h3>
           </div>
         </div>
 
