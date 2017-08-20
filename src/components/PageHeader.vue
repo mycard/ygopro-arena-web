@@ -16,7 +16,7 @@
               <li role="presentation"><a href="#/cards">{{lang.card_rank}} </a></li>
               <li role="presentation"><a href="https://rep.ygobbs.com">{{lang.battlelog}} </a></li>
               <!--<li role="presentation"><a href="https://mycard.moe/ygopro/">{{lang.download}} </a></li>-->
-              <!--<li role="presentation"><a href="#/download">{{lang.download}} </a></li>-->
+              <li role="presentation"><a href="#/download">{{lang.download}} </a></li>
               <li v-if="user.isLogin" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img v-bind:src="user.avatar_url" id="head-portrait">{{user.username}} <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">

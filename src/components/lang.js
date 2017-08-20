@@ -70,7 +70,7 @@ module.exports = {
     },
     downloadPage: {
       welcome: "欢迎来到MyCard下载页面",
-      desc: "MyCard支持以下2种系统的版本，请下载符合的版本。",
+      desc: "MyCard支持以下3种系统的版本，请下载符合的版本。",
       user_guide: "MyCard YGOPro使用说明",
       user_guide_url: "https://ygobbs.com/t/MyCard-V3-使用说明/82308/13",
     },
@@ -176,7 +176,7 @@ module.exports = {
 
     downloadPage: {
       welcome: "MyCard-YGOPro Download Page",
-      desc: "MyCard has installer for Windows and Mac, please download the correct installer.",
+      desc: "MyCard has installer for Windows and Mac and Android, please download the correct installer.",
       user_guide: "MyCard YGOPro User Guide",
       user_guide_url: "https://ygobbs.com/t/MyCard-V3-User-Guide/82335"
     },
