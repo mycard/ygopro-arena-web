@@ -10,6 +10,7 @@ import Cardinfo from '@/components/Cardinfo'
 import History from '@/components/History'
 import Deck from '@/components/Deck'
 import Report from '@/components/Report'
+import Vote from '@/components/Vote'
 
 Vue.use(Router)
 
@@ -64,6 +65,11 @@ export default new Router({
       path: '/report',
       name: 'Report',
       component: Report
+    },
+    {
+      path: '/vote',
+      name: 'Vote',
+      component: Vote
     },
   ]
 })

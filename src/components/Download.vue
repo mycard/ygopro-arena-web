@@ -9,18 +9,19 @@
         <div @click="gogo('windows')" class="col-md-4 col-sm-6 item1">
           <div class="box"><i class="fa fa-windows"></i>
             <h3 class="name">Windows </h3>
-            <!--<p class="title">asd</p>-->
+            <!--<p class="title">  &nbsp;</p>-->
           </div>
         </div>
         <div @click="gogo('mac')" class="col-md-4 col-sm-6 item1">
           <div class="box"><i class="fa fa-apple"></i>
             <h3 class="name">Mac </h3>
-            <!--<p class="title">asd</p>-->
+            <!--<p class="title">  </p>-->
           </div>
         </div>
         <div @click="gogo('android')" class="col-md-4 col-sm-6 item1">
           <div class="box"><i class="fa fa-android"></i>
-            <h3 class="name">Android (YGOMobile) </h3>
+            <h3 class="name">Android  </h3>
+             <!--<p class="title">(YGOMobile)</p>-->
           </div>
         </div>
 

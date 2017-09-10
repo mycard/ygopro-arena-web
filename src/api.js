@@ -72,4 +72,13 @@ export default class Api {
         return Vue.http.get(`${URL}/report`, { 'params': opt });
     }
 
+    static getVoteList(opt) {
+        return Vue.http.get(`${URL}/votes`, { 'params': opt });
+    }
+
+    static saveVote(opt) {
+        const url = `${URL}/votes`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
 }
