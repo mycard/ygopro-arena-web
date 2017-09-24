@@ -55,9 +55,9 @@
 							</el-date-picker>
 						</el-form-item>
 
-						<el-form-item label="是否启用" >
+						<el-form-item label="是否启用">
 							<!--<el-tooltip :content="xxx " placement="top">-->
-								<!--<el-switch v-model="dynamicValidateForm.status" on-color="#13ce66" off-color="#ff4949" on-value="true" off-value="false">
+							<!--<el-switch v-model="dynamicValidateForm.status" on-color="#13ce66" off-color="#ff4949" on-value="true" off-value="false">
 								</el-switch>-->
 							<!--</el-tooltip>-->
 							<el-checkbox v-model="dynamicValidateForm.status"></el-checkbox>
@@ -85,8 +85,8 @@
 					<template scope="props">
 
 						<div v-for=" item in props.row.options">
-							{{ item.name }}
-							<el-progress :percentage="50"></el-progress>
+							{{ item.name }} -- {{ item.count || 0 }} 票
+							<el-progress :percentage="item.percentage"></el-progress>
 						</div>
 
 
@@ -123,7 +123,10 @@
 			<div class="text-center">
 				<el-pagination :page-size="pageSize" layout="total, prev, pager, next" :total="history.total" @current-change="clickpage"></el-pagination>
 			</div>
+
 		</div>
+
+
 	</div>
 
 </template>
@@ -143,7 +146,13 @@
 		created: function () {
 			var lang = localStorage.getItem('lang') || 'cn';
 			this.init(lang)
+
+
+
+
+
 		},
+
 		watch: {
 			date: function (val) {
 				if (val[0] != null) {
@@ -153,19 +162,21 @@
 					this.from_date = '';
 					this.to_date = '';
 				}
-				if(this.needRender){
+				if (this.needRender) {
 					this.renderTable()
 				}
-				
+
 			},
 		},
 		data: function () {
 			return {
-				needRender:true,
+				radio: "x",
+				ddd: [1, 2, 31, 231, 23],
+				needRender: true,
 				page: 1,
 				from_date: moment().format('YYYY-MM-DD HH:mm'),
 				to_date: moment().add(7, 'd').format('YYYY-MM-DD HH:mm'),
-				date: [moment().format('YYYY-MM-DD HH:mm'), moment().add(7, 'd').format('YYYY-MM-DD HH:mm')],
+				date: [moment().format('YYYY-MM-DD HH:mm'), moment().add(7, 'd').format('YYYY-MM-DD')],
 				username: '',
 				type: '0',
 				formInline: {
@@ -223,7 +234,7 @@
 				},
 				dynamicValidateForm: {
 					domains: [{
-						value: ''
+						key: Date.now()
 					}],
 					id: '',
 					status: false,
@@ -249,16 +260,23 @@
 			newVote() {
 				this.dialogFormVisible = true
 				this.dynamicValidateForm.id = ""
+				title: ''
+				this.dynamicValidateForm.title = ""
+				this.dynamicValidateForm.status = false
+				this.dynamicValidateForm.domains = [{
+					key: Date.now()
+				}]
+
 			},
 			handleClick(row) {
-				
+
 				this.dynamicValidateForm.id = row.id
 				this.dynamicValidateForm.status = row.status
 				this.dynamicValidateForm.title = row.title
 				this.dynamicValidateForm.domains = row.options
-				// this.date = [row.start_time, row.end_time]
+				this.date = [row.start_time, row.end_time]
 				this.dialogFormVisible = true;
-				
+
 			},
 			searchTextChange: function () {
 				var username = this.username
@@ -303,10 +321,30 @@
 				API.getVoteList(params).then((res) => {
 					var history = {}
 					history.total = res.data.total
+					var optionCountMap = res.data.optionCountMap
 					history.data = res.data.data.map(function (row) {
 						row.options = JSON.parse(row.options)
+						var voteVount = 0 
+						row.options.map(function(option){
+							option.count = parseInt(optionCountMap[option.key])
+							voteVount += option.count
+							return option
+						})
+
+						row.options.map(function(option){
+							var percentage = 100
+							if(voteVount === 0 || option.count === 0){
+								percentage = 0
+							}else{
+								percentage = option.count / voteVount * 100
+							}
+							
+							option.percentage = percentage
+							return option
+						})
 						return row
 					})
+					console.log(history.data)
 					_this.history = history
 				}, (res) => {
 					//
@@ -377,7 +415,6 @@
 			},
 			addDomain() {
 				this.dynamicValidateForm.domains.push({
-					value: '',
 					key: Date.now()
 				});
 			}

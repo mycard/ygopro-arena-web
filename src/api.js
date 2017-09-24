@@ -5,8 +5,8 @@ import config from './config';
 
 Vue.use(VueResource)
 
-// const URL = "http://localhost:3000/api"
-const URL = "https://api.mycard.moe/ygopro/arena"
+const URL = "http://localhost:3000/api"
+// const URL = "https://api.mycard.moe/ygopro/arena"
 
 export default class Api {
 
@@ -78,6 +78,15 @@ export default class Api {
 
     static saveVote(opt) {
         const url = `${URL}/votes`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
+    static getVote(opt) {
+        return Vue.http.get(`${URL}/vote`, { 'params': opt });
+    }
+
+    static submitVote(opt) {
+        const url = `${URL}/submitVote`
         return Vue.http.post(url, opt, { 'emulateJSON': true });
     }
 
