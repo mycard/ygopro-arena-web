@@ -146,9 +146,9 @@
 		created: function () {
 			var lang = localStorage.getItem('lang') || 'cn';
 			this.init(lang)
+		},
 
-
-
+		mounted: function () {
 
 
 		},
@@ -165,7 +165,6 @@
 				if (this.needRender) {
 					this.renderTable()
 				}
-
 			},
 		},
 		data: function () {
@@ -324,28 +323,31 @@
 					var optionCountMap = res.data.optionCountMap
 					history.data = res.data.data.map(function (row) {
 						row.options = JSON.parse(row.options)
-						var voteVount = 0 
-						row.options.map(function(option){
+						var voteVount = 0
+						row.options.map(function (option) {
 							option.count = parseInt(optionCountMap[option.key])
 							voteVount += option.count
 							return option
 						})
 
-						row.options.map(function(option){
+						row.options.map(function (option) {
 							var percentage = 100
-							if(voteVount === 0 || option.count === 0){
+							if (voteVount === 0 || option.count === 0) {
 								percentage = 0
-							}else{
+							} else {
 								percentage = option.count / voteVount * 100
 							}
-							
+
 							option.percentage = percentage
 							return option
 						})
 						return row
 					})
-					console.log(history.data)
+					// console.log(history.data)
 					_this.history = history
+					setTimeout(function () {
+						$(".el-icon-arrow-right").trigger('click')
+					}, 200)
 				}, (res) => {
 					//
 				})
@@ -385,11 +387,11 @@
 								_this.renderTable()
 								setTimeout(function () {
 									_this.isClick = false;
-								}, 3000)
+								}, 1500)
 							}, (res) => {
 								setTimeout(function () {
 									_this.isClick = false;
-								}, 3000)
+								}, 1500)
 								this.hasError = true
 							});
 

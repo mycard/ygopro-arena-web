@@ -133,13 +133,13 @@
 
 
 
-      var voteTime = localStorage.getItem('voteTime');
-      if (voteTime) {
-        var today = moment().format('YYYY-MM-DD')
-        if (voteTime === today) {
-          return
-        }
-      }
+      // var voteTime = localStorage.getItem('voteTime');
+      // if (voteTime) {
+      //   var today = moment().format('YYYY-MM-DD')
+      //   if (voteTime === today) {
+      //     return
+      //   }
+      // }
 
 
       API.getVote({ user: this.user.id, username: this.user.username }).then((res) => {
@@ -204,15 +204,35 @@
 
         this.dialogFormVisible = false
 
+        var _this = this
+
         API.submitVote(param).then((res) => {
 
-          this.$notify({
-            title: '操作成功',
-            message: '感谢您的参与, 环境会因为您而变得更好。此问卷为您奖励 EXP + 1 ！',
-            type: 'success'
-          })
+          // this.$notify({
+          //   title: '操作成功',
+          //   message: '感谢您的参与, 环境会因为您而变得更好。此问卷为您奖励 EXP + 1 ！',
+          //   type: 'success'
+          // })
 
-          localStorage.setItem('voteTime', moment().format('YYYY-MM-DD'));
+          layer.open({
+              type: 1
+              , title: 'Hi, ' + _this.user.username
+              , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+              , id: 'layerDemo'
+              , time: 3000
+              , content: '<div style="padding: 10px 80px;">' + '感谢您的参与,环境会因为您而变得更好。此问卷为您奖励EXP+1!' + '</div>'
+              , btn: '知道了'
+              , btnAlign: 'c' //按钮居中
+              , shade: 0 //不显示遮罩
+              , yes: function () {
+                layer.closeAll();
+                // _this.dialogFormVisible = true;
+              }
+          });
+
+
+
+          // localStorage.setItem('voteTime', moment().format('YYYY-MM-DD'));
         }, (res) => {
           console.log(res)
         });
