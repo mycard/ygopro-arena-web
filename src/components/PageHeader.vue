@@ -63,7 +63,7 @@
           </div>
         </el-form-item>
 
-        <p class="voteFoot">投票可以改善您的游戏体验。还可以获得EXP哦 ^_^</p>
+        <!--<p class="voteFoot">投票可以改善您的游戏体验。还可以获得EXP哦 ^_^</p>-->
       </el-form>
 
       <div slot="footer" class="dialog-footer">
@@ -154,7 +154,7 @@
               , title: 'Hi, ' + _this.user.username
               , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
               , id: 'layerDemo'
-              , content: '<div style="padding: 20px 100px;">' + '是否参与问卷调查?' + '</div>'
+              , content: '<div style="padding: 20px;">' + '是否参与问卷调查? <br><p class="voteFoot">投票可以改善您的游戏体验。还可以获得EXP哦 ^_^</p> ' + '</div>'
               , btn: '好的'
               , btnAlign: 'c' //按钮居中
               , shade: 0 //不显示遮罩
@@ -219,8 +219,8 @@
               , title: 'Hi, ' + _this.user.username
               , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
               , id: 'layerDemo'
-              , time: 3000
-              , content: '<div style="padding: 10px 80px;">' + '感谢您的参与,环境会因为您而变得更好。此问卷为您奖励EXP+1!' + '</div>'
+              , time: 5000
+              , content: '<div style="padding: 20px ;">' + '感谢您的参与,环境会因为您而变得更好。此问卷为您奖励EXP+1!' + '</div>'
               , btn: '知道了'
               , btnAlign: 'c' //按钮居中
               , shade: 0 //不显示遮罩
@@ -312,7 +312,7 @@
   }
   
   .voteFoot {
-    margin-left: 20px;
+    /*margin-left: 20px;*/
   }
   
   .wrap {
