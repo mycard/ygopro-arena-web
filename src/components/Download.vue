@@ -61,7 +61,7 @@
       var self = this
       self.downloadUrls['windows'] = "https://mycard.moe"
       self.downloadUrls['mac'] = "https://mycard.moe"
-      self.downloadUrls['android'] = "https://pan.baidu.com/s/1o7RMcMA#list/path=%2F"
+      self.downloadUrls['android'] = "https://pan.baidu.com/s/1eRWiWRC"
       // API.getDownloadUrls().then((res) => {
       //   let assets = res.data.assets
       //   for (let i of assets) {

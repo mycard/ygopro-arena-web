@@ -217,7 +217,7 @@
 		},
 
 		mounted: function () {
-			var _this = this 
+			var _this = this
 			$("#search").click(function () {
 				_this.renderPage();
 			})
@@ -255,8 +255,9 @@
 				var username = this.searchText
 				var type = 1;
 
-				rankTable = this.renderRankTable("#athletic_rank");
-				rankTable2 = this.renderRankTable("#entertain_rank");
+
+				rankTable = this.renderRankTable("#athletic_rank", [], "DP");
+				rankTable2 = this.renderRankTable("#entertain_rank", [], "");
 
 				if (!username) return;
 
@@ -264,7 +265,7 @@
 					if (rankTable) {
 						rankTable.destroy();
 					}
-					rankTable = this.renderRankTable("#athletic_rank", res.data.data)
+					rankTable = this.renderRankTable("#athletic_rank", res.data.data, "DP")
 				}, (res) => {
 					console.log(res)
 				});
@@ -273,19 +274,21 @@
 					if (rankTable2) {
 						rankTable2.destroy();
 					}
-					rankTable2 = this.renderRankTable("#entertain_rank", res.data.data)
+					rankTable2 = this.renderRankTable("#entertain_rank", res.data.data, "")
 				}, (res) => {
 					console.log(res)
 				});
 			},
 
-			renderRankTable: function (id, tableData) {
+			renderRankTable: function (id, tableData, ttype) {
 				tableData = tableData || [];
 				var lang = localStorage.getItem('lang') || 'cn';
 
 				var rank = 1;
 				var processData = tableData.map(function (d) {
-					return [d.usernamea, d.usernameb, moment(d.start_time).format('YYYY-MM-DD HH:mm'), moment(d.end_time).format('YYYY-MM-DD HH:mm'), d.userscorea, d.userscoreb];
+					return [d.usernamea, d.usernameb, moment(d.start_time).format('YYYY-MM-DD HH:mm'),
+					moment(d.end_time).format('YYYY-MM-DD HH:mm'), d.userscorea, d.userscoreb,
+					d.pta, d.pta_ex, d.ptb, d.ptb_ex];
 				});
 				var table = $(id).DataTable({
 					paging: true,
@@ -307,15 +310,23 @@
 							"render": function (data, type, row) {
 								var userscorea = row[4];
 								var userscoreb = row[5];
+								var diff = (parseFloat(row[6]) - parseFloat(row[7])).toFixed(2)
+								if (diff > 0) {
+									diff = "+" + diff
+								}
+								var append = diff + ttype
+								if(ttype === ""){
+									append = ""
+								}
 								if (userscorea < 0) {
-									return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>";
+									return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>  " + append;
 								}
 
 								if (userscorea > userscoreb) {
-									return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a>";
+									return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a> " + append;
 								}
 
-								return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a>";
+								return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a> " + append;
 							},
 							"targets": 0
 						},
@@ -323,15 +334,23 @@
 							"render": function (data, type, row) {
 								var userscorea = row[4];
 								var userscoreb = row[5];
+								var diff = (parseFloat(row[8]) - parseFloat(row[9])).toFixed(2)
+								if (diff > 0) {
+									diff = "+" + diff
+								}
+								var append = diff + ttype
+								if(ttype === ""){
+									append = ""
+								}
 								if (userscoreb < 0) {
-									return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>";
+									return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a> " + append;
 								}
 
 								if (userscorea < userscoreb) {
-									return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a>";
+									return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a> " + append;
 								}
 
-								return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a>";
+								return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a> " + append;
 							},
 							"targets": 1
 						},

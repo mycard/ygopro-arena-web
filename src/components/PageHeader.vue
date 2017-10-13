@@ -154,7 +154,7 @@
               , title: 'Hi, ' + _this.user.username
               , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
               , id: 'layerDemo'
-              , content: '<div style="padding: 20px;">' + '是否参与问卷调查? <br><p class="voteFoot">投票可以改善您的游戏体验。还可以获得EXP哦 ^_^</p> ' + '</div>'
+              , content: '<div style="padding: 20px;margin-bottom: -20px; text-align: center">' + '是否参与问卷调查? <br><p class="voteFoot">参与调查可以改善您游戏体验与获得EXP！</p> ' + '</div>'
               , btn: '好的'
               , btnAlign: 'c' //按钮居中
               , shade: 0 //不显示遮罩
@@ -313,6 +313,7 @@
   
   .voteFoot {
     /*margin-left: 20px;*/
+  
   }
   
   .wrap {
