@@ -5,8 +5,8 @@ import config from './config';
 
 Vue.use(VueResource)
 
-const URL = "http://localhost:3000/api"
-// const URL = "https://api.mycard.moe/ygopro/arena"
+// const URL = "http://localhost:3000/api"
+const URL = "https://api.mycard.moe/ygopro/arena"
 
 export default class Api {
 

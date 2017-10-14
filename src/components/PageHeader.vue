@@ -44,11 +44,9 @@
 
 
     <!-- Form -->
-    <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
 
-    <el-dialog title="MCPRO服务改进调查" :visible.sync="dialogFormVisible" :size='size'>
+    <el-dialog title="MCPRO服务改进调查" v-if="!(voteObj.multiple)" :visible.sync="dialogFormVisible" :size='size'>
 
-      <!--<img src="../assets/img/mycardlogo.png" id="logo">-->
       <div class="voteTitle">{{ voteObj.title }} </div><br>
 
       <el-form :model="form">
@@ -63,14 +61,32 @@
           </div>
         </el-form-item>
 
-        <!--<p class="voteFoot">投票可以改善您的游戏体验。还可以获得EXP哦 ^_^</p>-->
       </el-form>
 
       <div slot="footer" class="dialog-footer">
-        <!--<el-button @click="dialogFormVisible = false">取 消</el-button>-->
         <el-button type="primary" @click="submitVote">提 交</el-button>
       </div>
     </el-dialog>
+
+    <el-dialog title="MCPRO服务改进调查"  v-if="voteObj.multiple" :visible.sync="dialogFormVisible" :size='size'>
+
+      <div class="voteTitle">{{ voteObj.title }} （最多选{{voteObj.max}}项）</div><br>
+
+      <el-form :model="form">
+
+        <el-checkbox-group v-model="opids" :min="0" :max="voteObj.max">
+          <el-form-item :label-width="formLabelWidth" v-for="item in voteObj.options">
+            <el-checkbox :label="item.key" :key="item.key">{{item.name}}</el-checkbox>
+          </el-form-item>
+        </el-checkbox-group>
+
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitVote">提 交</el-button>
+      </div>
+    </el-dialog>
+
 
 
 
@@ -88,8 +104,13 @@
   import moment from 'moment'
 
   export default {
+
+
     data() {
+      const cityOptions = ['上海', '北京', '广州', '深圳'];
       return {
+        opids: [],
+        cities: cityOptions,
         voteObj: {},
         size: 'small',
         dialogFormVisible: false,
@@ -189,17 +210,29 @@
           user: this.user.id,
           username: this.user.username,
           opid: this.radio,
+          multiple: this.voteObj.multiple,
+          opids: this.opids,
           voteid: this.voteObj.id
         }
-        console.log(param)
 
-        if (!this.radio) {
-          this.$notify({
-            // title: '操作成功',
-            message: '请选择后在提交 ！',
-            type: 'warning'
-          })
-          return;
+        if (this.voteObj.multiple) {
+          if (this.opids.length == 0) {
+            this.$notify({
+              // title: '操作成功',
+              message: '请选择后在提交 ！',
+              type: 'warning'
+            })
+            return;
+          }
+        } else {
+          if (!this.radio) {
+            this.$notify({
+              // title: '操作成功',
+              message: '请选择后在提交 ！',
+              type: 'warning'
+            })
+            return;
+          }
         }
 
         this.dialogFormVisible = false
@@ -215,19 +248,19 @@
           // })
 
           layer.open({
-              type: 1
-              , title: 'Hi, ' + _this.user.username
-              , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
-              , id: 'layerDemo'
-              , time: 5000
-              , content: '<div style="padding: 20px ;">' + '感谢您的参与,环境会因为您而变得更好。此问卷为您奖励EXP+1!' + '</div>'
-              , btn: '知道了'
-              , btnAlign: 'c' //按钮居中
-              , shade: 0 //不显示遮罩
-              , yes: function () {
-                layer.closeAll();
-                // _this.dialogFormVisible = true;
-              }
+            type: 1
+            , title: 'Hi, ' + _this.user.username
+            , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+            , id: 'layerDemo'
+            , time: 5000
+            , content: '<div style="padding: 20px ;">' + '感谢您的参与,环境会因为您而变得更好。此问卷为您奖励EXP+1!' + '</div>'
+            , btn: '知道了'
+            , btnAlign: 'c' //按钮居中
+            , shade: 0 //不显示遮罩
+            , yes: function () {
+              layer.closeAll();
+              // _this.dialogFormVisible = true;
+            }
           });
 
 
@@ -313,7 +346,6 @@
   
   .voteFoot {
     /*margin-left: 20px;*/
-  
   }
   
   .wrap {

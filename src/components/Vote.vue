@@ -40,7 +40,7 @@
 			<el-button type="text" @click="newVote">新建投票</el-button>
 
 			<el-dialog title="投票详情" :visible.sync="dialogFormVisible">
-				<el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="80px" class="demo-dynamic">
+				<el-form :model="dynamicValidateForm" :rules="rules2" ref="dynamicValidateForm" label-width="80px" class="demo-dynamic">
 					<el-form-item prop="title" label="投票标题" :rules="{required: true, message: '投票标题不能为空', trigger: 'blur'}">
 						<el-input v-model="dynamicValidateForm.title"></el-input>
 					</el-form-item>
@@ -56,13 +56,17 @@
 						</el-form-item>
 
 						<el-form-item label="是否启用">
-							<!--<el-tooltip :content="xxx " placement="top">-->
-							<!--<el-switch v-model="dynamicValidateForm.status" on-color="#13ce66" off-color="#ff4949" on-value="true" off-value="false">
-								</el-switch>-->
-							<!--</el-tooltip>-->
 							<el-checkbox v-model="dynamicValidateForm.status"></el-checkbox>
 						</el-form-item>
 
+						<el-form-item label="是否多选">
+							<el-checkbox v-model="dynamicValidateForm.multiple"></el-checkbox>
+						</el-form-item>
+
+
+						<el-form-item prop="max" label="多选限制" v-if="dynamicValidateForm.multiple">
+							<el-input v-model="dynamicValidateForm.max"></el-input>
+						</el-form-item>
 
 						<!--<el-form-item>-->
 						<!--<el-button type="primary" @click="submitForm('dynamicValidateForm')">提交</el-button>-->
@@ -180,7 +184,29 @@
 			},
 		},
 		data: function () {
+			var checkMax = (rule, value, callback) => {
+				if (!value) {
+					return callback(new Error('个数不能为空'));
+				}
+				setTimeout(() => {
+					value = value - 0
+					if (!Number.isInteger(value)) {
+						callback(new Error('请输入数字值'));
+					} else {
+						if (value > 6) {
+							callback(new Error('个数不能超过6个'));
+						} else {
+							callback();
+						}
+					}
+				}, 500);
+			};
 			return {
+				rules2: {
+					max: [
+						{ validator: checkMax, trigger: 'blur' }
+					]
+				},
 				radio: "x",
 				loading: true,
 				onValue: true,
@@ -254,6 +280,8 @@
 					}],
 					id: '',
 					status: false,
+					multiple: false,
+					max: 2,
 					title: ''
 				},
 				dialogFormVisible: false,
@@ -274,22 +302,22 @@
 
 		methods: {
 			switchChange: function (id, status) {
-				this.loading = true
+				// this.loading = true
 				var param = {
 					id: id,
 					status: status
 				}
 				API.voteStatus(param).then((res) => {
-					this.loading = false
+					// this.loading = false
 
 					// this.$notify({
 					// 	title: '操作成功',
 					// 	message: '状态已修改!',
 					// 	type: 'success'
 					// })
-					
+
 				}, (res) => {
-					this.loading = false
+					// this.loading = false
 				});
 			},
 			newVote() {
@@ -298,6 +326,8 @@
 				title: ''
 				this.dynamicValidateForm.title = ""
 				this.dynamicValidateForm.status = false
+				this.dynamicValidateForm.multiple = false
+				this.dynamicValidateForm.max = 2
 				this.dynamicValidateForm.domains = [{
 					key: Date.now()
 				}]
@@ -307,9 +337,12 @@
 
 				this.dynamicValidateForm.id = row.id
 				this.dynamicValidateForm.status = row.status
+				this.dynamicValidateForm.multiple = row.multiple
+				this.dynamicValidateForm.max = row.max
 				this.dynamicValidateForm.title = row.title
 				this.dynamicValidateForm.domains = row.options
 				this.date = [row.start_time, row.end_time]
+				this.needRender = false
 				this.dialogFormVisible = true;
 
 			},
@@ -426,18 +459,20 @@
 								options: JSON.stringify(this.dynamicValidateForm.domains),
 								start_time: this.from_date,
 								end_time: this.to_date,
-								status: this.dynamicValidateForm.status
+								status: this.dynamicValidateForm.status,
+								multiple: this.dynamicValidateForm.multiple,
+								max: this.dynamicValidateForm.max
 							}
 							var _this = this;
 
 							API.saveVote(param).then((res) => {
 								this.dialogFormVisible2 = false
 
-								this.$notify({
-									title: '操作成功',
-									message: '感谢您的提交!',
-									type: 'success'
-								})
+								// this.$notify({
+								// 	title: '操作成功',
+								// 	message: '感谢您的提交!',
+								// 	type: 'success'
+								// })
 								_this.renderTable()
 								setTimeout(function () {
 									_this.isClick = false;
@@ -450,9 +485,6 @@
 							});
 
 						}
-
-
-
 
 					} else {
 						console.log('error submit!!');
