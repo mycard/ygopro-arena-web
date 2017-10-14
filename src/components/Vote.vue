@@ -80,7 +80,19 @@
 
 
 			<hr>
-			<el-table :data="history.data" style="width: 100%">
+
+			<el-form :inline="true" :model="formInline">
+				<el-form-item>
+					<el-select style="width: 100px;" v-model="type" placeholder="状态" @change="selectChange">
+						<el-option label="全部" value="0"></el-option>
+						<el-option label="启用中" value="1"></el-option>
+						<el-option label="已禁用" value="2"></el-option>
+					</el-select>
+				</el-form-item>
+			</el-form>
+
+
+			<el-table :data="history.data" style="width: 100%" :default-expand-all="expand">
 				<el-table-column type="expand">
 					<template scope="props">
 
@@ -170,6 +182,7 @@
 		data: function () {
 			return {
 				radio: "x",
+				expand: true,
 				ddd: [1, 2, 31, 231, 23],
 				needRender: true,
 				page: 1,
@@ -310,6 +323,7 @@
 			},
 			renderTable: function () {
 				var params = {
+					type: this.type,
 					page: this.page,
 					username: this.username,
 					type: this.type,
@@ -336,6 +350,7 @@
 								percentage = 0
 							} else {
 								percentage = option.count / voteVount * 100
+								percentage = Math.round(percentage)
 							}
 
 							option.percentage = percentage
@@ -345,9 +360,22 @@
 					})
 					// console.log(history.data)
 					_this.history = history
-					setTimeout(function () {
-						$(".el-icon-arrow-right").trigger('click')
-					}, 200)
+					// setTimeout(function () {
+					// 	$(".el-icon-arrow-right").trigger('click')
+					// }, 200)
+
+
+
+
+					// $(".el-icon-arrow-right").hover(function () {
+					// 	$(".el-icon-arrow-right").trigger('click')
+					// 	console.log("aaaa")
+					// }, function () {
+					// 	$(".el-icon-arrow-right").trigger('click')
+					// 	console.log("bbbb")
+					// });
+
+
 				}, (res) => {
 					//
 				})
