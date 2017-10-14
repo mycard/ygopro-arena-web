@@ -92,7 +92,7 @@
 			</el-form>
 
 
-			<el-table :data="history.data" style="width: 100%" :default-expand-all="expand">
+			<el-table :data="history.data" v-loading.fullscreen.lock="loading" element-loading-text="拼命加载中" style="width: 100%" :default-expand-all="expand">
 				<el-table-column type="expand">
 					<template scope="props">
 
@@ -113,15 +113,15 @@
 
 				<el-table-column label="状态" :formatter="formatter3"></el-table-column>
 
-				<!--<el-table-column label="状态">
+				<el-table-column label="状态编辑">
 					<template scope="props">
-						<el-tooltip :content="'Switch value: ' + props.row.status" placement="top">
-							<el-switch v-model="props.row.status" on-color="#13ce66" off-color="#ff4949" on-value="true" off-value="false">
+						<!--<el-tooltip :content="'Switch value: ' + props.row.status" placement="top">-->
+						<el-switch v-model="props.row.status" @change="switchChange(props.row.id,props.row.status)" on-color="#13ce66" off-color="#ff4949"
+							on-text="启用" off-text="禁用" :on-value="onValue" :off-value="offValue">
 							</el-switch>
-						</el-tooltip>
+							<!--</el-tooltip>-->
 					</template>
-				</el-table-column>-->
-
+				</el-table-column>
 
 				<el-table-column label="操作" width="100">
 					<template scope="props">
@@ -182,6 +182,10 @@
 		data: function () {
 			return {
 				radio: "x",
+				loading: true,
+				onValue: true,
+				offValue: false,
+				value2: true,
 				expand: true,
 				ddd: [1, 2, 31, 231, 23],
 				needRender: true,
@@ -269,6 +273,25 @@
 		},
 
 		methods: {
+			switchChange: function (id, status) {
+				this.loading = true
+				var param = {
+					id: id,
+					status: status
+				}
+				API.voteStatus(param).then((res) => {
+					this.loading = false
+
+					// this.$notify({
+					// 	title: '操作成功',
+					// 	message: '状态已修改!',
+					// 	type: 'success'
+					// })
+					
+				}, (res) => {
+					this.loading = false
+				});
+			},
 			newVote() {
 				this.dialogFormVisible = true
 				this.dynamicValidateForm.id = ""
@@ -331,7 +354,9 @@
 					to_date: this.to_date
 				}
 				var _this = this;
+				_this.loading = true
 				API.getVoteList(params).then((res) => {
+					_this.loading = false
 					var history = {}
 					history.total = res.data.total
 					var optionCountMap = res.data.optionCountMap
@@ -378,6 +403,7 @@
 
 				}, (res) => {
 					//
+					_this.loading = false
 				})
 			},
 			submitForm(formName) {

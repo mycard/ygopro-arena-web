@@ -81,6 +81,11 @@ export default class Api {
         return Vue.http.post(url, opt, { 'emulateJSON': true });
     }
 
+    static voteStatus(opt) {
+        const url = `${URL}/voteStatus`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
     static getVote(opt) {
         return Vue.http.get(`${URL}/vote`, { 'params': opt });
     }
