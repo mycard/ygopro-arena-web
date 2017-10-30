@@ -55,9 +55,11 @@
 
           <div class="caption">
             <!--<h3>-->
-              <!--<i class="glyphicon glyphicon-user"></i> -->
-              <!--<strong>{{username}}</strong></h3>-->
-            <p  style="font-size:20px;"><pre>{{form.desc}}</pre></p>
+            <!--<i class="glyphicon glyphicon-user"></i> -->
+            <!--<strong>{{username}}</strong></h3>-->
+            <p style="font-size:20px;">
+              <pre>{{form.desc}}</pre>
+            </p>
             <!--作者：{{author}}-->
           </div>
 
@@ -109,9 +111,9 @@
               </el-form-item>
               <el-form-item label="图片URL" :label-width="formLabelWidth">
                 <el-input v-model="demo_url" placeholder="请输入您希望展示的图片的地址" auto-complete="off"></el-input>
-                <a href="https://ygobbs.com/" target="_blank" class="el-icon-upload2"> 图片上传地址</a>
+                <a href="https://ygobbs.com/t/86271" target="_blank" class="el-icon-upload2"> 图片上传地址</a>
               </el-form-item>
-              
+
               <!--<el-popover
                 ref="popover1"
                 placement="top-start"
@@ -171,101 +173,101 @@
         </div>
       </div>
 
- <div class="container">
-      <div class="row">
+      <div class="container">
+        <div class="row">
 
 
-        <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 卡组攻略 </h4>
-        <pre>{{form.strategy}}</pre>
-        <br>
+          <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 卡组攻略 </h4>
+          <pre>{{form.strategy}}</pre>
+          <br>
 
 
-        <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 卡组范例&下载 </h4>
+          <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 卡组范例&下载 </h4>
 
-        <div v-if="user.isLogin">
-          <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <span v-if="!isNew">您可以上传卡组范例。</span>
-            <span v-if="isNew">还没有卡组范例。</span>
-            <i class="el-icon-edit hand" @click.prevent="showDialog2">我要上传</i>
+          <div v-if="user.isLogin">
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <span v-if="!isNew">您可以上传卡组范例。</span>
+              <span v-if="isNew">还没有卡组范例。</span>
+              <i class="el-icon-edit hand" @click.prevent="showDialog2">我要上传</i>
+            </div>
           </div>
-        </div>
-        <div v-else>
-          <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <span>登录后才可上传卡组范例。</span>
-            <a class="hand" @click.prevent="login" href="#">登录</a>
+          <div v-else>
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <span>登录后才可上传卡组范例。</span>
+              <a class="hand" @click.prevent="login" href="#">登录</a>
+            </div>
           </div>
-        </div>
 
-        <el-row>
-          <el-col :span="7" v-for="(o, index) in demo1" :key="o" :offset="index > 0 ? 1 : 0">
-            <el-card :body-style="{ padding: '0px' }">
-              <img :src="o.url" class="image">
-              <div style="padding: 6px;">
-                <span style="font-size: 14px">标题: {{o.title}}</span>
-                <br>
-                <span style="font-size: 14px">上传者: {{o.author}}</span>
-                <div class="bottom clearfix">
-                  <time class="time">{{o.create_time}}</time>
-                  <el-button v-if="o.file" type="text" class="button" @click="downloadFile(o.file)">下载</el-button>
+          <el-row>
+            <el-col :span="7" v-for="(o, index) in demo1" :key="0" :offset="index > 0 ? 1 : 0">
+              <el-card :body-style="{ padding: '0px' }">
+                <img :src="o.url" class="image">
+                <div style="padding: 6px;">
+                  <span style="font-size: 14px">标题: {{o.title}}</span>
+                  <br>
+                  <span style="font-size: 14px">上传者: {{o.author}}</span>
+                  <div class="bottom clearfix">
+                    <time class="time">{{o.create_time}}</time>
+                    <el-button v-if="o.file" type="text" class="button" @click="downloadFile(o.file)">下载此范例卡组</el-button>
+                  </div>
                 </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-        <br>
-        <el-row>
-          <el-col :span="7" v-for="(o, index) in demo2" :key="o" :offset="index > 0 ? 1 : 0">
-            <el-card :body-style="{ padding: '0px' }">
-              <img :src="o.url" class="image">
-              <div style="padding: 6px;">
-                <span style="font-size: 14px">标题: {{o.title}}</span>
-                <br>
-                <span style="font-size: 14px">上传者: {{o.author}}</span>
-                <div class="bottom clearfix">
-                  <time class="time">{{o.create_time}}</time>
-                  <el-button v-if="o.file" type="text" class="button" @click="downloadFile(o.file)">下载</el-button>
+              </el-card>
+            </el-col>
+          </el-row>
+          <br>
+          <el-row>
+            <el-col :span="7" v-for="(o, index) in demo2" :key="1" :offset="index > 0 ? 1 : 0">
+              <el-card :body-style="{ padding: '0px' }">
+                <img :src="o.url" class="image">
+                <div style="padding: 6px;">
+                  <span style="font-size: 14px">标题: {{o.title}}</span>
+                  <br>
+                  <span style="font-size: 14px">上传者: {{o.author}}</span>
+                  <div class="bottom clearfix">
+                    <time class="time">{{o.create_time}}</time>
+                    <el-button v-if="o.file" type="text" class="button" @click="downloadFile(o.file)">下载</el-button>
+                  </div>
                 </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-        <br>
+              </el-card>
+            </el-col>
+          </el-row>
+          <br>
 
-        <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 参考资料 </h4>
-        <pre  v-html="form.reference">{{form.reference}}</pre>
-        <br>
+          <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 参考资料 </h4>
+          <pre v-html="form.reference">{{form.reference}}</pre>
+          <br>
 
-        <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 编辑历史 </h4>
+          <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 编辑历史 </h4>
 
-        <!--<div class="panel panel-default">
+          <!--<div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">编辑历史 </h3>
             </div>-->
-        <!--<div class="panel-body">-->
-        <!--<div style="width:100%;overflow-x:auto;overflow-y:hidden;">
+          <!--<div class="panel-body">-->
+          <!--<div style="width:100%;overflow-x:auto;overflow-y:hidden;">
 								<table id="rank" class="table table-striped table-bordered table-hover example" ></table>
 							</div>-->
-        <!--<div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
+          <!--<div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
               <table id="athletic_rank" class="table table-striped table-bordered table-hover example" :class="{ scroll: isMobile }"></table>
             </div>-->
-        <!--</div>-->
-        <!--<div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
+          <!--</div>-->
+          <!--<div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
 							<table id="rank" class="table table-striped table-bordered table-hover example" :class="{ scroll: isMobile }" ></table>
 					</div>-->
 
-        <!--</div>-->
+          <!--</div>-->
 
-        <div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
-          <table id="athletic_rank" class="table table-striped table-bordered table-hover example" :class="{ scroll: isMobile }"></table>
+          <div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
+            <table id="athletic_rank" class="table table-striped table-bordered table-hover example" :class="{ scroll: isMobile }"></table>
+          </div>
+          <br>
+
+
+
         </div>
-        <br>
-
-   
-
       </div>
-       </div>
 
 
 
@@ -290,6 +292,7 @@
   export default {
     data() {
       return {
+        unknow:"assets/img/unknow.jpeg",
         currentDate: new Date(),
         author: "",
         fileList3: [],
@@ -314,10 +317,10 @@
           resource: '',
           desc: '',
           desc_new: '',
-          strategy:'-',
-          strategy_new:'',
-          reference:'-',
-          reference_new:''
+          strategy: '-',
+          strategy_new: '',
+          reference: '-',
+          reference_new: ''
         },
         formLabelWidth: '40px',
         isNew: true,
@@ -384,7 +387,7 @@
           this.demo1 = res.data.demo.slice(0, 3)
           this.demo2 = res.data.demo.slice(3, 6)
 
-           this.author = dataPbj.author
+          this.author = dataPbj.author
 
           if (rankTable) {
             rankTable.destroy();
@@ -423,7 +426,7 @@
         this.imageUrl = URL.createObjectURL(file.raw);
       },
       beforeAvatarUpload(file) {
-        var type =/\.[^\.]+/.exec(file.name);
+        var type = /\.[^\.]+/.exec(file.name);
         const isJPG = type[0] === '.ydk';
         const isLt2M = file.size / 1024 < 3;
 
@@ -517,7 +520,7 @@
         this.dialogFormVisible2 = false
       },
       submitModify2: function () {
-        this.dialogFormVisible2 = false
+        
 
         if (this.isClick) {
           this.$notify({
@@ -526,6 +529,17 @@
             type: 'error'
           })
         } else {
+          
+          if (!this.demo_title || !this.demo_url) {
+            this.$notify({
+              title: '警告',
+              message: '标题和截图不能为空!',
+              type: 'error'
+            })
+            return
+          }
+
+
           this.isClick = true;
           var param = {
             user: this.user.username,
@@ -767,12 +781,12 @@
   .clearfix:after {
     clear: both
   }
-
-  pre{  
-white-space:pre-wrap;  
-white-space:-moz-pre-wrap;  
-white-space:-pre-wrap;  
-white-space:-o-pre-wrap;  
-word-wrap:break-word;  
-} 
+  
+  pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+  }
 </style>

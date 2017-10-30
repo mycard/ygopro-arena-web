@@ -12,6 +12,7 @@
     "bootstrap": "^3.3.7",
     "datatables.net": "^1.10.13",
     "datatables.net-bs": "^1.10.13",
+    "echarts": "^3.7.2",
     "element-ui": "^1.4.4",
     "moment": "^2.18.1",
     "shelljs": "^0.7.7",

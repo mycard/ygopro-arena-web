@@ -11,6 +11,10 @@ import 'element-ui/lib/theme-default/index.css'
 Vue.use(Element)
 Vue.use(VueX)
 
+// 引入echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts 
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

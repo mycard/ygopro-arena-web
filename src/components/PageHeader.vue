@@ -68,14 +68,14 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="MCPRO服务改进调查"  v-if="voteObj.multiple" :visible.sync="dialogFormVisible" :size='size'>
+    <el-dialog title="MCPRO服务改进调查" v-if="voteObj.multiple" :visible.sync="dialogFormVisible" :size='size'>
 
       <div class="voteTitle">{{ voteObj.title }} （最多选{{voteObj.max}}项）</div><br>
 
       <el-form :model="form">
 
         <el-checkbox-group v-model="opids" :min="0" :max="voteObj.max">
-          <el-form-item :label-width="formLabelWidth" v-for="item in voteObj.options">
+          <el-form-item :label-width="formLabelWidth" v-for="item in voteObj.options" :key="item.key">
             <el-checkbox :label="item.key" :key="item.key">{{item.name}}</el-checkbox>
           </el-form-item>
         </el-checkbox-group>
@@ -111,7 +111,10 @@
       return {
         opids: [],
         cities: cityOptions,
-        voteObj: {},
+        voteObj: {
+          multiple: false,
+          options: []
+        },
         size: 'small',
         dialogFormVisible: false,
         form: {
@@ -144,7 +147,7 @@
 
       var _this = this
 
-      if (location.hash === "#/vote") {
+      if (location.hash === "#/vote" || location.hash === "#/report") {
         return;
       }
 
@@ -161,6 +164,7 @@
       //     return
       //   }
       // }
+
 
 
       API.getVote({ user: this.user.id, username: this.user.username }).then((res) => {
@@ -254,12 +258,31 @@
             , id: 'layerDemo'
             , time: 5000
             , content: '<div style="padding: 20px ;">' + '感谢您的参与,环境会因为您而变得更好。此问卷为您奖励EXP+1!' + '</div>'
-            , btn: '知道了'
+            , btn: ['知道了', '参与下一个投票']
+
             , btnAlign: 'c' //按钮居中
             , shade: 0 //不显示遮罩
             , yes: function () {
               layer.closeAll();
               // _this.dialogFormVisible = true;
+            },
+            btn2: function (index, layero) {
+              //按钮【按钮二】的回调
+              layer.closeAll();
+              //return false 开启该代码可禁止点击该按钮关闭
+
+              API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
+
+                if (res.data.data && res.data.data !== "null") {
+                  _this.voteObj = res.data.data
+                  _this.voteObj.options = JSON.parse(_this.voteObj.options)
+                  _this.dialogFormVisible = true;
+                }
+
+              }, (res) => {
+                console.log(res)
+              });
+
             }
           });
 
