@@ -63,6 +63,16 @@
 
 			<div id="myChart" :style="{width: '100%', height: '400px'}"></div>
 
+			<hr>
+
+			<div id="myChart2" :style="{width: '100%', height: '600px'}"></div>
+
+			<hr>
+
+			<div id="myChart3" :style="{width: '100%', height: '600px'}"></div>
+			<br>
+			<br>
+			<br>
 
 			<!--<el-table :data="history.data" stripe style="width: 100%">
 				<el-table-column prop="usernamea" label="玩家A" width="180">
@@ -202,6 +212,8 @@
 			drawLine() {
 				// 基于准备好的dom，初始化echarts实例
 				this.myChart = this.$echarts.init(document.getElementById('myChart'))
+				this.myChart2 = this.$echarts.init(document.getElementById('myChart2'))
+				this.myChart3 = this.$echarts.init(document.getElementById('myChart3'))
 			},
 			searchTextChange: function () {
 				var username = this.username
@@ -233,16 +245,14 @@
 			},
 			renderTable: function () {
 				var params = {
-					from_date: this.from_date,
-					to_date: this.to_date
+					from_date: this.from_date ? moment(this.from_date).format("YYYY-MM-DD") : moment().format("YYYY-MM-DD"),
+					to_date: this.to_date ? moment(this.to_date).add(1, 'day').format("YYYY-MM-DD") : moment().add(1, 'day').format("YYYY-MM-DD"),
 				}
 				var _this = this;
 				API.getReport(params).then((res) => {
 					_this.report = res.data
-					console.log(_this.report)
 
 					var colors = ['#5793f3', '#d14a61', '#675bba'];
-
 
 					var option = {
 						title: { text: '战斗场次走势图' },
@@ -328,6 +338,90 @@
 					};
 
 					_this.myChart.setOption(option);
+
+
+
+
+					option = {
+						title: {
+							text: '时段场数比例图',
+							subtext: '竞技场, 统计天数:' + _this.report.totalDays + "天, 总场数:" + _this.report.totalAthletic,
+							x: 'left'
+						},
+						tooltip: {
+							trigger: 'item',
+							formatter: function (p) {
+								return p.data.name + " : 总" + p.data.value + "场, 均" + p.data.avg + "场 (" + p.percent + "%)"
+							}
+						},
+						legend: {
+							orient: 'vertical',
+							right: 10,
+							top: 20,
+							bottom: 20,
+							data: _this.report.legendDataAthletic
+						},
+						series: [
+							{
+								name: '时段',
+								type: 'pie',
+								radius: '80%',
+								center: ['50%', '50%'],
+								data: _this.report.seriesDataAthletic,
+								itemStyle: {
+									emphasis: {
+										shadowBlur: 10,
+										shadowOffsetX: 0,
+										shadowColor: 'rgba(0, 0, 0, 0.5)'
+									}
+								}
+							}
+						]
+					};
+
+					_this.myChart2.setOption(option);
+
+
+
+						option = {
+						title: {
+							text: '时段场数比例图',
+							subtext: '娱乐场, 统计天数:' + _this.report.totalDays + "天, 总场数:" + _this.report.totalEntertain,
+							x: 'left'
+						},
+						tooltip: {
+							trigger: 'item',
+							formatter: function (p) {
+								return p.data.name + " : 总" + p.data.value + "场, 均" + p.data.avg + "场 (" + p.percent + "%)"
+							}
+						},
+						legend: {
+							orient: 'vertical',
+							right: 10,
+							top: 20,
+							bottom: 20,
+							data: _this.report.legendDataEntertain
+						},
+						series: [
+							{
+								name: '时段',
+								type: 'pie',
+								radius: '80%',
+								center: ['50%', '50%'],
+								data: _this.report.seriesDataEntertain,
+								itemStyle: {
+									emphasis: {
+										shadowBlur: 10,
+										shadowOffsetX: 0,
+										shadowColor: 'rgba(0, 0, 0, 0.5)'
+									}
+								}
+							}
+						]
+					};
+
+					_this.myChart3.setOption(option);
+
 
 				}, (res) => {
 					//
