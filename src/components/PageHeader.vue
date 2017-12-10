@@ -256,7 +256,7 @@
             , title: 'Hi, ' + _this.user.username
             , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
             , id: 'layerDemo'
-            , time: 5000
+            , time: 10000
             , content: '<div style="padding: 20px ;">' + '感谢您的参与,环境会因为您而变得更好。此问卷为您奖励EXP+1!' + '</div>'
             , btn: ['知道了', '参与下一个投票']
 
@@ -272,11 +272,34 @@
               //return false 开启该代码可禁止点击该按钮关闭
 
               API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
-
                 if (res.data.data && res.data.data !== "null") {
                   _this.voteObj = res.data.data
                   _this.voteObj.options = JSON.parse(_this.voteObj.options)
                   _this.dialogFormVisible = true;
+                } else {
+                  API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
+                    if (res.data.data && res.data.data !== "null") {
+                      _this.voteObj = res.data.data
+                      _this.voteObj.options = JSON.parse(_this.voteObj.options)
+                      _this.dialogFormVisible = true;
+                    } else {
+                      API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
+                        if (res.data.data && res.data.data !== "null") {
+                          _this.voteObj = res.data.data
+                          _this.voteObj.options = JSON.parse(_this.voteObj.options)
+                          _this.dialogFormVisible = true;
+                        } else {
+
+                        }
+
+                      }, (res) => {
+                        console.log(res)
+                      });
+                    }
+
+                  }, (res) => {
+                    console.log(res)
+                  });
                 }
 
               }, (res) => {

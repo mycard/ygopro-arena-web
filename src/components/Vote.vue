@@ -110,6 +110,7 @@
 
 				</el-table-column>
 				<!--<el-table-column label="ID" prop="id"></el-table-column>-->
+				<!--<el-table-column label="id" prop="id"></el-table-column>-->
 				<el-table-column label="标题" prop="title"></el-table-column>
 
 				<el-table-column label="开始时间" :formatter="formatter1"></el-table-column>
@@ -126,6 +127,9 @@
 							<!--</el-tooltip>-->
 					</template>
 				</el-table-column>
+
+				<el-table-column label="参与人数" :formatter="formatter4"></el-table-column>
+
 
 				<el-table-column label="操作" width="100">
 					<template scope="props">
@@ -377,6 +381,9 @@
 			formatter3(row, column) {
 				return row.status ? '启用' : '禁用'
 			},
+			formatter4(row, column) {
+				return row.count 
+			},
 			renderTable: function () {
 				var params = {
 					type: this.type,
@@ -393,8 +400,10 @@
 					var history = {}
 					history.total = res.data.total
 					var optionCountMap = res.data.optionCountMap
+					var voteCountMap = res.data.voteCountMap
 					history.data = res.data.data.map(function (row) {
 						row.options = JSON.parse(row.options)
+						row.count = voteCountMap[row.id]
 						var voteVount = 0
 						row.options.map(function (option) {
 							option.count = parseInt(optionCountMap[option.key])

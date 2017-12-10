@@ -51,7 +51,7 @@ module.exports = {
       expRank: 'EXP排名',
       pointRank: '竞技场排名',
       useRank: '使用量排名',
-      tableHead1: '查看EXP排行榜，这里展示娱乐匹配的成绩，你是否也榜上有名呢?',
+      tableHead1: 'EXP排行榜，EXP可以通过匹配以及参与调研获得。来看看谁是最资深的玩家吧！',
       tableHead2: '查看竞技场排行榜，这里展示竞技匹配的成绩，你是否也榜上有名呢?',
       tableHead3: '查看卡片排行榜.',
     },
