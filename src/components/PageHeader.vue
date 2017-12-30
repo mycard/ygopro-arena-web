@@ -110,6 +110,7 @@
       const cityOptions = ['上海', '北京', '广州', '深圳'];
       return {
         opids: [],
+        isMobile: false,
         cities: cityOptions,
         voteObj: {
           multiple: false,
@@ -138,6 +139,7 @@
 
       var regex_match = /(nokia|iphone|android|motorola|^mot-|softbank|foma|docomo|kddi|up.browser|up.link|htc|dopod|blazer|netfront|helio|hosin|huawei|novarra|CoolPad|webos|techfaith|palmsource|blackberry|alcatel|amoi|ktouch|nexian|samsung|^sam-|s[cg]h|^lge|ericsson|philips|sagem|wellcom|bunjalloo|maui|symbian|smartphone|midp|wap|phone|windows ce|iemobile|^spice|^bird|^zte-|longcos|pantech|gionee|^sie-|portalmmm|jigs browser|hiptop|^benq|haier|^lct|operas*mobi|opera*mini|320x320|240x320|176x220)/i;
       if (regex_match.exec(navigator.userAgent)) {
+        this.isMobile = true
         this.size = 'large';
       }
 
@@ -168,28 +170,78 @@
 
 
       API.getVote({ user: this.user.id, username: this.user.username }).then((res) => {
-
-        this.voteObj = res.data.data
-        if (this.voteObj !== "null") {
+        if(res.data.data && res.data.data !== "null"){
+          this.voteObj = res.data.data
           this.voteObj.options = JSON.parse(this.voteObj.options)
 
-          setTimeout(function () {
-            layer.open({
-              type: 1
-              , title: 'Hi, ' + _this.user.username
-              , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
-              , id: 'layerDemo'
-              , content: '<div style="padding: 20px;margin-bottom: -20px; text-align: center">' + '是否参与问卷调查? <br><p class="voteFoot">参与调查可以改善您游戏体验与获得EXP！</p> ' + '</div>'
-              , btn: '好的'
-              , btnAlign: 'c' //按钮居中
-              , shade: 0 //不显示遮罩
-              , yes: function () {
-                layer.closeAll();
-                _this.dialogFormVisible = true;
-              }
-            });
-          }, 1000)
+
+          if (this.isMobile) {
+            setTimeout(function () {
+
+              //单个使用
+
+              //全局使用。即所有弹出层都默认采用，但是单个配置skin的优先级更高
+              // layer.config({
+              //   skin: 'demo-class'
+              // })
+
+
+              layer.open({
+                type: 1
+                , title: ''
+                , offset: 'b' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                , area: ['100%', 'auto']
+                , closeBtn: 0
+                , id: 'layerDemo'
+                // ,skin: 'demo-class'
+                , content: '<div style="padding: 20px;margin-bottom: -20px; text-align: center">' + '是否参与问卷调查? <br><p class="voteFoot">参与调查可以改善您游戏体验与获得EXP！</p> ' + '</div>'
+                , btn: ['投票Start!', '但是我拒绝!']
+                , btnAlign: 'c' //按钮居中
+                , shade: 0 //不显示遮罩
+                , yes: function () {
+                  layer.closeAll();
+                  _this.dialogFormVisible = true;
+                }
+                , btn2: function () {
+                  console.log('拒绝！')
+                }
+              });
+            }, 1000)
+          } else {
+
+
+            setTimeout(function () {
+
+              //单个使用
+
+              //全局使用。即所有弹出层都默认采用，但是单个配置skin的优先级更高
+              // layer.config({
+              //   skin: 'demo-class'
+              // })
+
+
+              layer.open({
+                type: 1
+                , title: 'Hi, ' + _this.user.username
+                , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                // , area: ['100%', 'auto']
+                , id: 'layerDemo'
+                // ,skin: 'demo-class'
+                , content: '<div style="padding: 20px;margin-bottom: -20px; text-align: center">' + '是否参与问卷调查? <br><p class="voteFoot">参与调查可以改善您游戏体验与获得EXP！</p> ' + '</div>'
+                , btn: '好的'
+                , btnAlign: 'c' //按钮居中
+                , shade: 0 //不显示遮罩
+                , yes: function () {
+                  layer.closeAll();
+                  _this.dialogFormVisible = true;
+                }
+              });
+            }, 1000)
+          }
         }
+        
+    
+
 
 
       }, (res) => {
@@ -251,63 +303,126 @@
           //   type: 'success'
           // })
 
-          layer.open({
-            type: 1
-            , title: 'Hi, ' + _this.user.username
-            , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
-            , id: 'layerDemo'
-            , time: 10000
-            , content: '<div style="padding: 20px ;">' + '感谢您的参与,环境会因为您而变得更好。此问卷为您奖励EXP+1!' + '</div>'
-            , btn: ['知道了', '参与下一个投票']
+          if (this.isMobile) {
+            layer.open({
+              type: 1
+              , title: ''
+              , offset: 'b' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+              , area: ['100%', 'auto']
+              , closeBtn: 0
+              , id: 'layerDemo'
+              , time: 10000
+              , content: '<div style="padding: 20px ;">' + '感谢您的参与,环境会因为您而变得更好。此问卷为您奖励EXP+1!' + '</div>'
+              , btn: ['知道了', '参与下一个投票']
 
-            , btnAlign: 'c' //按钮居中
-            , shade: 0 //不显示遮罩
-            , yes: function () {
-              layer.closeAll();
-              // _this.dialogFormVisible = true;
-            },
-            btn2: function (index, layero) {
-              //按钮【按钮二】的回调
-              layer.closeAll();
-              //return false 开启该代码可禁止点击该按钮关闭
+              , btnAlign: 'c' //按钮居中
+              , shade: 0 //不显示遮罩
+              , yes: function () {
+                layer.closeAll();
+                // _this.dialogFormVisible = true;
+              },
+              btn2: function (index, layero) {
+                //按钮【按钮二】的回调
+                layer.closeAll();
+                //return false 开启该代码可禁止点击该按钮关闭
 
-              API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
-                if (res.data.data && res.data.data !== "null") {
-                  _this.voteObj = res.data.data
-                  _this.voteObj.options = JSON.parse(_this.voteObj.options)
-                  _this.dialogFormVisible = true;
-                } else {
-                  API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
-                    if (res.data.data && res.data.data !== "null") {
-                      _this.voteObj = res.data.data
-                      _this.voteObj.options = JSON.parse(_this.voteObj.options)
-                      _this.dialogFormVisible = true;
-                    } else {
-                      API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
-                        if (res.data.data && res.data.data !== "null") {
-                          _this.voteObj = res.data.data
-                          _this.voteObj.options = JSON.parse(_this.voteObj.options)
-                          _this.dialogFormVisible = true;
-                        } else {
+                API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
+                  if (res.data.data && res.data.data !== "null") {
+                    _this.voteObj = res.data.data
+                    _this.voteObj.options = JSON.parse(_this.voteObj.options)
+                    _this.dialogFormVisible = true;
+                  } else {
+                    API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
+                      if (res.data.data && res.data.data !== "null") {
+                        _this.voteObj = res.data.data
+                        _this.voteObj.options = JSON.parse(_this.voteObj.options)
+                        _this.dialogFormVisible = true;
+                      } else {
+                        API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
+                          if (res.data.data && res.data.data !== "null") {
+                            _this.voteObj = res.data.data
+                            _this.voteObj.options = JSON.parse(_this.voteObj.options)
+                            _this.dialogFormVisible = true;
+                          } else {
 
-                        }
+                          }
 
-                      }, (res) => {
-                        console.log(res)
-                      });
-                    }
+                        }, (res) => {
+                          console.log(res)
+                        });
+                      }
 
-                  }, (res) => {
-                    console.log(res)
-                  });
-                }
+                    }, (res) => {
+                      console.log(res)
+                    });
+                  }
 
-              }, (res) => {
-                console.log(res)
-              });
+                }, (res) => {
+                  console.log(res)
+                });
 
-            }
-          });
+              }
+            });
+          } else {
+            layer.open({
+              type: 1
+              , title: 'Hi, ' + _this.user.username
+              , offset: 'rb' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+              , id: 'layerDemo'
+              , time: 10000
+              , content: '<div style="padding: 20px ;">' + '感谢您的参与,环境会因为您而变得更好。此问卷为您奖励EXP+1!' + '</div>'
+              , btn: ['知道了', '参与下一个投票']
+
+              , btnAlign: 'c' //按钮居中
+              , shade: 0 //不显示遮罩
+              , yes: function () {
+                layer.closeAll();
+                // _this.dialogFormVisible = true;
+              },
+              btn2: function (index, layero) {
+                //按钮【按钮二】的回调
+                layer.closeAll();
+                //return false 开启该代码可禁止点击该按钮关闭
+
+                API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
+                  if (res.data.data && res.data.data !== "null") {
+                    _this.voteObj = res.data.data
+                    _this.voteObj.options = JSON.parse(_this.voteObj.options)
+                    _this.dialogFormVisible = true;
+                  } else {
+                    API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
+                      if (res.data.data && res.data.data !== "null") {
+                        _this.voteObj = res.data.data
+                        _this.voteObj.options = JSON.parse(_this.voteObj.options)
+                        _this.dialogFormVisible = true;
+                      } else {
+                        API.getVote({ user: _this.user.id, username: _this.user.username }).then((res) => {
+                          if (res.data.data && res.data.data !== "null") {
+                            _this.voteObj = res.data.data
+                            _this.voteObj.options = JSON.parse(_this.voteObj.options)
+                            _this.dialogFormVisible = true;
+                          } else {
+
+                          }
+
+                        }, (res) => {
+                          console.log(res)
+                        });
+                      }
+
+                    }, (res) => {
+                      console.log(res)
+                    });
+                  }
+
+                }, (res) => {
+                  console.log(res)
+                });
+
+              }
+            });
+          }
+
 
 
 
@@ -399,4 +514,8 @@
     width: 260px;
     /*word-break:break-all; width:100px; overflow:auto;*/
   }
+  /*body .demo-class .layui-layer-title{background:#c00; color:#fff; border: none;}
+body .demo-class .layui-layer-btn{border-top:1px solid #E9E7E7}
+body .demo-class .layui-layer-btn a{background:#333;}
+body .demo-class .layui-layer-btn .layui-layer-btn1{background:#999;}*/
 </style>
