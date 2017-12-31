@@ -12,10 +12,14 @@ export default class Api {
 
     static uploadUrl = `${URL}/upload`
 
+    static implUrl = `${URL}/impltrack`
+
+    static clkUrl = `${URL}/clktrack`
+
     static getDownloadUrl(url) {
         url = url.slice(7)
         var downloadUrl = `${URL}/download/${url}`
-        return downloadUrl 
+        return downloadUrl
     }
 
     static getCount(opt) {
@@ -92,6 +96,34 @@ export default class Api {
 
     static submitVote(opt) {
         const url = `${URL}/submitVote`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
+    static saveAds(opt) {
+        const url = `${URL}/ads`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
+    static getAdsList(opt) {
+        return Vue.http.get(`${URL}/ads`, { 'params': opt });
+    }
+
+    static adsStatus(opt) {
+        const url = `${URL}/adsStatus`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
+    static getAd(opt) {
+        return Vue.http.get(`${URL}/getAd`, { 'params': opt });
+    }
+
+    static adClick(opt) {
+        const url = `${URL}/adClick`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
+    static adImpl(opt) {
+        const url = `${URL}/adImpl`
         return Vue.http.post(url, opt, { 'emulateJSON': true });
     }
 

@@ -87,7 +87,11 @@
       </div>
     </el-dialog>
 
-
+    <div id="ads" style="display: none">
+      <div @click="adClick">
+        <img v-bind:style="{ height: 'auto',  width: width  }" v-bind:src="adObj.src">
+      </div>
+    </div>
 
 
 
@@ -110,11 +114,16 @@
       const cityOptions = ['上海', '北京', '广州', '深圳'];
       return {
         opids: [],
+        height: "300",
+        width: "400",
         isMobile: false,
         cities: cityOptions,
         voteObj: {
           multiple: false,
           options: []
+        },
+        adObj: {
+
         },
         size: 'small',
         dialogFormVisible: false,
@@ -149,11 +158,7 @@
 
       var _this = this
 
-      if (location.hash === "#/vote" || location.hash === "#/report") {
-        return;
-      }
-
-      if (!this.user.isLogin) {
+      if (location.hash === "#/vote" || location.hash === "#/report" || location.hash === "#/ads") {
         return;
       }
 
@@ -167,10 +172,70 @@
       //   }
       // }
 
+      var _this = this
+      API.getAd({}).then((res) => {
+        if (res.data.data && res.data.data !== "null") {
+          _this.adObj = res.data.data
+          if (_this.isMobile) {
+            _this.adObj.src = _this.adObj.imgm_url
+          } else {
+            _this.adObj.src = _this.adObj.imgp_url
+          }
+
+          setTimeout(function () {
+
+            var area = ["800px", "480px"]
+            if (_this.isMobile) {
+              area = ["300px", "400px"]
+            }
+
+            layer.open({
+              type: 1
+              , title: false //不显示标题栏
+              // ,closeBtn: false
+              , area: area
+              , shade: 0.8
+              , offset: _this.isMobile ? '100px' : "auto"
+              , id: 'LAY_layuipro' //设定一个id，防止重复弹出
+              // ,btn: ['火速围观', '残忍拒绝']
+              , btnAlign: 'c'
+              , moveType: 1 //拖拽模式，0或者1
+              , content: $('#ads')
+              , success: function (layero) {
+                var btn = layero.find('.layui-layer-btn');
+                btn.find('.layui-layer-btn0').attr({
+                  href: 'http://www.layui.com/'
+                  , target: '_blank'
+                });
+              }
+              , success: function () {
+                _this.adImpl()
+                setTimeout(function () {
+                  layer.close(layer.index);
+                }, 5000)
+              }
+              , end: function () {
+                $("#ads").hide()
+              }
+            });
+
+          }, 3000)
+
+
+        }
+      }, (res) => {
+        console.log(res)
+      });
+
+
+
+      if (!this.user.isLogin) {
+        return;
+      }
 
 
       API.getVote({ user: this.user.id, username: this.user.username }).then((res) => {
-        if(res.data.data && res.data.data !== "null"){
+        if (res.data.data && res.data.data !== "null") {
           this.voteObj = res.data.data
           this.voteObj.options = JSON.parse(this.voteObj.options)
 
@@ -239,8 +304,8 @@
             }, 1000)
           }
         }
-        
-    
+
+
 
 
 
@@ -260,7 +325,28 @@
     },
     methods: {
 
+      adClick: function () {
+
+        API.adClick({ id: this.adObj.id }).then((res) => {
+
+        }, (res) => {
+          console.log(res)
+        });
+
+        window.open(this.adObj.click_ref, "_blank");
+      },
+
+      adImpl: function () {
+
+        API.adImpl({ id: this.adObj.id }).then((res) => {
+
+        }, (res) => {
+          console.log(res)
+        });
+      },
+
       submitVote: function () {
+
 
         var param = {
           user: this.user.id,
