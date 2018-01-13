@@ -58,7 +58,8 @@
             <!--<i class="glyphicon glyphicon-user"></i> -->
             <!--<strong>{{username}}</strong></h3>-->
             <p style="font-size:20px;">
-              <pre>{{form.desc}}</pre>
+              <!--<pre>{{form.desc}}</pre>-->
+              <pre><p v-html="form.desc"></p></pre>
             </p>
             <!--作者：{{author}}-->
           </div>
@@ -81,18 +82,26 @@
               </el-form-item>-->
 
               <el-form-item label="描述" :label-width="formLabelWidth">
-                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入您对此卡组的描述" v-model="form.desc_new">
-                </el-input>
+                <!--<el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入您对此卡组的描述" v-model="form.desc_new">
+                </el-input>-->
+                <vue-html5-editor :content="form.desc_new" :height="200" :z-index="1000" @change="updateData1" ></vue-html5-editor>
+
               </el-form-item>
 
+          
+
               <el-form-item label="卡组攻略" :label-width="formLabelWidth">
-                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入卡组攻略" v-model="form.strategy_new">
-                </el-input>
+                <!--<el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入卡组攻略" v-model="form.strategy_new">
+                </el-input>-->
+                <vue-html5-editor :content="form.strategy_new" :height="200" :z-index="1000" @change="updateData2" ></vue-html5-editor>
+
               </el-form-item>
 
               <el-form-item label="参考资料" :label-width="formLabelWidth">
-                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入参考资料" v-model="form.reference_new">
-                </el-input>
+                <!--<el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" placeholder="请输入参考资料" v-model="form.reference_new">
+                </el-input>-->
+                <vue-html5-editor :content="form.reference_new" :height="200" :z-index="1000" @change="updateData3" ></vue-html5-editor>
+
               </el-form-item>
 
 
@@ -178,7 +187,8 @@
 
 
           <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 卡组攻略 </h4>
-          <pre>{{form.strategy}}</pre>
+          <!--<pre>{{form.strategy}}</pre>-->
+          <pre><p v-html="form.strategy"></p></pre>
           <br>
 
 
@@ -236,7 +246,8 @@
           <br>
 
           <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 参考资料 </h4>
-          <pre v-html="form.reference">{{form.reference}}</pre>
+          <!--<pre v-html="form.reference">{{form.reference}}</pre>-->
+          <pre><p v-html="form.reference"></p></pre>
           <br>
 
           <h4 class="color-blue"> <i class="glyphicon glyphicon-list-alt"></i> 编辑历史 </h4>
@@ -292,6 +303,7 @@
   export default {
     data() {
       return {
+        contentHtml:"xx",
         unknow:"assets/img/unknow.jpeg",
         currentDate: new Date(),
         author: "",
@@ -410,6 +422,15 @@
 
 
     methods: {
+      updateData1: function(html){
+        this.form.desc_new = html
+      },
+      updateData2: function(html){
+        this.form.strategy_new = html
+      },
+      updateData3: function(html){
+       this.form.reference_new = html
+      },
       init: function () {
         // var username = querystring.parse(location.hash.slice(11)).username
         // this.searchText = username;
