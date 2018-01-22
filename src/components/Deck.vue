@@ -72,7 +72,7 @@
               </el-form-item>
               <el-form-item label="图片URL" :label-width="formLabelWidth">
                 <el-input v-model="avatar_url_new" placeholder="请输入您希望展示的图片的地址" auto-complete="off"></el-input>
-                <a href="https://ygobbs.com/" target="_blank" class="el-icon-upload2"> 图片上传地址</a>
+                <a href="https://ygobbs.com/t/86271" target="_blank" class="el-icon-upload2"> 图片上传地址</a>
               </el-form-item>
               <!--<el-form-item label="类型" :label-width="formLabelWidth">
                 <el-select v-model="form.region" placeholder="请选择类型">

@@ -44,12 +44,12 @@ Vue.use(VueHtml5Editor,{
         sizeLimit: 512 * 1024,
         // 上传参数,默认把图片转为base64而不上传 
         // upload config,default null and convert image to base64 
-        upload: {
-            url: null,
-            headers: {},
-            params: {},
-            fieldName: {}
-        },
+        // upload: {
+        //     url: null,
+        //     headers: {},
+        //     params: {},
+        //     fieldName: {}
+        // },
         // 压缩参数,默认使用localResizeIMG进行压缩,设置为null禁止压缩 
         // compression config,default resize image by localResizeIMG (https://github.com/think2011/localResizeIMG) 
         // set null to disable compression 
@@ -60,15 +60,15 @@ Vue.use(VueHtml5Editor,{
         },
         // 响应数据处理,最终返回图片链接 
         // handle response data，return image url 
-        uploadHandler(responseText){
-            //default accept json data like  {ok:false,msg:"unexpected"} or {ok:true,data:"image url"} 
-            var json = JSON.parse(responseText)
-            if (!json.ok) {
-                alert(json.msg)
-            } else {
-                return json.data
-            }
-        }
+        // uploadHandler(responseText){
+        //     //default accept json data like  {ok:false,msg:"unexpected"} or {ok:true,data:"image url"} 
+        //     var json = JSON.parse(responseText)
+        //     if (!json.ok) {
+        //         alert(json.msg)
+        //     } else {
+        //         return json.data
+        //     }
+        // }
     },
     // 语言，内建的有英文（en-us）和中文（zh-cn） 
     //default en-us, en-us and zh-cn are built-in 
@@ -89,7 +89,7 @@ Vue.use(VueHtml5Editor,{
             "eraser": "格式清除",
             "info": "关于",
             "color": "颜色",
-            "please enter a url": "请输入地址",
+            "please enter a url": "请输入图片的URL",
             "create link": "创建链接",
             "bold": "加粗",
             "italic": "倾斜",
@@ -109,8 +109,8 @@ Vue.use(VueHtml5Editor,{
             "background color": "背景色",
             "row count": "行数",
             "column count": "列数",
-            "save": "确定",
-            "upload": "上传",
+            "save": "插入图片",
+            "upload": "点我没用",
             "progress": "进度",
             "unknown": "未知",
             "please wait": "请稍等",
@@ -134,7 +134,7 @@ Vue.use(VueHtml5Editor,{
         "link",
         "unlink",
         "tabulation",
-        // "image",
+        "image",
         "hr",
         // "eraser",
         // "undo",
