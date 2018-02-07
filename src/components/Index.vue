@@ -12,14 +12,14 @@
       </div>
     </div>
 
-    <div id="promo2" v-if="adObj.id" v-bind:style="{ backgroundImage: 'url(' + adObj.src + ')' }">
+    <div id="promo2" v-if="adObj.id" v-bind:style="{ backgroundImage: 'url(' + adObj.src + ')' , width: width}">
       <div class="jumbotron">
         <h3>{{adObj.name}} </h3>
         <p>{{adObj.desctext}}</p>
         <p><a class="text-uppercase btn btn-info btn-lg" @click="adClick">去看看!</a></p>
         <!--<p><a class="text-uppercase btn btn-info btn-lg" href="#/download">Start Now!</a></p>-->
       </div>
-      <div style="float:right;position:relative; background-color: #d3dce6; padding: 4px; margin-right: -38px; margin-top: 10px;">广告</div>
+      <!--<div style="position:absolute;bottom:0;right:0;width:100px;height:10px;border:1px solid red;z-index:100; ">广告</div>-->
     </div>
 
 
@@ -72,9 +72,10 @@
     data() {
       return {
         isMobile: false,
+        width: '55%',
         image: image,
         image3: image3,
-        adObj:{}
+        adObj: {}
       }
     },
 
@@ -87,6 +88,10 @@
 
     mounted: function () {
       var _this = this
+
+      if (this.isMobile) {
+        this.width="100%"
+      }
       API.getAd({}).then((res) => {
         if (res.data.data && res.data.data !== "null") {
           _this.adObj = res.data.data
@@ -124,7 +129,7 @@
         // window.open(url)
         window.location.href = url
       },
-      adClick: function(){
+      adClick: function () {
         API.adClick({ id: this.adObj.id }).then((res) => {
 
         }, (res) => {
@@ -133,7 +138,7 @@
 
         window.open(this.adObj.click_ref, "_blank");
       },
-      adImpl: function(){
+      adImpl: function () {
         API.adImpl({ id: this.adObj.id }).then((res) => {
 
         }, (res) => {
@@ -179,7 +184,11 @@
     padding: 40px;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top: 50px;
+    /*background-size: contain;*/
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: center;
   }
   
   .el-carousel__item h3 {

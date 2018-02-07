@@ -5,8 +5,8 @@ import config from './config';
 
 Vue.use(VueResource)
 
-const URL = "http://localhost:3000/api"
-// const URL = "https://api.mycard.moe/ygopro/arena"
+// const URL = "http://localhost:3000/api"
+const URL = "https://api.mycard.moe/ygopro/arena"
 
 export default class Api {
 
@@ -124,6 +124,22 @@ export default class Api {
 
     static adImpl(opt) {
         const url = `${URL}/adImpl`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
+    static getFirstWin(opt) {
+        var request = query.stringify(opt);
+        const url = `${URL}/firstwin?${request}`;
+        return Vue.http.get(url);
+    }
+
+    static adSwitchChange(opt) {
+        const url = `${URL}/adSwitchChange`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
+    static saveActivity(opt) {
+        const url = `${URL}/activity`
         return Vue.http.post(url, opt, { 'emulateJSON': true });
     }
 

@@ -25,6 +25,8 @@
 						<div class="caption">
 							<h3> <i class="glyphicon glyphicon-user"></i> <strong>{{username}}</strong></h3>
 							<!--<p class="text-nowrap text-muted" style="font-size:20px;">有妞不泡，大逆不道;遇妞则泡，替天行道。 </p>-->
+							<p class="text-muted" style="font-size:20px;">今日首胜: {{activity.today}}/1 </p>
+							<p class="text-muted" style="font-size:20px;">{{activity.name}}首胜: {{activity.total}}/{{activity.max}} </p>
 						</div>
 					</div>
 				</div>
@@ -171,6 +173,10 @@
 	export default {
 		data() {
 			return {
+				activity: {
+					name: '新年充电活动',
+					max: '15'
+				},
 				searchText: "",
 				hasError: false,
 				username: "",
@@ -278,6 +284,13 @@
 				}, (res) => {
 					console.log(res)
 				});
+
+				var _this = this;
+				API.getFirstWin({ username: username }).then((res) => {
+					_this.activity = res.data
+				}, (res) => {
+					console.log(res)
+				});
 			},
 
 			renderRankTable: function (id, tableData, ttype) {
@@ -315,7 +328,7 @@
 									diff = "+" + diff
 								}
 								var append = diff + ttype
-								if(ttype === ""){
+								if (ttype === "") {
 									append = ""
 								}
 								if (userscorea < 0) {
@@ -339,7 +352,7 @@
 									diff = "+" + diff
 								}
 								var append = diff + ttype
-								if(ttype === ""){
+								if (ttype === "") {
 									append = ""
 								}
 								if (userscoreb < 0) {

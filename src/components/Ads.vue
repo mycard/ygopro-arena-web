@@ -1,11 +1,24 @@
 <template>
 	<div class="container">
 		<div id="history">
+			<h4 class="color-blue"><i class="glyphicon glyphicon-filter"></i> 系统设置</h4>
 
+			<el-form :model="dynamicValidateForm" :rules="rules2" ref="dynamicValidateForm" label-width="180px" class="demo-dynamic">
 
+				<el-form-item label="自动关闭弹窗广告设置">
+					<el-switch v-model="ad_switch" @change="adSwitchChange(ad_switch)" on-color="#13ce66" off-color="#ff4949" on-text="启用" off-text="禁用"
+						:on-value="onValue" :off-value="offValue">
+						</el-switch>
+				</el-form-item>
 
+				<el-form-item label="首胜活动设置">
+					<el-button type="link" @click="firstWin">点我设置</el-button>
+				</el-form-item>
+
+			</el-form>
+
+			<h4 class="color-blue"><i class="glyphicon glyphicon-filter"></i> 广告素材列表</h4>
 			<el-button type="text" @click="newVote">新增广告素材</el-button>
-
 			<el-dialog title="广告素材" :visible.sync="dialogFormVisible">
 				<el-form :model="dynamicValidateForm" :rules="rules2" ref="dynamicValidateForm" label-width="80px" class="demo-dynamic">
 
@@ -52,6 +65,30 @@
 					<el-button @click="dialogFormVisible = false">取 消</el-button>
 					<!--<el-button @click="resetForm('dynamicValidateForm')">重置</el-button>-->
 					<el-button type="primary" @click="submitForm('dynamicValidateForm')">提 交</el-button>
+				</div>
+			</el-dialog>
+
+
+			<el-dialog title="首胜活动设置" :visible.sync="firstWinDialogVisible">
+				<el-form :model="firstWinForm" :rules="rules2" ref="firstWinForm" label-width="80px" class="demo-dynamic">
+
+					<el-form-item prop="name" label="活动标题" :rules="{required: true, message: '活动标题不能为空', trigger: 'blur'}">
+						<el-input v-model="firstWinForm.name"></el-input>
+					</el-form-item>
+
+					<el-form-item prop="email" label="活动日期">
+						<el-date-picker v-model="date" type="daterange" placeholder="选择日期范围" :picker-options="pickerOptions2" style="width: 220px;">
+						</el-date-picker>
+					</el-form-item>
+
+					<el-form-item prop="max" label="达标场次" >
+						<el-input v-model="firstWinForm.max" placeholder=""></el-input>
+					</el-form-item>
+
+				</el-form>
+				<div slot="footer" class="dialog-footer">
+					<el-button @click="firstWinDialogVisible = false">取 消</el-button>
+					<el-button type="primary" @click="submitFirstWinForm('firstWinForm')">提 交</el-button>
 				</div>
 			</el-dialog>
 
@@ -150,23 +187,23 @@
 					this.from_date = '';
 					this.to_date = '';
 				}
-				if (this.needRender) {
-					this.renderTable()
-				}
+				// if (this.needRender) {
+				// 	this.renderTable()
+				// }
 			},
 		},
 		data: function () {
 			var checkMax = (rule, value, callback) => {
 				if (!value) {
-					return callback(new Error('个数不能为空'));
+					return callback(new Error('次数不能为空'));
 				}
 				setTimeout(() => {
 					value = value - 0
 					if (!Number.isInteger(value)) {
 						callback(new Error('请输入数字值'));
 					} else {
-						if (value > 6) {
-							callback(new Error('个数不能超过6个'));
+						if (value > 365) {
+							callback(new Error('次数不能超过365个'));
 						} else {
 							callback();
 						}
@@ -176,9 +213,10 @@
 			return {
 				rules2: {
 					max: [
-						{ validator: checkMax, trigger: 'blur' }
+						{ validator: checkMax, trigger: 'blur' ,required: true}
 					]
 				},
+				ad_switch: true,
 				radio: "x",
 				loading: true,
 				onValue: true,
@@ -258,6 +296,10 @@
 					clkurl: API.clkUrl
 				},
 				dialogFormVisible: false,
+				firstWinDialogVisible: false,
+				firstWinForm: {
+
+				},
 				form: {
 					name: '',
 					region: '',
@@ -281,6 +323,39 @@
 		},
 
 		methods: {
+			firstWin: function () {
+				API.getFirstWin({}).then((res) => {
+					this.firstWinForm.name = res.data.name
+					this.firstWinForm.max = res.data.max
+					this.firstWinDialogVisible = true
+					this.date = [moment(res.data.start).format('YYYY-MM-DD HH:mm'), moment(res.data.end).format('YYYY-MM-DD HH:mm')]
+					// from_date: moment().format('YYYY-MM-DD HH:mm'),
+					// to_date: moment().add(7, 'd').format('YYYY-MM-DD HH:mm'),
+					// date: [moment().format('YYYY-MM-DD HH:mm'), moment().add(7, 'd').format('YYYY-MM-DD')],
+				}, (res) => {
+					// this.loading = false
+				});
+			},
+			adSwitchChange: function (status) {
+				// this.loading = true
+				var param = {
+					status: status
+				}
+				console.log(status)
+				API.adSwitchChange(param).then((res) => {
+					// this.loading = false
+
+					// this.$notify({
+					// 	title: '操作成功',
+					// 	message: '状态已修改!',
+					// 	type: 'success'
+					// })
+
+				}, (res) => {
+					// this.loading = false
+				});
+			},
+
 			switchChange: function (id, status) {
 				// this.loading = true
 				var param = {
@@ -392,13 +467,58 @@
 					history.data = res.data.data;
 					// console.log(history.data)
 					_this.history = history
-
-
+					_this.ad_switch = res.data.ad_switch
 
 				}, (res) => {
 					//
 					_this.loading = false
 				})
+			},
+			submitFirstWinForm(formName) {
+				this.$refs[formName].validate((valid) => {
+					if (valid) {
+
+						if (this.isClick) {
+							this.$notify({
+								title: '警告',
+								message: '您操作得太快了!',
+								type: 'error'
+							})
+						} else {
+							this.isClick = true;
+							var param = {
+								name: this.firstWinForm.name,
+								start: this.from_date,
+								end: this.to_date,
+								max: this.firstWinForm.max,
+							}
+
+							var _this = this;
+
+							API.saveActivity(param).then((res) => {
+								this.firstWinDialogVisible = false
+
+								// this.$notify({
+								// 	title: '操作成功',
+								// 	message: '感谢您的提交!',
+								// 	type: 'success'
+								// })
+								setTimeout(function () {
+									_this.isClick = false;
+								}, 1500)
+							}, (res) => {
+								setTimeout(function () {
+									_this.isClick = false;
+								}, 1500)
+							});
+
+						}
+
+					} else {
+						console.log('error submit!!');
+						return false;
+					}
+				});
 			},
 			submitForm(formName) {
 				this.$refs[formName].validate((valid) => {

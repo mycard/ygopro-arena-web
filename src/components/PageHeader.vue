@@ -87,8 +87,9 @@
       </div>
     </el-dialog>
 
-    <div id="ads" style="display: none">
+    <div id="ads" style="display: none;position: relative;">
       <div @click="adClick">
+        <div v-if="autoClose" style="text-align: center;position: absolute;width:20px;height: 20px;margin-top: 0px; float: right;background-color: red">{{timer}}</div>
         <img v-bind:style="{ height: 'auto',  width: width  }" v-bind:src="adObj.src">
       </div>
     </div>
@@ -114,6 +115,7 @@
       const cityOptions = ['上海', '北京', '广州', '深圳'];
       return {
         opids: [],
+        timer: 5,
         height: "300",
         width: "400",
         isMobile: false,
@@ -125,6 +127,7 @@
         adObj: {
 
         },
+        autoClose: false,
         size: 'small',
         dialogFormVisible: false,
         form: {
@@ -172,8 +175,21 @@
       //   }
       // }
 
+      var ad_popup = localStorage.getItem('ad_popup');
+      if (ad_popup) {
+        var today = moment().format('YYYY-MM-DD')
+        if (ad_popup === today) {
+          return
+        }
+      }
+
+      var time = 5000
+
       var _this = this
       API.getAd({}).then((res) => {
+        if (res.data.auto_close_ad && res.data.auto_close_ad === "true") {
+          _this.autoClose = true
+        }
         if (res.data.data && res.data.data !== "null") {
           _this.adObj = res.data.data
           if (_this.isMobile) {
@@ -182,44 +198,53 @@
             _this.adObj.src = _this.adObj.imgp_url
           }
 
-          setTimeout(function () {
 
-            var area = ["800px", "480px"]
-            if (_this.isMobile) {
-              area = ["300px", "400px"]
+          var area = ["800px", "480px"]
+          if (_this.isMobile) {
+            area = ["300px", "400px"]
+          }
+
+          layer.open({
+            type: 1
+            , title: false //不显示标题栏
+            // ,closeBtn: false
+            , area: area
+            , shade: 0.8
+            , offset: _this.isMobile ? '100px' : "auto"
+            , id: 'LAY_layuipro' //设定一个id，防止重复弹出
+            // ,btn: ['火速围观', '残忍拒绝']
+            , btnAlign: 'c'
+            , moveType: 1 //拖拽模式，0或者1
+            , content: $('#ads')
+            , success: function (layero) {
+              var btn = layero.find('.layui-layer-btn');
+              btn.find('.layui-layer-btn0').attr({
+                href: 'http://www.layui.com/'
+                , target: '_blank'
+              });
             }
+            , success: function () {
+              _this.adImpl()
 
-            layer.open({
-              type: 1
-              , title: false //不显示标题栏
-              // ,closeBtn: false
-              , area: area
-              , shade: 0.8
-              , offset: _this.isMobile ? '100px' : "auto"
-              , id: 'LAY_layuipro' //设定一个id，防止重复弹出
-              // ,btn: ['火速围观', '残忍拒绝']
-              , btnAlign: 'c'
-              , moveType: 1 //拖拽模式，0或者1
-              , content: $('#ads')
-              , success: function (layero) {
-                var btn = layero.find('.layui-layer-btn');
-                btn.find('.layui-layer-btn0').attr({
-                  href: 'http://www.layui.com/'
-                  , target: '_blank'
-                });
-              }
-              , success: function () {
-                _this.adImpl()
-                setTimeout(function () {
-                  layer.close(layer.index);
-                }, 5000)
-              }
-              , end: function () {
-                $("#ads").hide()
-              }
-            });
+              localStorage.setItem('ad_popup', moment().format('YYYY-MM-DD'));
 
-          }, 3000)
+              if (_this.autoClose) {
+                var int = setInterval(function () {
+                  _this.timer--;
+                  if (_this.timer == 0) {
+                    clearInterval(int)
+                    // layer.close(layer.index);
+                    layer.closeAll();
+                  }
+                }, 1000)
+              }
+
+
+            }
+            , end: function () {
+              $("#ads").hide()
+            }
+          });
 
 
         }

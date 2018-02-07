@@ -7,7 +7,8 @@
             <img v-bind:src="user.avatar_url" style="height:200px;margin-top:13px;">
             <div class="caption">
               <h3> <i class="glyphicon glyphicon-user"></i> <strong>{{user.username}}</strong></h3>
-              <!--<p class="text-nowrap text-muted" style="font-size:20px;">有妞不泡，大逆不道;遇妞则泡，替天行道。 </p>-->
+              <p class="text-muted" style="font-size:20px;">今日首胜: {{activity.today}}/1 </p>
+              <p class="text-muted" style="font-size:20px;">{{activity.name}}首胜: {{activity.total}}/{{activity.max}} </p>
             </div>
           </div>
         </div>
@@ -150,6 +151,10 @@
     data() {
       return {
         isMobile: false,
+        activity:{
+          name:'新年充电活动',
+          max:'15'
+        },
         user_info: {
           exp: 0,
           pt: 500,
@@ -247,6 +252,14 @@
             rankTable2.destroy();
           }
           rankTable2 = this.renderRankTable("#entertain_rank", res.data.data, "")
+        }, (res) => {
+          console.log(res)
+        });
+
+        var _this = this;
+
+        API.getFirstWin({ username: username }).then((res) => {
+            _this.activity = res.data
         }, (res) => {
           console.log(res)
         });
