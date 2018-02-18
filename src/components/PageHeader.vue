@@ -21,6 +21,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img v-bind:src="user.avatar_url" id="head-portrait">{{user.username}} <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li role="presentation"><a href="#/profile">{{lang.profile}} </a></li>
+                  <li role="presentation"><a href="https://accounts.moecube.com/profiles">{{lang.account}} </a></li>
                   <li class="divider" role="presentation"></li>
                   <li role="presentation"><a @click.prevent="logout" href="#">{{lang.signout}} </a></li>
                 </ul>
