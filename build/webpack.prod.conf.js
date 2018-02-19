@@ -95,6 +95,11 @@ var webpackConfig = merge(baseWebpackConfig, {
         to: path.join(config.build.assetsSubDirectory, ".."),
         ignore: ['.*']
       },
+      {
+        from: path.resolve(__dirname, '../static/konami.html'),
+        to: path.join(config.build.assetsSubDirectory, ".."),
+        ignore: ['.*']
+      },
     ])
   ]
 })
