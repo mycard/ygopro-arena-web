@@ -14,6 +14,7 @@
               <li role="presentation"><a href="https://ygobbs.com/" target="_blank">{{lang.forum}} </a></li>
               <li role="presentation"><a href="#/ranking">{{lang.rank}} </a></li>
               <li role="presentation"><a href="#/cards">{{lang.card_rank}} </a></li>
+              <li role="presentation"><a href="#/deckprint">{{lang.deckprint}} </a></li>
               <li role="presentation"><a href="https://rep.ygobbs.com">{{lang.battlelog}} </a></li>
               <!--<li role="presentation"><a href="https://mycard.moe/ygopro/">{{lang.download}} </a></li>-->
               <li role="presentation"><a href="#/download">{{lang.download}} </a></li>

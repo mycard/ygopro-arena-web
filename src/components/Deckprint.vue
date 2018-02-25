@@ -1,0 +1,153 @@
+<template>
+    <div class="content">
+        <div class="container">
+            <template>
+                <el-alert title="上传ydk文件和填写必要的信息之后,卡组表格即可自动生成" type="success">
+                </el-alert>
+            </template>
+            <hr>
+            <el-form ref="form" :model="form" label-width="80px">
+                <el-form-item label="姓名" :label-width="formLabelWidth">
+                    <el-input v-model="form.name" placeholder="请输入标题姓名" auto-complete="off" width="10px"></el-input>
+                </el-form-item>
+
+                 <el-form-item label="Event" :label-width="formLabelWidth">
+                    <el-input v-model="form.event" placeholder="请输入Event" auto-complete="off" width="10px"></el-input>
+                </el-form-item>
+                <el-form-item label="ydk文件" :label-width="formLabelWidth">
+                    <el-upload class="upload-demo" :action="uploadUrl" :on-change="handleChange" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload"
+                        :file-list="fileList3">
+                        <el-button size="small" type="primary">点击上传</el-button>
+                        <div slot="tip" class="el-upload__tip">上传卡组文件，大小不能超过3KB</div>
+                        </el-upload>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">确认</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+    </div>
+
+</template>
+
+<script>
+    import querystring from 'querystring';
+    import crypto from 'crypto';
+    import API from '../api'
+    import { mapGetters } from 'vuex'
+    import moment from 'moment'
+    import tb_language from './tb_lang.js'
+
+    export default {
+        data() {
+            return {
+                fileList3: [],
+
+                form: {
+                    name: '',
+                    event: '',
+                },
+                formLabelWidth: '80px',
+                isNew: true,
+                isClick: false,
+                todayCount: 0,
+                uploadUrl: API.uploadUrl,
+                imageUrl: "",
+                downloadPath: "",
+                demo_title: "",
+                demo_url: "",
+                demo1: [],
+                demo2: []
+            }
+        },
+
+        created: function () {
+            setTimeout(function () {
+                $(".el-upload__input").hide()
+            }, 100)
+        },
+
+        computed: {
+      		...mapGetters({
+                lang: 'getLang',
+                user: 'getUser'
+            }),
+        },
+
+        methods: {
+            handleChange(file, fileList) {
+                this.fileList3 = fileList.slice(-1);
+            },
+
+            handleAvatarSuccess(res, file) {
+                this.downloadPath = file.response.path
+                this.imageUrl = URL.createObjectURL(file.raw);
+            },
+            beforeAvatarUpload(file) {
+                var type = /\.[^\.]+/.exec(file.name);
+                const isJPG = type[0] === '.ydk';
+                const isLt2M = file.size / 1024 < 3;
+
+                if (!isJPG) {
+                    this.$message.error('上传文件只能是 ydk 格式!');
+                    return false
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传文件大小不能超过 3KB!');
+                    return false
+                }
+                return true;
+            },
+
+            download: function () {
+                window.location.href = API.getDownloadUrl(this.downloadPath)
+            },
+
+            onSubmit: function () {
+                if (!this.form.name || !this.form.name.trim()) {
+                    this.$notify({
+                        title: '警告',
+                        message: '请输入姓名!',
+                        type: 'error'
+                    })
+                    return;
+                }
+
+                if (!this.form.event || !this.form.event.trim()) {
+                    this.$notify({
+                        title: '警告',
+                        message: '请输入event!',
+                        type: 'error'
+                    })
+                    return;
+                }
+
+                if (!this.downloadPath || !this.downloadPath.trim()) {
+                    this.$notify({
+                        title: '警告',
+                        message: '请上传ydk文件!',
+                        type: 'error'
+                    })
+                    return;
+                }
+                var  opt = {
+                    name: this.form.name,
+                    event: this.form.event,
+                    id: this.downloadPath.slice(7)
+                }
+                var request = querystring.stringify(opt);
+                // var baseUrl = "http://localhost:̃8081"
+                var baseUrl = "https://mycard.moe/ygopro/arena"
+                var url = `${baseUrl}/konami.html?${request}`;
+
+                window.open(url, "_blank");
+            },
+
+        },
+    }
+
+</script>
+
+<style scoped>
+
+</style>

@@ -26,7 +26,8 @@
   </div>
   <div id="page-container">
     <div id="pf1" class="pf w0 h0" data-page-no="1">
-      <div class="pc pc1 w0 h0"><img class="bi x0 y0 w1 h1" alt="" src="assets/deck/bg1.png" />
+      <div class="pc pc1 w0 h0">
+        <img class="bi x0 y0 w1 h1" alt="" src="assets/deck/bg1.png" />
         <div class="c x1 y1 w2 h2">
           <div class="t m0 x2 h3 y2 ff1 fs0 fc0 sc0 ls0 ws0">Yu<span class="ls1">#<span class="ls2">Gi</span>#<span class="ls3">Oh!)Deck)Lis<span class="_ _0"></span>t)Form<span
               class="ls1">)<span class="_ _1"> </span>)</span>
@@ -48,7 +49,7 @@
           <div class="t m0 x4 h6 y5 ff2 fs0 fc0 sc0 ls6 ws0">Event/<span class="ff3 ls5"></span><span class="ls1">:!</span></div>
         </div>
         <div class="c x8 y4 w7 h5">
-          <div class="t m0 x4 h4 y5 ff5 fs0 fc0 sc0 ls1 ws0">YOT SG 2017</div>
+          <div class="t m0 x4 h4 y5 ff5 fs0 fc0 sc0 ls1 ws0">{{ deck.event }}</div>
         </div>
         <div class="c x1 y1 w2 h2">
           <div class="t m0 x0 h4 y6 ff2 fs0 fc0 sc0 ls1 ws0">!</div>
@@ -291,185 +292,187 @@
           <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[9].name}}</div>
         </div>
         <div class="c x3 y1f wd hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monster[10].num}}</div>
         </div>
         <div class="c x18 y1f we hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.monster[10].name}}</div>
         </div>
         <div class="c x16 y1f w9 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.spells[10].num}}</div>
         </div>
         <div class="c x19 y1f wf hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.spells[10].name}}</div>
         </div>
         <div class="c x17 y1f w10 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.traps[10].num}}</div>
         </div>
         <div class="c x1a y1f w11 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[10].name}}</div>
         </div>
+
         <div class="c x3 y20 wd hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monster[11].num}}</div>
         </div>
         <div class="c x18 y20 we hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.monster[11].name}}</div>
         </div>
         <div class="c x16 y20 w9 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.spells[11].num}}</div>
         </div>
         <div class="c x19 y20 wf hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.spells[11].name}}</div>
         </div>
         <div class="c x17 y20 w10 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.traps[11].num}}</div>
         </div>
         <div class="c x1a y20 w11 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[11].name}}</div>
         </div>
         <div class="c x3 y21 wd he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monster[12].num}}</div>
         </div>
         <div class="c x18 y21 we he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.monster[12].name}}</div>
         </div>
         <div class="c x16 y21 w9 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.spells[12].num}}</div>
         </div>
         <div class="c x19 y21 wf he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.spells[12].name}}</div>
         </div>
         <div class="c x17 y21 w10 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.traps[12].num}}</div>
         </div>
         <div class="c x1a y21 w11 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[12].name}}</div>
         </div>
         <div class="c x3 y22 wd hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monster[13].num}}</div>
         </div>
         <div class="c x18 y22 we hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.monster[13].name}}</div>
         </div>
         <div class="c x16 y22 w9 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.spells[13].num}}</div>
         </div>
         <div class="c x19 y22 wf hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.spells[13].name}}</div>
         </div>
         <div class="c x17 y22 w10 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.traps[13].num}}</div>
         </div>
         <div class="c x1a y22 w11 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[13].name}}</div>
         </div>
         <div class="c x3 y23 wd hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monster[14].num}}</div>
         </div>
         <div class="c x18 y23 we hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.monster[14].name}}</div>
         </div>
         <div class="c x16 y23 w9 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.spells[14].num}}</div>
         </div>
         <div class="c x19 y23 wf hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.spells[14].name}}</div>
         </div>
         <div class="c x17 y23 w10 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.traps[14].num}}</div>
         </div>
         <div class="c x1a y23 w11 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[14].name}}</div>
         </div>
         <div class="c x3 y24 wd he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monster[15].num}}</div>
         </div>
         <div class="c x18 y24 we he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.monster[15].name}}</div>
         </div>
         <div class="c x16 y24 w9 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.spells[15].num}}</div>
         </div>
         <div class="c x19 y24 wf he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.spells[15].name}}</div>
         </div>
         <div class="c x17 y24 w10 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.traps[15].num}}</div>
         </div>
         <div class="c x1a y24 w11 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[15].name}}</div>
         </div>
         <div class="c x3 y25 wd he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monster[16].num}}</div>
         </div>
         <div class="c x18 y25 we he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.monster[16].name}}</div>
         </div>
         <div class="c x16 y25 w9 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.spells[16].num}}</div>
         </div>
         <div class="c x19 y25 wf he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.spells[16].name}}</div>
         </div>
         <div class="c x17 y25 w10 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.traps[16].num}}</div>
         </div>
         <div class="c x1a y25 w11 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[16].name}}</div>
         </div>
         <div class="c x3 y26 wd hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monster[17].num}}</div>
         </div>
         <div class="c x18 y26 we hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.monster[17].name}}</div>
         </div>
         <div class="c x16 y26 w9 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.spells[17].num}}</div>
         </div>
         <div class="c x19 y26 wf hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.spells[17].name}}</div>
         </div>
         <div class="c x17 y26 w10 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.traps[17].num}}</div>
         </div>
         <div class="c x1a y26 w11 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[17].name}}</div>
         </div>
         <div class="c x3 y27 wd hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monster[18].num}}</div>
         </div>
         <div class="c x18 y27 we hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.monster[18].name}}</div>
         </div>
         <div class="c x16 y27 w9 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.spells[18].num}}</div>
         </div>
         <div class="c x19 y27 wf hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.spells[18].name}}</div>
         </div>
         <div class="c x17 y27 w10 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.traps[18].num}}</div>
         </div>
         <div class="c x1a y27 w11 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[18].name}}</div>
         </div>
         <div class="c x3 y28 wd he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monster[19].num}}</div>
         </div>
         <div class="c x18 y28 we he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.monster[19].name}}</div>
         </div>
         <div class="c x16 y28 w9 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.spells[19].num}}</div>
         </div>
         <div class="c x19 y28 wf he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.spells[19].name}}</div>
         </div>
         <div class="c x17 y28 w10 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.traps[19].num}}</div>
         </div>
         <div class="c x1a y28 w11 he">
-          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
+          <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.traps[19].name}}</div>
         </div>
+
         <div class="c x3 y29 wd hd">
           <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.monsterTotal}}</div>
         </div>
@@ -526,7 +529,7 @@
         <div class="c x19 y30 wf he">
           <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.side[0].name}}</div>
         </div>
-        
+
         <!--<div class="c x17 y30 w10 he">
           <div class="t m0 x4 ha y17 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
         </div>
@@ -572,7 +575,7 @@
         <div class="c x19 y32 wf hd">
           <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.side[2].name}}</div>
         </div>
-        
+
         <!--<div class="c x17 y32 w17 hd">
           <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
         </div>
@@ -592,7 +595,7 @@
         <div class="c x19 y33 wf hd">
           <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.side[3].name}}</div>
         </div>
-        
+
         <div class="c x17 y33 w9 hd">
           <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">!</div>
         </div>
@@ -803,13 +806,13 @@
           <div class="t m0 x4 h13 y43 ff2 fs4 fc0 sc0 lsb ws0">Description:<span class="ls1">!</span></div>
         </div>
         <div class="c x3 y42 wd hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.extraTotal}}</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.extraTotal}}</div>
         </div>
         <div class="c x18 y42 w16 hd">
           <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 lsc ws0">&lt;&lt;&lt;!Total!Extra!Deck!<span class="ls1">!</span></div>
         </div>
         <div class="c x16 y42 w10 hd">
-          <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 ls1 ws0">{{deck.sideTotal}}</div>
+          <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.sideTotal}}</div>
         </div>
         <div class="c x19 y42 wf hd">
           <div class="t m0 x4 ha y14 ff2 fs2 fc0 sc0 lsc ws0">&lt;&lt;&lt;!Total!Side!Deck<span class="ls1">!</span></div>
@@ -831,54 +834,54 @@
 
         <!--card game id-->
         <div class="c x1f y49 w1d h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">1</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c x21 y49 w1d h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">2</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c x22 y49 w1e h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">0</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c xa y49 w1d h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">0</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c xb y49 w1d h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">2</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c xc y49 w1e h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">7</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c x23 y49 w1e h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">0</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c x24 y49 w1d h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">8</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c xe y49 w1e h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">7</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c xf y49 w1e h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">8</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
 
         <!--date-->
         <div class="c x10 y4b w1f h18">
-          <div class="t m0 x20 h17 y4c ff7 fs5 fc0 sc0 ls1 ws0">1</div>
+          <div class="t m0 x20 h17 y4c ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c x25 y4d w1f h19">
-          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0">8</div>
+          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c x26 y4f w1f h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">0</div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c x27 y50 w1f h19">
-          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0">2</div>
+          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c x28 y4d w1f h19">
-          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0">1</div>
+          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
         <div class="c x29 y4b w20 h18">
-          <div class="t m0 x20 h17 y4c ff7 fs5 fc0 sc0 ls1 ws0">8</div>
+          <div class="t m0 x20 h17 y4c ff7 fs5 fc0 sc0 ls1 ws0"></div>
         </div>
 
         <!--total-->
@@ -902,72 +905,75 @@
 
 <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-resource@1.2.0/dist/vue-resource.min.js"></script>
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
 <script>
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
   new Vue({
     el: '#page-container',
     created: function () {
-      
-      this.deck.monsterTotal = this.deck.monster.reduce(function (a, b) {
-        let x = a.num;
-        let y = b.num;
-        if (isNaN(a.num)) {
-          x = 0
+      var id = getParameterByName('id');
+      this.deck.name = getParameterByName('name');
+      this.deck.event = getParameterByName('event');
+      if (id) {
+        var URL = "http://localhost:3000"
+        // var URL = "https://mycard.moe/ygopro"
+        var params = {
+          page: this.page
         }
-        if (isNaN(b.num)) {
-          y = 0
-        }
-        return { num: x + y }
-      }).num;
+        Vue.http.get(URL + '/api/deckdata/' + id, { 'params': params }).then((res) => {
 
-      this.deck.spellTotal = this.deck.spells.reduce(function (a, b) {
-        let x = a.num;
-        let y = b.num;
-        if (isNaN(a.num)) {
-          x = 0
-        }
-        if (isNaN(b.num)) {
-          y = 0
-        }
-        return { num: x + y }
-      }).num;
+          this.deck.monster = res.data.deck.monster
+          this.deck.spells = res.data.deck.spells
+          this.deck.traps = res.data.deck.traps
+          this.deck.extra = res.data.deck.extra
+          this.deck.side = res.data.deck.monster
 
-      this.deck.trapTotal = this.deck.traps.reduce(function (a, b) {
-        let x = a.num;
-        let y = b.num;
-        if (isNaN(a.num)) {
-          x = 0
-        }
-        if (isNaN(b.num)) {
-          y = 0
-        }
-        return { num: x + y }
-      }).num;
+          var length = this.deck.monster.length
+          if (length < 20) {
+            for (var i = 0; i < 20 - length; i++) {
+              this.deck.monster.push({ "name": "", "num": "" })
+            }
+          }
+          length = this.deck.spells.length
+          if (length < 20) {
+            for (var i = 0; i < 20 - length; i++) {
+              this.deck.spells.push({ "name": "", "num": "" })
+            }
+          }
+          length = this.deck.traps.length
+          if (length < 20) {
+            for (var i = 0; i < 20 - length; i++) {
+              this.deck.traps.push({ "name": "", "num": "" })
+            }
+          }
+          length = this.deck.extra.length
+          if (length < 15) {
+            for (var i = 0; i < 15 - length; i++) {
+              this.deck.extra.push({ "name": "", "num": "" })
+            }
+          }
+          length = this.deck.side.length
+          if (length < 20) {
+            for (var i = 0; i < 15 - length; i++) {
+              this.deck.side.push({ "name": "", "num": "" })
+            }
+          }
 
-      this.deck.extraTotal = this.deck.extra.reduce(function (a, b) {
-        let x = a.num;
-        let y = b.num;
-        if (isNaN(a.num)) {
-          x = 0
-        }
-        if (isNaN(b.num)) {
-          y = 0
-        }
-        return { num: x + y }
-      }).num;
+          this.calTotal()
+        }, (res) => {
+        })
+      } else {
+        this.calTotal()
+      }
 
-      this.deck.sideTotal = this.deck.side.reduce(function (a, b) {
-        let x = a.num;
-        let y = b.num;
-        if (isNaN(a.num)) {
-          x = 0
-        }
-        if (isNaN(b.num)) {
-          y = 0
-        }
-        return { num: x + y }
-      }).num;
-
-      this.deck.mainTotal = parseInt(this.deck.monsterTotal) + parseInt(this.deck.spellTotal) + parseInt(this.deck.trapTotal)
 
     },
     watch: {
@@ -978,7 +984,7 @@
     data: function () {
       return {
         deck: {
-          name: "Joe",
+          name: "",
           event: "",
           gameID: "0500270878",
           date: "",
@@ -1092,7 +1098,69 @@
       }
     },
     methods: {
+      calTotal: function () {
+        this.deck.monsterTotal = this.deck.monster.reduce(function (a, b) {
+          let x = a.num;
+          let y = b.num;
+          if (isNaN(a.num)) {
+            x = 0
+          }
+          if (isNaN(b.num)) {
+            y = 0
+          }
+          return { num: x + y }
+        }).num;
 
+        this.deck.spellTotal = this.deck.spells.reduce(function (a, b) {
+          let x = a.num;
+          let y = b.num;
+          if (isNaN(a.num)) {
+            x = 0
+          }
+          if (isNaN(b.num)) {
+            y = 0
+          }
+          return { num: x + y }
+        }).num;
+
+        this.deck.trapTotal = this.deck.traps.reduce(function (a, b) {
+          let x = a.num;
+          let y = b.num;
+          if (isNaN(a.num)) {
+            x = 0
+          }
+          if (isNaN(b.num)) {
+            y = 0
+          }
+          return { num: x + y }
+        }).num;
+
+        this.deck.extraTotal = this.deck.extra.reduce(function (a, b) {
+          let x = a.num;
+          let y = b.num;
+          if (isNaN(a.num)) {
+            x = 0
+          }
+          if (isNaN(b.num)) {
+            y = 0
+          }
+          return { num: x + y }
+        }).num;
+
+        this.deck.sideTotal = this.deck.side.reduce(function (a, b) {
+          let x = a.num;
+          let y = b.num;
+          if (isNaN(a.num)) {
+            x = 0
+          }
+          if (isNaN(b.num)) {
+            y = 0
+          }
+          return { num: x + y }
+        }).num;
+
+        this.deck.mainTotal = parseInt(this.deck.monsterTotal) + parseInt(this.deck.spellTotal) + parseInt(this.deck.trapTotal)
+      }
     }
   })
 

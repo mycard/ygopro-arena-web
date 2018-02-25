@@ -1,20 +1,22 @@
 <template>
 
-  <div>
+  <div id="app">
+    <page-header></page-header>
     <router-view></router-view>
+    <page-footer></page-footer>
   </div>
 
 </template>
 
 <script>
-  import PageHeader from './components/PageHeader'
-  import PageFooter from './components/PageFooter'
+  import PageHeader from './PageHeader'
+  import PageFooter from './PageFooter'
 
-  import "./assets/css/Projects-Clean.css"
-  import "./assets/css/Pretty-Search-Form.css"
+  // import "./assets/css/Projects-Clean.css"
+  // import "./assets/css/Pretty-Search-Form.css"
 
   //js
-  window.jQuery = window.$ = require('jquery');
+  // window.jQuery = window.$ = require('jquery');
 
   export default {
     name: 'app',
