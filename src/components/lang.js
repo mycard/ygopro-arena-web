@@ -10,7 +10,7 @@ module.exports = {
     download: '下载',
     profile: '个人信息',
     account: '用户中心',
-    deckprint: '卡组打印',
+    deckprint: '卡表打印',
     signout: '退出',
     signin: '登录 | 注册',
     qc: '查询条件',

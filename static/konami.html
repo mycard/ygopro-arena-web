@@ -834,54 +834,54 @@
 
         <!--card game id-->
         <div class="c x1f y49 w1d h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.gameid[0]}}</div>
         </div>
         <div class="c x21 y49 w1d h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.gameid[1]}}</div>
         </div>
         <div class="c x22 y49 w1e h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.gameid[2]}}</div>
         </div>
         <div class="c xa y49 w1d h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.gameid[3]}}</div>
         </div>
         <div class="c xb y49 w1d h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.gameid[4]}}</div>
         </div>
         <div class="c xc y49 w1e h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.gameid[5]}}</div>
         </div>
         <div class="c x23 y49 w1e h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.gameid[6]}}</div>
         </div>
         <div class="c x24 y49 w1d h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.gameid[7]}}</div>
         </div>
         <div class="c xe y49 w1e h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.gameid[8]}}</div>
         </div>
         <div class="c xf y49 w1e h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.gameid[9]}}</div>
         </div>
 
         <!--date-->
         <div class="c x10 y4b w1f h18">
-          <div class="t m0 x20 h17 y4c ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4c ff7 fs5 fc0 sc0 ls1 ws0">{{deck.date[0]}}</div>
         </div>
         <div class="c x25 y4d w1f h19">
-          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0">{{deck.date[1]}}</div>
         </div>
         <div class="c x26 y4f w1f h16">
-          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4a ff7 fs5 fc0 sc0 ls1 ws0">{{deck.date[2]}}</div>
         </div>
         <div class="c x27 y50 w1f h19">
-          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0">{{deck.date[3]}}</div>
         </div>
         <div class="c x28 y4d w1f h19">
-          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4e ff7 fs5 fc0 sc0 ls1 ws0">{{deck.date[4]}}</div>
         </div>
         <div class="c x29 y4b w20 h18">
-          <div class="t m0 x20 h17 y4c ff7 fs5 fc0 sc0 ls1 ws0"></div>
+          <div class="t m0 x20 h17 y4c ff7 fs5 fc0 sc0 ls1 ws0">{{deck.date[5]}}</div>
         </div>
 
         <!--total-->
@@ -897,6 +897,7 @@
       </div>
       <div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div>
     </div>
+    <!--<div style="position: absolute;width:50px;height: 50px;right:200px; bottom:100px;background-color: red;"></div>-->
   </div>
   <div class="loading-indicator">
 
@@ -923,6 +924,21 @@
       if (id) {
         this.deck.name = getParameterByName('name');
         this.deck.event = getParameterByName('event');
+        var gameid = getParameterByName('gameid');
+
+        if (gameid) {
+          var gameid_arr = gameid.split('');
+          for (var i = 0; i < gameid_arr.length; i++) {
+            this.deck.gameid[i] = gameid_arr[i];
+          }
+        }
+
+        var date = getParameterByName('date');
+
+        if (date) {
+          this.deck.date = date.split('')
+        }
+
         // var URL = "http://localhost:3000/api"
         var URL = "https://api.mycard.moe/ygopro/arena"
         var params = {
@@ -986,8 +1002,8 @@
         deck: {
           name: "Joe xx xx 3",
           event: "",
-          gameID: "0500270878",
-          date: "",
+          gameid: ["", "", "", "", "", "", "", "", "", ""],
+          date: ["", "", "", "", "", ""],
           monsterTotal: 0,
           spellTotal: 0,
           trapTotal: 0,
@@ -1102,10 +1118,10 @@
         this.deck.monsterTotal = this.deck.monster.reduce(function (a, b) {
           let x = a.num;
           let y = b.num;
-          if (isNaN(a.num)) {
+          if (isNaN(a.num) || a.num === "") {
             x = 0
           }
-          if (isNaN(b.num)) {
+          if (isNaN(b.num) || b.num === "") {
             y = 0
           }
           return { num: x + y }
@@ -1114,10 +1130,10 @@
         this.deck.spellTotal = this.deck.spells.reduce(function (a, b) {
           let x = a.num;
           let y = b.num;
-          if (isNaN(a.num)) {
+          if (isNaN(a.num) || a.num === "") {
             x = 0
           }
-          if (isNaN(b.num)) {
+          if (isNaN(b.num) || b.num === "") {
             y = 0
           }
           return { num: x + y }
@@ -1126,10 +1142,10 @@
         this.deck.trapTotal = this.deck.traps.reduce(function (a, b) {
           let x = a.num;
           let y = b.num;
-          if (isNaN(a.num)) {
+          if (isNaN(a.num) || a.num === "") {
             x = 0
           }
-          if (isNaN(b.num)) {
+          if (isNaN(b.num) || b.num === "") {
             y = 0
           }
           return { num: x + y }
@@ -1138,10 +1154,10 @@
         this.deck.extraTotal = this.deck.extra.reduce(function (a, b) {
           let x = a.num;
           let y = b.num;
-          if (isNaN(a.num)) {
+          if (isNaN(a.num) || a.num === "") {
             x = 0
           }
-          if (isNaN(b.num)) {
+          if (isNaN(b.num) || b.num === "") {
             y = 0
           }
           return { num: x + y }
@@ -1150,10 +1166,10 @@
         this.deck.sideTotal = this.deck.side.reduce(function (a, b) {
           let x = a.num;
           let y = b.num;
-          if (isNaN(a.num)) {
+          if (isNaN(a.num) || a.num === "") {
             x = 0
           }
-          if (isNaN(b.num)) {
+          if (isNaN(b.num) || b.num === "") {
             y = 0
           }
           return { num: x + y }

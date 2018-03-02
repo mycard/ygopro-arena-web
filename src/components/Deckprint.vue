@@ -4,16 +4,32 @@
             <template>
                 <el-alert title="上传ydk文件和填写必要的信息之后,卡组表格即可自动生成" type="success">
                 </el-alert>
+                <hr>
+                <el-alert v-if="isIE" title="您的浏览器不支持卡表打印功能。
+卡表打印功能支持谷歌、Safari、火狐以及手机默认浏览器。" type="error">
+                    </el-alert>
             </template>
             <hr>
             <el-form ref="form" :model="form" label-width="80px">
+
                 <el-form-item label="姓名" :label-width="formLabelWidth">
                     <el-input v-model="form.name" placeholder="请输入标题姓名" auto-complete="off" width="10px"></el-input>
                 </el-form-item>
 
-                 <el-form-item label="Event" :label-width="formLabelWidth">
+                <el-form-item label="Event" :label-width="formLabelWidth">
                     <el-input v-model="form.event" placeholder="请输入Event" auto-complete="off" width="10px"></el-input>
                 </el-form-item>
+
+                <el-form-item label="参赛ID" :label-width="formLabelWidth">
+                    <el-input v-model="form.gameid" placeholder="请输入gameid" auto-complete="off" width="10px"></el-input>
+                </el-form-item>
+
+                <el-form-item label="日期" :label-width="formLabelWidth">
+                    <el-date-picker v-model="form.date" type="date" placeholder="选择日期" format="yyyy 年 MM 月 dd 日" value-format="yyyy-MM-dd">
+                    </el-date-picker>
+                    <!--<el-input v-model="form.date" placeholder="请输入" auto-complete="off" width="10px"></el-input>-->
+                </el-form-item>
+
                 <el-form-item label="ydk文件" :label-width="formLabelWidth">
                     <el-upload class="upload-demo" :action="uploadUrl" :on-change="handleChange" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload"
                         :file-list="fileList3">
@@ -43,9 +59,14 @@
             return {
                 fileList3: [],
 
+                isIE: false,
+
                 form: {
                     name: '',
                     event: '',
+                    date: '',
+                    gameid: '',
+
                 },
                 formLabelWidth: '80px',
                 isNew: true,
@@ -65,6 +86,8 @@
             setTimeout(function () {
                 $(".el-upload__input").hide()
             }, 100)
+
+            this.isIE = this.isIEMethod();
         },
 
         computed: {
@@ -103,23 +126,35 @@
                 window.location.href = API.getDownloadUrl(this.downloadPath)
             },
 
-            onSubmit: function () {
-                if (!this.form.name || !this.form.name.trim()) {
-                    this.$notify({
-                        title: '警告',
-                        message: '请输入姓名!',
-                        type: 'error'
-                    })
-                    return;
-                }
+            isIEMethod: function (ver) {
+                var b = document.createElement('b')
+                b.innerHTML = '<!--[if IE ' + ver + ']><i></i><![endif]-->'
+                return b.getElementsByTagName('i').length === 1
+            },
 
-                if (!this.form.event || !this.form.event.trim()) {
-                    this.$notify({
-                        title: '警告',
-                        message: '请输入event!',
-                        type: 'error'
-                    })
-                    return;
+            onSubmit: function () {
+                // if (!this.form.name || !this.form.name.trim()) {
+                //     this.$notify({
+                //         title: '警告',
+                //         message: '请输入姓名!',
+                //         type: 'error'
+                //     })
+                //     return;
+                // }
+
+                // if (!this.form.event || !this.form.event.trim()) {
+                //     this.$notify({
+                //         title: '警告',
+                //         message: '请输入event!',
+                //         type: 'error'
+                //     })
+                //     return;
+                // }
+
+                var date;
+
+                if (this.form.date) {
+                    date = moment(this.form.date).format('YYMMDD')
                 }
 
                 if (!this.downloadPath || !this.downloadPath.trim()) {
@@ -130,13 +165,17 @@
                     })
                     return;
                 }
-                var  opt = {
+
+                var opt = {
                     name: this.form.name,
                     event: this.form.event,
+                    gameid: this.form.gameid,
+                    date: date,
                     id: this.downloadPath.slice(7)
                 }
+
                 var request = querystring.stringify(opt);
-                // var baseUrl = "http://localhost:̃8081"
+                // var baseUrl = "http://localhost:8081"
                 var baseUrl = "https://mycard.moe/ygopro/arena"
                 var url = `${baseUrl}/konami.html?${request}`;
 
