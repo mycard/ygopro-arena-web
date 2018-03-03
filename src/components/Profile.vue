@@ -8,7 +8,7 @@
             <div class="caption">
               <h3> <i class="glyphicon glyphicon-user"></i> <strong>{{user.username}}</strong></h3>
               <p class="text-muted" style="font-size:20px;">今日首胜: {{activity.today}}/1 </p>
-              <p class="text-muted" style="font-size:20px;">{{activity.name}}首胜: {{activity.total}}/{{activity.max}} </p>
+              <p class="text-muted" v-if="showActivity" style="font-size:20px;">{{activity.name}}首胜: {{activity.total}}/{{activity.max}} </p>
             </div>
           </div>
         </div>
@@ -151,10 +151,12 @@
     data() {
       return {
         isMobile: false,
-        activity:{
-          name:'新年充电活动',
-          max:'15'
+        activity: {
+          today: 0,
+          name: '新年充电活动',
+          max: '15'
         },
+        showActivity: false,
         user_info: {
           exp: 0,
           pt: 500,
@@ -259,7 +261,10 @@
         var _this = this;
 
         API.getFirstWin({ username: username }).then((res) => {
-            _this.activity = res.data
+          _this.activity = res.data
+          if (_this.activity.name && _this.activity.name.trim().length > 0) {
+            _this.showActivity = true;
+          }
         }, (res) => {
           console.log(res)
         });
