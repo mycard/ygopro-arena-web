@@ -37,6 +37,11 @@
                         <div slot="tip" class="el-upload__tip">上传卡组文件，大小不能超过3KB</div>
                         </el-upload>
                 </el-form-item>
+
+                 <el-form-item label="备选项" :label-width="formLabelWidth">
+                    <el-checkbox v-model="checked">是否生成图片</el-checkbox>
+                </el-form-item>
+               
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">确认</el-button>
                 </el-form-item>
@@ -78,6 +83,7 @@
                 demo_title: "",
                 demo_url: "",
                 demo1: [],
+                checked: false,
                 demo2: []
             }
         },
@@ -171,7 +177,8 @@
                     event: this.form.event,
                     gameid: this.form.gameid,
                     date: date,
-                    id: this.downloadPath.slice(7)
+                    id: this.downloadPath.slice(7),
+                    img: this.checked
                 }
 
                 var request = querystring.stringify(opt);

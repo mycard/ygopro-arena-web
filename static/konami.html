@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="assets/deck/main.css" />
   <script src="assets/deck/compatibility.min.js"></script>
   <script src="assets/deck/theViewer.min.js"></script>
+  <script src="assets/js/dom-to-image.min.js"></script>
   <script>
     try {
       theViewer.defaultViewer = new theViewer.Viewer({});
@@ -641,7 +642,7 @@
         </div>
         <div class="c x1c y36 w1b he">
           <div class="t m0 x4 h13 y37 ff2 fs4 fc0 sc0 lsa ws0">Infraction(s):<span class="ls1">!</span></div>
-        </div>    
+        </div>
         <div class="c x3 y38 wd hd">
           <div class="t m0 x4 ha y14 ff3 fs2 fc0 sc0 ls1 ws0">{{deck.extra[6].num}}</div>
         </div>
@@ -925,6 +926,7 @@
         this.deck.name = getParameterByName('name');
         this.deck.event = getParameterByName('event');
         var gameid = getParameterByName('gameid');
+        var img = getParameterByName('img');
 
         if (gameid) {
           var gameid_arr = gameid.split('');
@@ -984,6 +986,18 @@
           }
 
           this.calTotal();
+
+          if (img && img === "true") {
+            setTimeout(function () {
+              domtoimage.toJpeg(document.getElementById('page-container'), { quality: 1 })
+                .then(function (dataUrl) {
+                  var link = document.createElement('a');
+                  link.download = 'deck-image.jpeg';
+                  link.href = dataUrl;
+                  link.click();
+                });
+            }, 1000)
+          }
         }, (res) => {
         })
       } else {
