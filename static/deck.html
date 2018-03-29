@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="generator" content="pdf2htmlEX" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <script src="assets/js/dom-to-image.min.js"></script>
     <style type="text/css">
         /*! 
  * Base CSS for pdf2htmlEX
@@ -1698,40 +1699,40 @@
                     </div>
                 </div>
                 <div class="c x6 y4 w4 h4">
-                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.gameidStr}}</div>
                 </div>
                 <div class="c x7 y7 w5 h4">
                     <div class="t m0 x5 h5 y5 ff2 fs1 fc0 sc0 ls0 ws0">日期<span class="ff1"> </span></div>
                 </div>
                 <div class="c x8 y7 w6 h4">
-                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">2 </div>
+                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0"> </div>
                 </div>
                 <div class="c x9 y7 w7 h4">
-                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">0 </div>
+                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0"> </div>
                 </div>
                 <div class="c xa y7 w8 h4">
-                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">1 </div>
+                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">{{deck.date[0]}} </div>
                 </div>
                 <div class="c xb y7 w8 h4">
-                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">7 </div>
+                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">{{deck.date[1]}} </div>
                 </div>
                 <div class="c xc y7 w6 h4">
                     <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">/ </div>
                 </div>
                 <div class="c xd y7 w6 h4">
-                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">{{deck.date[2]}} </div>
                 </div>
                 <div class="c xe y7 w8 h4">
-                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">{{deck.date[3]}} </div>
                 </div>
                 <div class="c xf y7 w9 h4">
                     <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">/ </div>
                 </div>
                 <div class="c x10 y7 w6 h4">
-                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">{{deck.date[4]}} </div>
                 </div>
                 <div class="c x11 y7 w6 h4">
-                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y6 ff1 fs1 fc0 sc0 ls0 ws0">{{deck.date[5]}} </div>
                 </div>
                 <div class="c x0 y8 wa h6">
                     <div class="t m0 x12 h5 y9 ff2 fs1 fc0 sc1 ls0 ws0">怪兽卡<span class="ff3 sc0"> </span></div>
@@ -1743,417 +1744,417 @@
                     <div class="t m0 x12 h5 y9 ff2 fs1 fc0 sc1 ls0 ws0">陷阱卡<span class="ff3 sc0"> </span></div>
                 </div>
                 <div class="c x0 ya wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[0].num}} </div>
                 </div>
                 <div class="c x15 ya wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[0].name}} </div>
                 </div>
                 <div class="c x13 ya we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[0].num}} </div>
                 </div>
                 <div class="c x16 ya wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[0].name}} </div>
                 </div>
                 <div class="c x14 ya w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[0].num}} </div>
                 </div>
                 <div class="c x17 ya w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[0].name}} </div>
                 </div>
                 <div class="c x0 yc wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[1].num}} </div>
                 </div>
                 <div class="c x15 yc wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[1].name}} </div>
                 </div>
                 <div class="c x13 yc we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[1].num}} </div>
                 </div>
                 <div class="c x16 yc wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[1].name}} </div>
                 </div>
                 <div class="c x14 yc w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[1].num}} </div>
                 </div>
                 <div class="c x17 yc w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[1].name}} </div>
                 </div>
                 <div class="c x0 yd wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[2].num}} </div>
                 </div>
                 <div class="c x15 yd wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[2].name}} </div>
                 </div>
                 <div class="c x13 yd we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[2].num}} </div>
                 </div>
                 <div class="c x16 yd wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[2].name}} </div>
                 </div>
                 <div class="c x14 yd w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[2].num}} </div>
                 </div>
                 <div class="c x17 yd w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[2].name}} </div>
                 </div>
                 <div class="c x0 ye wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[3].num}} </div>
                 </div>
                 <div class="c x15 ye wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[3].name}} </div>
                 </div>
                 <div class="c x13 ye we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[3].num}} </div>
                 </div>
                 <div class="c x16 ye wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[3].name}} </div>
                 </div>
                 <div class="c x14 ye w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[3].num}} </div>
                 </div>
                 <div class="c x17 ye w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[3].name}} </div>
                 </div>
                 <div class="c x0 yf wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[4].num}} </div>
                 </div>
                 <div class="c x15 yf wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[4].name}} </div>
                 </div>
                 <div class="c x13 yf we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[4].num}} </div>
                 </div>
                 <div class="c x16 yf wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[4].name}} </div>
                 </div>
                 <div class="c x14 yf w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[4].num}} </div>
                 </div>
                 <div class="c x17 yf w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[4].name}} </div>
                 </div>
                 <div class="c x0 y10 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[5].num}} </div>
                 </div>
                 <div class="c x15 y10 wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[5].name}} </div>
                 </div>
                 <div class="c x13 y10 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[5].num}} </div>
                 </div>
                 <div class="c x16 y10 wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[5].name}} </div>
                 </div>
                 <div class="c x14 y10 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[5].num}} </div>
                 </div>
                 <div class="c x17 y10 w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[5].name}} </div>
                 </div>
                 <div class="c x0 y11 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[6].num}} </div>
                 </div>
                 <div class="c x15 y11 wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[6].name}} </div>
                 </div>
                 <div class="c x13 y11 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[6].num}} </div>
                 </div>
                 <div class="c x16 y11 wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[6].name}} </div>
                 </div>
                 <div class="c x14 y11 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[6].num}} </div>
                 </div>
                 <div class="c x17 y11 w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[6].name}} </div>
                 </div>
                 <div class="c x0 y12 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[7].num}} </div>
                 </div>
                 <div class="c x15 y12 wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[7].name}} </div>
                 </div>
                 <div class="c x13 y12 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[7].num}} </div>
                 </div>
                 <div class="c x16 y12 wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[7].name}} </div>
                 </div>
                 <div class="c x14 y12 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[7].num}} </div>
                 </div>
                 <div class="c x17 y12 w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[7].name}} </div>
                 </div>
                 <div class="c x0 y13 wc h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[8].num}} </div>
                 </div>
                 <div class="c x15 y13 wd h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[8].name}} </div>
                 </div>
                 <div class="c x13 y13 we h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[8].num}} </div>
                 </div>
                 <div class="c x16 y13 wf h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[8].name}} </div>
                 </div>
                 <div class="c x14 y13 w10 h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[8].num}} </div>
                 </div>
                 <div class="c x17 y13 w11 h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[8].name}} </div>
                 </div>
                 <div class="c x0 y14 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[9].num}} </div>
                 </div>
                 <div class="c x15 y14 wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[9].name}} </div>
                 </div>
                 <div class="c x13 y14 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[9].num}} </div>
                 </div>
                 <div class="c x16 y14 wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[9].name}} </div>
                 </div>
                 <div class="c x14 y14 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[9].num}} </div>
                 </div>
                 <div class="c x17 y14 w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[9].name}} </div>
                 </div>
                 <div class="c x0 y15 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[10].num}} </div>
                 </div>
                 <div class="c x15 y15 wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[10].name}} </div>
                 </div>
                 <div class="c x13 y15 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[10].num}} </div>
                 </div>
                 <div class="c x16 y15 wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[10].name}} </div>
                 </div>
                 <div class="c x14 y15 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[10].num}} </div>
                 </div>
                 <div class="c x17 y15 w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[10].name}} </div>
                 </div>
                 <div class="c x0 y16 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[11].num}} </div>
                 </div>
                 <div class="c x15 y16 wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[11].name}} </div>
                 </div>
                 <div class="c x13 y16 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[11].num}} </div>
                 </div>
                 <div class="c x16 y16 wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[11].name}} </div>
                 </div>
                 <div class="c x14 y16 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[11].num}} </div>
                 </div>
                 <div class="c x17 y16 w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[11].name}} </div>
                 </div>
                 <div class="c x0 y17 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[12].num}} </div>
                 </div>
                 <div class="c x15 y17 wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[12].name}} </div>
                 </div>
                 <div class="c x13 y17 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[12].num}} </div>
                 </div>
                 <div class="c x16 y17 wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[12].name}} </div>
                 </div>
                 <div class="c x14 y17 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[12].num}} </div>
                 </div>
                 <div class="c x17 y17 w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[12].name}} </div>
                 </div>
                 <div class="c x0 y18 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[13].num}} </div>
                 </div>
                 <div class="c x15 y18 wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[13].name}} </div>
                 </div>
                 <div class="c x13 y18 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[13].num}} </div>
                 </div>
                 <div class="c x16 y18 wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[13].name}} </div>
                 </div>
                 <div class="c x14 y18 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[13].num}} </div>
                 </div>
                 <div class="c x17 y18 w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[13].name}} </div>
                 </div>
                 <div class="c x0 y19 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[14].num}} </div>
                 </div>
                 <div class="c x15 y19 wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[14].name}} </div>
                 </div>
                 <div class="c x13 y19 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[14].num}} </div>
                 </div>
                 <div class="c x16 y19 wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[14].name}} </div>
                 </div>
                 <div class="c x14 y19 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[14].num}} </div>
                 </div>
                 <div class="c x17 y19 w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[14].name}} </div>
                 </div>
                 <div class="c x0 y1a wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[15].num}} </div>
                 </div>
                 <div class="c x15 y1a wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[15].name}} </div>
                 </div>
                 <div class="c x13 y1a we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[15].num}} </div>
                 </div>
                 <div class="c x16 y1a wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[15].name}} </div>
                 </div>
                 <div class="c x14 y1a w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[15].num}} </div>
                 </div>
                 <div class="c x17 y1a w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[15].name}} </div>
                 </div>
                 <div class="c x0 y1b wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[16].num}} </div>
                 </div>
                 <div class="c x15 y1b wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[16].name}} </div>
                 </div>
                 <div class="c x13 y1b we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[16].num}} </div>
                 </div>
                 <div class="c x16 y1b wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[16].name}} </div>
                 </div>
                 <div class="c x14 y1b w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[16].num}} </div>
                 </div>
                 <div class="c x17 y1b w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[16].name}} </div>
                 </div>
                 <div class="c x0 y1c wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[17].num}} </div>
                 </div>
                 <div class="c x15 y1c wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[17].name}} </div>
                 </div>
                 <div class="c x13 y1c we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[17].num}} </div>
                 </div>
                 <div class="c x16 y1c wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[17].name}} </div>
                 </div>
                 <div class="c x14 y1c w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[17].num}} </div>
                 </div>
                 <div class="c x17 y1c w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[17].name}} </div>
                 </div>
                 <div class="c x0 y1d wc h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[18].num}} </div>
                 </div>
                 <div class="c x15 y1d wd h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[18].name}} </div>
                 </div>
                 <div class="c x13 y1d we h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[18].num}} </div>
                 </div>
                 <div class="c x16 y1d wf h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[18].name}} </div>
                 </div>
                 <div class="c x14 y1d w10 h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[18].num}} </div>
                 </div>
                 <div class="c x17 y1d w11 h7">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[18].name}} </div>
                 </div>
                 <div class="c x0 y1e wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[19].num}} </div>
                 </div>
                 <div class="c x15 y1e wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[19].name}} </div>
                 </div>
                 <div class="c x13 y1e we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[19].num}} </div>
                 </div>
                 <div class="c x16 y1e wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[19].name}} </div>
                 </div>
                 <div class="c x14 y1e w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[19].num}} </div>
                 </div>
                 <div class="c x17 y1e w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[19].name}} </div>
                 </div>
                 <div class="c x0 y1f wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[20].num}} </div>
                 </div>
                 <div class="c x15 y1f wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[20].name}} </div>
                 </div>
                 <div class="c x13 y1f we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[20].num}} </div>
                 </div>
                 <div class="c x16 y1f wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[20].name}} </div>
                 </div>
                 <div class="c x14 y1f w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[20].num}} </div>
                 </div>
                 <div class="c x17 y1f w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[20].name}} </div>
                 </div>
                 <div class="c x0 y20 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[21].num}} </div>
                 </div>
                 <div class="c x15 y20 wd h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.monster[21].name}} </div>
                 </div>
                 <div class="c x13 y20 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[21].num}} </div>
                 </div>
                 <div class="c x16 y20 wf h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.spells[21].name}} </div>
                 </div>
                 <div class="c x14 y20 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[21].num}} </div>
                 </div>
                 <div class="c x17 y20 w11 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.traps[21].name}} </div>
                 </div>
                 <div class="c x0 y21 wc h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.monsterTotal}}</div>
                 </div>
                 <div class="c x15 y21 wd h6">
                     <div class="t m0 x5 h5 y9 ff1 fs1 fc0 sc0 ls2 ws0">&lt;&lt;&lt;<span class="ff2 ls0">怪兽卡总<span class="_ _1"></span>数<span class="ff1"> </span></span>
                     </div>
                 </div>
                 <div class="c x13 y21 we h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.spellTotal}}</div>
                 </div>
                 <div class="c x16 y21 wf h6">
                     <div class="t m0 x5 h5 y9 ff1 fs1 fc0 sc0 ls2 ws0">&lt;&lt;&lt;<span class="ff2 ls0">魔法卡总<span class="_ _1"></span>数<span class="ff1"> </span></span>
                     </div>
                 </div>
                 <div class="c x14 y21 w10 h6">
-                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 yb ff1 fs1 fc0 sc0 ls0 ws0">{{deck.trapTotal}} </div>
                 </div>
                 <div class="c x17 y21 w11 h6">
                     <div class="t m0 x5 h5 y9 ff1 fs1 fc0 sc0 ls2 ws0">&lt;&lt;&lt;<span class="ff2 ls0">陷阱卡总<span class="_ _1"></span>数<span class="ff1"> </span></span>
@@ -2170,7 +2171,7 @@
                     <div class="t m0 x5 h5 y27 ff2 fs1 fc0 sc0 ls0 ws0">比赛<span class="ff1"> </span></div>
                 </div>
                 <div class="c x19 y26 w13 ha">
-                    <div class="t m0 x5 h3 y28 ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y28 ff1 fs1 fc0 sc0 ls0 ws0">{{deck.event}} </div>
                 </div>
                 <div class="c x4 y29 w14 hb">
                     <div class="t m0 x12 h5 yb ff2 fs1 fc0 sc1 ls0 ws0">副卡组<span class="ff3 sc0"> </span></div>
@@ -2179,194 +2180,194 @@
                     <div class="t m0 x1a h5 yb ff2 fs1 fc0 sc1 ls0 ws0">额外卡组<span class="ff3 sc0"> </span></div>
                 </div>
                 <div class="c x4 y2a w16 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[0].num}}</div>
                 </div>
                 <div class="c x1b y2a w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[0].name}}</div>
                 </div>
                 <div class="c x13 y2a w18 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[0].num}}</div>
                 </div>
                 <div class="c x1c y2a w17 hb">
-                    <div class="t m0 x5 hc y2c ff1 fs2 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 hc y2c ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[0].name}}</div>
                 </div>
                 <div class="c x4 y2d w16 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[1].num}}</div>
                 </div>
                 <div class="c x1b y2d w17 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[1].name}} </div>
                 </div>
                 <div class="c x13 y2d w18 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[1].num}}</div>
                 </div>
                 <div class="c x1c y2d w17 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[1].name}}</div>
                 </div>
                 <div class="c x4 y2f w16 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[2].num}}</div>
                 </div>
                 <div class="c x1b y2f w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[2].name}}</div>
                 </div>
                 <div class="c x13 y2f w18 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[2].num}}</div>
                 </div>
                 <div class="c x1c y2f w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[2].name}}</div>
                 </div>
                 <div class="c x4 y30 w16 he">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[3].num}}</div>
                 </div>
                 <div class="c x1b y30 w17 he">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[3].name}}</div>
                 </div>
                 <div class="c x13 y30 w18 he">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[3].num}}</div>
                 </div>
                 <div class="c x1c y30 w17 he">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[3].name}}</div>
                 </div>
                 <div class="c x4 y31 w16 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[4].num}}</div>
                 </div>
                 <div class="c x1b y31 w17 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[4].name}}</div>
                 </div>
                 <div class="c x13 y31 w18 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[4].num}}</div>
                 </div>
                 <div class="c x1c y31 w17 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[4].name}}</div>
                 </div>
                 <div class="c x4 y32 w16 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[5].num}}</div>
                 </div>
                 <div class="c x1b y32 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[5].name}}</div>
                 </div>
                 <div class="c x13 y32 w18 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[5].num}}</div>
                 </div>
                 <div class="c x1c y32 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[5].name}}</div>
                 </div>
                 <div class="c x4 y33 w16 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[6].num}}</div>
                 </div>
                 <div class="c x1b y33 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[6].name}}</div>
                 </div>
                 <div class="c x13 y33 w18 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[6].num}}</div>
                 </div>
                 <div class="c x1c y33 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[6].name}}</div>
                 </div>
                 <div class="c x4 y34 w16 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[7].num}}</div>
                 </div>
                 <div class="c x1b y34 w17 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[7].name}}</div>
                 </div>
                 <div class="c x13 y34 w18 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[7].num}}</div>
                 </div>
                 <div class="c x1c y34 w17 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[7].name}}</div>
                 </div>
                 <div class="c x4 y35 w16 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[8].num}}</div>
                 </div>
                 <div class="c x1b y35 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[8].name}}</div>
                 </div>
                 <div class="c x13 y35 w18 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[8].num}}</div>
                 </div>
                 <div class="c x1c y35 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[8].name}}</div>
                 </div>
                 <div class="c x4 y36 w16 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[9].num}}</div>
                 </div>
                 <div class="c x1b y36 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[9].name}}</div>
                 </div>
                 <div class="c x13 y36 w18 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[9].num}}</div>
                 </div>
                 <div class="c x1c y36 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[9].name}}</div>
                 </div>
                 <div class="c x4 y37 w16 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[10].num}}</div>
                 </div>
                 <div class="c x1b y37 w17 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[10].name}}</div>
                 </div>
                 <div class="c x13 y37 w18 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[10].num}}</div>
                 </div>
                 <div class="c x1c y37 w17 hd">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[10].name}}</div>
                 </div>
                 <div class="c x4 y38 w16 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[11].num}}</div>
                 </div>
                 <div class="c x1b y38 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[11].name}}</div>
                 </div>
                 <div class="c x13 y38 w18 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[11].num}}</div>
                 </div>
                 <div class="c x1c y38 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[11].name}}</div>
                 </div>
                 <div class="c x4 y39 w16 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[12].num}}</div>
                 </div>
                 <div class="c x1b y39 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[12].name}}</div>
                 </div>
                 <div class="c x13 y39 w18 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[12].num}}</div>
                 </div>
                 <div class="c x1c y39 w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[12].name}}</div>
                 </div>
                 <div class="c x4 y3a w16 hf">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[13].num}}</div>
                 </div>
                 <div class="c x1b y3a w17 hf">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[13].name}}</div>
                 </div>
                 <div class="c x13 y3a w18 hf">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[13].num}}</div>
                 </div>
                 <div class="c x1c y3a w17 hf">
-                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2e ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[13].name}}</div>
                 </div>
                 <div class="c x4 y3b w16 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[14].num}}</div>
                 </div>
                 <div class="c x1b y3b w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.side[14].name}}</div>
                 </div>
                 <div class="c x13 y3b w18 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[14].num}}</div>
                 </div>
                 <div class="c x1c y3b w17 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extra[14].name}}</div>
                 </div>
                 <div class="c x4 y3c w16 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.sideTotal}}</div>
                 </div>
                 <div class="c x1b y3c w17 hb">
                     <div class="t m0 x5 h5 yb ff1 fs1 fc0 sc0 ls2 ws0">&lt;&lt;&lt;<span class="ff2 ls0">副卡组总<span class="_ _1"></span>数<span class="ff1"> </span></span>
                     </div>
                 </div>
                 <div class="c x13 y3c w18 hb">
-                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> </div>
+                    <div class="t m0 x5 h3 y2b ff1 fs1 fc0 sc0 ls0 ws0"> {{deck.extraTotal}}</div>
                 </div>
                 <div class="c x1c y3c w17 hb">
                     <div class="t m0 x5 h5 yb ff1 fs1 fc0 sc0 ls2 ws0">&lt;&lt;&lt;<span class="ff2 ls0">额外卡组<span class="_ _1"></span>总数<span class="ff1"> </span></span>
@@ -2414,6 +2415,7 @@
         var print = getParameterByName('print');
 
         if (gameid) {
+          this.deck.gameidStr = gameid;
           var gameid_arr = gameid.split('');
           for (var i = 0; i < gameid_arr.length; i++) {
             this.deck.gameid[i] = gameid_arr[i];
@@ -2440,20 +2442,20 @@
           this.deck.side = res.data.deck.side
 
           var length = this.deck.monster.length
-          if (length < 20) {
-            for (var i = 0; i < 20 - length; i++) {
+          if (length < 22) {
+            for (var i = 0; i < 22 - length; i++) {
               this.deck.monster.push({ "name": "", "num": "" })
             }
           }
           length = this.deck.spells.length
-          if (length < 20) {
-            for (var i = 0; i < 20 - length; i++) {
+          if (length < 22) {
+            for (var i = 0; i < 22 - length; i++) {
               this.deck.spells.push({ "name": "", "num": "" })
             }
           }
           length = this.deck.traps.length
-          if (length < 20) {
-            for (var i = 0; i < 20 - length; i++) {
+          if (length < 22) {
+            for (var i = 0; i < 22 - length; i++) {
               this.deck.traps.push({ "name": "", "num": "" })
             }
           }
@@ -2464,7 +2466,7 @@
             }
           }
           length = this.deck.side.length
-          if (length < 20) {
+          if (length < 15) {
             for (var i = 0; i < 15 - length; i++) {
               this.deck.side.push({ "name": "", "num": "" })
             }
@@ -2506,9 +2508,10 @@
       return {
         deck: {
           name: "Joe xx xx 3",
-          event: "",
+          event: "SG 2018",
+          gameidStr: "100121",
           gameid: ["", "", "", "", "", "", "", "", "", ""],
-          date: ["", "", "", "", "", ""],
+          date: ["1", "8", "0", "8", "2", "3"],
           monsterTotal: 0,
           spellTotal: 0,
           trapTotal: 0,
@@ -2524,40 +2527,47 @@
             { "name": "灰流丽", "num": 3 },
             { "name": "幽鬼兔", "num": 2 },
             { "name": "黑羽-胧影之业风", "num": 1 },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
+            
+            { "name": "幻变骚灵·寻道梅露辛2", "num": 3 },
+            { "name": "幻变骚灵·泛在羽衣精2", "num": 2 },
+            { "name": "增殖的G2", "num": 3 },
+            { "name": "幻变骚灵·多功能诈骗者2", "num": 3 },
+            { "name": "幻变骚灵·网络傀儡师2", "num": 3 },
+            { "name": "灰流丽2", "num": 3 },
+            { "name": "幽鬼兔2", "num": 2 },
+            { "name": "黑羽-胧影之业风2", "num": 1 },
+            
+            { "name": "幻变骚灵·寻道梅露辛3", "num": 3 },
+            { "name": "幻变骚灵·泛在羽衣精3", "num": 2 },
+            { "name": "增殖的G3", "num": 3 },
+            { "name": "幻变骚灵·多功能诈骗者3", "num": 3 },
+            { "name": "增殖的G3", "num": 3 },
+            { "name": "幻变骚灵·多功能诈骗者3", "num": 3 },
           ],
           spells: [
-            { "name": "强欲而谦虚之壶", "num": 3 },
-            { "name": "强欲而贪欲之壶", "num": 1 },
-            { "name": "宇宙旋风", "num": 2 },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
+            { "name": "强欲而谦虚之壶1", "num": 3 },
+            { "name": "强欲而贪欲之壶2", "num": 1 },
+            { "name": "宇宙旋风3", "num": 2 },
+            { "name": "强欲而谦虚之壶4", "num": 3 },
+            { "name": "强欲而贪欲之壶5", "num": 1 },
+            { "name": "宇宙旋风6", "num": 2 },
+            { "name": "强欲而谦虚之壶7", "num": 3 },
+            { "name": "强欲而贪欲之壶8", "num": 1 },
+            { "name": "宇宙旋风9", "num": 2 },
+            { "name": "强欲而谦虚之壶10", "num": 3 },
+            { "name": "强欲而贪欲之壶11", "num": 1 },
+            { "name": "宇宙旋风12", "num": 2 },
+            { "name": "强欲而谦虚之壶13", "num": 3 },
+            { "name": "强欲而贪欲之壶14", "num": 1 },
+            { "name": "宇宙旋风15", "num": 2 },
+            { "name": "强欲而谦虚之壶16", "num": 3 },
+            { "name": "强欲而贪欲之壶17", "num": 1 },
+            { "name": "宇宙旋风18", "num": 2 },
+            { "name": "宇宙旋风19", "num": 2 },
+            { "name": "强欲而谦虚之壶20", "num": 3 },
+            { "name": "强欲而贪欲之壶21", "num": 1 },
+            { "name": "宇宙旋风22", "num": 2 },
+
           ],
           traps: [
             { "name": "幻变骚灵物化", "num": 2 },
@@ -2567,19 +2577,22 @@
             { "name": "个人欺骗攻击", "num": 3 },
             { "name": "神之警告", "num": 1 },
             { "name": "神之通告", "num": 2 },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
+            { "name": "强欲而贪欲之壶8", "num": 1 },
+            { "name": "宇宙旋风9", "num": 2 },
+            { "name": "强欲而谦虚之壶10", "num": 3 },
+            { "name": "强欲而贪欲之壶11", "num": 1 },
+            { "name": "宇宙旋风12", "num": 2 },
+            { "name": "强欲而谦虚之壶13", "num": 3 },
+            { "name": "强欲而贪欲之壶14", "num": 1 },
+            { "name": "宇宙旋风15", "num": 2 },
+            { "name": "强欲而谦虚之壶16", "num": 3 },
+            { "name": "强欲而贪欲之壶17", "num": 1 },
+            { "name": "宇宙旋风18", "num": 2 },
+            { "name": "宇宙旋风19", "num": 2 },
+            { "name": "强欲而谦虚之壶20", "num": 3 },
+            { "name": "强欲而贪欲之壶21", "num": 1 },
+            { "name": "宇宙旋风22", "num": 2 },
+           
           ],
           extra: [
             { "name": "方程3式3同  调士", "num": 3 },
@@ -2595,8 +2608,8 @@
             { "name": "梦幻崩影·独角兽", "num": 1 },
             { "name": "装弹枪管龙", "num": 1 },
             { "name": "拓扑逻辑轰炸龙", "num": 1 },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
+            { "name": "装弹枪管龙2", "num": 1 },
+            { "name": "拓扑逻辑轰炸龙2", "num": 1 },
           ],
           side: [
             { "name": "冲浪检察官", "num": 2 },
@@ -2608,12 +2621,12 @@
             { "name": "颉颃胜负", "num": 3 },
             { "name": "长眠不醒的噩梦", "num": 2 },
             { "name": "神之宣告", "num": 1 },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
-            { "name": "", "num": "" },
+            { "name": "2鹰身女妖的羽毛扫2", "num": 1 },
+            { "name": "2黑洞2", "num": 1 },
+            { "name": "22墓穴的指名者2", "num": 2 },
+            { "name": "颉颃胜负2", "num": 3 },
+            { "name": "2长眠不醒的噩梦", "num": 2 },
+            { "name": "2神之宣告", "num": 1 },
           ]
         }
       }

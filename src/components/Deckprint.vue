@@ -30,6 +30,14 @@
                     <!--<el-input v-model="form.date" placeholder="请输入" auto-complete="off" width="10px"></el-input>-->
                 </el-form-item>
 
+
+                <el-form-item label="模版选择" :label-width="formLabelWidth">
+                    <el-select v-model="value" placeholder="请选择">
+                        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+
                 <el-form-item label="ydk文件" :label-width="formLabelWidth">
                     <el-upload class="upload-demo" :action="uploadUrl" :on-change="handleChange" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload"
                         :file-list="fileList3">
@@ -38,11 +46,11 @@
                         </el-upload>
                 </el-form-item>
 
-                 <el-form-item label="备选项" :label-width="formLabelWidth">
+                <el-form-item label="备选项" :label-width="formLabelWidth">
                     <el-checkbox v-model="checked">是否生成图片</el-checkbox>
                     <el-checkbox v-model="checked2">是否打印(会帮您调用打印程序)</el-checkbox>
                 </el-form-item>
-               
+
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">确认</el-button>
                 </el-form-item>
@@ -64,6 +72,14 @@
         data() {
             return {
                 fileList3: [],
+                options: [{
+                    value: '1',
+                    label: '默认'
+                }, {
+                    value: '2',
+                    label: 'KONAMI'
+                }],
+                value: '1',
 
                 isIE: false,
 
@@ -184,10 +200,21 @@
                     print: this.checked2,
                 }
 
-                var request = querystring.stringify(opt);
+
                 // var baseUrl = "http://localhost:8081"
                 var baseUrl = "https://mycard.moe/ygopro/arena"
-                var url = `${baseUrl}/konami.html?${request}`;
+
+                var template = "deck"
+                if (this.value === "1") {
+                    template = "deck"
+                }
+                if (this.value === "2") {
+                    template = "konami"
+                }
+
+                var request = querystring.stringify(opt);
+
+                var url = `${baseUrl}/${template}.html?${request}`;
 
                 window.open(url, "_blank");
             },
