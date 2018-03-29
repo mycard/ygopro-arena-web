@@ -31,7 +31,8 @@ const mutations = {
     [types.GET_BILL_LIST] (state, {listData, pageTotal}) {
         for (var i in listData) {
             listData[i].amount = listData[i].amount.toFixed(2)
-        }
+      
+      }
         state.listData = listData
         state.pageTotal = pageTotal
     },

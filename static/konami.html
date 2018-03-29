@@ -927,6 +927,7 @@
         this.deck.event = getParameterByName('event');
         var gameid = getParameterByName('gameid');
         var img = getParameterByName('img');
+        var print = getParameterByName('print');
 
         if (gameid) {
           var gameid_arr = gameid.split('');
@@ -996,7 +997,13 @@
                   link.href = dataUrl;
                   link.click();
                 });
-            }, 1000)
+            }, 100)
+          }
+
+          if (print && print === "true") {
+            setTimeout(function () {
+                window.print();
+            }, 500)
           }
         }, (res) => {
         })

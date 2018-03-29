@@ -40,6 +40,7 @@
 
                  <el-form-item label="备选项" :label-width="formLabelWidth">
                     <el-checkbox v-model="checked">是否生成图片</el-checkbox>
+                    <el-checkbox v-model="checked2">是否打印(会帮您调用打印程序)</el-checkbox>
                 </el-form-item>
                
                 <el-form-item>
@@ -84,6 +85,7 @@
                 demo_url: "",
                 demo1: [],
                 checked: false,
+                checked2: false,
                 demo2: []
             }
         },
@@ -178,7 +180,8 @@
                     gameid: this.form.gameid,
                     date: date,
                     id: this.downloadPath.slice(7),
-                    img: this.checked
+                    img: this.checked,
+                    print: this.checked2,
                 }
 
                 var request = querystring.stringify(opt);
