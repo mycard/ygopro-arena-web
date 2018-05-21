@@ -2,7 +2,7 @@
     <div class="content">
         <div class="container">
             <template>
-                <el-alert title="上传ydk文件和填写必要的信息之后,卡组表格即可自动生成" type="success">
+                <el-alert title="上传YGOPro的卡组文件，既可生成实卡参赛卡表，参赛卡表可用于参加决斗都市。" type="success">
                 </el-alert>
                 <hr>
                 <el-alert v-if="isIE" title="您的浏览器不支持卡表打印功能。
@@ -47,7 +47,7 @@
                 </el-form-item>
 
                 <el-form-item label="备选项" :label-width="formLabelWidth">
-                    <el-checkbox v-model="checked">是否生成图片</el-checkbox>
+                    <!--<el-checkbox v-model="checked">是否生成图片</el-checkbox>-->
                     <el-checkbox v-model="checked2">是否打印(会帮您调用打印程序)</el-checkbox>
                 </el-form-item>
 
@@ -100,7 +100,7 @@
                 demo_title: "",
                 demo_url: "",
                 demo1: [],
-                checked: false,
+                // checked: false,
                 checked2: false,
                 demo2: []
             }
@@ -196,7 +196,7 @@
                     gameid: this.form.gameid,
                     date: date,
                     id: this.downloadPath.slice(7),
-                    img: this.checked,
+                    // img: this.checked,
                     print: this.checked2,
                 }
 

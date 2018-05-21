@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="generator" content="pdf2htmlEX" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <script src="assets/js/dom-to-image.min.js"></script>
+    <!--<script src="assets/js/dom-to-image.min.js"></script>-->
     <style type="text/css">
         /*! 
  * Base CSS for pdf2htmlEX
@@ -2474,17 +2474,17 @@
 
           this.calTotal();
 
-          if (img && img === "true") {
-            setTimeout(function () {
-              domtoimage.toJpeg(document.getElementById('page-container'), { quality: 1 })
-                .then(function (dataUrl) {
-                  var link = document.createElement('a');
-                  link.download = 'deck-image.jpeg';
-                  link.href = dataUrl;
-                  link.click();
-                });
-            }, 100)
-          }
+        //   if (img && img === "true") {
+        //     setTimeout(function () {
+        //       domtoimage.toJpeg(document.getElementById('page-container'), { quality: 1 })
+        //         .then(function (dataUrl) {
+        //           var link = document.createElement('a');
+        //           link.download = 'deck-image.jpeg';
+        //           link.href = dataUrl;
+        //           link.click();
+        //         });
+        //     }, 100)
+        //   }
 
           if (print && print === "true") {
             setTimeout(function () {
@@ -2509,9 +2509,9 @@
         deck: {
           name: "Joe xx xx 3",
           event: "SG 2018",
-          gameidStr: "100121",
+          gameidStr: "",
           gameid: ["", "", "", "", "", "", "", "", "", ""],
-          date: ["1", "8", "0", "8", "2", "3"],
+          date: ["", "", "", "", "", ""],
           monsterTotal: 0,
           spellTotal: 0,
           trapTotal: 0,

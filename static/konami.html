@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="assets/deck/main.css" />
   <script src="assets/deck/compatibility.min.js"></script>
   <script src="assets/deck/theViewer.min.js"></script>
-  <script src="assets/js/dom-to-image.min.js"></script>
+  <!--<script src="assets/js/dom-to-image.min.js"></script>-->
   <script>
     try {
       theViewer.defaultViewer = new theViewer.Viewer({});
@@ -988,17 +988,17 @@
 
           this.calTotal();
 
-          if (img && img === "true") {
-            setTimeout(function () {
-              domtoimage.toJpeg(document.getElementById('page-container'), { quality: 1 })
-                .then(function (dataUrl) {
-                  var link = document.createElement('a');
-                  link.download = 'deck-image.jpeg';
-                  link.href = dataUrl;
-                  link.click();
-                });
-            }, 100)
-          }
+          // if (img && img === "true") {
+          //   setTimeout(function () {
+          //     domtoimage.toJpeg(document.getElementById('page-container'), { quality: 1 })
+          //       .then(function (dataUrl) {
+          //         var link = document.createElement('a');
+          //         link.download = 'deck-image.jpeg';
+          //         link.href = dataUrl;
+          //         link.click();
+          //       });
+          //   }, 100)
+          // }
 
           if (print && print === "true") {
             setTimeout(function () {
