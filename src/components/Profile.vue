@@ -309,14 +309,14 @@
                   append = ""
                 }
                 if (userscorea < 0) {
-                  return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a>  " + append;
+                  return "<a href='#/userinfo?username=" + encodeURIComponent(data) + "'><span class='label label-danger'>" + data + "</span></a>  " + append;
                 }
 
                 if (userscorea > userscoreb) {
-                  return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a> " + append;
+                  return "<a href='#/userinfo?username=" + encodeURIComponent(data) + "'><span class='label label-success'>" + data + "</span></a> " + append;
                 }
 
-                return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a> " + append;
+                return "<a href='#/userinfo?username=" + encodeURIComponent(data) + "'><span class='label label-info'>" + data + "</span></a> " + append;
               },
               "targets": 0
             },
@@ -333,14 +333,14 @@
                   append = ""
                 }
                 if (userscoreb < 0) {
-                  return "<a href='#/userinfo?username=" + data + "'><span class='label label-danger'>" + data + "</span></a> " + append;
+                  return "<a href='#/userinfo?username=" + encodeURIComponent(data) + "'><span class='label label-danger'>" + data + "</span></a> " + append;
                 }
 
                 if (userscorea < userscoreb) {
-                  return "<a href='#/userinfo?username=" + data + "'><span class='label label-success'>" + data + "</span></a> " + append;
+                  return "<a href='#/userinfo?username=" + encodeURIComponent(data) + "'><span class='label label-success'>" + data + "</span></a> " + append;
                 }
 
-                return "<a href='#/userinfo?username=" + data + "'><span class='label label-info'>" + data + "</span></a> " + append;
+                return "<a href='#/userinfo?username=" + encodeURIComponent(data) + "'><span class='label label-info'>" + data + "</span></a> " + append;
               },
               "targets": 1
             },

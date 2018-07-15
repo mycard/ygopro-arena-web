@@ -14,10 +14,19 @@
               <li role="presentation"><a href="https://ygobbs.com/" target="_blank">{{lang.forum}} </a></li>
               <li role="presentation"><a href="#/ranking">{{lang.rank}} </a></li>
               <li role="presentation"><a href="#/cards">{{lang.card_rank}} </a></li>
-              <li role="presentation"><a href="#/deckprint">{{lang.deckprint}} </a></li>
-              <li role="presentation"><a href="https://rep.ygobbs.com">{{lang.battlelog}} </a></li>
-              <!--<li role="presentation"><a href="https://mycard.moe/ygopro/">{{lang.download}} </a></li>-->
+
               <li role="presentation"><a href="#/download">{{lang.download}} </a></li>
+
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">
+                  {{lang.tool}} <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a href="#/deckprint">{{lang.deckprint}} </a></li>
+                  <li role="presentation"><a href="#/tabulate">{{lang.tabulate}} </a></li>
+                  <li role="presentation"><a href="https://rep.ygobbs.com">{{lang.battlelog}} </a></li>
+                </ul>
+              </li>
+
               <li v-if="user.isLogin" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><img v-bind:src="user.avatar_url" id="head-portrait">{{user.username}} <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -27,6 +36,7 @@
                   <li role="presentation"><a @click.prevent="logout" href="#">{{lang.signout}} </a></li>
                 </ul>
               </li>
+              
               <li v-else role="presentation"><a @click.prevent="login" href="#">{{lang.signin}} </a></li>
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">

@@ -139,7 +139,7 @@
             "columnDefs": [
               {
                 "render": function (data, type, row) {
-                  return "<a href='#/userinfo?username=" + data + "'>" + data + "</a>";
+                  return "<a href='#/userinfo?username=" + encodeURIComponent(data) + "'>" + data + "</a>";
                 },
                 "targets": 1
               },
@@ -178,7 +178,7 @@
             "columnDefs": [
               {
                 "render": function (data, type, row) {
-                  return "<a href='#/userinfo?username=" + data + "'>" + data + "</a>";
+                  return "<a href='#/userinfo?username=" +  encodeURIComponent(data) + "'>" + data + "</a>";
                 },
                 "targets": 1
               },

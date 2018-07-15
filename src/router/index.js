@@ -14,6 +14,7 @@ import Report from '@/components/Report'
 import Vote from '@/components/Vote'
 import Ads from '@/components/Ads'
 import Deckprint from '@/components/Deckprint'
+import Tabulate from '@/components/Tabulate'
 // import konami from '@/components/konami'
 
 Vue.use(Router)
@@ -71,6 +72,11 @@ export default new Router({
           path: '/deckprint',
           name: 'Deckprint',
           component: Deckprint
+        },
+        {
+          path: '/tabulate',
+          name: 'Tabulate',
+          component: Tabulate
         },
         {
           path: '/history',
