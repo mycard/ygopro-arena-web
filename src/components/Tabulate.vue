@@ -45,16 +45,16 @@
             <hr>
 
             <div style="margin-left: 20%;margin-right: 20%; ">
-                <p>【胜】VS【负】 </p>
-                <p> 比赛： {{form.name1}} VS {{form.name2}}</p>
-                <p> 时间： {{getDate()}}</p>
-                <p> 规则： {{form.rule}}</p>
-                <p> 地点： {{form.location}}</p>
-                <p> ------------第一轮------------</p>
-                <p v-for="x in list">
+                <!--<p>【胜】VS【负】 </p>-->
+                <span class="xx"> 比赛： {{form.name1}} VS {{form.name2}}</span>
+                <span class="xx"> 时间： {{getDate()}}</span>
+                <span class="xx"> 规则： {{form.rule}}</span>
+                <span class="xx"> 地点： {{form.location}}</span>
+                <span class="xx"> ------------第一轮------------</span>
+                <span class="xx" v-for="x in list">
                     {{x.a}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0:0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{x.b}}
-                </p>
-                <p> ------------第二轮------------</p>
+                </span>
+                <span class="xx"> ------------第二轮------------</span>
             </div>
 
             <br>
@@ -208,5 +208,11 @@
 </script>
 
 <style scoped>
+
+.xx {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: block;
+}
 
 </style>
