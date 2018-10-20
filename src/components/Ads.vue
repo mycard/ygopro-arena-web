@@ -50,6 +50,13 @@
 						<el-input v-model="dynamicValidateForm.clkurl" :disabled="true"></el-input>
 					</el-form-item>
 
+					<el-form-item label="位置">
+						<template>
+							<el-radio v-model="radio" label="1">首页</el-radio>
+							<el-radio v-model="radio" label="2">底部</el-radio>
+						</template>
+					</el-form-item>
+
 					<el-form-item label="是否立即启用">
 						<el-checkbox v-model="dynamicValidateForm.status"></el-checkbox>
 					</el-form-item>
@@ -81,7 +88,7 @@
 						</el-date-picker>
 					</el-form-item>
 
-					<el-form-item prop="max" label="达标场次" >
+					<el-form-item prop="max" label="达标场次">
 						<el-input v-model="firstWinForm.max" placeholder=""></el-input>
 					</el-form-item>
 
@@ -213,11 +220,11 @@
 			return {
 				rules2: {
 					max: [
-						{ validator: checkMax, trigger: 'blur' ,required: true}
+						{ validator: checkMax, trigger: 'blur', required: true }
 					]
 				},
 				ad_switch: true,
-				radio: "x",
+				radio: "1",
 				loading: true,
 				onValue: true,
 				offValue: false,
@@ -404,6 +411,7 @@
 
 				this.needRender = false
 				this.dialogFormVisible = true;
+				this.radio =  row.type || "1";
 			},
 			selectChange: function (val) {
 				this.type = val
@@ -544,7 +552,8 @@
 								clkref: this.dynamicValidateForm.clkref,
 								implurl: this.dynamicValidateForm.implurl,
 								clkurl: this.dynamicValidateForm.clkurl,
-								status: this.dynamicValidateForm.status
+								status: this.dynamicValidateForm.status,
+								type: this.radio
 							}
 
 							var _this = this;

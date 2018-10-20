@@ -55,6 +55,7 @@
                     <el-button type="primary" @click="onSubmit">确认</el-button>
                 </el-form-item>
             </el-form>
+        <Footads></Footads>
         </div>
     </div>
 
@@ -67,8 +68,12 @@
     import { mapGetters } from 'vuex'
     import moment from 'moment'
     import tb_language from './tb_lang.js'
+      import Footads from './Footads'
 
     export default {
+        components: {
+            Footads
+        },
         data() {
             return {
                 fileList3: [],

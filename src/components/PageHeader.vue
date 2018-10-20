@@ -198,7 +198,7 @@
       var time = 5000
 
       var _this = this
-      API.getAd({}).then((res) => {
+      API.getAd({type:1}).then((res) => {
         if (res.data.auto_close_ad && res.data.auto_close_ad === "true") {
           _this.autoClose = true
         }

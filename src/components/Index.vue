@@ -92,7 +92,7 @@
       if (this.isMobile) {
         this.width="100%"
       }
-      API.getAd({}).then((res) => {
+      API.getAd({type:1}).then((res) => {
         if (res.data.data && res.data.data !== "null") {
           _this.adObj = res.data.data
           if (_this.isMobile) {
@@ -100,7 +100,7 @@
           } else {
             _this.adObj.src = _this.adObj.imgp_url
           }
-
+          _this.adImpl();
         }
       }, (res) => {
         console.log(res)

@@ -23,11 +23,11 @@
                     </el-form-item>
 
                     <el-form-item label="一队队员" :label-width="formLabelWidth">
-                        <el-input v-model="form.member1" placeholder="请输入一队队员, 成员请用空格分开" auto-complete="off" width="10px"></el-input>
+                        <el-input v-model="form.member1" placeholder="成员请用空格分开" auto-complete="off" width="10px"></el-input>
                     </el-form-item>
 
                     <el-form-item label="二队队员" :label-width="formLabelWidth">
-                        <el-input v-model="form.member2" placeholder="请输入二队队员, 成员请用空格分开" auto-complete="off" width="10px"></el-input>
+                        <el-input v-model="form.member2" placeholder="成员请用空格分开" auto-complete="off" width="10px"></el-input>
                     </el-form-item>
 
                     <el-form-item label="比赛日期" :label-width="formLabelWidth">
@@ -37,6 +37,7 @@
 
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">排表</el-button>
+                        <el-button type="primary" @click="copy">复制</el-button>
                     </el-form-item>
                 </el-form>
 
@@ -44,17 +45,17 @@
 
             <hr>
 
-            <div style="margin-left: 20%;margin-right: 20%; ">
+            <div ref="print" id="print" style="margin-left: 20%;margin-right: 20%; ">
                 <!--<p>【胜】VS【负】 </p>-->
-                <span class="xx"> 比赛： {{form.name1}} VS {{form.name2}}</span>
-                <span class="xx"> 时间： {{getDate()}}</span>
-                <span class="xx"> 规则： {{form.rule}}</span>
-                <span class="xx"> 地点： {{form.location}}</span>
-                <span class="xx"> ------------第一轮------------</span>
-                <span class="xx" v-for="x in list">
-                    {{x.a}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0:0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{x.b}}
-                </span>
-                <span class="xx"> ------------第二轮------------</span>
+                <p class="xx"> 比赛： {{form.name1}} VS {{form.name2}}</p>
+                <p class="xx"> 时间： {{getDate()}}</p>
+                <p class="xx"> 规则： {{form.rule}}</p>
+                <p class="xx"> 地点： {{form.location}}</p>
+                <p class="xx"> ------------第一轮------------</p>
+                <div class="xx" v-for="x in list" style="width:52%">
+                    {{x.a}}<span v-for="q in getSpan(x)"> &nbsp;</span> 0:0 <span v-for="q in 3">  &nbsp; </span> {{x.b}}
+                </div>
+                <p class="xx"> ------------第二轮------------</p>
             </div>
 
             <br>
@@ -63,6 +64,7 @@
             <br>
             <br>
 
+       <Footads></Footads>
         </div>
     </div>
 
@@ -77,7 +79,12 @@
     import moment from 'moment'
     import tb_language from './tb_lang.js'
 
+    import Footads from './Footads'
+
     export default {
+        components: {
+            Footads
+        },
         data() {
             return {
                 fileList3: [],
@@ -128,10 +135,67 @@
                 lang: 'getLang',
                 user: 'getUser'
             }),
-           
+
+            maxlength() {
+                var maxlength = 0;
+                for (var i = 0; i < this.list.length; i++) {
+                    var x = this.list[i];
+                    var l1 = x.a.length;
+                    var l2 = x.b.length;
+                    if (l1 > maxlength) {
+                        maxlength = l1;
+                    }
+                    if (l2 > maxlength) {
+                        maxlength = l2;
+                    }
+                }
+                return maxlength;
+            }
+
         },
 
         methods: {
+            getSpan(x) {
+                return this.maxlength - x.a.length + 3;
+            },
+            copy() {
+                var copytext = "比赛: " + this.form.name1 + " VS " + this.form.name2 + "\r\n";
+                copytext += "时间: " + this.getDate() + "\r\n";
+                copytext += "规则: " + this.form.rule + "\r\n";
+                copytext += "地点: " + this.form.location + "\r\n";
+                copytext += "------------第一轮------------" + "\r\n";
+
+                var maxlength = this.maxlength;
+
+                for (var i = 0; i < this.list.length; i++) {
+                    var x = this.list[i];
+                    copytext += x.a;
+
+                    var diff = (maxlength - x.a.length) * 3
+
+                    for (var j = 0; j < diff + 6; j++) {
+                        copytext += " "
+                    }
+
+                    copytext += "0:0";
+                    for (var j = 0; j < 6; j++) {
+                        copytext += " "
+                    }
+
+                    copytext += x.b + "\r\n"
+                }
+
+                copytext += "------------第二轮------------" + "\r\n";
+                var _this = this;
+                this.$copyText(copytext).then(function (e) {
+                    _this.$notify({
+                        message: '复制成功!',
+                        type: 'success'
+                    })
+                }, function (e) {
+                    console.log(e)
+                })
+            },
             getDate() {
                 if (!this.form.date) {
                     return "";
@@ -208,11 +272,9 @@
 </script>
 
 <style scoped>
-
-.xx {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    display: block;
-}
-
+    .xx {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        display: block;
+    }
 </style>

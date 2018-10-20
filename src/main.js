@@ -8,6 +8,10 @@ import store from './store'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 
+import VueClipboard from 'vue-clipboard2'
+
+Vue.use(VueClipboard)
+
 Vue.use(Element)
 Vue.use(VueX)
 
