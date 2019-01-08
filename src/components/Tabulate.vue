@@ -47,7 +47,7 @@
 
             <div ref="print" id="print" style="margin-left: 20%;margin-right: 20%; ">
                 <!--<p>【胜】VS【负】 </p>-->
-                <p class="xx"> 比赛： {{form.name1}} VS {{form.name2}}</p>
+                <p class="xx"> 战队： {{form.name1}} VS {{form.name2}}</p>
                 <p class="xx"> 时间： {{getDate()}}</p>
                 <p class="xx"> 规则： {{form.rule}}</p>
                 <p class="xx"> 地点： {{form.location}}</p>
@@ -159,7 +159,7 @@
                 return this.maxlength - x.a.length + 3;
             },
             copy() {
-                var copytext = "比赛: " + this.form.name1 + " VS " + this.form.name2 + "\r\n";
+                var copytext = "战队: " + this.form.name1 + " VS " + this.form.name2 + "\r\n";
                 copytext += "时间: " + this.getDate() + "\r\n";
                 copytext += "规则: " + this.form.rule + "\r\n";
                 copytext += "地点: " + this.form.location + "\r\n";

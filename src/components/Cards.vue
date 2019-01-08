@@ -26,6 +26,8 @@
                                     <select name="server" class="form-control" id="server" v-on:change="onChange">
                                         <option value="mycard">MCPro</option>
                                         <option value="233">233</option>
+                                        <option value="koishi">Koishi</option>
+                                        <option value="koishi_tcg">Koishi_tcg</option>
                                     </select>
                                 </div>
                             </div>
@@ -361,7 +363,8 @@
                             {
                                 "render": function (data, type, row) {
                                     // return "<span title='" + data + "'>" + data + "</span>";
-                                    return "<a href='?id=" + row[6] + "#/cardinfo'>" + data + "</a>";
+                                    // return "<a href='?id=" + row[6] + "#/cardinfo'>" + data + "</a>";
+                                    return "<a href='https://www.ourocg.cn/search/" + row[6] + "'>" + data + "</a>";
                                 },
                                 "targets": 1
                             },

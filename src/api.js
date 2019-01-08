@@ -143,4 +143,13 @@ export default class Api {
         return Vue.http.post(url, opt, { 'emulateJSON': true });
     }
 
+    static saveLabel(opt) {
+        const url = `${URL}/label`
+        return Vue.http.post(url, opt, { 'emulateJSON': true });
+    }
+
+    static getLabel(opt) {
+        return Vue.http.get(`${URL}/label`, { 'params': {} });
+    }
+
 }

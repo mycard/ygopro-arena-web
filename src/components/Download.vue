@@ -62,7 +62,7 @@
       self.downloadUrls['windows'] = "https://mycard.moe"
       self.downloadUrls['mac'] = "https://mycard.moe"
       // self.downloadUrls['android'] = "https://pan.baidu.com/s/1eRWiWRC"
-      self.downloadUrls['android'] = "http://zhushou.360.cn/detail/index/soft_id/2972822"
+      self.downloadUrls['android'] = "http://www.pgyer.com/page/ygomobile"
       // API.getDownloadUrls().then((res) => {
       //   let assets = res.data.assets
       //   for (let i of assets) {

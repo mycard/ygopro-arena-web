@@ -1,0 +1,3 @@
+source activate py2
+cd /Users/joe/Workspace/ygo/OSS_Python_API_20160419
+python osscmd uploadfromdir /Users/joe/Workspace/ygo/projects/ygopro-arena-web-new/dist  oss://mycard/ygopro --id ztDf0fCxr0eCgSIi  --key 11LyGMp38uiHXuM2ok808w2jZVaTda

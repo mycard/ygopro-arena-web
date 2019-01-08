@@ -15,6 +15,11 @@
 					<el-button type="link" @click="firstWin">点我设置</el-button>
 				</el-form-item>
 
+				<el-form-item label="竞技匹配活动文字">
+					<el-input v-model="labelone" placeholder="请输入活动标语，然后保存"></el-input>
+					<el-button type="link" @click="saveLable">保存</el-button>
+				</el-form-item>
+
 			</el-form>
 
 			<h4 class="color-blue"><i class="glyphicon glyphicon-filter"></i> 广告素材列表</h4>
@@ -319,6 +324,7 @@
 				},
 				formLabelWidth: '120px',
 				isClick: false,
+				labelone: ""
 			}
 		},
 
@@ -330,6 +336,24 @@
 		},
 
 		methods: {
+			saveLable: function () {
+				var param = {
+					labelone: this.labelone
+				}
+				API.saveLabel(param).then((res) => {
+					this.$notify({
+						title: '操作成功',
+						message: '',
+						type: 'success'
+					})
+				}, (res) => {
+					this.$notify({
+						title: '操作失败',
+						message: '',
+						type: 'success'
+					})
+				});
+			},
 			firstWin: function () {
 				API.getFirstWin({}).then((res) => {
 					this.firstWinForm.name = res.data.name
@@ -411,7 +435,7 @@
 
 				this.needRender = false
 				this.dialogFormVisible = true;
-				this.radio =  row.type || "1";
+				this.radio = row.type || "1";
 			},
 			selectChange: function (val) {
 				this.type = val

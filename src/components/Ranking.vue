@@ -1,6 +1,23 @@
 <template>
   <div class=content>
     <div class="container">
+
+      <div class="fck">
+        <form id="search-form" class="search-form" @submit.prevent="onSubmit">
+          <div class="form-group" v-bind:class="{ 'has-error': hasError}">
+            <label class="control-label" for="searchText" v-if="hasError">{{lang.battle.notfound}}</label>
+            <div class="input-group">
+              <div class="input-group-addon"><span><i class="glyphicon glyphicon-search"></i></span></div>
+              <input class="form-control" type="text" id="searchText" v-model="searchText" :placeholder="lang.battle.ph2">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">{{lang.battle.search}}</button>
+                <button class="btn btn-default" style="display:none" type="submit" id="search">{{lang.battle.search}}</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab-1" role="tab" data-toggle="tab">{{lang.userRank.pointRank}} </a></li>
         <li><a href="#tab-2" role="tab" data-toggle="tab">{{lang.userRank.expRank}} </a></li>
@@ -10,7 +27,8 @@
 
         <div role="tabpanel" class="tab-pane active" id="tab-1">
           <br>
-          <p>{{lang.userRank.tableHead2}}</p>
+          <!--<p>{{lang.userRank.tableHead2}}</p>-->
+          <p>{{labelone}}</p>
           <div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
             <table class="table table-striped table-bordered table-hover example" id="pt_table" :width="width"></table>
           </div>
@@ -63,10 +81,21 @@
 
       var lang = localStorage.getItem('lang') || 'cn';
       this.init(lang)
+
+      API.getLabel({}).then((res) => {
+        
+        this.labelone = res.data.text;
+      }, (res) => {
+       
+      })
     },
     data() {
       return {
         width: "100%",
+        searchText: "",
+        hasError: false,
+        username: "",
+        labelone:"",
       }
     },
 
@@ -90,6 +119,10 @@
     methods: {
       init: function (lang) {
 
+      },
+      onSubmit: function () {
+        var url = `#/userinfo?username=${encodeURIComponent(this.searchText)}`
+        window.location.href = url
       },
       init2: function () {
 
@@ -215,3 +248,15 @@
   }
 
 </script>
+
+
+<style scoped>
+  .fck {
+    margin-bottom: 20px;
+    margin-top: -30px;
+  }
+  
+  .scroll {
+    width: 250%;
+  }
+</style>

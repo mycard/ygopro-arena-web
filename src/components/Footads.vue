@@ -1,14 +1,12 @@
 <template>
-  <div class="other">
-    <footer  @click="adClick">
-      <div class="row" v-bind:style="{ backgroundImage: 'url(' + adObj.src + ')' }">
-        <div class="col-md-4 col-sm-6 footer-navigation">
+  <div>
+      <div v-if="adObj.src" class="ads" @click="adClick" v-bind:style="{ backgroundImage: 'url(' + adObj.src + ')' }">
+        <div>
           <h3><a href="#">{{ adObj.name }} </a></h3>
           <p class="links"><a href="#"> {{ adObj.desctext }} </a></p>
           <!--<p class="company-name">mycard © 2016 </p>-->
         </div>
       </div>
-    </footer>
   </div>
 </template>
 
@@ -89,3 +87,25 @@
   }
 
 </script>
+
+<style scoped>
+
+
+
+  .ads {
+    text-align: center;
+    padding: 25%;
+    /*padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 20%;
+    padding-bottom: 20%;*/
+
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
+    background-size: contain;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: center;
+  }
+
+</style>
