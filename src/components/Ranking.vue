@@ -29,6 +29,7 @@
           <br>
           <!--<p>{{lang.userRank.tableHead2}}</p>-->
           <p>{{labelone}}</p>
+          <p><a href="https://bbs.ygobbs.com/t/83049" target="_blank">竞技匹配积分&长期活动详解</a></p>
           <div class="table-responsive" style="width:100%;overflow-x:auto;overflow-y:hidden;">
             <table class="table table-striped table-bordered table-hover example" id="pt_table" :width="width"></table>
           </div>
