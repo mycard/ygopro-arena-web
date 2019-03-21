@@ -222,7 +222,7 @@
         },
         watch: {
             lang: function (val) {
-                console.log('lang change1', val)
+                // console.log('lang change1', val)
                 this.init2()
             },
         },
@@ -296,13 +296,15 @@
                             type: $("#type").val(),
                             source: final_source
                         }, function (data) {
-                            var obj = JSON.parse(data);
+                            var obj = data;
+                            if (typeof obj === 'string')
+                                obj = JSON.parse(data);
                             var rank = 1;
                             var processData = obj.map(function (x) {
                                 var tagStr = [];
                                 var deckName = x.name;
                                 for (var i = 0; i < x.tags.length; i++) {
-                                    var tagName = x.tags[i].name;
+                                    var tagName = x.tags[i].name || x.tags[i].toString() || "";
                                     var short_tagName = tagName.replace(deckName + "-", "");
                                     tagStr.push(short_tagName)
                                 }
@@ -344,7 +346,7 @@
 
                     var rank = 1;
                     var processData = tableData.map(function (d) {
-                        return [rank++, d.name[langIndex], d.frequency, d.putone, d.puttwo, d.putthree, d.id];
+                        return [rank++, d.name ? d.name[langIndex] : "未知卡片", d.frequency, d.putone, d.puttwo, d.putthree, d.id];
                     });
 
                     var table = $(tableID).DataTable({
@@ -363,8 +365,12 @@
                             {
                                 "render": function (data, type, row) {
                                     // return "<span title='" + data + "'>" + data + "</span>";
+// <<<<<<< HEAD
                                     // return "<a href='?id=" + row[6] + "#/cardinfo'>" + data + "</a>";
                                     return "<a href='https://www.ourocg.cn/search/" + row[6] + "'>" + data + "</a>";
+// =======
+                                    // return "<a href='https://www.ourocg.cn/search/" + row[6] + "/'>" + data + "</a>";
+// >>>>>>> 77e3b283f8782193f4ecdaf5219a79ecf9fd2a91
                                 },
                                 "targets": 1
                             },
