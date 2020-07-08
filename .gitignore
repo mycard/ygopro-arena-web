@@ -9,3 +9,6 @@ yarn-error.log*
 note.md
 plan.org
 database.sql
+release
+package-lock.json
+Answaer.js
